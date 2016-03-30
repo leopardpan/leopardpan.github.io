@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>iOS9变化笔记 | 潘柏信</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS9变化笔记">
+<meta property="og:url" content="http://yoursite.com/2015/09/22/iOS9的变化/index.html">
+<meta property="og:site_name" content="潘柏信">
+<meta property="og:description" content="这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。">
+<meta property="og:updated_time" content="2016-03-01T13:33:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS9变化笔记">
+<meta name="twitter:description" content="这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。">
+  
+    <link rel="alternative" href="/atom.xml" title="潘柏信" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://tp3.sinaimg.cn/5366874726/180/5733316492/1" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">潘柏信</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">勤劳的小码农</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/leopardpan" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/5366874726/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS8/" style="font-size: 10px;">iOS8</a> <a href="/tags/iOS9/" style="font-size: 20px;">iOS9</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">潘柏信</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://tp3.sinaimg.cn/5366874726/180/5733316492/1" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">潘柏信</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">勤劳的小码农</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/leopardpan" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/5366874726/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-iOS9的变化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/22/iOS9的变化/" class="article-date">
+  	<time datetime="2015-09-22T13:06:23.000Z" itemprop="datePublished">2015-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS9变化笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS9/">iOS9</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。<br><a id="more"></a></p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a><font color="cd6600">信息收集</font></h2><h2 id="App-Transport-Security"><a href="#App-Transport-Security" class="headerlink" title="App Transport Security"></a><font color="cd6600">App Transport Security</font></h2><p>iOS9和OS X El Capitan的一个新特性，App Transport Security 的目地是提高Apple 操作系统的安全性以及在此操作系统上运行的任何应用的安全性。ATS是苹果针对与 NSURL这一层做的封装，iOS9后ATS默认是开启的，即网络传输需要使用HTTPS。如果想在iOS9后继续使用HTTP的话，有两条路可以走：<br>    1、在Info.plist中添加NSAppTransportSecurity类型Dictionary，在NSAppTransportSecurity下添加NSAllowsArbitraryLoads，Boolean为YES。<br>    2、直接使用CFNetwork做网络请求，ASIHTTPRequest就是基于CFNetwotk做的封装，如果有需求的同学可以看看ASI里面的源码，如果某个时间段你又想要使用HTTPS的话，ASI对SSL/TSL的证书验证有点问题，证书验证还得自己封装一下才行。刚才我说道，ATS是苹果针对与NSURL这一层做的封装，所以我们使用CFNetwork或者更底层做网络请求的话是不受ATS限制的。</p>
+<p>移除了discoveryd DNS解析服务<br>iPhone升级到iOS8后WiFi有时候会有问题，特别是Mac升级到OS X Yosemite后，时而电脑休眠唤醒唬就连不上WiFi，有时候还突然掉线，经常要手动去关闭WiFi在重新连接，这是因为苹果到了OS X Yosemite系统后，把之前的mDNSResponder换成了discoveryd DNS。iOS9和OS X Yosemite10.4后mDNSResponder又回来了。<br>mDNSResponder： 苹果以前一直使用控制DNS和Bonjour服务的一种进程。<br>discoveryd：OS X Yosemite后苹果新出的一种进程。</p>
+<h2 id="App-Thinning"><a href="#App-Thinning" class="headerlink" title="App Thinning"></a><font color="cd6600">App Thinning</font></h2><p>App Thinning是一个关于节省iOS设备存储空间的功能，它可以让iOS设备在安装、更新及运行App等场景中仅下载所需的资源，减少App的占用空间，从而节省设备的存储空间。</p>
+<h3 id="App-Thinning主要有三个机制："><a href="#App-Thinning主要有三个机制：" class="headerlink" title="App Thinning主要有三个机制："></a><font color="cd6600">App Thinning主要有三个机制：</font></h3><pre><code>1、Slicing： 开发者把App安装包上传到AppStore后，Apple服务会自动对安装包切割为不同的应用变体(App variant)， 当用户下载安装包时，系统会根据设备型号下载安装对应的单个应用变体。
+2、On-Demand Resources： ORD(随需资源)是指开发者对资源添加标签上传后，系统会根据App运行的情况，动态下载并加载所需资源，而在存储空间不足时，自动删除这类资源。
+3、Bitcode：开启Bitcode编译后，可以使得开发者上传App时只需上传Intermediate Representation(中间件)，而非最终的可执行二进制文件。 在用户下载App之前，AppStore会自动编译中间件，产生设备所需的执行文件供用户下载安装。
+</code></pre><p>其中，Bitcode的机制可以支持动态的进行App Slicing，而对于Apple未来进行硬件升级的措施，此机制可以保证在开发者不重新发布版本的情况下而兼容新的设备。Xcode7默认是开始了Bitcode，如果不想使用可以手动关闭Bitcode：</p>
+<pre><code class="bash">选择项目——&gt;点击Target——&gt;点击Build Setttings——&gt;搜索栏里搜bitcode——&gt;把Enable Bitcode对应的Yes改成No。
+</code></pre>
+<p>启用Bitcode编译机制，需要注意以下几点：</p>
+<pre><code class="bash">1、如果应用开启Bitcode，那么其集成的其他第三方库也需要是Bitcode编译的包才能真正进行Bitcode编译
+2、开启Bitcode编译后，编译产生的.app体积会变大(中间代码，不是用户下载的包)，且.dSYM文件不能用来崩溃日志的符号化（用户下载的包是Apple服务重新编译产生的，有产生新的符号文件），使用dSYM来收集Crash日志的同学得注意了。
+3、通过Archive方式上传AppStore的包，可以在Xcode的Organizer工具中下载对应安装包的新的符号文件
+</code></pre>
+<h2 id="后台定位"><a href="#后台定位" class="headerlink" title="后台定位"></a><font color="cd6600">后台定位</font></h2><p>iOS9后苹果为了对保障用户的地理位置的隐私对App请求后台定位有了权限设置，则需要多加一些代码。如果不适配iOS9，就不能偷偷在后台定位，如果没有后台定位的权限也是可以在后台定位的，只是会出现蓝条。<br>开启后台定位功能：locationManager.allowsBackgroundLocationUpdates = YES;<br>locationManager是CLLocationManager的对象，用来管理整个定位的。</p>
+<pre><code class="bash">重点：配置info.plist，添加一个Required background modes，Array类型的，然后在Required background modes里面Item 0对应的Value设置为App registers <span class="keyword">for</span> location updates，这样就解决了iOS9后台定位出现蓝条的问题了。
+</code></pre>
+<h2 id="UI-Testing"><a href="#UI-Testing" class="headerlink" title="UI Testing"></a><font color="cd6600">UI Testing</font></h2><p>Xcode7中苹果引入了一种新的方式在应用中进行测试——UI Testting，UI Testting允许我们找到UI元素与之交互，还能检查属性和状态。UI Testting已经完全集成进了Xcode7的测试报告，可以和单元测试一起执行。使用起来跟之前Xcode5出来的XCTest差不多，Xcode bots提供对此的支持，而且command line支持当UI测试失败时会立即发出通知。<br>可以参考Github上的Demo，步骤：</p>
+<pre><code class="bash">1、在DemoTests.m里创建一个<span class="built_in">test</span>开头的方法
+2、在<span class="built_in">set</span>Up()里启动应用XCUIApplication().launch()
+3、新建一个方法<span class="built_in">test</span>开头的，在里面获取应用<span class="built_in">let</span> app = XCUIApplication()
+4、的到<span class="built_in">let</span> app = XCUIApplication()，app.buttons[“View Detail”].tap()?。buttons是当前这个界面的所有按钮的集合，[]里面写按钮的名字，tap()就是执行这个按钮所对应的方法，可以是网络请求、界面跳转等等。
+</code></pre>
+<h2 id="URL-scheme"><a href="#URL-scheme" class="headerlink" title="URL scheme"></a><font color="cd6600">URL scheme</font></h2><p>在iOS9中，如果使用URL scheme必须在”Info.plist”中将你要在外部调用的URL scheme列为白名单，否则不能使用。<br>配置info.plist，添加一个LSApplicationQueriesSchemes，Array类型的，然后在LSApplicationQueriesSchemes的Item里面添加urlscheme就行了，urlscheme是任意一个字符串，就是你自己需要使用的urlscheme，iOS9 URL scheme白名单适配就完成了。</p>
+<h2 id="出现大量的警告"><a href="#出现大量的警告" class="headerlink" title="出现大量的警告"></a><font color="cd6600">出现大量的警告</font></h2><p>Xcode7后运行以前的项目后出现大量的警告如：(null): warning: /var/folders/p4/z7zy68r92hd3p5ry5g2v3k_8rlwzzr/C/org.llvm.clang.dalmo/ModuleCache/1TXZDLI9N2EMV/Foundation-3DFYNEBRQSXST.pcm: No such file or directory。<br>作为一个有洁癖的我反正是不能忍，出现警告的大致原因跟我上面提到的开启Bitcode，.dSYM文件不能用来符号化有关，Xcode试图去创建dSYM文件，但是你又不需要。</p>
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><pre><code class="bash">1、Build Settings ——&gt;Build Options——&gt;Debug Information Format
+2、Debug下的DWARF with dsYM File改成DWARF
+3、Release下的还是之前默认的DWARF with dsYM File不变
+</code></pre>
+<p>参考资料：</p>
+<p><a href="https://github.com/ChenYilong/iOS9AdaptationTips" target="_blank" rel="external">iOS9AdaptationTips</a> 、<a href="http://www.cocoachina.com/ios/20150821/13140.html" target="_blank" rel="external">iOS9学习系列</a> 、<a href="https://github.com/shinobicontrols/iOS9-day-by-day" target="_blank" rel="external">iOS9-day-by-day</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/23/iPad-Multitasking/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          iPad Multitasking
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/14/单元测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">单元测试</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS9的变化" data-title="iOS9变化笔记" data-url="http://yoursite.com/2015/09/22/iOS9的变化/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 潘柏信
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
