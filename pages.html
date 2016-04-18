@@ -1,0 +1,15 @@
+---
+layout: page
+title: 页面 
+header: Pages
+group: navigation
+---
+{% include JB/setup %}
+<div class = "card">
+	<h2 class="hat_title">快速入口</h2>
+	<ul>
+	{% assign pages_list = site.pages %}
+	{% include JB/pages_list %}
+	</ul>
+</div>
+
