@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 寂寞先生
-tagline: 这，是一个寂寞的世界……
+title: 潘柏信
+tagline: 这，是一个代码的世界……
 ---
 {% include JB/setup %}
 
