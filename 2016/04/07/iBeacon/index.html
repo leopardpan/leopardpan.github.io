@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>iBeacon 能为开发者做什么？ | 潘柏信</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="热爱 | iOS | 机器学习">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="iBeacon 能为开发者做什么？ | 潘柏信">
+    <meta name="twitter:description" content="热爱 | iOS | 机器学习">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="iBeacon 能为开发者做什么？ | 潘柏信">
+    <meta property="og:description" content="热爱 | iOS | 机器学习">
+
+    
+    <meta name="author" content="leopardpan">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="潘柏信" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://baixin.io/2016/04/07/iBeacon/"/>
+
+    
+      
+</head>
+
+<body class="home-template no-js">
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 潘柏信 的主页"><img src="/images/avatar.jpg" width="80" alt="潘柏信 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for 潘柏信">潘柏信</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">个人站</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">热爱 | iOS | 机器学习</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/favourite">黄金屋</a></li>
+            
+              <li class="navigation__item"><a href="/favourite/time.html">时光机</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">我是</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/u/5366874726" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/leopardpan" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="https://stackoverflow.com/users/4510613/leopardpan" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-04-06T18:25:06.000Z" class="post-list__meta--date date">2016-04-07</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/技术分享/">技术分享</a>
+ </span>
+      <span class="page-pv">     
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">iBeacon 能为开发者做什么？</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><ul>
+<li>iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</li>
+<li>可实现地理围栏、室内定位等功能，测量距离：<a href="https://developer.apple.com/ibeacon/" target="_blank" rel="external">iBeacon</a> 通过设备的 <code>UUID</code> 可以检测到具体的 <code>iBeacon</code> 信息，如：<code>Major</code> ，<code>Minor</code> ，用来进行多个 <code>iBeacon</code> 区分，<code>RSSI</code> ，用来计算信号接受者到 <code>iBeacon</code> 信号发射硬件之间的距离。<code>identifier</code> : 用来区分某一块的 <code>iBeacon</code> 信号，<code>iBeacon</code> 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。</li>
+</ul>
+<a id="more"></a>
+<h4 id="iBeacon功能-对开发者使用的额外成本"><a href="#iBeacon功能-对开发者使用的额外成本" class="headerlink" title="iBeacon功能 对开发者使用的额外成本:"></a><strong>iBeacon功能 对开发者使用的额外成本:</strong></h4><ul>
+<li><code>iBeacon</code> 也属于一种定位功能，所以需要添加 <code>CoreLocation.framework</code> 。</li>
+<li><code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code> 或 <code>NSLocationWhenInUseUsageDescription</code> 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
+</ul>
+<h4 id="检测iBeacon信号对用户设备的必要条件："><a href="#检测iBeacon信号对用户设备的必要条件：" class="headerlink" title="检测iBeacon信号对用户设备的必要条件："></a><strong>检测iBeacon信号对用户设备的必要条件：</strong></h4><ul>
+<li>用户设备iOS7或更新操作系统。</li>
+<li>用户蓝牙设备4.0或更新。</li>
+<li>用户蓝牙设备必须开启。</li>
+<li>用户设备定位服务必须开启，允许应用访问位置信息。</li>
+</ul>
+<h4 id="iBeacon-可以激活-App-："><a href="#iBeacon-可以激活-App-：" class="headerlink" title="iBeacon 可以激活 App ："></a>iBeacon 可以激活 App ：</h4><ul>
+<li>条件：这个 <code>App</code> 能后台访问位置信息，并且具备上述功能(能正常检查iBeacon)。</li>
+<li>现象：这个 <code>App</code> 即使没有启动(无进程), 当有被监测iBeacon信号出现时, 这个 <code>App</code> 能被唤醒, 没任何操作的情况下, 进程存活时间可长达几个小时。</li>
+<li>影响：开发者对用户使用App的使用时长统计可能会出现失误, 这时开发者就需要借助第三方统计SDK了,例如： <code>TalkingData</code> SDK 等。</li>
+</ul>
+<h4 id="iBeacon功能对用户造成的影响"><a href="#iBeacon功能对用户造成的影响" class="headerlink" title="iBeacon功能对用户造成的影响:"></a>iBeacon功能对用户造成的影响:</h4><ul>
+<li>iBeacon如果在后台监测到信号时, 当屏幕处于锁频状态, 设备左下角会有这个 App 的icon, 对于这一现象具体怎么使用就要看开发者了。</li>
+</ul>
+
+  </section>
+
+</article>
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/06/02/开发常用工具/" title="开发常用工具">开发常用工具</a></h2>
+                <p class="excerpt">
+                
+                个人开发常用工具的收集
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-06-02T03:15:06.000Z" class="post-list__meta--date date">2016-06-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/工具/">工具</a>
+</span><a class="btn-border-small" href="/2016/06/02/开发常用工具/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/04/02/CocoaPod使用心得/" title="CocoaPods使用心得">CocoaPods使用心得</a></h2>
+                <p class="excerpt">
+                
+                简介：　　本章介绍什么是 CocoaPods ,如何使用 CocoaPods , 以及 CocoaPods 的原理,和使用 CocoaPods 时经常出现的一些问题。
+　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-04-02T03:15:06.000Z" class="post-list__meta--date date">2016-04-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/04/02/CocoaPod使用心得/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+<section class="post-comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="http://baixin.io/2016/04/07/iBeacon/" data-title="iBeacon 能为开发者做什么？" data-url="http://baixin.io/2016/04/07/iBeacon/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"leopard"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 本站由 <a href="/">@Monniya</a> 创建,
+        使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">hexo-theme-new-vno</a> 主题,
+        修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+</footer>
+        </div>
+    </div>
+
+    
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+</body>
+</html>
