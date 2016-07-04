@@ -72,11 +72,7 @@
             <ul class="navigation">
               <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
             
-              <li class="navigation__item"><a href="/favourite">黄金屋</a></li>
-            
-              <li class="navigation__item"><a href="/favourite/time.html">时光机</a></li>
-            
-              <li class="navigation__item"><a href="/aboutme">我是</a></li>
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
             
             </ul>
           </nav>
@@ -168,9 +164,11 @@
   <section class="post">
     <h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><ul>
 <li>iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</li>
-<li>可实现地理围栏、室内定位等功能，测量距离：<a href="https://developer.apple.com/ibeacon/" target="_blank" rel="external">iBeacon</a> 通过设备的 <code>UUID</code> 可以检测到具体的 <code>iBeacon</code> 信息，如：<code>Major</code> ，<code>Minor</code> ，用来进行多个 <code>iBeacon</code> 区分，<code>RSSI</code> ，用来计算信号接受者到 <code>iBeacon</code> 信号发射硬件之间的距离。<code>identifier</code> : 用来区分某一块的 <code>iBeacon</code> 信号，<code>iBeacon</code> 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。</li>
 </ul>
 <a id="more"></a>
+<ul>
+<li>可实现地理围栏、室内定位等功能，测量距离：<a href="https://developer.apple.com/ibeacon/" target="_blank" rel="external">iBeacon</a> 通过设备的 <code>UUID</code> 可以检测到具体的 <code>iBeacon</code> 信息，如：<code>Major</code> ，<code>Minor</code> ，用来进行多个 <code>iBeacon</code> 区分，<code>RSSI</code> ，用来计算信号接受者到 <code>iBeacon</code> 信号发射硬件之间的距离。<code>identifier</code> : 用来区分某一块的 <code>iBeacon</code> 信号，<code>iBeacon</code> 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。</li>
+</ul>
 <h4 id="iBeacon功能-对开发者使用的额外成本"><a href="#iBeacon功能-对开发者使用的额外成本" class="headerlink" title="iBeacon功能 对开发者使用的额外成本:"></a><strong>iBeacon功能 对开发者使用的额外成本:</strong></h4><ul>
 <li><code>iBeacon</code> 也属于一种定位功能，所以需要添加 <code>CoreLocation.framework</code> 。</li>
 <li><code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code> 或 <code>NSLocationWhenInUseUsageDescription</code> 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
@@ -219,10 +217,11 @@
                 <p class="excerpt">
                 
                 简介：　　本章介绍什么是 CocoaPods ,如何使用 CocoaPods , 以及 CocoaPods 的原理,和使用 CocoaPods 时经常出现的一些问题。
-　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2016-04-02T03:15:06.000Z" class="post-list__meta--date date">2016-04-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/04/02/CocoaPod使用心得/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2016-04-01T16:00:00.000Z" class="post-list__meta--date date">2016-04-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/工具/">工具</a>
+</span><a class="btn-border-small" href="/2016/04/02/CocoaPod使用心得/">继续阅读</a></div>
                        
             </div>
         
