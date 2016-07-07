@@ -214,11 +214,13 @@ td:last-child {
 .time,
 .author{ color: #c7c7c7; }
 .tags {
-  font-size: .8em;
-  color: #999999;
+  font-size: 1em;
+  color: #191970;
   text-indent: 4px;
-  background-color: #E0FFFF;
-  border-radius: 4px;
+  background-color: #E6E6FA;
+  border-radius: 6px;
+  padding: 3px 6px;
+  border: 1px solid #191970;
 }
 .date a,
 .time a,
@@ -504,10 +506,10 @@ hr {
 
 .btn-border-small {
   border: 1px solid #BF1827;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 6px 8px;
   font-size: .8em;
-  margin-left: 10px; }
+  margin-left: 20px; }
 
 .btn-secondary {
   border-color: #5BA4E5;

@@ -5,8 +5,8 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 07 Jul 2016 17:38:25 +0800</pubDate>
-    <lastBuildDate>Thu, 07 Jul 2016 17:38:25 +0800</lastBuildDate>
+    <pubDate>Thu, 07 Jul 2016 18:37:00 +0800</pubDate>
+    <lastBuildDate>Thu, 07 Jul 2016 18:37:00 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -345,7 +345,7 @@ error: Xcode 7.3.0 or later is required.
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;概念：&lt;/strong&gt; iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 &lt;code&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;iBeacon的形状多种多样，大致如下图。
-&lt;img src=&quot;/assets/img/ibeacon.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/ibeacon.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4&gt;目前哪些地方有iBeacon：&lt;/h4&gt;

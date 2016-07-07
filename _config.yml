@@ -23,9 +23,8 @@ blog_button:
 
 # Navigation buttons in the front page.s
 nav:
-    - {title: Tag, description: tag, url: '/tags'}
-    - {title: Archive, description: archive, url: '/archive'}
-
+    - {title: about, description: about, url: '/about'}
+    
 # Pagination
 gems: [jekyll-paginate]
 paginate: 10
@@ -35,7 +34,7 @@ paginate_path: "page/:num/"
 comment:
     # disqus: leopard
     duoshuo: leopard 
-    
+
 # Social
 social:
     weibo: 5366874726 
