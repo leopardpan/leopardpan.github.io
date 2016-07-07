@@ -23,7 +23,7 @@ blog_button:
 
 # Navigation buttons in the front page.s
 nav:
-    - {title: about, description: about, url: '/about'}
+    # - {title: about, description: about, url: '/about'}
     
 # Pagination
 gems: [jekyll-paginate]
