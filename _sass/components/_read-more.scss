@@ -1,0 +1,22 @@
+// ------------------------------
+// READ MORE
+// ------------------------------
+
+.read-more {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 1.2em;
+    padding-bottom: 1em;
+    border-top: 1px solid #DDDDDD;
+}
+
+.read-more-item {
+  display: inline-block;;
+  vertical-align: top;
+  width: 48%;
+}
+
+.read-more-item-dim {
+  color: $hover-color;
+  font-size: .8em;
+}

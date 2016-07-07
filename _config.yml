@@ -1,0 +1,49 @@
+# Basic
+title: 潘柏信
+subtitle: 个人站
+description: iOS | Machine Learning
+creator: <a href="http://baixin.io">@leopardpan</a>
+
+url: "http://baixin.io"
+
+permalink: /:year/:month/:title/
+
+# Format
+highlighter: plain
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
+
+# supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
+cover_color: clear
+
+# The blog button should not be removed.
+blog_button:
+    title: 博客
+
+# Navigation buttons in the front page.s
+nav:
+    - {title: Tag, description: tag, url: '/tags'}
+    - {title: Archive, description: archive, url: '/archive'}
+
+# Pagination
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "page/:num/"
+
+# Comment
+comment:
+    # disqus: leopard
+    duoshuo: leopard 
+    
+# Social
+social:
+    weibo: 5366874726 
+    github: leopardpan
+    # twitter: 
+    mail: leopardpan@icloud.com
+
+# Google Analytics
+ga:
+    # id: your_ga_id
+    # host: your_host
