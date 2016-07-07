@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>潘柏信</title>
+    <description>iOS | Machine Learning</description>
+    <link>http://baixin.io/</link>
+    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 07 Jul 2016 11:12:38 +0800</pubDate>
+    <lastBuildDate>Thu, 07 Jul 2016 11:12:38 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Python学习资料</title>
+        <description>&lt;p&gt;学习pyhton过程中收集的资料，以及个人笔记。&lt;/p&gt;
+
+&lt;h3&gt;资源集合&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://python.freelycode.com/&quot;&gt;Python部落&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://www.pythondoc.com/&quot;&gt;Python中文学习&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://eastlakeside.gitbooks.io/interpy-zh/content/index.html&quot;&gt;《Python进阶》&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://github.com/vinta/awesome-python&quot;&gt;awesome-python&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.zhihu.com/question/24590883/answer/89226375?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&quot;&gt;哪些 Python 库让你相见恨晚？&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://github.com/Yixiaohan/codeparkshare&quot;&gt;PythonShare&lt;/a&gt;          &lt;/p&gt;
+
+&lt;h3&gt;文章收集&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://codingpy.com/article/if-you-also-want-to-write-flask/&quot;&gt;如果你也想写Flask&lt;/a&gt;: 一遍很好的flask入门教程。  &lt;/p&gt;
+
+&lt;h3&gt;个人练习&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Python-Growing/tree/master/Flask&quot;&gt;Flask搭建 Web App&lt;/a&gt; 使用Flask搭建的测试服务器。      &lt;/p&gt;
+
+&lt;p&gt;持续更新中...&lt;/p&gt;
+</description>
+        <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>机器学习入门（名词科普）</title>
+        <description>&lt;h4&gt;ML&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 机器学习(Machine Learning)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。
+　　它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。&lt;/p&gt;
+
+&lt;h4&gt;DL&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 深度学习（Deep Learning）是机器学习拉出的分支，它试图使用包含复杂结构或由多重非线性变换构成的多个处理层对数据进行高层抽象的算法。&lt;br&gt;
+　　深度学习是机器学习中表征学习方法。观测值（例如一幅图像）可以使用多种方式来表示，如每个像素强度值的矢量，或者更抽象地表示成一系列边、特定形状的区域等。而使用某些特定的表示方法更容易从实例中学习任务（例如，人脸识别或面部表情识别）。深度学习的好处是将用非监督式或半监督式的特征学习和分层特征提取的高效算法来替代手工获取特征。&lt;/p&gt;
+
+&lt;h4&gt;CNN&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 卷积神经网络（Convolutional neural networks，简称CNNs）是一种深度的监督学习下的机器学习模型&lt;/p&gt;
+
+&lt;h3&gt;算法名词&lt;/h3&gt;
+
+&lt;h4&gt;kNN:&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 邻近算法，或者说K最近邻(kNN，k-NearestNeighbor)分类算法。
+　　邻近算法是数据挖掘分类技术中最简单的方法之一。所谓K最近邻，就是k个最近的邻居的意思，说的是每个样本都可以用它最接近的k个邻居来代表。
+　　kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。该方法在确定分类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。 kNN方法在类别决策时，只与极少量的相邻样本有关。由于kNN方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，kNN方法较其他方法更为适合。&lt;/p&gt;
+
+&lt;h4&gt;SVM:&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 支持向量机（Support Vector Machine）。
+　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/ML(1)/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/ML(1)/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>TensorFlow学习笔记</title>
+        <description>&lt;p&gt;官方资源：&lt;a href=&quot;http://tensorflow.org&quot;&gt;英文官网&lt;/a&gt;、&lt;a href=&quot;http://www.tensorfly.cn/&quot;&gt;中文官网&lt;/a&gt;，&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;Github项目&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;简介：&lt;/h3&gt;
+
+&lt;p&gt;　　TensorFlow是一个用来编写和执行机器学习算法的工具。计算在数据流图中完成，图中的节点进行数学运算，边界是在各个节点中交换的张量（Tensors--多维数组）。TensorFlow负责在不同的设备、内核以及线程上异步地执行代码。
+　　TensorFlow在台式机、服务器或者移动设备的CPU和GPU上运行，也可以使用Docker容器部署到云环境中。
+　　　　　　&lt;img src=&quot;http://www.tensorfly.cn/images/tensors_flowing.gif&quot; alt=&quot;&quot;&gt;    &lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3&gt;用途：&lt;/h3&gt;
+
+&lt;p&gt;　　&lt;code&gt;语音识别&lt;/code&gt;，&lt;code&gt;自然语言理解&lt;/code&gt;，&lt;code&gt;计算机视觉&lt;/code&gt;，&lt;code&gt;广告&lt;/code&gt;等等。但是，但我们也不能过分夸大TensorFlow这种通用深度学习框架在一个工业界机器学习系统里的作用。在一个完整的工业界语音识别系统里，除了深度学习算法外，还有很多工作是专业领域相关的算法，以及海量数据收集和工程系统架构的搭建。&lt;/p&gt;
+
+&lt;h3&gt;特性&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;1 灵活性&lt;/strong&gt;
+　　TensorFlow不是一个严格的神经网络工具包，只要你可以使用数据流图来描述你的计算过程，你可以使用TensorFlow做任何事情。你还可以方便地根据需要来构建数据流图，用简单的Python语言来实现高层次的功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2 可移植性&lt;/strong&gt;
+　　TensorFlow可以在任意具备CPU或者GPU的设备上运行，你可以专注于实现你的想法，而不用去考虑硬件环境问题，你甚至可以利用Docker技术来实现相关的云服务。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3 提高开发效率&lt;/strong&gt;
+　　TensorFlow可以提升你所研究的东西产品化的效率，并且可以方便与同行们共享代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4 支持语言选项&lt;/strong&gt;
+　　目前TensorFlow支持Python和C++语言。（但是你可以自己编写喜爱语言的SWIG接口）&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5 充分利用硬件资源，最大化计算性能&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3&gt;TensorFlow编译iOS的静态库&lt;/h3&gt;
+
+&lt;p&gt;Tensorflow在0.9版开始支持iOS平台的。按Tensorflow&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile&quot;&gt;官方文档的命令&lt;/a&gt;：
+1、clone项目&lt;br&gt;
+&lt;code&gt;
+$ git clone https://github.com/tensorflow/tensorflow    
+&lt;/code&gt;
+2、安装依赖环境，cd 到 tensorflow/contrib/makefile/&lt;br&gt;
+&lt;code&gt;
+$ bash download_dependencies.sh       
+&lt;/code&gt;
+3、安装protobufs&lt;br&gt;
+&lt;code&gt;
+$ bash compile_ios_protobuf.sh 
+&lt;/code&gt;
+4、安装iOS环境
+&lt;code&gt;
+make -f tensorflow/contrib/makefile/Makefile \
+ TARGET=IOS \
+ IOS_ARCH=ARM64
+&lt;/code&gt;
+5、安装图库
+&lt;code&gt;
+mkdir -p ~/graphs
+curl -o ~/graphs/inception.zip \
+ https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip \
+ &amp;amp;&amp;amp; unzip ~/graphs/inception.zip -d ~/graphs/inception
+&lt;/code&gt;
+6、安装iOS最终环境，生成&lt;code&gt;libtensorflow-core.a&lt;/code&gt;
+&lt;code&gt;
+$ bash build_all_ios.sh
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;7、如果你的机子沸腾起来了，并且看到了下面的图，代表你已经正式在安装了。
+&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;8、完成编译静态库&lt;/p&gt;
+
+&lt;h4&gt;iOS上遇到问题&lt;/h4&gt;
+
+&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用）
+&lt;code&gt;
+curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out
+&lt;/code&gt;
+解决：
+　　1）把下载好的&lt;code&gt;protobuf&lt;/code&gt;拷贝出来，&lt;code&gt;protobuf&lt;/code&gt;在 tensorflow/contrib/makefile/downloads里。
+　　2）访问&lt;code&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip&lt;/code&gt;，把gmock-1.7.0.zip下载下来放在protobuf/ 里面。
+　　3）把&lt;code&gt;tensorflow/contrib/makefile/download_dependencies.sh&lt;/code&gt;里的 &lt;code&gt;git clone https://github.com/google/protobuf.git ${DOWNLOADS_DIR}/protobuf&lt;/code&gt;给注释掉。
+　　4）再次执行命令 &lt;code&gt;bash build_all_ios.sh&lt;/code&gt;，立即把之前拷贝的&lt;code&gt;protobuf&lt;/code&gt;文件放进tensorflow/contrib/makefile/downloads里。
+　　5）静静的等待。。。&lt;/p&gt;
+
+&lt;p&gt;2、没有安装 autoconf 和 libtool
+&lt;code&gt;
+Google Mock not present.  Fetching gmock-1.7.0 from the web...
++ autoreconf -f -i -Wall,no-obsolete
+Can&amp;#39;t exec &amp;quot;glibtoolize&amp;quot;: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, &amp;lt;GEN10&amp;gt; line 6.
+autoreconf: failed to run glibtoolize: No such file or directory
+autoreconf: glibtoolize is needed because this package uses Libtool
+&lt;/code&gt;
+解决：执行命令   &lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;brew install libtool
+brew install autoconf
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;我之前安装过了&lt;code&gt;automake&lt;/code&gt;，如果你没有的话，也是需要安装的。&lt;/p&gt;
+
+&lt;p&gt;3、应用程序里没有xcode，或没有一个叫xcode名字的。
+&lt;code&gt;
+xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located
+xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located
+xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#39;iphoneos&amp;#39;
++ IPHONEOS_PLATFORM=
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;4、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。
+&lt;code&gt;
+error: Xcode 7.3.0 or later is required.
++ exit 1
+&lt;/code&gt;
+解决：更新Xcode版本到7.3以后，修改为默认安装路径。
+如果Xcode是7.3，你可以修改tensorflow/contrib/makefile/compile_ios_tensorflow.sh 里的REQUIRED_XCODE_VERSION=7.3.0，为REQUIRED_XCODE_VERSION=7.3。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）&lt;/p&gt;
+
+&lt;h4&gt;参考连接：&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/&quot;&gt;编译Protobuf(On Mac)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://www.jeyzhang.com/tensorflow-learning-notes.html&quot;&gt;TensorFlow学习笔记1：入门&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://www.jeyzhang.com/tensorflow-learning-notes-2.html&quot;&gt;TensorFlow学习笔记2：构建CNN模型&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://www.jeyzhang.com/tensorflow-learning-notes-3.html&quot;&gt;TensorFlow学习笔记3：词向量&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://chenrudan.github.io/blog/2015/11/18/comparethreeopenlib.html&quot;&gt;Caffe、TensorFlow、MXnet三个开源库对比&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://weibo.com/p/1001603907610737775666&quot;&gt;如何评价Tensorflow和其它深度学习系统&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80&quot;&gt;深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？&lt;/a&gt;  &lt;/p&gt;
+</description>
+        <pubDate>Fri, 01 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>HEXO进阶</title>
+        <description>&lt;p&gt;最近有好多朋友问我类似的问题, 同样也是我想解决的问题, 下面将会介绍解决几个问题。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1、博客部署样式出问题了怎么办？&lt;/li&gt;
+&lt;li&gt;2、电脑重装或者误删了本地博客怎么办？&lt;/li&gt;
+&lt;li&gt;3、想使用两台电脑写博客怎么办？&lt;/li&gt;
+&lt;li&gt;4、为何使用百度搜不到我的博客？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;使用Jekyll解决前三个问题。&lt;/h3&gt;
+
+&lt;p&gt;不得不说 &lt;code&gt;Jekyll&lt;/code&gt; 确实可以解决我上面三个问题, 因为 &lt;code&gt;Jekyll&lt;/code&gt; 是直接把Markdown格式的文章直接放在github仓库里的, 相当于直接用git来管理博客了, &lt;code&gt;Github&lt;/code&gt; 官方也很推荐 &lt;code&gt;Jekyll&lt;/code&gt; 。 你可以先看下 &lt;code&gt;Jekyll&lt;/code&gt; 搭建博客的&lt;a href=&quot;voyagelab.github.io&quot;&gt;voyagelab&lt;/a&gt;, &lt;a href=&quot;https://github.com/voyagelab/voyagelab.github.io&quot;&gt;github地址&lt;/a&gt;, 当然了这只是很普通的, Jekyll 也有很多主题可以选择的, 更详细的请看&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;。
+在 &lt;code&gt;Jekyll&lt;/code&gt; 上逛了一个星期的我又回到了 &lt;code&gt;Hexo&lt;/code&gt; , 发现 目前 &lt;code&gt;Jekyll&lt;/code&gt; 对主题和一些插件的支持相对 &lt;code&gt;Hexo&lt;/code&gt; 来说, 没那么友好, 可能有一些其它的方法只是我没找到而已,关于 &lt;code&gt;Jekyll&lt;/code&gt; 搭建博客就介绍到这, 如果有问题的话可以评论, 或者联系我。&lt;/p&gt;
+
+&lt;h3&gt;使用Hexo解决上面前三个问题&lt;/h3&gt;
+
+&lt;p&gt;是的, 我大&lt;code&gt;Hexo&lt;/code&gt;同样可以解决上面三个问题, 那就是使用git。关于如何使用 &lt;code&gt;Hexo&lt;/code&gt; 搭建博客请看我另一篇文章&lt;a href=&quot;http://www.baixin.io/2015/08/25/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;, 如果搭建的过程中出现了问题, 我们可以交流交流。现在我假设你已经能基本使用 &lt;code&gt;Hexo&lt;/code&gt; 了, 接下来就看看如何来管理博客。&lt;/p&gt;
+
+&lt;h2&gt;使用git管理博客&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt;是我管理博客的仓库地址。结构大致是:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Blog-Growing
+
+&lt;ul&gt;
+&lt;li&gt;.git&lt;/li&gt;
+&lt;li&gt;.gitignore&lt;/li&gt;
+&lt;li&gt;Hexo
+
+&lt;ul&gt;
+&lt;li&gt;  ..&lt;/li&gt;
+&lt;li&gt;  ..&lt;/li&gt;
+&lt;li&gt;  整个博客的配置信息&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;你可以把我的的&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt; clone下来, 看看一些基本配置是怎么配置的。需要提醒的是, &lt;code&gt;要把主题下的.git给删除掉&lt;/code&gt; , 当然了你也可以使用 &lt;code&gt;git submodule&lt;/code&gt; 来管理, 具体的管理方法我这里就不做多的介绍了, 想了解的话可以私信我。
+上面的过程基本做完后, 怎么来解决我开篇提的前三个问题了。&lt;/p&gt;
+
+&lt;h3&gt;具体实现:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;一：家里电脑使用博客&lt;/strong&gt;&lt;br&gt;
+建立git远端仓库管理博客,并使用家里的电脑把本地博客的配置推送到远端仓库。
+&lt;strong&gt;二：公司电脑使用博客&lt;/strong&gt;&lt;br&gt;
+到了公司只需要执行&lt;code&gt;sudo npm install -g hexo&lt;/code&gt;,然后cd到你的博客目录下,如我cd 到Hexo目录下, 然后执行 &lt;code&gt;hexo server&lt;/code&gt; 就可以在本地预览博客了。
+&lt;strong&gt;三：使用Git保存&lt;/strong&gt;&lt;br&gt;
+修改好博客后记得先使用git来提交下, 即使下次把博客的样式修改坏了, 也可以使用 &lt;code&gt;git reset --hard&lt;/code&gt; 来回退。如: 我cd 到 &lt;code&gt;Blog-Growing&lt;/code&gt; 目录下使用git提交。
+&lt;strong&gt;四：博客提交&lt;/strong&gt;&lt;br&gt;
+1、修改好的博客使用 &lt;code&gt;hexo d&lt;/code&gt; 展示到博客页上。
+2、git push 整个本地博客。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;提示:&lt;/strong&gt; 在这里 &lt;code&gt;git&lt;/code&gt; 仅仅只是用户做博客的版本管理的, 博客的样式修改、基本部署还是使用 &lt;code&gt;hexo&lt;/code&gt; 来操作的。&lt;/p&gt;
+
+&lt;h2&gt;让百度能搜索到你的博客&lt;/h2&gt;
+
+&lt;h3&gt;为什么要使用百度搜索？&lt;/h3&gt;
+
+&lt;p&gt;有人可能会说作为一个开发人员, 你不会用 &lt;code&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
+
+&lt;h3&gt;为什么使用百度搜索不到 &lt;code&gt;Github Page&lt;/code&gt; 上的博客？&lt;/h3&gt;
+
+&lt;p&gt;有人联系过 &lt;code&gt;Github Support 部门&lt;/code&gt; , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。&lt;/p&gt;
+
+&lt;h3&gt;如何让百度能搜索你的博客?&lt;/h3&gt;
+
+&lt;p&gt;根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
+* 自己搞个VPS,博客部署在VPS上。
+* 博客部署 &lt;code&gt;Coding.net&lt;/code&gt; 上, &lt;code&gt;GitCafe&lt;/code&gt;已经合并到 &lt;code&gt;Coding&lt;/code&gt; 。
+我使用的是第二种方法, 博客部署在 &lt;code&gt;Coding.net&lt;/code&gt; 上也相对简单些。&lt;/p&gt;
+
+&lt;h4&gt;在Coding上部署你的博客。&lt;/h4&gt;
+
+&lt;p&gt;Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:
+&lt;strong&gt;注意一:&lt;/strong&gt;
+在&lt;code&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code&gt;coding-pages&lt;/code&gt; 分支上, 分支名字是固定的。
+&lt;strong&gt;注意二:&lt;/strong&gt;
+&lt;code&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。&lt;/p&gt;
+
+&lt;p&gt;更详细的请看&lt;a href=&quot;https://coding.net/help/doc/pages/index.html&quot;&gt;Coding Pages 官网介绍&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;参考文章:
+&lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
+        
+        <category>博客</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>开发常用工具</title>
+        <description>&lt;p&gt;个人开发常用工具的收集&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;cmd Markdown&lt;/a&gt; 作业部落出版的Markdown编辑器&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/rest-client/rest-client&quot;&gt;RESTClient&lt;/a&gt; 一个开源的客户端HTTP调试工具。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/getlantern/lantern&quot;&gt;lantern&lt;/a&gt; 蓝灯,一款开源的翻墙工具。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles&lt;/a&gt; 青花瓷, 一款HTTP/HTTPS的抓包工具。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/&quot;&gt;Charles 从入门到精通&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sublimetext.com&quot;&gt;Sublime&lt;/a&gt; 一款强大的IDE,支持Python、JS、JSON格式化等等...更重要的是&lt;code&gt;Sublime&lt;/code&gt;支持的插件很多。&lt;br&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.xuanfengge.com/practical-collection-of-sublime-plug-in.html&quot;&gt;实用的sublime插件集合&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
+        <link>http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
+        
+        <category>工具</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iBeacon 能为开发者做什么？</title>
+        <description>&lt;h2&gt;简介：&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 &lt;code&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+&lt;li&gt;可实现地理围栏、室内定位等功能，测量距离：&lt;a href=&quot;https://developer.apple.com/ibeacon/&quot;&gt;iBeacon&lt;/a&gt; 通过设备的 &lt;code&gt;UUID&lt;/code&gt; 可以检测到具体的 &lt;code&gt;iBeacon&lt;/code&gt; 信息，如：&lt;code&gt;Major&lt;/code&gt; ，&lt;code&gt;Minor&lt;/code&gt; ，用来进行多个 &lt;code&gt;iBeacon&lt;/code&gt; 区分，&lt;code&gt;RSSI&lt;/code&gt; ，用来计算信号接受者到 &lt;code&gt;iBeacon&lt;/code&gt; 信号发射硬件之间的距离。&lt;code&gt;identifier&lt;/code&gt; : 用来区分某一块的 &lt;code&gt;iBeacon&lt;/code&gt; 信号，&lt;code&gt;iBeacon&lt;/code&gt; 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;&lt;strong&gt;iBeacon功能 对开发者使用的额外成本:&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;iBeacon&lt;/code&gt; 也属于一种定位功能，所以需要添加 &lt;code&gt;CoreLocation.framework&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;App&lt;/code&gt; 开发者需要开启定位功能需要配置：在 &lt;code&gt;Xcode&lt;/code&gt; 的 &lt;code&gt;info.plist&lt;/code&gt; 里面添加 &lt;code&gt;NSLocationAlwaysUsageDescription&lt;/code&gt; 或 &lt;code&gt;NSLocationWhenInUseUsageDescription&lt;/code&gt; 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;&lt;strong&gt;检测iBeacon信号对用户设备的必要条件：&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户设备iOS7或更新操作系统。&lt;/li&gt;
+&lt;li&gt;用户蓝牙设备4.0或更新。&lt;/li&gt;
+&lt;li&gt;用户蓝牙设备必须开启。&lt;/li&gt;
+&lt;li&gt;用户设备定位服务必须开启，允许应用访问位置信息。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;iBeacon 可以激活 App ：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;条件：这个 &lt;code&gt;App&lt;/code&gt; 能后台访问位置信息，并且具备上述功能(能正常检查iBeacon)。&lt;/li&gt;
+&lt;li&gt;现象：这个 &lt;code&gt;App&lt;/code&gt; 即使没有启动(无进程), 当有被监测iBeacon信号出现时, 这个 &lt;code&gt;App&lt;/code&gt; 能被唤醒, 没任何操作的情况下, 进程存活时间可长达几个小时。&lt;/li&gt;
+&lt;li&gt;影响：开发者对用户使用App的使用时长统计可能会出现失误, 这时开发者就需要借助第三方统计SDK了,例如： &lt;code&gt;TalkingData&lt;/code&gt; SDK 等。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;iBeacon功能对用户造成的影响:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iBeacon如果在后台监测到信号时, 当屏幕处于锁频状态, 设备左下角会有这个 App 的icon, 对于这一现象具体怎么使用就要看开发者了。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 07 Apr 2016 02:25:06 +0800</pubDate>
+        <link>http://baixin.io/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
+        
+        <category>技术分享</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>CocoaPods使用心得</title>
+        <description>&lt;h2&gt;简介：&lt;/h2&gt;
+
+&lt;p&gt;　　本章介绍什么是 &lt;code&gt;CocoaPods&lt;/code&gt; ,如何使用 &lt;code&gt;CocoaPods&lt;/code&gt; , 以及 &lt;code&gt;CocoaPods&lt;/code&gt; 的原理,和使用 &lt;code&gt;CocoaPods&lt;/code&gt; 时经常出现的一些问题。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。&lt;/p&gt;
+
+&lt;h3&gt;安装CocoaPods　&lt;/h3&gt;
+
+&lt;p&gt;　　Mac下自带ruby,使用ruby的gem命令安装,ruby的软件源被墙了,把官方的ruby源替换成国内的淘宝源。&lt;/p&gt;
+
+&lt;h3&gt;更换Gem源&lt;/h3&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ gem sources --remove https://rubygems.org/
+$ gem sources -a https://ruby.taobao.org/
+$ gem sources -l
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;1.移除掉原有的源（服务器在国外，速度较慢）。&lt;/li&gt;
+&lt;li&gt;2.等1有反应之后再敲2命令（替换成淘宝上的ruby镜像https）。&lt;/li&gt;
+&lt;li&gt;3.验证是否成功。成功如下：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+*** CURRENT SOURCES ***
+
+http://ruby.taobao.org/
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;更新Gem源&lt;/h3&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+sudo gem update --system
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;安装cocoapods&lt;/h3&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+$ sudo gem install cocoapods
+$ pod setup
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;pod setup 在执行时会比较慢，因为Cocoapods 要将它的信息下载到 ~/.cocoapods目录下, 耐心等待…&lt;/p&gt;
+
+&lt;h4&gt;提升cocoapods的安装速度&lt;/h4&gt;
+
+&lt;p&gt;所有的项目的 Podspec 文件都托管在&lt;a href=&quot;https://github.com/CocoaPods/Specs%E3%80%82%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%A7%E8%A1%8C&quot;&gt;https://github.com/CocoaPods/Specs。第一次执行&lt;/a&gt; pod setup 时，CocoaPods 会将这些podspec索引文件更新到本地的 ~/.cocoapods/目录下，这个索引文件比较大，有 80M 左右。
+作者akinliu 在 gitcafe 和 oschina 上建立了 CocoaPods 索引库的镜像(在国内),我们可以使用CocoaPods国内的镜像索引，操作时会快多了,如gitcafe：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+pod repo remove master
+pod repo add master https://gitcafe.com/akuandev/Specs.git
+pod repo update
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;使用cocoapods&lt;/h3&gt;
+
+&lt;p&gt;cocoapods安装完成后，使用 pod search 命令来验证一下&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+pod search AFNetworking
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;终端将会有如下结果：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+-&amp;gt; AFNetworking (3.0.4)
+A delightful iOS and OS X networking framework.
+pod &amp;#39;AFNetworking&amp;#39;, &amp;#39;~&amp;gt; 3.0.4&amp;#39;
+- Homepage: https://github.com/AFNetworking/AFNetworking
+- Source:   https://github.com/AFNetworking/AFNetworking.git
+- Versions: 3.0.4, 3.0.3, 3.0.2, 3.0.1, 3.0.0, 3.0.0-beta.3, 3.0.0-beta.2,
+3.0.0-beta.1, 2.6.3, 2.6.2, 2.6.1, 2.6.0, 2.5.4, 2.5.3, 2.5.2, 2.5.1, 2.5.0,
+2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.0, 2.0.3,
+2.0.2, 2.0.1, 2.0.0, 2.0.0-RC3, 2.0.0-RC2, 2.0.0-RC1, 1.3.4, 1.3.3, 1.3.2,
+1.3.1, 1.3.0, 1.2.1, 1.2.0, 1.1.0, 1.0.1, 1.0, 1.0RC3, 1.0RC2, 1.0RC1,
+0.10.1, 0.10.0, 0.9.2, 0.9.1, 0.9.0, 0.7.0, 0.5.1 [master repo]
+- Subspecs:
+- AFNetworking/Serialization (3.0.4)
+- AFNetworking/Security (3.0.4)
+- AFNetworking/Reachability (3.0.4)
+- AFNetworking/NSURLSession (3.0.4)
+- AFNetworking/UIKit (3.0.4)
+
+
+-&amp;gt; AFNetworking+AutoRetry (0.0.5)
+Auto Retries for AFNetworking requests
+pod &amp;#39;AFNetworking+AutoRetry&amp;#39;, &amp;#39;~&amp;gt; 0.0.5&amp;#39;
+- Homepage: https://github.com/shaioz/AFNetworking-AutoRetry
+- Source:   https://github.com/shaioz/AFNetworking-AutoRetry.git
+- Versions: 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1 [master repo]
+
+.........太多了，省略
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;pod search 是CocoaPods的一个搜索命令,我们可以用来搜索任何托管在CocoaPods上的三方库。    &lt;/p&gt;
+
+&lt;p&gt;使用CocoaPods时需要新建一个 Podfile 的文件,cd 到 我的Demo项目里，Demo目录下有三个文件&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+Demo 、  Demo.xcodeproj  、 DemoTests
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;新建 Podfile&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+touch Podfile
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;vim 编辑 Podfile&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vim Podfile
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;由于是新建的 Podfile 里面应该是空白的。然后我们在里面添加依赖库，格式如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+platform :ios
+pod &amp;#39;Reachability&amp;#39;,  &amp;#39;~&amp;gt; 3.0.0&amp;#39;
+pod &amp;#39;ASIHTTPRequest&amp;#39;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;‘~&amp;gt; 3.0.0’ 是 Reachability 的版本号, 设定了版本号CocoaPods就会下载对应的版本,ASIHTTPRequest没指定版本号,CocoaPods就会下载最新版本的ASIHTTPRequest。
+退出编辑，执行 pod install 下载三方库。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;
+pod install
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;完成后我Demo项目下的文件多了几个:&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Demo 、  Demo.xcodeproj  、 DemoTests （之前的三个）
+
+Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这个时候我们打开Demo项目是点击 Demo.xcworkspace 文件了，到此CocoaPods的基本使用已经讲完了，接下来的CocoaPods的原理，和让我们自己的三方库也支持CocoaPods。&lt;/p&gt;
+
+&lt;p&gt;待续…&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.jobbole.com/53365/&quot;&gt;深入理解 CocoaPods&lt;/a&gt;    &lt;/p&gt;
+</description>
+        <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+        
+        <category>工具</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iOS动态更新</title>
+        <description>&lt;ul&gt;
+&lt;li&gt;1、控件到 &lt;code&gt;window&lt;/code&gt; 的层级关系:&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;2、分析控件的详细路径:&lt;/li&gt;
+&lt;li&gt;3、动态修改控件:&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;4、工具篇:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3&gt;视图的层级关系&lt;/h3&gt;
+
+&lt;p&gt;每个 &lt;code&gt;App&lt;/code&gt; , 至少有一个根 &lt;code&gt;Window&lt;/code&gt; , 通常情况下我们只用一个 。&lt;code&gt;window&lt;/code&gt; 有一个 &lt;code&gt;rootViewController&lt;/code&gt; , 这就是我们所谓的根视图 , 我们所有的控制器都是放在 &lt;code&gt;rootViewController&lt;/code&gt; 里面的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/bVqwV3&quot; alt=&quot;Dynamic-image1.jpeg&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;这个是最简单的层级关系&lt;/p&gt;
+
+&lt;p&gt;如果在项目里有了这么一个路径 , 我们可以做什么呢？   &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在当项目很复杂 , 可以其它地方可以直接修改这个控件的状态&lt;/li&gt;
+&lt;li&gt;当某个控件命名存在却又没有显示出来 , 可以通过路径来辅助查找&lt;/li&gt;
+&lt;li&gt;由服务器下发一些配置 , 使用 &lt;code&gt;Runtime&lt;/code&gt; 去动态的修改已上线的项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面将介绍如何使用代码来找出这些视图(控件)的路径&lt;/p&gt;
+
+&lt;h3&gt;分析控件的详细路径&lt;/h3&gt;
+
+&lt;h4&gt;1、找出根 &lt;code&gt;Window&lt;/code&gt; :&lt;/h4&gt;
+
+&lt;p&gt;每一个视图、控件 , 他们最终的根都是main函数返回的 &lt;code&gt;application&lt;/code&gt; , 通过 &lt;code&gt;[UIApplication sharedApplication]&lt;/code&gt; 可以得到 。 &lt;code&gt;application&lt;/code&gt; 的 &lt;code&gt;windows&lt;/code&gt; 属性是一个数组 , 这里面装的是这个应用的所有 &lt;code&gt;Window&lt;/code&gt; , 我们通常用的是第一个也就是 &lt;code&gt;application.windows[0]&lt;/code&gt;    &lt;/p&gt;
+
+&lt;h4&gt;2、遍历视图 :&lt;/h4&gt;
+
+&lt;p&gt;得到了 &lt;code&gt;window&lt;/code&gt; 对象一切都好办了 。 然后拿到 &lt;code&gt;window&lt;/code&gt; 的 &lt;code&gt;rootViewController&lt;/code&gt; , 在获取 &lt;code&gt;rootViewController&lt;/code&gt; 里面所有的 &lt;code&gt;childViewControllers&lt;/code&gt; 和 &lt;code&gt;view&lt;/code&gt; 里的 &lt;code&gt;subviews&lt;/code&gt; , 一直递归下去就可以得到当前屏幕里所有视图对象了 , 同时可以通过 &lt;code&gt;runtime&lt;/code&gt; 把它们的 &lt;code&gt;property&lt;/code&gt;、&lt;code&gt;delegate&lt;/code&gt; 都获取出来。  &lt;/p&gt;
+
+&lt;p&gt;结合 &lt;code&gt;Reveal&lt;/code&gt; 或者 &lt;code&gt;Xcode&lt;/code&gt; 自带的 &lt;code&gt;Captuer View Hiearachy&lt;/code&gt; , 我们可以推测一下这两个的的实现原理了 :  &lt;/p&gt;
+
+&lt;p&gt;1、根据应用得到根视图&lt;br&gt;
+2、递归获取里面的所有控件&lt;br&gt;
+3、按照他们的层级关系一层一层的画出来&lt;/p&gt;
+
+&lt;h3&gt;动态修改控件&lt;/h3&gt;
+
+&lt;p&gt;1、把上面获取到的所有控件的详细信息上传到服务器 。&lt;br&gt;
+2、根据业务需求由服务器给我们下发对应的配置列表，以 &lt;code&gt;button&lt;/code&gt; 为例 : 配置列表里必须要有 :    &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;1)、&lt;code&gt;button&lt;/code&gt; 的全路径 : 如 &lt;code&gt;UIWindow&lt;/code&gt; -&amp;gt; &lt;code&gt;UIWindow&lt;/code&gt; -&amp;gt; &lt;code&gt;UIView&lt;/code&gt; -&amp;gt; &lt;code&gt;UIView&lt;/code&gt; -&amp;gt; &lt;code&gt;UILayoutContainerView&lt;/code&gt; -&amp;gt; &lt;code&gt;UITabBar&lt;/code&gt; -&amp;gt; &lt;code&gt;UIView&lt;/code&gt; —&amp;gt; &lt;code&gt;UIButton&lt;/code&gt;&lt;br&gt;
+2)、&lt;code&gt;button&lt;/code&gt; 的唯一标识 : 如 &lt;code&gt;tag&lt;/code&gt; 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 &lt;code&gt;button&lt;/code&gt; 同一层次的视图搞混 。&lt;br&gt;
+3)、 根据路径及唯一标识来匹配 &lt;code&gt;App&lt;/code&gt; 里的控件 , 匹配和上面的查找原理是相通的。&lt;br&gt;
+4)、 匹配成功代表  &lt;code&gt;button&lt;/code&gt; 确实存在 , 根据业务需求做后续操作 。&lt;br&gt;
+提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;3、修改 &lt;code&gt;button&lt;/code&gt; 的状态。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;1)、 如某个按钮点了会 &lt;code&gt;Crash&lt;/code&gt; 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 &lt;code&gt;button&lt;/code&gt; 的 &lt;code&gt;enabled&lt;/code&gt; 属性 。&lt;br&gt;
+2)、 如某业务暂时关闭 , 可以直接修改入口 &lt;code&gt;按钮&lt;/code&gt; frame为0 , 前提是要自动布局已做好 。&lt;br&gt;
+3)、 如给购买 &lt;code&gt;按钮&lt;/code&gt; 添加监听事件 &lt;code&gt;addTarget: action: forControlEvents:&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;target&lt;/code&gt; 也可以通过上面 &lt;code&gt;遍历视图&lt;/code&gt; 获取到 , &lt;code&gt;action&lt;/code&gt; 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 : &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;1、使用Runtime &lt;code&gt;Method Swizzing&lt;/code&gt; ,  直接把修改控件的方法与 &lt;code&gt;didMoveToSuperview&lt;/code&gt; 和 &lt;code&gt;didMoveToWindow&lt;/code&gt; 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。&lt;br&gt;
+2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在&lt;code&gt;viewDidLoad&lt;/code&gt; 里面初始化控件 , 在 &lt;code&gt;viewWillAppear:&lt;/code&gt; 里面动态修改 。&lt;br&gt;
+建议使用第一种适用范围更强 。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;上架后的 &lt;code&gt;应用&lt;/code&gt; 可能会遇到的一些突发状况 , 未测出的&lt;code&gt;Crash&lt;/code&gt;、临时改点小需求 , 等等 , 我们总不能每次因为一点小改动就重新提交一次 &lt;code&gt;App Store&lt;/code&gt; , 先不说 &lt;code&gt;App Store&lt;/code&gt; 的审核时间 , 频繁的让用户去更新应用 , 用户也会烦的 。使用这篇文章所讲的来实现动态更新是再合适不过了 。   &lt;/p&gt;
+
+&lt;p&gt;首先上面讲的 &lt;code&gt;动态更新&lt;/code&gt; 是完全脱离出来的一个模块 , 跟业务逻辑没有任何关系 , 只需要部署一次就行了 , 等开发下一个项目也可以直接拿过去使用 。这里的动态更新适用于局部的视图、控件的修改 , 如果你有其它需求可以考虑 &lt;a href=&quot;https://github.com/bang590/JSPatch&quot;&gt;JSPatch&lt;/a&gt; , 下发脚本也是一个不错的选择 。&lt;/p&gt;
+
+&lt;h3&gt;工具篇&lt;/h3&gt;
+
+&lt;p&gt;使用一些UI调试的辅助工具 , 使我们查看视图在项目中得层次结构更为方便 。&lt;br&gt;
+常用的UI调试的工具：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Captuer View Hiearachy&lt;/li&gt;
+&lt;li&gt;Reveal&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Xcode自带的 &lt;code&gt;Captuer View Hiearachy&lt;/code&gt; 实现步骤:  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1、打开Xcode , 运行项目 , 选择最顶部的 &lt;code&gt;Debug&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2、&lt;code&gt;Debug&lt;/code&gt; -&amp;gt; &lt;code&gt;View Debugging&lt;/code&gt; -&amp;gt; &lt;code&gt;Show View Frames&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;3、&lt;code&gt;Debug&lt;/code&gt; -&amp;gt; &lt;code&gt;View Debugging&lt;/code&gt; -&amp;gt; &lt;code&gt;Captuer View Hiearachy&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Xcode里面就变成了三维的视图了 , Xcode左侧展示出来的是层级关系的树状图 。&lt;/p&gt;
+
+&lt;p&gt;Reveal的功能相对来说更强大 , 适用于UI调试视图查找 。使用方法请看 &lt;a href=&quot;http://support.revealapp.com/kb/getting-started/reveal&quot;&gt;Reveal集成指南&lt;/a&gt; 。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
+        <link>http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iOS 9 变化笔记</title>
+        <description>&lt;p&gt;这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2&gt;App Transport Security&lt;/h2&gt;
+
+&lt;p&gt;iOS9和OS X El Capitan的一个新特性，App Transport Security 的目地是提高Apple 操作系统的安全性以及在此操作系统上运行的任何应用的安全性。ATS是苹果针对与 NSURL这一层做的封装，iOS9后ATS默认是开启的，即网络传输需要使用HTTPS。如果想在iOS9后继续使用HTTP的话，有两条路可以走：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;在Info.plist中添加 &lt;code&gt;NSAppTransportSecurity&lt;/code&gt;类型Dictionary，在&lt;code&gt;NSAppTransportSecurity&lt;/code&gt;下添加&lt;code&gt;NSAllowsArbitraryLoads&lt;/code&gt;，Boolean 为 YES。&lt;/li&gt;
+&lt;li&gt;直接使用CFNetwork做网络请求，ASIHTTPRequest就是基于CFNetwotk做的封装，如果有需求的同学可以看看ASI里面的源码，如果某个时间段你又想要使用HTTPS的话，ASI对SSL/TSL的证书验证有点问题，证书验证还得自己封装一下才行。刚才我说道，ATS是苹果针对与NSURL这一层做的封装，所以我们使用CFNetwork或者更底层做网络请求的话是不受ATS限制的。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;移除了discoveryd DNS解析服务&lt;/h3&gt;
+
+&lt;p&gt;iPhone升级到iOS8后WiFi有时候会有问题，特别是Mac升级到OS X Yosemite后，时而电脑休眠唤醒唬就连不上WiFi，有时候还突然掉线，经常要手动去关闭WiFi在重新连接，这是因为苹果到了OS X Yosemite系统后，把之前的mDNSResponder换成了discoveryd DNS。iOS9和OS X Yosemite10.4后mDNSResponder又回来了。&lt;/p&gt;
+
+&lt;p&gt;mDNSResponder： 苹果以前一直使用控制DNS和Bonjour服务的一种进程。
+discoveryd：OS X Yosemite后苹果新出的一种进程。&lt;/p&gt;
+
+&lt;h2&gt;&lt;strong&gt;App Thinning&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;App Thinning是一个关于节省iOS设备存储空间的功能，它可以让iOS设备在安装、更新及运行App等场景中仅下载所需的资源，减少App的占用空间，从而节省设备的存储空间。&lt;/p&gt;
+
+&lt;h3&gt;App Thinning主要有三个机制：&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Slicing： 开发者把App安装包上传到AppStore后，Apple服务会自动对安装包切割为不同的应用变体(App variant)， 当用户下载安装包时，系统会根据设备型号下载安装对应的单个应用变体。&lt;/li&gt;
+&lt;li&gt;On-Demand Resources： ORD(随需资源)是指开发者对资源添加标签上传后，系统会根据App运行的情况，动态下载并加载所需资源，而在存储空间不足时，自动删除这类资源。&lt;/li&gt;
+&lt;li&gt;Bitcode：开启Bitcode编译后，可以使得开发者上传App时只需上传Intermediate Representation(中间件)，而非最终的可执行二进制文件。 在用户下载App之前，AppStore会自动编译中间件，产生设备所需的执行文件供用户下载安装。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;其中，Bitcode的机制可以支持动态的进行App Slicing，而对于Apple未来进行硬件升级的措施，此机制可以保证在开发者不重新发布版本的情况下而兼容新的设备。Xcode7默认是开始了Bitcode，如果不想使用可以手动关闭Bitcode：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择项目——&amp;gt;点击Target——&amp;gt;点击Build Setttings——&amp;gt;搜索栏里搜bitcode——&amp;gt;把Enable Bitcode对应的Yes改成No。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;启用Bitcode编译机制，需要注意以下几点：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;如果应用开启Bitcode，那么其集成的其他第三方库也需要是Bitcode编译的包才能真正进行Bitcode编译&lt;/li&gt;
+&lt;li&gt;开启Bitcode编译后，编译产生的.app体积会变大(中间代码，不是用户下载的包)，且.dSYM文件不能用来崩溃日志的符号化（用户下载的包是Apple服务重新编译产生的，有产生新的符号文件），使用dSYM来收集Crash日志的同学得注意了。&lt;/li&gt;
+&lt;li&gt;通过Archive方式上传AppStore的包，可以在Xcode的Organizer工具中下载对应安装包的新的符号文件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;&lt;strong&gt;后台定位&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;iOS9后苹果为了对保障用户的地理位置的隐私对App请求后台定位有了权限设置，则需要多加一些代码。如果不适配iOS9，就不能偷偷在后台定位，如果没有后台定位的权限也是可以在后台定位的，只是会出现蓝条。&lt;/p&gt;
+
+&lt;p&gt;开启后台定位功能：&lt;code&gt;locationManager.allowsBackgroundLocationUpdates = YES;&lt;/code&gt;
+locationManager是CLLocationManager的对象，用来管理整个定位的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;重点：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;配置info.plist，添加一个Required background modes，Array类型的，然后在Required background modes里面Item 0对应的Value设置为App registers for location updates，这样就解决了iOS9后台定位出现蓝条的问题了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;&lt;strong&gt;UI Testing&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Xcode7中苹果引入了一种新的方式在应用中进行测试——UI Testting，UI Testting允许我们找到UI元素与之交互，还能检查属性和状态。UI Testting已经完全集成进了Xcode7的测试报告，可以和单元测试一起执行。使用起来跟之前Xcode5出来的XCTest差不多，Xcode bots提供对此的支持，而且command line支持当UI测试失败时会立即发出通知。&lt;/p&gt;
+
+&lt;p&gt;可以参考Github上的Demo，步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;在DemoTests.m里创建一个test开头的方法&lt;/li&gt;
+&lt;li&gt;在setUp()里启动应用 &lt;code&gt;XCUIApplication().launch()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;新建一个方法test开头的，在里面获取应用&lt;code&gt;let app = XCUIApplication()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;的到&lt;code&gt;let app = XCUIApplication()&lt;/code&gt;，a&lt;code&gt;pp.buttons[“View Detail”].tap()?&lt;/code&gt;。buttons是当前这个界面的所有按钮的集合，[]里面写按钮的名字，tap()就是执行这个按钮所对应的方法，可以是网络请求、界面跳转等等。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;URL scheme&lt;/h2&gt;
+
+&lt;p&gt;在iOS9中，如果使用URL scheme必须在&amp;quot;Info.plist&amp;quot;中将你要在外部调用的URL scheme列为白名单，否则不能使用。&lt;/p&gt;
+
+&lt;p&gt;配置info.plist，添加一个&lt;code&gt;LSApplicationQueriesSchemes&lt;/code&gt;，Array类型的，然后在&lt;code&gt;LSApplicationQueriesSchemes&lt;/code&gt;的Item里面添加urlscheme就行了，urlscheme是任意一个字符串，就是你自己需要使用的urlscheme，iOS9 URL scheme白名单适配就完成了。&lt;/p&gt;
+
+&lt;h2&gt;出现大量的警告&lt;/h2&gt;
+
+&lt;p&gt;Xcode7后运行以前的项目后出现大量的警告如：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;(null): warning: /var/folders/p4/z7zy68r92hd3p5ry5g2v3k_8rlwzzr/C/org.llvm.clang.dalmo/ModuleCache/1TXZDLI9N2EMV/Foundation-3DFYNEBRQSXST.pcm: No such file or directory。
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;作为一个有洁癖的我反正是不能忍，出现警告的大致原因跟我上面提到的开启Bitcode，.dSYM文件不能用来符号化有关，Xcode试图去创建dSYM文件，但是你又不需要。&lt;/p&gt;
+
+&lt;h3&gt;解决方法&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Build Settings ——&amp;gt;Build Options——&amp;gt;Debug Information Format&lt;/li&gt;
+&lt;li&gt;Debug下的DWARF with dsYM File改成DWARF&lt;/li&gt;
+&lt;li&gt;Release下的还是之前默认的DWARF with dsYM File不变&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;参考资料：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ChenYilong/iOS9AdaptationTips&quot;&gt;iOS9AdaptationTips&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cocoachina.com/ios/20150821/13140.html&quot;&gt;iOS9学习系列&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/shinobicontrols/iOS9-day-by-day&quot;&gt;iOS9-day-by-day&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 27 Sep 2015 02:15:06 +0800</pubDate>
+        <link>http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>HEXO搭建个人博客</title>
+        <description>&lt;p&gt;经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2&gt;正文：&lt;/h2&gt;
+
+&lt;p&gt;　这边教程是针对与Mac的，&lt;a href=&quot;http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool&quot;&gt;参考链接&lt;/a&gt;，由于原文讲到的hexo是以前的老版本，所以现在的版本配置的时候会有些改动。&lt;/p&gt;
+
+&lt;p&gt;　之前是想着写博客，一方面是给自己做笔记，可以提升自己的写作、总结能力，一个技术点我们会使用，并不难，但是要做到让让别人也能听懂我们讲得，还是需要一定的技巧和经验的。很多类似于CSDN、博客园也都可以写文章，但是页面的样式我，不是太喜欢，简书还算好点得。最近看到一些大神们的博客（在我的友情链接里有），貌似都是用hexo写得，我也依葫芦画瓢的搭建了一个。不罗嗦了，直接上搭建步骤。&lt;/p&gt;
+
+&lt;h2&gt;配置环境&lt;/h2&gt;
+
+&lt;h3&gt;安装Node（必须）&lt;/h3&gt;
+
+&lt;p&gt;作用：用来生成静态页面的
+到Node.js&lt;a href=&quot;https://nodejs.org/&quot;&gt;官网&lt;/a&gt;下载相应平台的最新版本，一路安装即可。&lt;/p&gt;
+
+&lt;h3&gt;安装Git（必须）&lt;/h3&gt;
+
+&lt;p&gt;作用：把本地的hexo内容提交到github上去.
+安装Xcode就自带有Git，我就不多说了。&lt;/p&gt;
+
+&lt;h3&gt;申请GitHub（必须）&lt;/h3&gt;
+
+&lt;p&gt;作用：是用来做博客的远程创库、域名、服务器之类的，怎么与本地hexo建立连接等下讲。
+&lt;a href=&quot;https://github.com/&quot;&gt;github&lt;/a&gt;账号我也不再啰嗦了,没有的话直接申请就行了，跟一般的注册账号差不多，SSH Keys，看你自己了，可以不配制，不配置的话以后每次对自己的博客有改动提交的时候就要手动输入账号密码，配置了就不需要了，怎么配置我就不多说了，网上有很多教程。&lt;/p&gt;
+
+&lt;h3&gt;正式安装HEXO　&lt;/h3&gt;
+
+&lt;p&gt;Node和Git都安装好后，可执行如下命令安装hexo：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo npm install -g hexo
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;初始化&lt;/h3&gt;
+
+&lt;p&gt;然后，执行init命令初始化hexo到你指定的目录，我是直接cd到目标目录执行hexo init的。命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo init
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;好啦，至此，全部安装工作已经完成！&lt;/p&gt;
+
+&lt;h3&gt;生成静态页面&lt;/h3&gt;
+
+&lt;p&gt;cd 到你的init目录，执行如下命令，生成静态页面至hexo\public\目录。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo generate （hexo g  也可以）   
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;本地启动&lt;/h3&gt;
+
+&lt;p&gt;启动本地服务，进行文章预览调试，命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo server   
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;浏览器输入&lt;a href=&quot;%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%9C%80%E5%8E%9F%E5%A7%8B%E7%9A%84%E6%95%88%E6%9E%9C%E4%BA%86&quot;&gt;http://localhost:4000&lt;/a&gt;
+我不知道你们能不能，反正我不能，因为我还有环境没配置好&lt;/p&gt;
+
+&lt;p&gt;我把我报的一些错，和解决方式列出来：&lt;/p&gt;
+
+&lt;h2&gt;一&lt;/h2&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ERROR Plugin load failed: hexo-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;原因：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Besides, utilities are separated into a standalone module. hexo.util is not reachable anymore.
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;解决方法，执行命令：&lt;/h3&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo npm install hexo-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h2&gt;二&lt;/h2&gt;
+
+&lt;p&gt;执行命令hexo server，有如下提示：
+Usage: hexo&lt;Command&gt;
+....&lt;/p&gt;
+
+&lt;p&gt;原因：
+我认为是没有生成本地服务
+解决方法，执行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-server --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;提示：&lt;a href=&quot;mailto:hexo-server@0.1.2&quot;&gt;hexo-server@0.1.2&lt;/a&gt; node_modules/hexo-server
+.... 
+表示成功了&lt;a href=&quot;https://hexo.io/zh-cn/docs/server.html&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候再执行：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;得到:&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这个时候再点击&lt;a href=&quot;http://0.0.0.0:4000&quot;&gt;http://0.0.0.0:4000&lt;/a&gt;，正常情况下应该是最原始的画面，但是我看到的是：
+白板和Cannot GET /   几个字
+原因：
+由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-renderer-ejs --save
+npm install hexo-renderer-stylus --save
+npm install hexo-renderer-marked --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这个时候再重新生成静态文件，命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo generate （或hexo g）
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;启动本地服务器：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo server （或hexo s）
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;再点击网址&lt;a href=&quot;http://0.0.0.0:4000&quot;&gt;http://0.0.0.0:4000&lt;/a&gt; OK终于可以看到属于你自己的blog啦，?，虽然很简陋，但好歹有了一个属于自己的小窝了。&lt;a href=&quot;https://disqus.com/home/discussion/bsspirit/hexogithubweb/&quot;&gt;参考链接&lt;/a&gt;，本地已经简单的设置好了，但是现在域名和服务器都是基于自己的电脑，接下来需要跟github进行关联。&lt;/p&gt;
+
+&lt;h2&gt;配置Github&lt;/h2&gt;
+
+&lt;h3&gt;建立Repository&lt;/h3&gt;
+
+&lt;p&gt;建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】，固定写法
+然后建立关联，我的blog在本地/Users/leopard/blog，blog是我之前建的东西也全在这里面，有：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;_config.yml node_modules    public      source　　　　
+db.json     package.json    scaffolds   themes　　　　　
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;现在我们需要_config.yml文件，来建立关联，命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;vim _config.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;翻到最下面，改成我这样子的&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;deploy:
+  type: git
+  repository: https://github.com/leopardpan/leopardpan.github.io.git
+  branch: master
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;执行如下命令才能使用git部署&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-deployer-git --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;网上会有很多说法，有的type是github, 还有repository 最后面的后缀也不一样，是github.com.git，我也踩了很多坑，我现在的版本是hexo: 3.1.1，执行命令hexo -vsersion就出来了,貌似3.0后全部改成我上面这种格式了。
+忘了说了，我没用SSH Keys如果你用了SSH Keys的话直接在github里复制SSH的就行了，总共就两种协议，相信你懂的。
+然后，执行配置命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;　然后再浏览器中输入&lt;a href=&quot;http://leopardpan.github.io/&quot;&gt;http://leopardpan.github.io/&lt;/a&gt;就行了，我的github的账户叫leopardpan,把这个改成你github的账户名就行了&lt;/p&gt;
+
+&lt;h3&gt;部署步骤&lt;/h3&gt;
+
+&lt;p&gt;每次部署的步骤，可按以下三步来进行。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo clean
+hexo generate
+hexo deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;一些常用命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo new &amp;quot;postName&amp;quot; #新建文章
+hexo new page &amp;quot;pageName&amp;quot; #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&amp;#39;ctrl + c&amp;#39;关闭server）
+hexo deploy #将.deploy目录部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这里有大量的&lt;a href=&quot;https://github.com/hexojs/hexo/wiki/Themes&quot;&gt;主题列表&lt;/a&gt;使用方法里面
+都有详细的介绍，我就不多说了。
+我这里有几款个人认为不错的主题，免去你们，一个一个的选了，欢迎吐槽我的审美，?
+　&lt;a href=&quot;https://github.com/daisygao/hexo-themes-cover&quot;&gt;Cover&lt;/a&gt; - A chic theme with facebook-like cover photo
+　&lt;a href=&quot;https://github.com/henryhuang/oishi&quot;&gt;Oishi&lt;/a&gt; - A white theme based on Landscape plus and Writing.
+　&lt;a href=&quot;https://github.com/hardywu/hexo-theme-sidebar&quot;&gt;Sidebar&lt;/a&gt; - Another theme based on Light with a simple sidebar 
+　&lt;a href=&quot;https://github.com/SuperKieran/TKL&quot;&gt;TKL&lt;/a&gt; - A responsive design theme for Hexo. 一个设计优雅的响应式主题
+　&lt;a href=&quot;https://github.com/levonlin/Tinnypp&quot;&gt;Tinnypp&lt;/a&gt; - A clean, simple theme based on Tinny
+　&lt;a href=&quot;https://github.com/yunlzheng/hexo-themes-writing&quot;&gt;Writing&lt;/a&gt; - A small and simple hexo theme based on Light
+　&lt;a href=&quot;https://github.com/litten/hexo-theme-yilia&quot;&gt;Yilia&lt;/a&gt; - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。
+　&lt;a href=&quot;https://github.com/Voidly/pacman&quot;&gt;Pacman voidy&lt;/a&gt; - A theme with dynamic tagcloud and dynamic snow&lt;/p&gt;
+
+&lt;h2&gt;一些基本路径&lt;/h2&gt;
+
+&lt;p&gt;　文章在source/_posts，如果你不怕麻烦的话可以跟我一样直接用vim去编辑，支持markdown语法，你有好的编辑软件，给我也推荐下，感激不尽?。如果想修改头像可以直接在主题的_config.yml文件里面修改，友情链接，之类的都在这里，修改名字在public/index.html里修改，开始打理你的博客吧，有什么问题或者建议，都可以提出来，我会继续完善的。&lt;/p&gt;
+
+&lt;h2&gt;Markdown语法参考链接&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;很实用的例子&lt;/a&gt;
+转载请注明原地址，潘柏信的博客：&lt;a href=&quot;http://leopardpan.github.io&quot;&gt;http://leopardpan.github.io&lt;/a&gt; 谢谢！&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 Aug 2015 05:15:06 +0800</pubDate>
+        <link>http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+        <guid isPermaLink="true">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+        
+        <category>博客</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
