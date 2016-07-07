@@ -136,6 +136,48 @@
     <div class="post-meta">
       <time datetime="2016-04-07 02:25:06 +0800" itemprop="datePublished" class="post-meta__date date">2016-04-07</time> &#8226; <span class="post-meta__tags tags">技术分享</span>
     </div>
+    <p>This article will take <h2>简介：</h2>
+
+<ul>
+<li>iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</li>
+</ul>
+
+<!--more-->
+
+<ul>
+<li>可实现地理围栏、室内定位等功能，测量距离：<a href="https://developer.apple.com/ibeacon/">iBeacon</a> 通过设备的 <code>UUID</code> 可以检测到具体的 <code>iBeacon</code> 信息，如：<code>Major</code> ，<code>Minor</code> ，用来进行多个 <code>iBeacon</code> 区分，<code>RSSI</code> ，用来计算信号接受者到 <code>iBeacon</code> 信号发射硬件之间的距离。<code>identifier</code> : 用来区分某一块的 <code>iBeacon</code> 信号，<code>iBeacon</code> 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。</li>
+</ul>
+
+<h4><strong>iBeacon功能 对开发者使用的额外成本:</strong></h4>
+
+<ul>
+<li><code>iBeacon</code> 也属于一种定位功能，所以需要添加 <code>CoreLocation.framework</code> 。</li>
+<li><code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code> 或 <code>NSLocationWhenInUseUsageDescription</code> 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
+</ul>
+
+<h4><strong>检测iBeacon信号对用户设备的必要条件：</strong></h4>
+
+<ul>
+<li>用户设备iOS7或更新操作系统。</li>
+<li>用户蓝牙设备4.0或更新。</li>
+<li>用户蓝牙设备必须开启。</li>
+<li>用户设备定位服务必须开启，允许应用访问位置信息。</li>
+</ul>
+
+<h4>iBeacon 可以激活 App ：</h4>
+
+<ul>
+<li>条件：这个 <code>App</code> 能后台访问位置信息，并且具备上述功能(能正常检查iBeacon)。</li>
+<li>现象：这个 <code>App</code> 即使没有启动(无进程), 当有被监测iBeacon信号出现时, 这个 <code>App</code> 能被唤醒, 没任何操作的情况下, 进程存活时间可长达几个小时。</li>
+<li>影响：开发者对用户使用App的使用时长统计可能会出现失误, 这时开发者就需要借助第三方统计SDK了,例如： <code>TalkingData</code> SDK 等。</li>
+</ul>
+
+<h4>iBeacon功能对用户造成的影响:</h4>
+
+<ul>
+<li>iBeacon如果在后台监测到信号时, 当屏幕处于锁频状态, 设备左下角会有这个 App 的icon, 对于这一现象具体怎么使用就要看开发者了。</li>
+</ul>
+ to read.</p>
     <h1 class="post-title">iBeacon 能为开发者做什么？</h1>
   </header>
 
