@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>iBeacon 能为开发者做什么？</title>
-  <meta name="description" content="简介：">
+  <meta name="description" content="iOS上对iBeacon的技术调研及基本使用。">
   <meta name="author" content="Wei Wang">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="iBeacon 能为开发者做什么？">
-  <meta name="twitter:description" content="简介：">
+  <meta name="twitter:description" content="iOS上对iBeacon的技术调研及基本使用。">
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="iBeacon 能为开发者做什么？">
-  <meta property="og:description" content="简介：">
+  <meta property="og:description" content="iOS上对iBeacon的技术调研及基本使用。">
   
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -144,26 +144,46 @@
   </header>
 
   <section class="post">
-    <h2>简介：</h2>
+    <p>iOS上对iBeacon的技术调研及基本使用。</p>
+
+<!-- more -->  
+
+<h2>背景</h2>
+
+<h4>简介：</h4>
 
 <ul>
-<li>iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</li>
+<li><p><strong>概念：</strong> iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</p></li>
+<li><p>iBeacon的形状多种多样，大致如下图。
+<img src="/assets/img/ibeacon.png" alt=""></p></li>
 </ul>
 
-<!--more-->
+<h4>目前哪些地方有iBeacon：</h4>
 
 <ul>
-<li>可实现地理围栏、室内定位等功能，测量距离：<a href="https://developer.apple.com/ibeacon/">iBeacon</a> 通过设备的 <code>UUID</code> 可以检测到具体的 <code>iBeacon</code> 信息，如：<code>Major</code> ，<code>Minor</code> ，用来进行多个 <code>iBeacon</code> 区分，<code>RSSI</code> ，用来计算信号接受者到 <code>iBeacon</code> 信号发射硬件之间的距离。<code>identifier</code> : 用来区分某一块的 <code>iBeacon</code> 信号，<code>iBeacon</code> 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。</li>
-</ul>
-
-<h4><strong>iBeacon功能 对开发者使用的额外成本:</strong></h4>
+<li>微信摇一摇：使用微信的人应该都知道微信有一个 <code>周边摇一摇</code> 功能， 使用的就是iBeacon技术。<br>
 
 <ul>
-<li><code>iBeacon</code> 也属于一种定位功能，所以需要添加 <code>CoreLocation.framework</code> 。</li>
-<li><code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code> 或 <code>NSLocationWhenInUseUsageDescription</code> 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
+<li>很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。<br></li>
+</ul></li>
+<li>走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。<br></li>
+<li>帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。<br></li>
+<li>iBeacon还可实现地理围栏、室内定位等功能。</li>
 </ul>
 
-<h4><strong>检测iBeacon信号对用户设备的必要条件：</strong></h4>
+<h4>iBeacon技术</h4>
+
+<p>Apple的 <code>CoreLocation.frame</code> 里把iBeacon封装成了一个 <code>CLBeacon</code> 类，<code>CLBeacon</code> 大致有下面几个属性组成：<code>Major</code> 、<code>Minor</code> 、 <code>proximity</code> 、 <code>rssi</code> 、 <code>accuracy</code> 。   </p>
+
+<h4>使用iBeacon技术对App开发者使用的额外成本:</h4>
+
+<ul>
+<li>1、用户需要添加 <code>CoreLocation.framework</code> ，<code>App</code> 才具备定位的功能。</li>
+<li>2、<code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code>requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
+<li>3、<a href="https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html">苹果iBeacon官方代码</a>。<br></li>
+</ul>
+
+<h4>检测iBeacon信号对用户的必要条件：</h4>
 
 <ul>
 <li>用户设备iOS7或更新操作系统。</li>
@@ -172,18 +192,12 @@
 <li>用户设备定位服务必须开启，允许应用访问位置信息。</li>
 </ul>
 
-<h4>iBeacon 可以激活 App ：</h4>
+<h4>iBeacon能唤醒应用</h4>
 
 <ul>
-<li>条件：这个 <code>App</code> 能后台访问位置信息，并且具备上述功能(能正常检查iBeacon)。</li>
-<li>现象：这个 <code>App</code> 即使没有启动(无进程), 当有被监测iBeacon信号出现时, 这个 <code>App</code> 能被唤醒, 没任何操作的情况下, 进程存活时间可长达几个小时。</li>
-<li>影响：开发者对用户使用App的使用时长统计可能会出现失误, 这时开发者就需要借助第三方统计SDK了,例如： <code>TalkingData</code> SDK 等。</li>
-</ul>
-
-<h4>iBeacon功能对用户造成的影响:</h4>
-
-<ul>
-<li>iBeacon如果在后台监测到信号时, 当屏幕处于锁频状态, 设备左下角会有这个 App 的icon, 对于这一现象具体怎么使用就要看开发者了。</li>
+<li>前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。</li>
+<li>现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。</li>
+<li>影响：导致App用户在并没有使用 <code>App</code> 的情况下, <code>App</code> 有了长达几个小时的后台使用时长。</li>
 </ul>
 
   </section>

@@ -5,8 +5,8 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 07 Jul 2016 12:11:37 +0800</pubDate>
-    <lastBuildDate>Thu, 07 Jul 2016 12:11:37 +0800</lastBuildDate>
+    <pubDate>Thu, 07 Jul 2016 17:33:34 +0800</pubDate>
+    <lastBuildDate>Thu, 07 Jul 2016 17:33:34 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -237,21 +237,13 @@ error: Xcode 7.3.0 or later is required.
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt;是我管理博客的仓库地址。结构大致是:&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Blog-Growing
-
-&lt;ul&gt;
-&lt;li&gt;.git&lt;/li&gt;
-&lt;li&gt;.gitignore&lt;/li&gt;
-&lt;li&gt;Hexo
-
-&lt;ul&gt;
-&lt;li&gt;  ..&lt;/li&gt;
-&lt;li&gt;  ..&lt;/li&gt;
-&lt;li&gt;  整个博客的配置信息&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;-- Blog-Growing
+    |-- .git
+    |-- .gitignore
+    |-- Hexo
+        |   ..
+        |   ..
+        |   整个博客的配置信息&lt;/p&gt;
 
 &lt;p&gt;你可以把我的的&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt; clone下来, 看看一些基本配置是怎么配置的。需要提醒的是, &lt;code&gt;要把主题下的.git给删除掉&lt;/code&gt; , 当然了你也可以使用 &lt;code&gt;git submodule&lt;/code&gt; 来管理, 具体的管理方法我这里就不做多的介绍了, 想了解的话可以私信我。
 上面的过程基本做完后, 怎么来解决我开篇提的前三个问题了。&lt;/p&gt;
@@ -342,26 +334,46 @@ error: Xcode 7.3.0 or later is required.
     
       <item>
         <title>iBeacon 能为开发者做什么？</title>
-        <description>&lt;h2&gt;简介：&lt;/h2&gt;
+        <description>&lt;p&gt;iOS上对iBeacon的技术调研及基本使用。&lt;/p&gt;
+
+&lt;!-- more --&gt;  
+
+&lt;h2&gt;背景&lt;/h2&gt;
+
+&lt;h4&gt;简介：&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 &lt;code&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;概念：&lt;/strong&gt; iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 &lt;code&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;iBeacon的形状多种多样，大致如下图。
+&lt;img src=&quot;/assets/img/ibeacon.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;!--more--&gt;
+&lt;h4&gt;目前哪些地方有iBeacon：&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;可实现地理围栏、室内定位等功能，测量距离：&lt;a href=&quot;https://developer.apple.com/ibeacon/&quot;&gt;iBeacon&lt;/a&gt; 通过设备的 &lt;code&gt;UUID&lt;/code&gt; 可以检测到具体的 &lt;code&gt;iBeacon&lt;/code&gt; 信息，如：&lt;code&gt;Major&lt;/code&gt; ，&lt;code&gt;Minor&lt;/code&gt; ，用来进行多个 &lt;code&gt;iBeacon&lt;/code&gt; 区分，&lt;code&gt;RSSI&lt;/code&gt; ，用来计算信号接受者到 &lt;code&gt;iBeacon&lt;/code&gt; 信号发射硬件之间的距离。&lt;code&gt;identifier&lt;/code&gt; : 用来区分某一块的 &lt;code&gt;iBeacon&lt;/code&gt; 信号，&lt;code&gt;iBeacon&lt;/code&gt; 信号接受者自定义。iBeacon信号会因为人或物而遮挡信息强度，影响iBeacon信号接收。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;&lt;strong&gt;iBeacon功能 对开发者使用的额外成本:&lt;/strong&gt;&lt;/h4&gt;
+&lt;li&gt;微信摇一摇：使用微信的人应该都知道微信有一个 &lt;code&gt;周边摇一摇&lt;/code&gt; 功能， 使用的就是iBeacon技术。&lt;br&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;iBeacon&lt;/code&gt; 也属于一种定位功能，所以需要添加 &lt;code&gt;CoreLocation.framework&lt;/code&gt; 。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;App&lt;/code&gt; 开发者需要开启定位功能需要配置：在 &lt;code&gt;Xcode&lt;/code&gt; 的 &lt;code&gt;info.plist&lt;/code&gt; 里面添加 &lt;code&gt;NSLocationAlwaysUsageDescription&lt;/code&gt; 或 &lt;code&gt;NSLocationWhenInUseUsageDescription&lt;/code&gt; 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
+&lt;li&gt;很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;iBeacon还可实现地理围栏、室内定位等功能。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4&gt;&lt;strong&gt;检测iBeacon信号对用户设备的必要条件：&lt;/strong&gt;&lt;/h4&gt;
+&lt;h4&gt;iBeacon技术&lt;/h4&gt;
+
+&lt;p&gt;Apple的 &lt;code&gt;CoreLocation.frame&lt;/code&gt; 里把iBeacon封装成了一个 &lt;code&gt;CLBeacon&lt;/code&gt; 类，&lt;code&gt;CLBeacon&lt;/code&gt; 大致有下面几个属性组成：&lt;code&gt;Major&lt;/code&gt; 、&lt;code&gt;Minor&lt;/code&gt; 、 &lt;code&gt;proximity&lt;/code&gt; 、 &lt;code&gt;rssi&lt;/code&gt; 、 &lt;code&gt;accuracy&lt;/code&gt; 。   &lt;/p&gt;
+
+&lt;h4&gt;使用iBeacon技术对App开发者使用的额外成本:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1、用户需要添加 &lt;code&gt;CoreLocation.framework&lt;/code&gt; ，&lt;code&gt;App&lt;/code&gt; 才具备定位的功能。&lt;/li&gt;
+&lt;li&gt;2、&lt;code&gt;App&lt;/code&gt; 开发者需要开启定位功能需要配置：在 &lt;code&gt;Xcode&lt;/code&gt; 的 &lt;code&gt;info.plist&lt;/code&gt; 里面添加 &lt;code&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
+&lt;li&gt;3、&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码&lt;/a&gt;。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;检测iBeacon信号对用户的必要条件：&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;用户设备iOS7或更新操作系统。&lt;/li&gt;
@@ -370,18 +382,12 @@ error: Xcode 7.3.0 or later is required.
 &lt;li&gt;用户设备定位服务必须开启，允许应用访问位置信息。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4&gt;iBeacon 可以激活 App ：&lt;/h4&gt;
+&lt;h4&gt;iBeacon能唤醒应用&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;条件：这个 &lt;code&gt;App&lt;/code&gt; 能后台访问位置信息，并且具备上述功能(能正常检查iBeacon)。&lt;/li&gt;
-&lt;li&gt;现象：这个 &lt;code&gt;App&lt;/code&gt; 即使没有启动(无进程), 当有被监测iBeacon信号出现时, 这个 &lt;code&gt;App&lt;/code&gt; 能被唤醒, 没任何操作的情况下, 进程存活时间可长达几个小时。&lt;/li&gt;
-&lt;li&gt;影响：开发者对用户使用App的使用时长统计可能会出现失误, 这时开发者就需要借助第三方统计SDK了,例如： &lt;code&gt;TalkingData&lt;/code&gt; SDK 等。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;iBeacon功能对用户造成的影响:&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;iBeacon如果在后台监测到信号时, 当屏幕处于锁频状态, 设备左下角会有这个 App 的icon, 对于这一现象具体怎么使用就要看开发者了。&lt;/li&gt;
+&lt;li&gt;前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。&lt;/li&gt;
+&lt;li&gt;现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。&lt;/li&gt;
+&lt;li&gt;影响：导致App用户在并没有使用 &lt;code&gt;App&lt;/code&gt; 的情况下, &lt;code&gt;App&lt;/code&gt; 有了长达几个小时的后台使用时长。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Apr 2016 02:25:06 +0800</pubDate>
