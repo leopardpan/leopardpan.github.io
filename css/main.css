@@ -210,6 +210,79 @@ tbody td {
 td:last-child {
   padding-right: 10px; }
 
+
+
+/*pager start----------------*/
+.post-container 
+.pager li{ width:48%}
+.next{float:right}
+.previous{float:left}
+.pager li>a{width:100%}
+
+.pager li>a>span{color:gray;font-weight:400;letter-spacing:.5px}
+.pager {
+  margin:20px 0 0!important;
+  padding:0!important
+}
+.pager li>span {
+    line-height:1.7;
+    text-transform:uppercase;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:1px;
+    padding:10px;
+    background-color:#fff;
+    border-radius:0;
+    border:1px solid #0085a1
+  }
+@media only screen and (min-width:768px){
+  .pager li>a {
+    font-size:20px;
+    padding: 10px 10px  
+  },
+  .pager li>span {
+    font-size:20px;
+    padding: 10px 10px;  
+  }
+}
+.pager li>a {
+  color:#404040
+}
+.pager li>a:hover,
+.pager li>a:focus { 
+  color:#fff;
+  background-color:#0085a1;
+  border:1px solid #0085a1
+}
+.pager li>a:hover>span,.pager li>a:focus>span{color:#fff}
+.pager .disabled>a,
+.pager .disabled>a:hover,
+.pager .disabled>a:focus,
+.pager .disabled>span {
+  color:gray;
+  background-color:#404040;
+  cursor:not-allowed
+  }
+::-moz-selection { 
+  color:#fff;
+  text-shadow:none;background:#0085a1
+  }
+::selection {
+    color:#fff;
+    text-shadow:none;
+    background:#0085a1
+  }
+img::selection {
+  color:#fff;
+  background:0 0
+  }
+img::-moz-selection {
+  color:#fff;
+  background:0 0
+}
+
+/*pager end----------------*/
+
 .date,
 .time,
 .author{ color: #c7c7c7; }
