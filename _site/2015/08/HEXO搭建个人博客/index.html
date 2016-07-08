@@ -62,8 +62,6 @@
               <ul class="navigation">
                 <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
                 
-                  <li class="navigation__item"><a href="/about" target="_blank" title="about">about</a></li>
-                
               </ul>
             </nav>
           </div>
@@ -254,7 +252,7 @@ db.json     package.json    scaffolds   themes　　　　　
 <p>现在我们需要_config.yml文件，来建立关联，命令：</p>
 <figure class="highlight"><pre><code class="language-text" data-lang="text">vim _config.yml
 </code></pre></figure>
-<p>翻到最下面，改成我这样子的</p>
+<p>翻到最下面，改成我这样子的，注意： <code>: 后面要有空格</code></p>
 <figure class="highlight"><pre><code class="language-text" data-lang="text">deploy:
   type: git
   repository: https://github.com/leopardpan/leopardpan.github.io.git
@@ -287,16 +285,16 @@ hexo help  # 查看帮助
 hexo version  #查看Hexo的版本
 </code></pre></figure>
 <p>这里有大量的<a href="https://github.com/hexojs/hexo/wiki/Themes">主题列表</a>使用方法里面
-都有详细的介绍，我就不多说了。
-我这里有几款个人认为不错的主题，免去你们，一个一个的选了，欢迎吐槽我的审美，?
-　<a href="https://github.com/daisygao/hexo-themes-cover">Cover</a> - A chic theme with facebook-like cover photo
-　<a href="https://github.com/henryhuang/oishi">Oishi</a> - A white theme based on Landscape plus and Writing.
-　<a href="https://github.com/hardywu/hexo-theme-sidebar">Sidebar</a> - Another theme based on Light with a simple sidebar 
-　<a href="https://github.com/SuperKieran/TKL">TKL</a> - A responsive design theme for Hexo. 一个设计优雅的响应式主题
-　<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a> - A clean, simple theme based on Tinny
-　<a href="https://github.com/yunlzheng/hexo-themes-writing">Writing</a> - A small and simple hexo theme based on Light
-　<a href="https://github.com/litten/hexo-theme-yilia">Yilia</a> - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。
-　<a href="https://github.com/Voidly/pacman">Pacman voidy</a> - A theme with dynamic tagcloud and dynamic snow</p>
+都有详细的介绍，我就不多说了。<br>
+我这里有几款个人认为不错的主题，免去你们，一个一个的选了，欢迎吐槽我的审美，?<br>
+　<a href="https://github.com/daisygao/hexo-themes-cover">Cover</a> - A chic theme with facebook-like cover photo<br>
+　<a href="https://github.com/henryhuang/oishi">Oishi</a> - A white theme based on Landscape plus and Writing.<br>
+　<a href="https://github.com/hardywu/hexo-theme-sidebar">Sidebar</a> - Another theme based on Light with a simple sidebar<br>
+　<a href="https://github.com/SuperKieran/TKL">TKL</a> - A responsive design theme for Hexo. 一个设计优雅的响应式主题<br>
+　<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a> - A clean, simple theme based on Tinny<br>
+　<a href="https://github.com/yunlzheng/hexo-themes-writing">Writing</a> - A small and simple hexo theme based on Light<br>
+　<a href="https://github.com/litten/hexo-theme-yilia">Yilia</a> - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。<br>
+　<a href="https://github.com/Voidly/pacman">Pacman voidy</a> - A theme with dynamic tagcloud and dynamic snow      </p>
 
 <h2>一些基本路径</h2>
 
@@ -325,8 +323,10 @@ hexo version  #查看Hexo的版本
 </section>
 
 <section class="post-comments">
+
   
     <div class="ds-thread" data-thread-key="/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-title="HEXO搭建个人博客" data-url="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"></div>
+
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"leopard"};
         (function() {
