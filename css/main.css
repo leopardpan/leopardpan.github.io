@@ -109,7 +109,7 @@ h3 {
   font-size: 1.2em; 
   text-indent: 4px; /* 字段缩进*/
   border-radius: 4px; /* 圆角*/
-  padding:10px 15px;
+  padding:6px 15px;
   margin-bottom: 20px;
   background:#a0b3d6;
   box-shadow:10px 5px 5px #666;
@@ -120,7 +120,9 @@ h3 {
 }
 
 h4 {
-  font-size: 1.2em; }
+  font-size: 1.2em; 
+  padding:6px 15px;
+}
 
 h4 {
   font-size: 1.1em; }

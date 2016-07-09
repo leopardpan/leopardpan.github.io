@@ -3,10 +3,10 @@
   <channel>
     <title>潘柏信</title>
     <description>iOS | Machine Learning</description>
-    <link>http://baixin.io/#blog/</link>
-    <atom:link href="http://baixin.io/#blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 09 Jul 2016 11:17:07 +0800</pubDate>
-    <lastBuildDate>Sat, 09 Jul 2016 11:17:07 +0800</lastBuildDate>
+    <link>http://baixin.io/</link>
+    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 09 Jul 2016 11:56:36 +0800</pubDate>
+    <lastBuildDate>Sat, 09 Jul 2016 11:56:36 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -33,8 +33,8 @@
 &lt;p&gt;持续更新中...&lt;/p&gt;
 </description>
         <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</guid>
+        <link>http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</guid>
         
         <category>python</category>
         
@@ -43,10 +43,14 @@
     
       <item>
         <title>机器学习入门（名词科普）</title>
-        <description>&lt;h4&gt;ML&lt;/h4&gt;
+        <description>&lt;h3&gt;通用名词&lt;/h3&gt;
+
+&lt;h4&gt;ML&lt;/h4&gt;
 
 &lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 机器学习(Machine Learning)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。
 　　它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。&lt;/p&gt;
+
+&lt;hr&gt;
 
 &lt;h4&gt;DL&lt;/h4&gt;
 
@@ -71,8 +75,8 @@
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/07/ML(1)/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/07/ML(1)/</guid>
+        <link>http://baixin.io/2016/07/ML(1)/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/ML(1)/</guid>
         
         <category>机器学习</category>
         
@@ -228,8 +232,8 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 &lt;a href=&quot;http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80&quot;&gt;深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？&lt;/a&gt;  &lt;/p&gt;
 </description>
         <pubDate>Fri, 01 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+        <link>http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
         
         <category>机器学习</category>
         
@@ -262,13 +266,15 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt;是我管理博客的仓库地址。结构大致是:&lt;/p&gt;
 
-&lt;p&gt;-- Blog-Growing
-    |-- .git
-    |-- .gitignore
-    |-- Hexo
-        |   ..
-        |   ..
-        |   整个博客的配置信息&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-- Blog-Growing&lt;br&gt;
+　　|-- .git&lt;br&gt;
+　　|-- .gitignore&lt;br&gt;
+　　|-- Hexo&lt;br&gt;
+　　　　|   ..&lt;br&gt;
+　　　　|   ..&lt;br&gt;
+　　　　|   整个博客的配置信息    &lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;你可以把我的的&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt; clone下来, 看看一些基本配置是怎么配置的。需要提醒的是, &lt;code&gt;要把主题下的.git给删除掉&lt;/code&gt; , 当然了你也可以使用 &lt;code&gt;git submodule&lt;/code&gt; 来管理, 具体的管理方法我这里就不做多的介绍了, 想了解的话可以私信我。
 上面的过程基本做完后, 怎么来解决我开篇提的前三个问题了。&lt;/p&gt;
@@ -276,14 +282,14 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 &lt;h3&gt;具体实现:&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;一：家里电脑使用博客&lt;/strong&gt;&lt;br&gt;
-建立git远端仓库管理博客,并使用家里的电脑把本地博客的配置推送到远端仓库。
+　　建立git远端仓库管理博客,并使用家里的电脑把本地博客的配置推送到远端仓库。&lt;br&gt;
 &lt;strong&gt;二：公司电脑使用博客&lt;/strong&gt;&lt;br&gt;
-到了公司只需要执行&lt;code&gt;sudo npm install -g hexo&lt;/code&gt;,然后cd到你的博客目录下,如我cd 到Hexo目录下, 然后执行 &lt;code&gt;hexo server&lt;/code&gt; 就可以在本地预览博客了。
+　　到了公司只需要执行&lt;code&gt;sudo npm install -g hexo&lt;/code&gt;,然后cd到你的博客目录下,如我cd 到Hexo目录下, 然后执行 &lt;code&gt;hexo server&lt;/code&gt; 就可以在本地预览博客了。&lt;br&gt;
 &lt;strong&gt;三：使用Git保存&lt;/strong&gt;&lt;br&gt;
-修改好博客后记得先使用git来提交下, 即使下次把博客的样式修改坏了, 也可以使用 &lt;code&gt;git reset --hard&lt;/code&gt; 来回退。如: 我cd 到 &lt;code&gt;Blog-Growing&lt;/code&gt; 目录下使用git提交。
+　　修改好博客后记得先使用git来提交下, 即使下次把博客的样式修改坏了, 也可以使用 &lt;code&gt;git reset --hard&lt;/code&gt; 来回退。如: 我cd 到 &lt;code&gt;Blog-Growing&lt;/code&gt; 目录下使用git提交。&lt;br&gt;
 &lt;strong&gt;四：博客提交&lt;/strong&gt;&lt;br&gt;
-1、修改好的博客使用 &lt;code&gt;hexo d&lt;/code&gt; 展示到博客页上。
-2、git push 整个本地博客。&lt;/p&gt;
+　　1、修改好的博客使用 &lt;code&gt;hexo d&lt;/code&gt; 展示到博客页上。&lt;br&gt;
+　　2、git push 整个本地博客。    &lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;提示:&lt;/strong&gt; 在这里 &lt;code&gt;git&lt;/code&gt; 仅仅只是用户做博客的版本管理的, 博客的样式修改、基本部署还是使用 &lt;code&gt;hexo&lt;/code&gt; 来操作的。&lt;/p&gt;
 
@@ -293,7 +299,7 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 
 &lt;p&gt;有人可能会说作为一个开发人员, 你不会用 &lt;code&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
 
-&lt;h3&gt;为什么使用百度搜索不到 &lt;code&gt;Github Page&lt;/code&gt; 上的博客？&lt;/h3&gt;
+&lt;h3&gt;为什么使用百度搜索不到 Github Page 上的博客？&lt;/h3&gt;
 
 &lt;p&gt;有人联系过 &lt;code&gt;Github Support 部门&lt;/code&gt; , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。&lt;/p&gt;
 
@@ -306,11 +312,11 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 
 &lt;h4&gt;在Coding上部署你的博客。&lt;/h4&gt;
 
-&lt;p&gt;Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:
-&lt;strong&gt;注意一:&lt;/strong&gt;
-在&lt;code&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code&gt;coding-pages&lt;/code&gt; 分支上, 分支名字是固定的。
-&lt;strong&gt;注意二:&lt;/strong&gt;
-&lt;code&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。&lt;/p&gt;
+&lt;p&gt;Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:&lt;br&gt;
+&lt;strong&gt;注意一:&lt;/strong&gt;&lt;br&gt;
+　　在&lt;code&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code&gt;coding-pages&lt;/code&gt; 分支上, 分支名字是固定的。&lt;br&gt;
+&lt;strong&gt;注意二:&lt;/strong&gt;&lt;br&gt;
+　　&lt;code&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。   &lt;/p&gt;
 
 &lt;p&gt;更详细的请看&lt;a href=&quot;https://coding.net/help/doc/pages/index.html&quot;&gt;Coding Pages 官网介绍&lt;/a&gt;.&lt;/p&gt;
 
@@ -318,8 +324,8 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
+        <link>http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
         
         <category>博客</category>
         
@@ -349,8 +355,8 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
+        <link>http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
         
         <category>工具</category>
         
@@ -416,8 +422,8 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Apr 2016 02:25:06 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/04/iBeacon/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/04/iBeacon/</guid>
+        <link>http://baixin.io/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
         
         <category>技术分享</category>
         
@@ -556,8 +562,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 &lt;p&gt;&lt;a href=&quot;http://blog.jobbole.com/53365/&quot;&gt;深入理解 CocoaPods&lt;/a&gt;    &lt;/p&gt;
 </description>
         <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+        <link>http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
         
         <category>工具</category>
         
@@ -666,8 +672,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 &lt;p&gt;Reveal的功能相对来说更强大 , 适用于UI调试视图查找 。使用方法请看 &lt;a href=&quot;http://support.revealapp.com/kb/getting-started/reveal&quot;&gt;Reveal集成指南&lt;/a&gt; 。&lt;/p&gt;
 </description>
         <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/#blog/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
+        <link>http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
         
         <category>iOS</category>
         
@@ -778,8 +784,8 @@ locationManager是CLLocationManager的对象，用来管理整个定位的。&lt
 &lt;/ul&gt;
 </description>
         <pubDate>Sun, 27 Sep 2015 02:15:06 +0800</pubDate>
-        <link>http://baixin.io/#blog/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
+        <link>http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
         
         <category>iOS</category>
         
@@ -954,8 +960,8 @@ hexo version  #查看Hexo的版本
 转载请注明原地址，潘柏信的博客：&lt;a href=&quot;http://leopardpan.github.io&quot;&gt;http://leopardpan.github.io&lt;/a&gt; 谢谢！&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 Aug 2015 05:15:06 +0800</pubDate>
-        <link>http://baixin.io/#blog/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
-        <guid isPermaLink="true">http://baixin.io/#blog/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+        <link>http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+        <guid isPermaLink="true">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
         
         <category>博客</category>
         
