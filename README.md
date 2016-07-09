@@ -27,8 +27,9 @@
 ![](/assets/images/img1.png)
 
 
-
+#### 如果有问题      
+可以直接在[Issues](https://github.com/leopardpan/leopardpan.github.io/issues)里面提问。        
 
 
 #### 感谢   
-本博客在[Vno Jekyll](https://github.com/onevcat/vno-jekyll)起初上修改的。  
+本博客在[Vno Jekyll](https://github.com/onevcat/vno-jekyll)基础上修改的。  
