@@ -3,10 +3,10 @@
   <channel>
     <title>潘柏信</title>
     <description>iOS | Machine Learning</description>
-    <link>http://baixin.io/</link>
-    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 08 Jul 2016 18:52:06 +0800</pubDate>
-    <lastBuildDate>Fri, 08 Jul 2016 18:52:06 +0800</lastBuildDate>
+    <link>http://baixin.io/#blog/</link>
+    <atom:link href="http://baixin.io/#blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 09 Jul 2016 11:17:07 +0800</pubDate>
+    <lastBuildDate>Sat, 09 Jul 2016 11:17:07 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -33,8 +33,8 @@
 &lt;p&gt;持续更新中...&lt;/p&gt;
 </description>
         <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</guid>
+        <link>http://baixin.io/#blog/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</guid>
         
         <category>python</category>
         
@@ -71,8 +71,8 @@
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/ML(1)/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/ML(1)/</guid>
+        <link>http://baixin.io/#blog/2016/07/ML(1)/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/07/ML(1)/</guid>
         
         <category>机器学习</category>
         
@@ -97,16 +97,16 @@
 
 &lt;h3&gt;特性&lt;/h3&gt;
 
-&lt;p&gt;&lt;strong&gt;1 灵活性&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;1 灵活性&lt;/strong&gt;&lt;br&gt;
 　　TensorFlow不是一个严格的神经网络工具包，只要你可以使用数据流图来描述你的计算过程，你可以使用TensorFlow做任何事情。你还可以方便地根据需要来构建数据流图，用简单的Python语言来实现高层次的功能。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;2 可移植性&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;2 可移植性&lt;/strong&gt;&lt;br&gt;
 　　TensorFlow可以在任意具备CPU或者GPU的设备上运行，你可以专注于实现你的想法，而不用去考虑硬件环境问题，你甚至可以利用Docker技术来实现相关的云服务。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;3 提高开发效率&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;3 提高开发效率&lt;/strong&gt;&lt;br&gt;
 　　TensorFlow可以提升你所研究的东西产品化的效率，并且可以方便与同行们共享代码。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;4 支持语言选项&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;4 支持语言选项&lt;/strong&gt;&lt;br&gt;
 　　目前TensorFlow支持Python和C++语言。（但是你可以自己编写喜爱语言的SWIG接口）&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;5 充分利用硬件资源，最大化计算性能&lt;/strong&gt;&lt;/p&gt;
@@ -114,35 +114,46 @@
 &lt;h3&gt;TensorFlow编译iOS的静态库&lt;/h3&gt;
 
 &lt;p&gt;Tensorflow在0.9版开始支持iOS平台的。按Tensorflow&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile&quot;&gt;官方文档的命令&lt;/a&gt;：
-1、clone项目&lt;br&gt;
-&lt;code&gt;
-$ git clone https://github.com/tensorflow/tensorflow    
-&lt;/code&gt;
-2、安装依赖环境，cd 到 tensorflow/contrib/makefile/&lt;br&gt;
-&lt;code&gt;
-$ bash download_dependencies.sh       
-&lt;/code&gt;
-3、安装protobufs&lt;br&gt;
-&lt;code&gt;
-$ bash compile_ios_protobuf.sh 
-&lt;/code&gt;
-4、安装iOS环境
-&lt;code&gt;
-make -f tensorflow/contrib/makefile/Makefile \
+1、clone项目   &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;$ git clone &lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;https://github.com/tensorflow/tensorflow&lt;/a&gt;    &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2、安装依赖环境，cd 到 tensorflow/contrib/makefile/        &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;$ bash download_dependencies.sh       &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;3、安装protobufs    &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;$ bash compile_ios_protobuf.sh &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;4、安装iOS环境      &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;make -f tensorflow/contrib/makefile/Makefile \
  TARGET=IOS \
- IOS_ARCH=ARM64
-&lt;/code&gt;
-5、安装图库
-&lt;code&gt;
-mkdir -p ~/graphs
+ IOS_ARCH=ARM64&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;5、安装图库      &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;mkdir -p ~/graphs
 curl -o ~/graphs/inception.zip \
- https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip \
- &amp;amp;&amp;amp; unzip ~/graphs/inception.zip -d ~/graphs/inception
-&lt;/code&gt;
-6、安装iOS最终环境，生成&lt;code&gt;libtensorflow-core.a&lt;/code&gt;
-&lt;code&gt;
-$ bash build_all_ios.sh
-&lt;/code&gt;&lt;/p&gt;
+ &lt;a href=&quot;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&quot;&gt;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&lt;/a&gt; \
+ &amp;amp;&amp;amp; unzip ~/graphs/inception.zip -d ~/graphs/inception&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;6、安装iOS最终环境，生成libtensorflow-core.a    &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;$ bash build_all_ios.sh&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;7、如果你的机子沸腾起来了，并且看到了下面的图，代表你已经正式在安装了。
 &lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -151,45 +162,59 @@ $ bash build_all_ios.sh
 
 &lt;h4&gt;iOS上遇到问题&lt;/h4&gt;
 
-&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用）
-&lt;code&gt;
-curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out
-&lt;/code&gt;
-解决：
-　　1）把下载好的&lt;code&gt;protobuf&lt;/code&gt;拷贝出来，&lt;code&gt;protobuf&lt;/code&gt;在 tensorflow/contrib/makefile/downloads里。
-　　2）访问&lt;code&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip&lt;/code&gt;，把gmock-1.7.0.zip下载下来放在protobuf/ 里面。
-　　3）把&lt;code&gt;tensorflow/contrib/makefile/download_dependencies.sh&lt;/code&gt;里的 &lt;code&gt;git clone https://github.com/google/protobuf.git ${DOWNLOADS_DIR}/protobuf&lt;/code&gt;给注释掉。
-　　4）再次执行命令 &lt;code&gt;bash build_all_ios.sh&lt;/code&gt;，立即把之前拷贝的&lt;code&gt;protobuf&lt;/code&gt;文件放进tensorflow/contrib/makefile/downloads里。
-　　5）静静的等待。。。&lt;/p&gt;
+&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用）       &lt;/p&gt;
 
-&lt;p&gt;2、没有安装 autoconf 和 libtool
-&lt;code&gt;
-Google Mock not present.  Fetching gmock-1.7.0 from the web...
-+ autoreconf -f -i -Wall,no-obsolete
-Can&amp;#39;t exec &amp;quot;glibtoolize&amp;quot;: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, &amp;lt;GEN10&amp;gt; line 6.
+&lt;blockquote&gt;
+&lt;p&gt;curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out&lt;/p&gt;
+
+&lt;p&gt;解决：&lt;br&gt;
+　　1）把下载好的 protobuf 拷贝出来，protobuf在 tensorflow/contrib/makefile/downloads里。    &lt;/p&gt;
+
+&lt;p&gt;　　2）访问 &lt;a href=&quot;https://googlemock.googlecode.com/files/gmock-1.7.0.zip%EF%BC%8C%E6%8A%8Agmock-1.7.0.zip%E4%B8%8B%E8%BD%BD%E4%B8%8B%E6%9D%A5%E6%94%BE%E5%9C%A8protobuf/&quot;&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip，把gmock-1.7.0.zip下载下来放在protobuf/&lt;/a&gt; 里面。    &lt;/p&gt;
+
+&lt;p&gt;　　3）把tensorflow/contrib/makefile/download_dependencies.sh 里的 git clone &lt;a href=&quot;https://github.com/google/protobuf.git&quot;&gt;https://github.com/google/protobuf.git&lt;/a&gt; ${DOWNLOADS_DIR}/protobuf 给注释掉。    &lt;/p&gt;
+
+&lt;p&gt;　　4）再次执行命令 bash build_all_ios.sh`，立即把之前拷贝的 protobuf 文件放进tensorflow/contrib/makefile/downloads里。    &lt;/p&gt;
+
+&lt;p&gt;　　5）静静的等待。。。    &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2、没有安装 autoconf 和 libtool&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Google Mock not present.  Fetching gmock-1.7.0 from the web...
+ + autoreconf -f -i -Wall,no-obsolete
+Can&amp;#39;t exec &amp;quot;glibtoolize&amp;quot;: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, &lt;GEN10&gt; line 6.
 autoreconf: failed to run glibtoolize: No such file or directory
-autoreconf: glibtoolize is needed because this package uses Libtool
-&lt;/code&gt;
-解决：执行命令   &lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;brew install libtool
-brew install autoconf
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;我之前安装过了&lt;code&gt;automake&lt;/code&gt;，如果你没有的话，也是需要安装的。&lt;/p&gt;
+autoreconf: glibtoolize is needed because this package uses Libtool&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;3、应用程序里没有xcode，或没有一个叫xcode名字的。
-&lt;code&gt;
-xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located
-xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located
-xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#39;iphoneos&amp;#39;
-+ IPHONEOS_PLATFORM=
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决：执行命令   &lt;/p&gt;
 
-&lt;p&gt;4、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。
-&lt;code&gt;
-error: Xcode 7.3.0 or later is required.
-+ exit 1
-&lt;/code&gt;
-解决：更新Xcode版本到7.3以后，修改为默认安装路径。
+&lt;blockquote&gt;
+&lt;p&gt;brew install libtool
+brew install autoconf&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我之前安装过了 automake ，如果你没有的话，也是需要安装的。&lt;/p&gt;
+
+&lt;p&gt;3、应用程序里没有xcode，或没有一个叫xcode名字的。       &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located&lt;br&gt;
+xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located&lt;br&gt;
+xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#39;iphoneos&amp;#39;&lt;br&gt;
++ IPHONEOS_PLATFORM=    &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;4、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。    &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;error: Xcode 7.3.0 or later is required.&lt;br&gt;
++ exit 1   &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;解决：更新Xcode版本到7.3以后，修改为默认安装路径。
 如果Xcode是7.3，你可以修改tensorflow/contrib/makefile/compile_ios_tensorflow.sh 里的REQUIRED_XCODE_VERSION=7.3.0，为REQUIRED_XCODE_VERSION=7.3。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）&lt;/p&gt;
 
 &lt;h4&gt;参考连接：&lt;/h4&gt;
@@ -203,8 +228,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;a href=&quot;http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80&quot;&gt;深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？&lt;/a&gt;  &lt;/p&gt;
 </description>
         <pubDate>Fri, 01 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+        <link>http://baixin.io/#blog/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
         
         <category>机器学习</category>
         
@@ -293,8 +318,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
+        <link>http://baixin.io/#blog/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
         
         <category>博客</category>
         
@@ -324,8 +349,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
+        <link>http://baixin.io/#blog/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
         
         <category>工具</category>
         
@@ -391,8 +416,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Apr 2016 02:25:06 +0800</pubDate>
-        <link>http://baixin.io/2016/04/iBeacon/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
+        <link>http://baixin.io/#blog/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/04/iBeacon/</guid>
         
         <category>技术分享</category>
         
@@ -531,8 +556,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 &lt;p&gt;&lt;a href=&quot;http://blog.jobbole.com/53365/&quot;&gt;深入理解 CocoaPods&lt;/a&gt;    &lt;/p&gt;
 </description>
         <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+        <link>http://baixin.io/#blog/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
         
         <category>工具</category>
         
@@ -641,8 +666,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 &lt;p&gt;Reveal的功能相对来说更强大 , 适用于UI调试视图查找 。使用方法请看 &lt;a href=&quot;http://support.revealapp.com/kb/getting-started/reveal&quot;&gt;Reveal集成指南&lt;/a&gt; 。&lt;/p&gt;
 </description>
         <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
+        <link>http://baixin.io/#blog/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
         
         <category>iOS</category>
         
@@ -753,8 +778,8 @@ locationManager是CLLocationManager的对象，用来管理整个定位的。&lt
 &lt;/ul&gt;
 </description>
         <pubDate>Sun, 27 Sep 2015 02:15:06 +0800</pubDate>
-        <link>http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
+        <link>http://baixin.io/#blog/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
         
         <category>iOS</category>
         
@@ -929,8 +954,8 @@ hexo version  #查看Hexo的版本
 转载请注明原地址，潘柏信的博客：&lt;a href=&quot;http://leopardpan.github.io&quot;&gt;http://leopardpan.github.io&lt;/a&gt; 谢谢！&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 Aug 2015 05:15:06 +0800</pubDate>
-        <link>http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
-        <guid isPermaLink="true">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+        <link>http://baixin.io/#blog/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+        <guid isPermaLink="true">http://baixin.io/#blog/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
         
         <category>博客</category>
         

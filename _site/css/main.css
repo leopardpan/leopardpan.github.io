@@ -23,11 +23,14 @@ ol, ul {
   list-style: none; }
 
 blockquote, q {
-  quotes: none; }
+  quotes: none; 
+  background-color: #f0f0f0;
+}
 
 blockquote:before, blockquote:after {
   content: '';
-  content: none; }
+  content: none; 
+}
 
 q:before, q:after {
   content: '';
@@ -68,13 +71,16 @@ body {
 
 a {
   text-decoration: none;
-  color: #BF1827; }
+  color: #BF1827; 
+
+}
   a:hover {
     color: #7b0f19;
     -o-transition: .5s;
     -ms-transition: .5s;
     -moz-transition: .5s;
-    -webkit-transition: .5s; }
+    -webkit-transition: .5s; 
+  }
 
 h1,
 h2,
@@ -100,10 +106,17 @@ h2 {
   }
 
 h3 {
-  font-size: 1.6em; 
-  text-indent: 10px; /* 字段缩进*/
+  font-size: 1.2em; 
+  text-indent: 4px; /* 字段缩进*/
   border-radius: 4px; /* 圆角*/
-  background-color: #f0f0f0
+  padding:10px 15px;
+  margin-bottom: 20px;
+  background:#a0b3d6;
+  box-shadow:10px 5px 5px #666;
+  -moz-box-shadow:2px 10px 5px #666;
+  -webkit-box-shadow:6px 10px 5px #666;
+  position:relative;
+  z-index:1;
 }
 
 h4 {
@@ -116,8 +129,11 @@ h5 {
   font-size: 1em; }
 
 p {
-  margin-bottom: 1.3em;
-  line-height: 1.7em; }
+  margin-bottom: 10px;
+  margin-top: 5px;
+  line-height: 1.7em; 
+  padding-left: 20px;
+}
 
 strong {
   font-weight: bold; }
@@ -126,8 +142,10 @@ em {
   font-style: italic; }
 
 blockquote {
-  padding: 10px 20px;
-  margin: 0 0 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-left: 20px;
   font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-weight: lighter;
   font-size: 1em;
@@ -150,12 +168,13 @@ ul {
   list-style-type: disc; }
 
 code {
+  color: #000000;
   padding: .1em .4em;
   background: #e8f2fb;
   border: 1px solid #c9e1f6;
   border-radius: 3px;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: .9em;
+  font-size: 1.0em;
   vertical-align: bottom;
   word-wrap: break-word; }
 
@@ -251,8 +270,8 @@ td:last-child {
 .pager li>a:hover,
 .pager li>a:focus { 
   color:#fff;
-  background-color:#0085a1;
-  border:1px solid #0085a1
+  background-color:#a0b3d6;
+  border:1px solid #a0b3d6;
 }
 .pager li>a:hover>span,.pager li>a:focus>span{color:#fff}
 .pager .disabled>a,
@@ -265,12 +284,12 @@ td:last-child {
   }
 ::-moz-selection { 
   color:#fff;
-  text-shadow:none;background:#0085a1
+  text-shadow:none;background:#a0b3d6;
   }
 ::selection {
     color:#fff;
     text-shadow:none;
-    background:#0085a1
+    background:#a0b3d6;
   }
 img::selection {
   color:#fff;
