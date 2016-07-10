@@ -2,5 +2,4 @@ _site
 .DS_Store
 .idea
 *.swp
-.sass-cache
 
