@@ -5,61 +5,62 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 13 Jul 2016 14:35:00 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Jul 2016 14:35:00 +0800</lastBuildDate>
+    <pubDate>Mon, 18 Jul 2016 09:43:17 +0800</pubDate>
+    <lastBuildDate>Mon, 18 Jul 2016 09:43:17 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
-        <title>Mac常用命令</title>
-        <description>&lt;h3&gt;查看项目代码总行数&lt;/h3&gt;
+        <title>Git日常操作</title>
+        <description>&lt;h3&gt;版本控制器&lt;/h3&gt;
 
-&lt;p&gt;打开终端，cd 到 项目的根目录下，执行命令：   &lt;/p&gt;
+&lt;p&gt;　　顾名思义，就是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历等等，都可以使用git来管理(svn也行)。使用版本控制器的目的是为了可以查看以前的修改记录，如：你上周周每天都有对项目进行修改，等这周忽然发现上周某些修改其实是有问题的，或者因为其它原因你想看看你上次没修改之前的一些记录，这时你会怎么做？修改之前拷贝一份出来？有问题直接看之前的备份就行了，是的这样是可以解决刚才的问题，那么时间就会就会出现：项目1.0，项目1.0完成版，项目1.0最终版，项目1.0再也不改版，项目1.0打死也不改版。。。毕业设计的时候大家有没有遇到过这种？在项目上可能你不会这样做，因为项目本身的体积就不小,如果拷贝这么多份的话，先不说是不是很难管理，你的电脑内存就仅仅够装几个项目。再者，如果你的电脑忽然挂了，里面的资料全没了，那么你之前做的项目是不是也都白费了，有些人遇到这种事估计想死的心都有了。那么应该怎么来解决呢，我刚才提到的，有很多个版本需要修改，或者是防止电脑挂掉，项目丢失这些问题都是可以用 &lt;code&gt;版本控制器&lt;/code&gt; 来解决的，&lt;/p&gt;
+
+&lt;h3&gt;工作流程&lt;/h3&gt;
+
+&lt;p&gt;　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：&lt;a href=&quot;http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html&quot;&gt;为什么Git比SVN好&lt;/a&gt;。我使用的的Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了，我没自己安装过就不乱贴链接了，你可以自己在Google或者百度上一搜Git安装，教程一大把。&lt;br&gt;
+　　你可以把Git看成是一个仓库管理员，它可以操作本地的仓库和远端的仓库，如果在没有服务器的情况下，也就不会有远端的仓库，那我们就先说本地仓库。
+&lt;strong&gt;建立仓库：&lt;/strong&gt;&lt;br&gt;
+你在目标文件夹下使命令：    &lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;find . &amp;quot;(&amp;quot; -name &amp;quot;&lt;em&gt;.m&amp;quot; -or -name &amp;quot;&lt;/em&gt;.mm&amp;quot; -or -name &amp;quot;&lt;em&gt;.cpp&amp;quot; -or -name &amp;quot;&lt;/em&gt;.h&amp;quot; -or -name &amp;quot;*.rss&amp;quot; &amp;quot;)&amp;quot; -print | xargs wc -l&lt;/li&gt;
+&lt;li&gt;git init &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;上面这句话的意思是，查询这个目录下所有 .m、.mm、.cpp、.h、.rss 的文件，然后打印每个文件的代码行数 和 总行数。&lt;/p&gt;
+&lt;p&gt;就会创建一个 &lt;code&gt;.git&lt;/code&gt; 隐藏文件，相当于已经建立了一个本地仓库。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;添加到暂存区：&lt;/strong&gt;      &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;git add .&lt;/li&gt;
+&lt;li&gt;git commit -m &amp;#39;提交记录1&amp;#39;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;add .&lt;/code&gt; . 代表这个目录下的所有文件。&lt;code&gt;git add .&lt;/code&gt; 就是把这个目录下的所有文件都添加进来，然后 &lt;code&gt;git commit -m &amp;#39;提交记录1&amp;#39;&lt;/code&gt; 然后提交，-m 后面的是提交记录，每次提交的时候都需要写提交记录，内容自己定义，目的是为了以后方便查找记录，回退到现在这次提交上等等操作。到目前为止，你就已经有本地仓库了，你再次对文件内容做修改后，继续做类似的操作 &lt;code&gt;git add .&lt;/code&gt; &lt;code&gt;git commit -m &amp;#39;提交记录2&amp;#39;&lt;/code&gt;... 每次你可以使用 &lt;code&gt;git status&lt;/code&gt; 查看，是有你的文件内容有修改，如果有，就会有红色的提示信息，当你使用 &lt;code&gt;git add .&lt;/code&gt; 之后在使用 &lt;code&gt;git status&lt;/code&gt; 查看，就会变成绿色的提示信息了，等你使用&lt;code&gt;git commit -m &amp;#39;提交记录3&amp;#39;&lt;/code&gt; 后再使用 &lt;code&gt;git status&lt;/code&gt; 查看，就会发现你没有新的修改信息了，这个时候你就可以使用 &lt;code&gt;git log&lt;/code&gt; 就会然后之前每次的提交信息。&lt;/p&gt;
+
+&lt;h3&gt;其它&lt;/h3&gt;
+
+&lt;p&gt;git branc 查看时如出现&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt; * (HEAD detached at analytics_v2)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; dev&lt;/li&gt;
+&lt;li&gt; master&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;代表现在已经进入一个临时的HEAD，可以使用 &lt;code&gt;git checkout -b temp&lt;/code&gt; 创建一个 temp branch，这样临时HEAD上修改的东西就不会被丢掉了。
+然后切换到 dev 分支上，在使用 git branch merge temp，就可以把 temp 分支上的代码合并到 dev 上了。&lt;/p&gt;
 </description>
-        <pubDate>Tue, 12 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Mac%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Mac%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+        <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</guid>
         
         <category>工具</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Python学习资料</title>
-        <description>&lt;p&gt;学习pyhton过程中收集的资料，以及个人笔记。&lt;/p&gt;
-
-&lt;h3&gt;资源集合&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://python.freelycode.com/&quot;&gt;Python部落&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://www.pythondoc.com/&quot;&gt;Python中文学习&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://eastlakeside.gitbooks.io/interpy-zh/content/index.html&quot;&gt;《Python进阶》&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://github.com/vinta/awesome-python&quot;&gt;awesome-python&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://www.zhihu.com/question/24590883/answer/89226375?hmsr=toutiao.io&amp;amp;utm_medium=toutiao.io&amp;amp;utm_source=toutiao.io&quot;&gt;哪些 Python 库让你相见恨晚？&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://github.com/Yixiaohan/codeparkshare&quot;&gt;PythonShare&lt;/a&gt;          &lt;/p&gt;
-
-&lt;h3&gt;文章收集&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://codingpy.com/article/if-you-also-want-to-write-flask/&quot;&gt;如果你也想写Flask&lt;/a&gt;: 一遍很好的flask入门教程。  &lt;/p&gt;
-
-&lt;h3&gt;个人练习&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Python-Growing/tree/master/Flask&quot;&gt;Flask搭建 Web App&lt;/a&gt; 使用Flask搭建的测试服务器。      &lt;/p&gt;
-
-&lt;p&gt;持续更新中...&lt;/p&gt;
-</description>
-        <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</guid>
-        
-        <category>python</category>
         
         
       </item>
@@ -811,6 +812,182 @@ locationManager是CLLocationManager的对象，用来管理整个定位的。&lt
         <guid isPermaLink="true">http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
         
         <category>iOS</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>HEXO搭建个人博客</title>
+        <description>&lt;p&gt;经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2&gt;正文：&lt;/h2&gt;
+
+&lt;p&gt;　这边教程是针对与Mac的，&lt;a href=&quot;http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool&quot;&gt;参考链接&lt;/a&gt;，由于原文讲到的hexo是以前的老版本，所以现在的版本配置的时候会有些改动。&lt;/p&gt;
+
+&lt;p&gt;　之前是想着写博客，一方面是给自己做笔记，可以提升自己的写作、总结能力，一个技术点我们会使用，并不难，但是要做到让让别人也能听懂我们讲得，还是需要一定的技巧和经验的。很多类似于CSDN、博客园也都可以写文章，但是页面的样式我，不是太喜欢，简书还算好点得。最近看到一些大神们的博客（在我的友情链接里有），貌似都是用hexo写得，我也依葫芦画瓢的搭建了一个。不罗嗦了，直接上搭建步骤。&lt;/p&gt;
+
+&lt;h2&gt;配置环境&lt;/h2&gt;
+
+&lt;h3&gt;安装Node（必须）&lt;/h3&gt;
+
+&lt;p&gt;作用：用来生成静态页面的
+到Node.js&lt;a href=&quot;https://nodejs.org/&quot;&gt;官网&lt;/a&gt;下载相应平台的最新版本，一路安装即可。&lt;/p&gt;
+
+&lt;h3&gt;安装Git（必须）&lt;/h3&gt;
+
+&lt;p&gt;作用：把本地的hexo内容提交到github上去.
+安装Xcode就自带有Git，我就不多说了。&lt;/p&gt;
+
+&lt;h3&gt;申请GitHub（必须）&lt;/h3&gt;
+
+&lt;p&gt;作用：是用来做博客的远程创库、域名、服务器之类的，怎么与本地hexo建立连接等下讲。
+&lt;a href=&quot;https://github.com/&quot;&gt;github&lt;/a&gt;账号我也不再啰嗦了,没有的话直接申请就行了，跟一般的注册账号差不多，SSH Keys，看你自己了，可以不配制，不配置的话以后每次对自己的博客有改动提交的时候就要手动输入账号密码，配置了就不需要了，怎么配置我就不多说了，网上有很多教程。&lt;/p&gt;
+
+&lt;h3&gt;正式安装HEXO　&lt;/h3&gt;
+
+&lt;p&gt;Node和Git都安装好后，可执行如下命令安装hexo：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo npm install -g hexo
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;初始化&lt;/h3&gt;
+
+&lt;p&gt;然后，执行init命令初始化hexo到你指定的目录，我是直接cd到目标目录执行hexo init的。命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo init
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;好啦，至此，全部安装工作已经完成！&lt;/p&gt;
+
+&lt;h3&gt;生成静态页面&lt;/h3&gt;
+
+&lt;p&gt;cd 到你的init目录，执行如下命令，生成静态页面至hexo\public\目录。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo generate （hexo g  也可以）   
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;本地启动&lt;/h3&gt;
+
+&lt;p&gt;启动本地服务，进行文章预览调试，命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo server   
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;浏览器输入&lt;a href=&quot;%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%9C%80%E5%8E%9F%E5%A7%8B%E7%9A%84%E6%95%88%E6%9E%9C%E4%BA%86&quot;&gt;http://localhost:4000&lt;/a&gt;
+我不知道你们能不能，反正我不能，因为我还有环境没配置好&lt;/p&gt;
+
+&lt;p&gt;我把我报的一些错，和解决方式列出来：&lt;/p&gt;
+
+&lt;h2&gt;一&lt;/h2&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ERROR Plugin load failed: hexo-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;原因：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Besides, utilities are separated into a standalone module. hexo.util is not reachable anymore.
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3&gt;解决方法，执行命令：&lt;/h3&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo npm install hexo-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h2&gt;二&lt;/h2&gt;
+
+&lt;p&gt;执行命令hexo server，有如下提示：
+Usage: hexo&lt;Command&gt;
+....&lt;/p&gt;
+
+&lt;p&gt;原因：
+我认为是没有生成本地服务
+解决方法，执行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-server --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;提示：&lt;a href=&quot;mailto:hexo-server@0.1.2&quot;&gt;hexo-server@0.1.2&lt;/a&gt; node_modules/hexo-server
+.... 
+表示成功了&lt;a href=&quot;https://hexo.io/zh-cn/docs/server.html&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候再执行：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;得到:&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这个时候再点击&lt;a href=&quot;http://0.0.0.0:4000&quot;&gt;http://0.0.0.0:4000&lt;/a&gt;，正常情况下应该是最原始的画面，但是我看到的是：
+白板和Cannot GET /   几个字
+原因：
+由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-renderer-ejs --save
+npm install hexo-renderer-stylus --save
+npm install hexo-renderer-marked --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这个时候再重新生成静态文件，命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo generate （或hexo g）
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;启动本地服务器：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo server （或hexo s）
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;再点击网址&lt;a href=&quot;http://0.0.0.0:4000&quot;&gt;http://0.0.0.0:4000&lt;/a&gt; OK终于可以看到属于你自己的blog啦，?，虽然很简陋，但好歹有了一个属于自己的小窝了。&lt;a href=&quot;https://disqus.com/home/discussion/bsspirit/hexogithubweb/&quot;&gt;参考链接&lt;/a&gt;，本地已经简单的设置好了，但是现在域名和服务器都是基于自己的电脑，接下来需要跟github进行关联。&lt;/p&gt;
+
+&lt;h2&gt;配置Github&lt;/h2&gt;
+
+&lt;h3&gt;建立Repository&lt;/h3&gt;
+
+&lt;p&gt;建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】，固定写法
+然后建立关联，我的blog在本地/Users/leopard/blog，blog是我之前建的东西也全在这里面，有：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;_config.yml node_modules    public      source　　　　
+db.json     package.json    scaffolds   themes　　　　　
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;现在我们需要_config.yml文件，来建立关联，命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;vim _config.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;翻到最下面，改成我这样子的，注意： &lt;code&gt;: 后面要有空格&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;deploy:
+  type: git
+  repository: https://github.com/leopardpan/leopardpan.github.io.git
+  branch: master
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;执行如下命令才能使用git部署&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-deployer-git --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;网上会有很多说法，有的type是github, 还有repository 最后面的后缀也不一样，是github.com.git，我也踩了很多坑，我现在的版本是hexo: 3.1.1，执行命令hexo -vsersion就出来了,貌似3.0后全部改成我上面这种格式了。
+忘了说了，我没用SSH Keys如果你用了SSH Keys的话直接在github里复制SSH的就行了，总共就两种协议，相信你懂的。
+然后，执行配置命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;　然后再浏览器中输入&lt;a href=&quot;http://leopardpan.github.io/&quot;&gt;http://leopardpan.github.io/&lt;/a&gt;就行了，我的github的账户叫leopardpan,把这个改成你github的账户名就行了&lt;/p&gt;
+
+&lt;h3&gt;部署步骤&lt;/h3&gt;
+
+&lt;p&gt;每次部署的步骤，可按以下三步来进行。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo clean
+hexo generate
+hexo deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;一些常用命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo new &amp;quot;postName&amp;quot; #新建文章
+hexo new page &amp;quot;pageName&amp;quot; #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&amp;#39;ctrl + c&amp;#39;关闭server）
+hexo deploy #将.deploy目录部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;这里有大量的&lt;a href=&quot;https://github.com/hexojs/hexo/wiki/Themes&quot;&gt;主题列表&lt;/a&gt;使用方法里面
+都有详细的介绍，我就不多说了。&lt;br&gt;
+我这里有几款个人认为不错的主题，免去你们，一个一个的选了，欢迎吐槽我的审美，?&lt;br&gt;
+　&lt;a href=&quot;https://github.com/daisygao/hexo-themes-cover&quot;&gt;Cover&lt;/a&gt; - A chic theme with facebook-like cover photo&lt;br&gt;
+　&lt;a href=&quot;https://github.com/henryhuang/oishi&quot;&gt;Oishi&lt;/a&gt; - A white theme based on Landscape plus and Writing.&lt;br&gt;
+　&lt;a href=&quot;https://github.com/hardywu/hexo-theme-sidebar&quot;&gt;Sidebar&lt;/a&gt; - Another theme based on Light with a simple sidebar&lt;br&gt;
+　&lt;a href=&quot;https://github.com/SuperKieran/TKL&quot;&gt;TKL&lt;/a&gt; - A responsive design theme for Hexo. 一个设计优雅的响应式主题&lt;br&gt;
+　&lt;a href=&quot;https://github.com/levonlin/Tinnypp&quot;&gt;Tinnypp&lt;/a&gt; - A clean, simple theme based on Tinny&lt;br&gt;
+　&lt;a href=&quot;https://github.com/yunlzheng/hexo-themes-writing&quot;&gt;Writing&lt;/a&gt; - A small and simple hexo theme based on Light&lt;br&gt;
+　&lt;a href=&quot;https://github.com/litten/hexo-theme-yilia&quot;&gt;Yilia&lt;/a&gt; - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。&lt;br&gt;
+　&lt;a href=&quot;https://github.com/Voidly/pacman&quot;&gt;Pacman voidy&lt;/a&gt; - A theme with dynamic tagcloud and dynamic snow      &lt;/p&gt;
+
+&lt;h2&gt;一些基本路径&lt;/h2&gt;
+
+&lt;p&gt;　文章在source/_posts，如果你不怕麻烦的话可以跟我一样直接用vim去编辑，支持markdown语法，你有好的编辑软件，给我也推荐下，感激不尽?。如果想修改头像可以直接在主题的_config.yml文件里面修改，友情链接，之类的都在这里，修改名字在public/index.html里修改，开始打理你的博客吧，有什么问题或者建议，都可以提出来，我会继续完善的。&lt;/p&gt;
+
+&lt;h2&gt;Markdown语法参考链接&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;很实用的例子&lt;/a&gt;
+转载请注明原地址，潘柏信的博客：&lt;a href=&quot;http://leopardpan.github.io&quot;&gt;http://leopardpan.github.io&lt;/a&gt; 谢谢！&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 Aug 2015 05:15:06 +0800</pubDate>
+        <link>http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+        <guid isPermaLink="true">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+        
+        <category>博客</category>
         
         
       </item>
