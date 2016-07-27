@@ -5,8 +5,8 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 20 Jul 2016 09:26:49 +0800</pubDate>
-    <lastBuildDate>Wed, 20 Jul 2016 09:26:49 +0800</lastBuildDate>
+    <pubDate>Wed, 27 Jul 2016 18:40:29 +0800</pubDate>
+    <lastBuildDate>Wed, 27 Jul 2016 18:40:29 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -61,6 +61,156 @@
         <guid isPermaLink="true">http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</guid>
         
         <category>工具</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iOS开发迎来机器学习的春天---TensorFlow</title>
+        <description>&lt;div align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/images/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot;&gt;  
+&lt;/div&gt; 
+
+&lt;p&gt;　　&lt;code&gt;人工智能&lt;/code&gt;、&lt;code&gt;机器学习&lt;/code&gt;都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 &lt;code&gt;人工智能&lt;/code&gt;、&lt;code&gt;数据挖掘&lt;/code&gt;的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 &lt;code&gt;机器学习&lt;/code&gt;、&lt;code&gt;数据挖掘&lt;/code&gt; 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？&lt;br&gt;
+　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能够将&lt;code&gt;机器学习&lt;/code&gt;、&lt;code&gt;深度学习&lt;/code&gt;应用在移动端，敲响移动端&lt;code&gt;机器学习&lt;/code&gt;工业化的大门呢？&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;想象一下，某一天你身处一个完全陌生的环境，周围都是陌生的事物，而运行在iPhone的某个APP却对这个环境了如指掌，你要做的就是打开这个APP，输入你需要了解的事物，iPhone告诉你这个事物的信息，你也就没有了陌生事物了。世界就在眼前！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如下图：
+&lt;div align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/images/tfimg/ck.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/mouse2.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/wb.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
+&lt;/div&gt; &lt;/p&gt;
+
+&lt;p&gt;上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。&lt;/p&gt;
+
+&lt;p&gt;但是在某些事物的识别准确度方便却差强人意，比如下图：    &lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/ipod2.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/ipod1.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;    
+&lt;/div&gt; 
+
+&lt;p&gt;　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/wq.jpg&quot; height=&quot;320&quot; width=&quot;240&quot; /&gt;  
+&lt;/div&gt; 
+
+&lt;p&gt;　　上面的例子来自于TensorFlow官方iOSDemo，暂且不评述TensorFlow的识别准确度如何，毕竟它还年轻，但是仅凭其识别能力的体现，也给机器学习在移动端的运用带来了无限的可能。&lt;/p&gt;
+
+&lt;h3&gt;一、TensorFlow（简称TF）&lt;/h3&gt;
+
+&lt;p&gt;　　去年，Google资深系统专家Jeff Dean在湾区机器学习大会上隆重介绍了其第二代深度学习系统&lt;a href=&quot;http://www.tensorflow.org/&quot;&gt;TensorFlow&lt;/a&gt;，一时间网络上针对TensorFlow的文章铺天盖地，&lt;a href=&quot;http://www.leiphone.com/news/201511/UDLyNds2oSTwM2yZ.html&quot;&gt;揭秘TensorFlow：Google开源到底开的是什么？&lt;/a&gt;、&lt;a href=&quot;http://www.leiphone.com/news/201511/Voza1pFNQB4bzKdR.html&quot;&gt;Google开源TensorFlow系统，这背后都有什么门道？&lt;/a&gt;、&lt;a href=&quot;http://www.zhihu.com/question/37243838&quot;&gt;如何评价Google发布的第二代深度学习系统TensorFlow?&lt;/a&gt;等等文章，TensorFlow的燎原之火一直在燃烧蔓延着，其&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;GitHub上的开源库&lt;/a&gt;在此文撰写时，也已经被&lt;code&gt;star：27550&lt;/code&gt;，&lt;code&gt;fork：11054&lt;/code&gt;了。🔥 🔥 🔥 🔥 🔥 &lt;/p&gt;
+
+&lt;p&gt;不负众望，Google一直宣称平台移植性非常好的TensorFlow，终于在2016年6月27日，发布0.9版本，宣布移动端支持。&lt;a href=&quot;https://developers.googleblog.com/2016/06/tensorflow-v09-now-available-with.html&quot;&gt;TensorFlow v0.9 now available with improved mobile support&lt;/a&gt;( 有墙💢 )，同时也给出了移动端的&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples&quot;&gt;Demo&lt;/a&gt;，对于代码为生的程序员，身处大数据处理为主导的&lt;a href=&quot;http://www.talkingdata.com/&quot;&gt;TalkingData&lt;/a&gt;，也小试身手了一把，下载TensorFlow源码，查看编译指南，开始跳坑、填坑之路，也成就了此篇拙文的产生。&lt;/p&gt;
+
+&lt;h3&gt;二、从TensorFlow到iOS静态库&lt;/h3&gt;
+
+&lt;p&gt;对于iOS平台下如何使用TensorFlow，TensorFlow给出了详细的编译脚本命令，详情请查看&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile&quot;&gt;官方文档的命令&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h5&gt;第一步. 工具准备&lt;/h5&gt;
+
+&lt;p&gt;&lt;code&gt;工欲善其事必先利其器&lt;/code&gt;，在开始编译工作之前，需要准备一些编译所必须的工具：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt; &lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;: Mac os x 上包管理工具，具体使用方法可参考&lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot;&gt;Doc&lt;/a&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ /usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;Homebrew安装好之后，依次安装三个辅助性编译工具：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ brew install libtool   
+$ brew install autoconf   
+$ brew install automake   
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;三个工具的含义，请参考：&lt;a href=&quot;https://en.wikipedia.org/wiki/GNU_Libtool&quot;&gt;https://en.wikipedia.org/wiki/GNU_Libtool&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5&gt;第二步. 克隆TensorFlow&lt;/h5&gt;
+
+&lt;p&gt;Google以&lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache 2.0&lt;/a&gt;开源协议将TensorFlow开源在&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;GitHub&lt;/a&gt;上，我们可以直接使用TensorFlow源码。&lt;/p&gt;
+
+&lt;p&gt;在任意你想存放TensorFlow源码的地方（建议不要放在桌面。&lt;sup&gt;_&lt;sup&gt;），clone项目。&lt;/sup&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ git clone https://github.com/tensorflow/tensorflow 
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h5&gt;第三步. 编译前准备&lt;/h5&gt;
+
+&lt;p&gt;　　在TensorFlow的&lt;code&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下，有很多可使用的编译脚本，其中&lt;code&gt;build_all_ios.sh&lt;/code&gt;脚本专门用来一键编译TensorFlow iOS静态库。虽然可以直接使用此脚本进行一键编译，但是因为有墙，某些依赖需要提前做处理。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;下载protobuf&lt;/p&gt;
+
+&lt;p&gt;protobuf 是编译前唯一需要特殊处理的依赖库，&lt;a href=&quot;https://github.com/google/protobuf/archive/master.zip&quot;&gt;点击下载&lt;/a&gt;，下载protobuf之后，解压，备用。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;下载googlemock&lt;/p&gt;
+
+&lt;p&gt;虽然protobuf编译脚本&lt;code&gt;autogen.sh&lt;/code&gt;中的googlemock链接地址&lt;code&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip&lt;/code&gt;无法直接下载到，但是细心的人会发现，在浏览器中输入&lt;code&gt;https://googlemock.googlecode.com/&lt;/code&gt;地址后，会跳转到&lt;code&gt;https://github.com/google/googlemock&lt;/code&gt;地址，google在GiHub上的仓库地址。而GitHub上的仓库，我们可以直接的下载，克隆等。&lt;/p&gt;
+
+&lt;p&gt;我们直接在GitHub上下载googlemock(&lt;a href=&quot;https://github.com/google/googlemock/archive/master.zip&quot;&gt;点击下载&lt;/a&gt;)，下载完成后，修改压缩包名字为&lt;code&gt;gmock-1.7.0.zip&lt;/code&gt;，修改后将此压缩包移至上一步protobuf文件夹目录下，备用。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改下载依赖脚本，移除protobuf的下载&lt;/p&gt;
+
+&lt;p&gt;在&lt;code&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下，&lt;code&gt;download_dependencies.sh&lt;/code&gt;脚本用来下载相关依赖，打开此脚本文件，注释掉或者直接删掉&lt;code&gt;git clone https://github.com/google/protobuf.git ${DOWNLOADS_DIR}/protobuf&lt;/code&gt;部分，目的是不让脚本去下载protobuf。&lt;/p&gt;
+
+&lt;p&gt;上面三步准备好后，接下来就进入静态库编译了。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5&gt;第四步. 一键编译&lt;/h5&gt;
+
+&lt;p&gt;　　前面已经知道在TensorFlow文件夹&lt;code&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下的&lt;code&gt;build_all_ios.sh&lt;/code&gt;脚本是用来编译iOS静态库的脚本，因此可以直接执行此脚本，开始静态库的编译工作了。&lt;/p&gt;
+
+&lt;p&gt;　　但是有一个问题大家可能会发现，由于编译TensorFlow需要用到protobuf，但是protobuf使我们自己手动下载的，该怎么让手动下载的protobuf能够直接让&lt;code&gt;build_all_ios.sh&lt;/code&gt;脚本使用呢？&lt;/p&gt;
+
+&lt;p&gt;　　答案是&lt;code&gt;复制、粘贴&lt;/code&gt;。可能有些low，但是有效。执行命令 &lt;code&gt;build_all_ios.sh&lt;/code&gt;之后，立即把之前手动下载的protobuf文件夹拷贝进&lt;code&gt;tensorflow/contrib/makefile/downloads&lt;/code&gt;目录。（放心，你拷贝的速度会很快，不会影响编译的执行的。&lt;sup&gt;_&lt;sup&gt;）&lt;/sup&gt;&lt;/sup&gt; &lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ build_all_ios.sh    
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;　　一切准备就绪，接下来就是静静的等待编译完成了。在Mac编译的过程中，建议插上电源，最好不要让设备休眠断电，也最好不要去干别的东西，出去溜达一圈，回来后就看到战果了。&lt;/p&gt;
+
+&lt;p&gt;编译完成之后，会在&lt;code&gt;tensorflow/contrib/makefile/gen/&lt;/code&gt;目录下看到编译的结果，关于这些静态库该如何使用，自己的项目如何应用，请参考&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples&quot;&gt;TensorFlow iOS Examples&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3&gt;三、遇到的问题&lt;/h3&gt;
+
+&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用），这也是上面编译前准备为什么要那么做的原因。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;解决： 请参考 『第三步. 编译前准备』。&lt;/p&gt;
+
+&lt;p&gt;2、没有Xcode。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located
+xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located
+xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#39;iphoneos&amp;#39;
++ IPHONEOS_PLATFORM=
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;解决：安装Xcode，从上面报错的命令中可以看到，在编译静态库的过程中使用了&lt;code&gt;xcrun&lt;/code&gt;，而此命令是xCode本身具有的能力。&lt;/p&gt;
+
+&lt;p&gt;3、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;error: Xcode 7.3.0 or later is required.
++ exit 1
+```/
+
+解决：更新Xcode至最新版本，并且保证默认路径下是最新/版本。
+
+如果Xcode是7.3，并且没有条件更新Xcode，你可以修改`tensorflow/contrib/makefile/compile_ios_tensorflow.sh` 里的`REQUIRED_XCODE_VERSION=7.3.0`，为`REQUIRED_XCODE_VERSION=7.3`。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）
+
+
+### 四、参考链接 
+
+
+* [TensorFlow 中文社区](http://tensorfly.cn/)
+* [TensorFlow for Mobile](https://www.tensorflow.org/mobile.html)
+* [Caffe、TensorFlow、MXnet三个开源库对比](http://chenrudan.github.io/blog/2015/11/18/comparethreeopenlib.html)   
+* [如何评价Tensorflow和其它深度学习系统](http://weibo.com/p/1001603907610737775666)    
+* [深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？](http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80)  
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</description>
+        <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/iOS%E5%BC%80%E5%8F%91%E8%BF%8E%E6%9D%A5%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%98%A5%E5%A4%A9-TensorFlow/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/iOS%E5%BC%80%E5%8F%91%E8%BF%8E%E6%9D%A5%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%98%A5%E5%A4%A9-TensorFlow/</guid>
+        
+        <category>机器学习</category>
         
         
       </item>
@@ -400,7 +550,7 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;概念：&lt;/strong&gt; iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 &lt;code&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;iBeacon的形状多种多样，大致如下图。
-&lt;img src=&quot;/assets/images/ibeacon.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/iBeacon.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4&gt;目前哪些地方有iBeacon：&lt;/h4&gt;
@@ -812,182 +962,6 @@ locationManager是CLLocationManager的对象，用来管理整个定位的。&lt
         <guid isPermaLink="true">http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
         
         <category>iOS</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>HEXO搭建个人博客</title>
-        <description>&lt;p&gt;经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2&gt;正文：&lt;/h2&gt;
-
-&lt;p&gt;　这边教程是针对与Mac的，&lt;a href=&quot;http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool&quot;&gt;参考链接&lt;/a&gt;，由于原文讲到的hexo是以前的老版本，所以现在的版本配置的时候会有些改动。&lt;/p&gt;
-
-&lt;p&gt;　之前是想着写博客，一方面是给自己做笔记，可以提升自己的写作、总结能力，一个技术点我们会使用，并不难，但是要做到让让别人也能听懂我们讲得，还是需要一定的技巧和经验的。很多类似于CSDN、博客园也都可以写文章，但是页面的样式我，不是太喜欢，简书还算好点得。最近看到一些大神们的博客（在我的友情链接里有），貌似都是用hexo写得，我也依葫芦画瓢的搭建了一个。不罗嗦了，直接上搭建步骤。&lt;/p&gt;
-
-&lt;h2&gt;配置环境&lt;/h2&gt;
-
-&lt;h3&gt;安装Node（必须）&lt;/h3&gt;
-
-&lt;p&gt;作用：用来生成静态页面的
-到Node.js&lt;a href=&quot;https://nodejs.org/&quot;&gt;官网&lt;/a&gt;下载相应平台的最新版本，一路安装即可。&lt;/p&gt;
-
-&lt;h3&gt;安装Git（必须）&lt;/h3&gt;
-
-&lt;p&gt;作用：把本地的hexo内容提交到github上去.
-安装Xcode就自带有Git，我就不多说了。&lt;/p&gt;
-
-&lt;h3&gt;申请GitHub（必须）&lt;/h3&gt;
-
-&lt;p&gt;作用：是用来做博客的远程创库、域名、服务器之类的，怎么与本地hexo建立连接等下讲。
-&lt;a href=&quot;https://github.com/&quot;&gt;github&lt;/a&gt;账号我也不再啰嗦了,没有的话直接申请就行了，跟一般的注册账号差不多，SSH Keys，看你自己了，可以不配制，不配置的话以后每次对自己的博客有改动提交的时候就要手动输入账号密码，配置了就不需要了，怎么配置我就不多说了，网上有很多教程。&lt;/p&gt;
-
-&lt;h3&gt;正式安装HEXO　&lt;/h3&gt;
-
-&lt;p&gt;Node和Git都安装好后，可执行如下命令安装hexo：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo npm install -g hexo
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;h3&gt;初始化&lt;/h3&gt;
-
-&lt;p&gt;然后，执行init命令初始化hexo到你指定的目录，我是直接cd到目标目录执行hexo init的。命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo init
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;好啦，至此，全部安装工作已经完成！&lt;/p&gt;
-
-&lt;h3&gt;生成静态页面&lt;/h3&gt;
-
-&lt;p&gt;cd 到你的init目录，执行如下命令，生成静态页面至hexo\public\目录。&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo generate （hexo g  也可以）   
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;h3&gt;本地启动&lt;/h3&gt;
-
-&lt;p&gt;启动本地服务，进行文章预览调试，命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo server   
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;浏览器输入&lt;a href=&quot;%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%9C%80%E5%8E%9F%E5%A7%8B%E7%9A%84%E6%95%88%E6%9E%9C%E4%BA%86&quot;&gt;http://localhost:4000&lt;/a&gt;
-我不知道你们能不能，反正我不能，因为我还有环境没配置好&lt;/p&gt;
-
-&lt;p&gt;我把我报的一些错，和解决方式列出来：&lt;/p&gt;
-
-&lt;h2&gt;一&lt;/h2&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ERROR Plugin load failed: hexo-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;原因：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Besides, utilities are separated into a standalone module. hexo.util is not reachable anymore.
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;h3&gt;解决方法，执行命令：&lt;/h3&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo npm install hexo-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;h2&gt;二&lt;/h2&gt;
-
-&lt;p&gt;执行命令hexo server，有如下提示：
-Usage: hexo&lt;Command&gt;
-....&lt;/p&gt;
-
-&lt;p&gt;原因：
-我认为是没有生成本地服务
-解决方法，执行命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-server --save
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;提示：&lt;a href=&quot;mailto:hexo-server@0.1.2&quot;&gt;hexo-server@0.1.2&lt;/a&gt; node_modules/hexo-server
-.... 
-表示成功了&lt;a href=&quot;https://hexo.io/zh-cn/docs/server.html&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;这个时候再执行：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;得到:&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;这个时候再点击&lt;a href=&quot;http://0.0.0.0:4000&quot;&gt;http://0.0.0.0:4000&lt;/a&gt;，正常情况下应该是最原始的画面，但是我看到的是：
-白板和Cannot GET /   几个字
-原因：
-由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-renderer-ejs --save
-npm install hexo-renderer-stylus --save
-npm install hexo-renderer-marked --save
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;这个时候再重新生成静态文件，命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo generate （或hexo g）
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;启动本地服务器：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo server （或hexo s）
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;再点击网址&lt;a href=&quot;http://0.0.0.0:4000&quot;&gt;http://0.0.0.0:4000&lt;/a&gt; OK终于可以看到属于你自己的blog啦，?，虽然很简陋，但好歹有了一个属于自己的小窝了。&lt;a href=&quot;https://disqus.com/home/discussion/bsspirit/hexogithubweb/&quot;&gt;参考链接&lt;/a&gt;，本地已经简单的设置好了，但是现在域名和服务器都是基于自己的电脑，接下来需要跟github进行关联。&lt;/p&gt;
-
-&lt;h2&gt;配置Github&lt;/h2&gt;
-
-&lt;h3&gt;建立Repository&lt;/h3&gt;
-
-&lt;p&gt;建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】，固定写法
-然后建立关联，我的blog在本地/Users/leopard/blog，blog是我之前建的东西也全在这里面，有：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;_config.yml node_modules    public      source　　　　
-db.json     package.json    scaffolds   themes　　　　　
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;现在我们需要_config.yml文件，来建立关联，命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;vim _config.yml
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;翻到最下面，改成我这样子的，注意： &lt;code&gt;: 后面要有空格&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;deploy:
-  type: git
-  repository: https://github.com/leopardpan/leopardpan.github.io.git
-  branch: master
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;执行如下命令才能使用git部署&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install hexo-deployer-git --save
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;网上会有很多说法，有的type是github, 还有repository 最后面的后缀也不一样，是github.com.git，我也踩了很多坑，我现在的版本是hexo: 3.1.1，执行命令hexo -vsersion就出来了,貌似3.0后全部改成我上面这种格式了。
-忘了说了，我没用SSH Keys如果你用了SSH Keys的话直接在github里复制SSH的就行了，总共就两种协议，相信你懂的。
-然后，执行配置命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo deploy
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;　然后再浏览器中输入&lt;a href=&quot;http://leopardpan.github.io/&quot;&gt;http://leopardpan.github.io/&lt;/a&gt;就行了，我的github的账户叫leopardpan,把这个改成你github的账户名就行了&lt;/p&gt;
-
-&lt;h3&gt;部署步骤&lt;/h3&gt;
-
-&lt;p&gt;每次部署的步骤，可按以下三步来进行。&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo clean
-hexo generate
-hexo deploy
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;一些常用命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;hexo new &amp;quot;postName&amp;quot; #新建文章
-hexo new page &amp;quot;pageName&amp;quot; #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，&amp;#39;ctrl + c&amp;#39;关闭server）
-hexo deploy #将.deploy目录部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;这里有大量的&lt;a href=&quot;https://github.com/hexojs/hexo/wiki/Themes&quot;&gt;主题列表&lt;/a&gt;使用方法里面
-都有详细的介绍，我就不多说了。&lt;br&gt;
-我这里有几款个人认为不错的主题，免去你们，一个一个的选了，欢迎吐槽我的审美，?&lt;br&gt;
-　&lt;a href=&quot;https://github.com/daisygao/hexo-themes-cover&quot;&gt;Cover&lt;/a&gt; - A chic theme with facebook-like cover photo&lt;br&gt;
-　&lt;a href=&quot;https://github.com/henryhuang/oishi&quot;&gt;Oishi&lt;/a&gt; - A white theme based on Landscape plus and Writing.&lt;br&gt;
-　&lt;a href=&quot;https://github.com/hardywu/hexo-theme-sidebar&quot;&gt;Sidebar&lt;/a&gt; - Another theme based on Light with a simple sidebar&lt;br&gt;
-　&lt;a href=&quot;https://github.com/SuperKieran/TKL&quot;&gt;TKL&lt;/a&gt; - A responsive design theme for Hexo. 一个设计优雅的响应式主题&lt;br&gt;
-　&lt;a href=&quot;https://github.com/levonlin/Tinnypp&quot;&gt;Tinnypp&lt;/a&gt; - A clean, simple theme based on Tinny&lt;br&gt;
-　&lt;a href=&quot;https://github.com/yunlzheng/hexo-themes-writing&quot;&gt;Writing&lt;/a&gt; - A small and simple hexo theme based on Light&lt;br&gt;
-　&lt;a href=&quot;https://github.com/litten/hexo-theme-yilia&quot;&gt;Yilia&lt;/a&gt; - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。&lt;br&gt;
-　&lt;a href=&quot;https://github.com/Voidly/pacman&quot;&gt;Pacman voidy&lt;/a&gt; - A theme with dynamic tagcloud and dynamic snow      &lt;/p&gt;
-
-&lt;h2&gt;一些基本路径&lt;/h2&gt;
-
-&lt;p&gt;　文章在source/_posts，如果你不怕麻烦的话可以跟我一样直接用vim去编辑，支持markdown语法，你有好的编辑软件，给我也推荐下，感激不尽?。如果想修改头像可以直接在主题的_config.yml文件里面修改，友情链接，之类的都在这里，修改名字在public/index.html里修改，开始打理你的博客吧，有什么问题或者建议，都可以提出来，我会继续完善的。&lt;/p&gt;
-
-&lt;h2&gt;Markdown语法参考链接&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;很实用的例子&lt;/a&gt;
-转载请注明原地址，潘柏信的博客：&lt;a href=&quot;http://leopardpan.github.io&quot;&gt;http://leopardpan.github.io&lt;/a&gt; 谢谢！&lt;/p&gt;
-</description>
-        <pubDate>Wed, 26 Aug 2015 05:15:06 +0800</pubDate>
-        <link>http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
-        <guid isPermaLink="true">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
-        
-        <category>博客</category>
         
         
       </item>
