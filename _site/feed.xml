@@ -5,9 +5,60 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 27 Jul 2016 18:40:29 +0800</pubDate>
-    <lastBuildDate>Wed, 27 Jul 2016 18:40:29 +0800</lastBuildDate>
+    <pubDate>Fri, 29 Jul 2016 08:28:02 +0800</pubDate>
+    <lastBuildDate>Fri, 29 Jul 2016 08:28:02 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>老司机带你剖析无码统计</title>
+        <description>&lt;p&gt;什么? 产品又来活了？ 要我去统计所有按钮的点击次数？&lt;br&gt;
+&lt;img src=&quot;/assets/images/codeless/img1.png&quot; alt=&quot;&quot;&gt;     &lt;/p&gt;
+
+&lt;p&gt;况且这种事情根本没技术含量，在点击事件里传写配置参数就行了啊。&lt;/p&gt;
+
+&lt;h3&gt;你还在为统计事件埋点痛苦吗？&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/code.png&quot; alt=&quot;&quot;&gt;     &lt;/p&gt;
+
+&lt;p&gt;你是用这么大堆大堆的代码来统计按钮点击次数的吗？你的项目已经上线了，忘了埋点统计 &lt;code&gt;按钮&lt;/code&gt; ?  老司机教你怎么破。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;即使记得项目已经上线了，你只需要在网页上轻轻点击几下，就可以统计按钮点击次数了。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/codeless2.png&quot; alt=&quot;&quot;&gt;  &lt;/p&gt;
+
+&lt;h3&gt;技术原理&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/img2.png&quot; alt=&quot;&quot;&gt;  &lt;/p&gt;
+
+&lt;p&gt;　　从上面的图可以看出，开发者只要有一台电脑和一个测试设备就可以实现无码集成埋点了。客户端与Web端交互使用的是长连接，这样才能保证数据的实时性，由于数据量传输较大，所以建议在Wifi下使用，当然了如果你是土豪，在4G下也是没问题的。&lt;br&gt;
+　　首先是客户端通过某种方式，例如摇一摇、几根手指长按屏幕多少秒...，开启了灵动绑定功能，Web页面同时也开启了灵动，双方建立长连接，然后就可以进入上图红色虚线框里面。建立长连接之后，首先Web端要验证Client是否为自己的调试设备，这个时候必须要把设备的一些基本信息发送上去，如：设备的名称、所在的Wifi名称，目的是防止其他App用户的一些行为吴触发，也响应了这次调试的长连接。&lt;/p&gt;
+
+&lt;h3&gt;网页上显示App界面&lt;/h3&gt;
+
+&lt;p&gt;　　调试设备确认成功之后，就要给Web发送App里当前页面的信息，Web再展示出来，如下图。  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/codeless1.png&quot; alt=&quot;&quot;&gt;  &lt;/p&gt;
+
+&lt;p&gt;　　从上图可以看到，左下角手机里的App的页面已经展示在网页中了，导航按钮、头像按钮、下面的Tabbar按钮在Web页上已经加了一些不同颜色的框，看图左上角的提示，被框住的元素表示都是可追踪的元素，也就是想统计这些元素的点击事件，可以直接使用灵动功能，不需要你写一行代码。估计有些同学会好奇，我手机上的App怎么就能在网页中显示呢？他怎么知道我App里面的代码是怎么写的，使用的什么技术。其实想让手机里的App在网页中显示出来并不难，你只需要把当前的屏幕截个屏，然后传给后台，后台再传给网页，就能显示了。当然了我这里指的截屏是说使用代码获取当前屏幕图像，相信这个大家都能理解，只要在需要截屏的视图控制器里面写个截屏的代码不就行了么。但是，如果你不知道当前控制器是哪个呢？作为一个SDK，你仅仅只是个App里面的一段可执行代码，你并不知道App现在显示的是哪个视图控制器，用户做了什么操作也不知道。&lt;br&gt;
+　　那么我们就需要去找到当前屏幕锁显示的内容，每个App是有多个Window的，我们所看到的App界面是现在在keywindow上的，通过 &lt;code&gt;UIApplication&lt;/code&gt; 的单利就可以找到这个window。但是在iOS里面的弹框如：&lt;code&gt;UIAlertView&lt;/code&gt; 、&lt;code&gt;UIActionSheet&lt;/code&gt; ，包括一些自定义的弹框，这些东西也是展示在Keywindow上的，如果你就直接把keywindo截屏发送给网页的话，那么网页显示出来的只有那个弹框，而背景却是黑色的，网页上显示的东西跟你手机里的App将不一样。 换种思路去解决这个问题，如果不截keywindow的屏呢？ 在iOS里面，如果开发者不主动去切换window的话，系统默认会取数组windows里面的第一个元素windows[0]，所以我们可以直接或者windows的第一个元素，然后截屏，那么即使有刚才说的弹框，截出来的效果也不会被影响。如果你的业务必须有多个window的切换，可以考虑上面说到的keywindow，每次有界面切换的时候还需要重新截屏，这样才能保证网页上跟App显示的一致。&lt;/p&gt;
+
+&lt;h3&gt;网页上显示App界面可点击&lt;/h3&gt;
+
+&lt;p&gt;　　上面讲到的仅仅只是在网页上显示App里当前的界面，当你鼠标滑动到按钮上时，发现按钮并没任何反应也不能点击。原因很简单，客户端只传了当前界面的截图，说白了就一张图片而已。那么如何才能做到跟上面的图片一样，客户端的按钮可以在网页上显示后并能点击然后绑定呢？这就需要Web端的同学配合了，首先你得把移动端的视图的层级结构跟Web端同学讲清楚了，然后客户端的再根据视图的层级结构，获取每一层的详细信息，包括：类的继承关系、所有的属性值、所在的视图的层级等信息传给Web端，然后Web端根据之前约定好的规则做显示，比如说一个按钮，继承UIControl，所以它在Web页上能绑定，然后根据frame来显示绑定时所显示框的位置，是否已经绑定过的属性来显示，可追踪元素是否已经被追踪过，以及一些其它的属性来细化网页上App页面的细节。&lt;/p&gt;
+
+&lt;h3&gt;绑定事件生成&lt;/h3&gt;
+
+&lt;p&gt;　　回头看看上面技术原理那张图，现在已经走到了PC展示App的阶段了，然后就是用户(开发者)，在网页上绑定控件，绑定好了之后信息会实时的传给客户端，客户端会根据绑定的配置信息找到具体的控件绑定。技术原理跟刚才说刚才提到的获取App里层级结构信息差不多，之前是获取层级结构信息，现在是根据Web端发过来的信息去找具体的控件，然后客户端绑定，现在因为按钮已经存在了，所以你可以直接找到它然后绑定就OK了，但是如果我有界面切换呢？ 之前绑定按钮那个界面已经消失了，对象已经释放了。现在我们再回到原来的界面该什么时候去给这个按钮加点击事件？我们需要一个通用的方案，不管按钮什么时候创建，我们都能去动态绑定。&lt;br&gt;
+　　相信大家已经有思路了，动态绑定就要用到Runtime了，我们可以动态在UIView的两个方法 &lt;code&gt;didMoveToWindow&lt;/code&gt; 、 &lt;code&gt;didMoveToWindow&lt;/code&gt; 里面去绑定，这两个方法在视图加载的时候系统会自动调用，而且这个时候按钮一定是创建了，这样按钮在任何时候去创建都能去动态绑定了。按钮被绑定后，后面基本上就没什么了，调试的时候每次点击，使用长连接把点击事件实时的发送给Web端显示，然后点击全部生效按钮，所有的调试信息都会被保存在数据库里面。等下次App启动的时候，获取配置信息，和之前绑定的流程一样绑定按钮，当按钮被用户点击后，调用普通的埋点事件，把按钮配置信息的对应ID传进去传给后台，这样就完成了整套无码统计的流程了。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/Codeless/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
+        
+        <category>技术</category>
+        
+        
+      </item>
     
       <item>
         <title>Git日常操作</title>
@@ -251,163 +302,6 @@ xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
         <link>http://baixin.io/2016/07/ML(1)/</link>
         <guid isPermaLink="true">http://baixin.io/2016/07/ML(1)/</guid>
-        
-        <category>机器学习</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>TensorFlow学习笔记</title>
-        <description>&lt;p&gt;官方资源：&lt;a href=&quot;http://tensorflow.org&quot;&gt;英文官网&lt;/a&gt;、&lt;a href=&quot;http://www.tensorfly.cn/&quot;&gt;中文官网&lt;/a&gt;，&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;Github项目&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;简介：&lt;/h3&gt;
-
-&lt;p&gt;　　TensorFlow是一个用来编写和执行机器学习算法的工具。计算在数据流图中完成，图中的节点进行数学运算，边界是在各个节点中交换的张量（Tensors--多维数组）。TensorFlow负责在不同的设备、内核以及线程上异步地执行代码。
-　　TensorFlow在台式机、服务器或者移动设备的CPU和GPU上运行，也可以使用Docker容器部署到云环境中。
-　　　　　　&lt;img src=&quot;http://www.tensorfly.cn/images/tensors_flowing.gif&quot; alt=&quot;&quot;&gt;    &lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3&gt;用途：&lt;/h3&gt;
-
-&lt;p&gt;　　&lt;code&gt;语音识别&lt;/code&gt;，&lt;code&gt;自然语言理解&lt;/code&gt;，&lt;code&gt;计算机视觉&lt;/code&gt;，&lt;code&gt;广告&lt;/code&gt;等等。但是，但我们也不能过分夸大TensorFlow这种通用深度学习框架在一个工业界机器学习系统里的作用。在一个完整的工业界语音识别系统里，除了深度学习算法外，还有很多工作是专业领域相关的算法，以及海量数据收集和工程系统架构的搭建。&lt;/p&gt;
-
-&lt;h3&gt;特性&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;1 灵活性&lt;/strong&gt;&lt;br&gt;
-　　TensorFlow不是一个严格的神经网络工具包，只要你可以使用数据流图来描述你的计算过程，你可以使用TensorFlow做任何事情。你还可以方便地根据需要来构建数据流图，用简单的Python语言来实现高层次的功能。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;2 可移植性&lt;/strong&gt;&lt;br&gt;
-　　TensorFlow可以在任意具备CPU或者GPU的设备上运行，你可以专注于实现你的想法，而不用去考虑硬件环境问题，你甚至可以利用Docker技术来实现相关的云服务。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;3 提高开发效率&lt;/strong&gt;&lt;br&gt;
-　　TensorFlow可以提升你所研究的东西产品化的效率，并且可以方便与同行们共享代码。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;4 支持语言选项&lt;/strong&gt;&lt;br&gt;
-　　目前TensorFlow支持Python和C++语言。（但是你可以自己编写喜爱语言的SWIG接口）&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;5 充分利用硬件资源，最大化计算性能&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3&gt;TensorFlow编译iOS的静态库&lt;/h3&gt;
-
-&lt;p&gt;Tensorflow在0.9版开始支持iOS平台的。按Tensorflow&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile&quot;&gt;官方文档的命令&lt;/a&gt;：
-1、clone项目   &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;$ git clone &lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;https://github.com/tensorflow/tensorflow&lt;/a&gt;    &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;2、安装依赖环境，cd 到 tensorflow/contrib/makefile/        &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;$ bash download_dependencies.sh       &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;3、安装protobufs    &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;$ bash compile_ios_protobuf.sh &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;4、安装iOS环境      &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;make -f tensorflow/contrib/makefile/Makefile \
- TARGET=IOS \
- IOS_ARCH=ARM64&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;5、安装图库      &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;mkdir -p ~/graphs
-curl -o ~/graphs/inception.zip \
- &lt;a href=&quot;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&quot;&gt;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&lt;/a&gt; \
- &amp;amp;&amp;amp; unzip ~/graphs/inception.zip -d ~/graphs/inception&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;6、安装iOS最终环境，生成libtensorflow-core.a    &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;$ bash build_all_ios.sh&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;7、如果你的机子沸腾起来了，并且看到了下面的图，代表你已经正式在安装了。
-&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;8、完成编译静态库&lt;/p&gt;
-
-&lt;h4&gt;iOS上遇到问题&lt;/h4&gt;
-
-&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用）       &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out&lt;/p&gt;
-
-&lt;p&gt;解决：&lt;br&gt;
-　　1）把下载好的 protobuf 拷贝出来，protobuf在 tensorflow/contrib/makefile/downloads里。    &lt;/p&gt;
-
-&lt;p&gt;　　2）访问 &lt;a href=&quot;https://googlemock.googlecode.com/files/gmock-1.7.0.zip%EF%BC%8C%E6%8A%8Agmock-1.7.0.zip%E4%B8%8B%E8%BD%BD%E4%B8%8B%E6%9D%A5%E6%94%BE%E5%9C%A8protobuf/&quot;&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip，把gmock-1.7.0.zip下载下来放在protobuf/&lt;/a&gt; 里面。    &lt;/p&gt;
-
-&lt;p&gt;　　3）把tensorflow/contrib/makefile/download_dependencies.sh 里的 git clone &lt;a href=&quot;https://github.com/google/protobuf.git&quot;&gt;https://github.com/google/protobuf.git&lt;/a&gt; ${DOWNLOADS_DIR}/protobuf 给注释掉。    &lt;/p&gt;
-
-&lt;p&gt;　　4）再次执行命令 bash build_all_ios.sh`，立即把之前拷贝的 protobuf 文件放进tensorflow/contrib/makefile/downloads里。    &lt;/p&gt;
-
-&lt;p&gt;　　5）静静的等待。。。    &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;2、没有安装 autoconf 和 libtool&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Google Mock not present.  Fetching gmock-1.7.0 from the web...
- + autoreconf -f -i -Wall,no-obsolete
-Can&amp;#39;t exec &amp;quot;glibtoolize&amp;quot;: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, &lt;GEN10&gt; line 6.
-autoreconf: failed to run glibtoolize: No such file or directory
-autoreconf: glibtoolize is needed because this package uses Libtool&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;解决：执行命令   &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;brew install libtool
-brew install autoconf&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我之前安装过了 automake ，如果你没有的话，也是需要安装的。&lt;/p&gt;
-
-&lt;p&gt;3、应用程序里没有xcode，或没有一个叫xcode名字的。       &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located&lt;br&gt;
-xcrun: error: SDK &amp;quot;iphoneos&amp;quot; cannot be located&lt;br&gt;
-xcrun: error: unable to lookup item &amp;#39;PlatformPath&amp;#39; in SDK &amp;#39;iphoneos&amp;#39;&lt;br&gt;
-+ IPHONEOS_PLATFORM=    &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;4、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。    &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;error: Xcode 7.3.0 or later is required.&lt;br&gt;
-+ exit 1   &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;解决：更新Xcode版本到7.3以后，修改为默认安装路径。
-如果Xcode是7.3，你可以修改tensorflow/contrib/makefile/compile_ios_tensorflow.sh 里的REQUIRED_XCODE_VERSION=7.3.0，为REQUIRED_XCODE_VERSION=7.3。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）&lt;/p&gt;
-
-&lt;h4&gt;参考连接：&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/&quot;&gt;编译Protobuf(On Mac)&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://www.jeyzhang.com/tensorflow-learning-notes.html&quot;&gt;TensorFlow学习笔记1：入门&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://www.jeyzhang.com/tensorflow-learning-notes-2.html&quot;&gt;TensorFlow学习笔记2：构建CNN模型&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://www.jeyzhang.com/tensorflow-learning-notes-3.html&quot;&gt;TensorFlow学习笔记3：词向量&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://chenrudan.github.io/blog/2015/11/18/comparethreeopenlib.html&quot;&gt;Caffe、TensorFlow、MXnet三个开源库对比&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://weibo.com/p/1001603907610737775666&quot;&gt;如何评价Tensorflow和其它深度学习系统&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80&quot;&gt;深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？&lt;/a&gt;  &lt;/p&gt;
-</description>
-        <pubDate>Fri, 01 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
         
         <category>机器学习</category>
         
