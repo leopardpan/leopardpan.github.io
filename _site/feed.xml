@@ -5,9 +5,164 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 03 Aug 2016 10:32:49 +0800</pubDate>
-    <lastBuildDate>Wed, 03 Aug 2016 10:32:49 +0800</lastBuildDate>
+    <pubDate>Fri, 05 Aug 2016 16:25:08 +0800</pubDate>
+    <lastBuildDate>Fri, 05 Aug 2016 16:25:08 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Python自动化测试iOS项目</title>
+        <description>&lt;p&gt;作为一个开发人员，为了保证自己的代码的健壮，写单元测试是必不可少的环节，然而最痛快的是每天去手动跑一遍所有的case。那么什么能帮我们解决这些繁琐的操作呢，大家应该会想到自动化测试脚本了，是的，我们可以借助脚本来完成全自动化测试，下面是我列的每天脚本自动执行流程：       &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;1、&lt;code&gt;pull&lt;/code&gt; git仓库里面的最新代码到本地。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;2、然后打包成&lt;code&gt;App&lt;/code&gt;。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;3、安装到模拟器上。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;4、运行App，执行单元测试，生成测试数据并保存到本地。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;5、脚本读取测试数据，邮件发送给相关人员。&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当这些全自动化后，可以大大减少开发人员的维护成本，即使每次项目里面有新增模块后，增加测试case就行了，下面会介绍自动测试这5步具体怎么去执行，整个脚本是使用Python写的，代码很少功能也很简单，但这已经可以帮我们完成基本的自动化测试了，这就是脚本的强大之处，选择Pyhton纯属个人喜好，最近也在学习Python，当然了最终使用什么语言看你自己。   &lt;/p&gt;
+
+&lt;h3&gt;python执行shell命令完成测试&lt;/h3&gt;
+
+&lt;p&gt;首先确认本机上安装了&lt;code&gt;git&lt;/code&gt; 和 &lt;code&gt;python&lt;/code&gt; 。&lt;br&gt;
+脚本判断本地是否存在项目，不存在则使用命令 &lt;code&gt;git clone ...&lt;/code&gt; ，存在则使用命令 &lt;code&gt;git pull ...&lt;/code&gt; 。&lt;br&gt;
+这些在Linux的命令都可以使用脚本来完成的，python的 &lt;code&gt;os.popen()&lt;/code&gt; 方法 就是可以在Linux上执行shell命令。&lt;br&gt;
+&lt;strong&gt;例如：&lt;/strong&gt;  把下面这段代码添加到一个 test.py 的文件里，然后在终端上执行 &lt;code&gt;python test.py&lt;/code&gt; 命令你就会看到，你的当前目录下正在下载我的博客了。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;import os
+
+os.popen(&amp;#39;git clone https://github.com/leopardpan/leopardpan.github.io.git&amp;#39;)   
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;git pull 。。。 更新代码也是一样的。&lt;/p&gt;
+
+&lt;p&gt;接下来的打包、安装、运行都是使用python执行shell命令      &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;把iOS项目打包成App，下面的 &lt;code&gt;Demo&lt;/code&gt; 是项目的名字&lt;/strong&gt;              &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;os.popen(&amp;#39;xcodebuild -project Demo.xcodeproj -target Demo -configuration Debug -sdk iphonesimulator&amp;#39;)&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这行脚本运行完成后，你就会发现同会生成一个 &lt;code&gt;build&lt;/code&gt; 的文件夹。&lt;br&gt;
+Debug参数表示现在是Debug模式，如果Xcode里面改成Release了，这里需要改成Release。&lt;br&gt;
+xcodebuild 命令是 Xcode Command Line Tools 的一部分。通过调用这个命令，可以完成 iOS 工程的编译，打包和签名过程。可以使用 xcodebuild --help 来看看具体有哪些功能。 &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;打开iOS模拟器，这里运行的是&lt;code&gt;iPhone 6 Plus&lt;/code&gt; 你也可以换成其它型号的模拟器&lt;/strong&gt;      &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt; os.popen(&amp;#39;xcrun instruments -w &amp;quot;iPhone 6 Plus&amp;quot;&amp;#39;)&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;把刚才打包生成的App安装到模拟器上&lt;/strong&gt;&lt;br&gt;
+在安装之前要先卸载App,不然你运行的永远是最初安装的那个，后来安装的不会覆盖之前的，卸载App&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;os.popen(&amp;#39;xcrun simctl uninstall booted com.test.Demo&amp;#39;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是 &lt;code&gt;Bundle Identifier&lt;/code&gt;，我的是 com.test.Demo，然后再安装App     &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;os.popen(&amp;#39;xcrun simctl install booted build/Debug-iphonesimulator/Demo.app &amp;#39;)&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是.app的路径，我打包的时候的是Debug，所以这个的文件夹名称是Debug-iphonesimulator。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;在模拟器里运行App&lt;/strong&gt;      &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;os.popen(&amp;#39;xcrun simctl launch booted com.test.Demo&amp;#39;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是 &lt;code&gt;Bundle Identifier&lt;/code&gt;，我的是 com.test.Demo。&lt;/p&gt;
+
+&lt;p&gt;到目前为止，你就会发现你的项目已经运行起来了，你可以在项目是Debug模式下一启动就执行单元测试，然后把对应的测试数据保存到本地为data.json。然后在使用python脚本读取测试文件的数据，最终使用邮件发送给相关人员，pyhton读取数据很简单，一行代码就行&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;data = open(&amp;#39;data.json&amp;#39;).read() &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;data里面就是json字符串，为了脚本操作简单，我在存储的时候直接把json格式的转成了字符串类型。&lt;/p&gt;
+
+&lt;h3&gt;python发送邮件&lt;/h3&gt;
+
+&lt;p&gt;我使用的是SMTP进行邮件发送的，SMTP是发送邮件的协议，Python内置对SMTP的支持，可以发送纯文本邮件、HTML邮件以及带附件的邮件。     &lt;/p&gt;
+
+&lt;p&gt;Python对SMTP支持有smtplib和email两个模块，email负责构造邮件，smtplib负责发送邮件，具体代码如下： &lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;from email import encoders
+from email.header import Header
+from email.mime.text import MIMEText
+from email.utils import parseaddr, formataddr
+import smtplib
+
+def format_addr(self,s):
+    name, addr = parseaddr(s)
+    return formataddr(( \
+        Header(name, &amp;#39;utf-8&amp;#39;).encode(), \
+        addr.encode(&amp;#39;utf-8&amp;#39;) if isinstance(addr, unicode) else addr))
+
+def send_mail(self, mail, message, title):
+    from_addr = &amp;#39;leopardpan@163.com&amp;#39;
+    password = &amp;#39;&amp;#39;
+    to_addr = mail
+    smtp_server = &amp;#39;smtp.163.com&amp;#39;
+
+    msg = MIMEText(message, &amp;#39;plain&amp;#39;, &amp;#39;utf-8&amp;#39;)
+    msg[&amp;#39;From&amp;#39;] = self.format_addr(u&amp;#39;自动化测试邮件 &amp;lt;%s&amp;gt;&amp;#39; % from_addr)
+    msg[&amp;#39;To&amp;#39;] = self.format_addr(u&amp;#39;管理员 &amp;lt;%s&amp;gt;&amp;#39; % to_addr)
+    msg[&amp;#39;Subject&amp;#39;] = Header(title, &amp;#39;utf-8&amp;#39;).encode()
+
+    server = smtplib.SMTP(smtp_server, 25)
+    server.set_debuglevel(1)
+    server.login(from_addr, password)
+    server.sendmail(from_addr, [to_addr], msg.as_string())
+    server.quit()
+
+send_mail(&amp;#39;leopardpan@icloud.com&amp;#39;,&amp;#39;正文&amp;#39;,&amp;#39;标题&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;from_addr是发送方的邮箱地址，password是开通SMTP时输入的密码&lt;br&gt;
+smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要写成smtp_server = &amp;#39;smtp.gmail.com&amp;#39; 了。&lt;/p&gt;
+
+&lt;p&gt;方法 send_mail(self, mail, message, title): 有四个参数，第一个不用传，第二个参数是收信人的邮箱，第三个是邮件的正文，第四个是邮件的标题，方法调用格式： &lt;code&gt;send_mail(&amp;#39;leopardpan@icloud.com&amp;#39;,&amp;#39;正文&amp;#39;,&amp;#39;标题&amp;#39;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;注意：发送方的邮箱必须要开通SMTP功能才行，否则会报错&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;SMTPSenderRefused: (550, &amp;#39;User has no permission&amp;#39;, &amp;#39;&lt;a href=&quot;mailto:leopardpan@163.com&quot;&gt;leopardpan@163.com&lt;/a&gt;&amp;#39;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;163的SMTP开通，需要你登录网易邮箱，然后点击顶部的设置就会出现&lt;code&gt;POP3/SMTP/IMAP&lt;/code&gt;，点击之后，勾选选择开启，这个时候需要你输入密码，记住这个密码就是上面代码中的&lt;code&gt;password&lt;/code&gt;，如果你都完成的话，你把上面的代码拷贝出现，把邮箱修改成你自己的，使用 pyhton 运行一下吧。&lt;/p&gt;
+
+&lt;p&gt;上面的几个流程结合起来就可以实现一个简单的自动化测试了，如果你有什么建议和意见欢迎讨论。&lt;/p&gt;
+
+&lt;p&gt;参考链接：
+&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000&quot;&gt;SMTP发送邮件&lt;/a&gt;     &lt;/p&gt;
+</description>
+        <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/08/Python%E5%8F%91%E9%82%AE%E4%BB%B6/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/08/Python%E5%8F%91%E9%82%AE%E4%BB%B6/</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
     
       <item>
         <title>老司机带你剖析无码统计</title>
@@ -742,118 +897,6 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
         <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
         <link>http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
         <guid isPermaLink="true">http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
-        
-        <category>iOS</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>iOS 9 变化笔记</title>
-        <description>&lt;p&gt;这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2&gt;App Transport Security&lt;/h2&gt;
-
-&lt;p&gt;iOS9和OS X El Capitan的一个新特性，App Transport Security 的目地是提高Apple 操作系统的安全性以及在此操作系统上运行的任何应用的安全性。ATS是苹果针对与 NSURL这一层做的封装，iOS9后ATS默认是开启的，即网络传输需要使用HTTPS。如果想在iOS9后继续使用HTTP的话，有两条路可以走：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;在Info.plist中添加 &lt;code&gt;NSAppTransportSecurity&lt;/code&gt;类型Dictionary，在&lt;code&gt;NSAppTransportSecurity&lt;/code&gt;下添加&lt;code&gt;NSAllowsArbitraryLoads&lt;/code&gt;，Boolean 为 YES。&lt;/li&gt;
-&lt;li&gt;直接使用CFNetwork做网络请求，ASIHTTPRequest就是基于CFNetwotk做的封装，如果有需求的同学可以看看ASI里面的源码，如果某个时间段你又想要使用HTTPS的话，ASI对SSL/TSL的证书验证有点问题，证书验证还得自己封装一下才行。刚才我说道，ATS是苹果针对与NSURL这一层做的封装，所以我们使用CFNetwork或者更底层做网络请求的话是不受ATS限制的。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3&gt;移除了discoveryd DNS解析服务&lt;/h3&gt;
-
-&lt;p&gt;iPhone升级到iOS8后WiFi有时候会有问题，特别是Mac升级到OS X Yosemite后，时而电脑休眠唤醒唬就连不上WiFi，有时候还突然掉线，经常要手动去关闭WiFi在重新连接，这是因为苹果到了OS X Yosemite系统后，把之前的mDNSResponder换成了discoveryd DNS。iOS9和OS X Yosemite10.4后mDNSResponder又回来了。&lt;/p&gt;
-
-&lt;p&gt;mDNSResponder： 苹果以前一直使用控制DNS和Bonjour服务的一种进程。
-discoveryd：OS X Yosemite后苹果新出的一种进程。&lt;/p&gt;
-
-&lt;h2&gt;&lt;strong&gt;App Thinning&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;App Thinning是一个关于节省iOS设备存储空间的功能，它可以让iOS设备在安装、更新及运行App等场景中仅下载所需的资源，减少App的占用空间，从而节省设备的存储空间。&lt;/p&gt;
-
-&lt;h3&gt;App Thinning主要有三个机制：&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Slicing： 开发者把App安装包上传到AppStore后，Apple服务会自动对安装包切割为不同的应用变体(App variant)， 当用户下载安装包时，系统会根据设备型号下载安装对应的单个应用变体。&lt;/li&gt;
-&lt;li&gt;On-Demand Resources： ORD(随需资源)是指开发者对资源添加标签上传后，系统会根据App运行的情况，动态下载并加载所需资源，而在存储空间不足时，自动删除这类资源。&lt;/li&gt;
-&lt;li&gt;Bitcode：开启Bitcode编译后，可以使得开发者上传App时只需上传Intermediate Representation(中间件)，而非最终的可执行二进制文件。 在用户下载App之前，AppStore会自动编译中间件，产生设备所需的执行文件供用户下载安装。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;其中，Bitcode的机制可以支持动态的进行App Slicing，而对于Apple未来进行硬件升级的措施，此机制可以保证在开发者不重新发布版本的情况下而兼容新的设备。Xcode7默认是开始了Bitcode，如果不想使用可以手动关闭Bitcode：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;选择项目——&amp;gt;点击Target——&amp;gt;点击Build Setttings——&amp;gt;搜索栏里搜bitcode——&amp;gt;把Enable Bitcode对应的Yes改成No。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;启用Bitcode编译机制，需要注意以下几点：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;如果应用开启Bitcode，那么其集成的其他第三方库也需要是Bitcode编译的包才能真正进行Bitcode编译&lt;/li&gt;
-&lt;li&gt;开启Bitcode编译后，编译产生的.app体积会变大(中间代码，不是用户下载的包)，且.dSYM文件不能用来崩溃日志的符号化（用户下载的包是Apple服务重新编译产生的，有产生新的符号文件），使用dSYM来收集Crash日志的同学得注意了。&lt;/li&gt;
-&lt;li&gt;通过Archive方式上传AppStore的包，可以在Xcode的Organizer工具中下载对应安装包的新的符号文件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2&gt;&lt;strong&gt;后台定位&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;iOS9后苹果为了对保障用户的地理位置的隐私对App请求后台定位有了权限设置，则需要多加一些代码。如果不适配iOS9，就不能偷偷在后台定位，如果没有后台定位的权限也是可以在后台定位的，只是会出现蓝条。&lt;/p&gt;
-
-&lt;p&gt;开启后台定位功能：&lt;code&gt;locationManager.allowsBackgroundLocationUpdates = YES;&lt;/code&gt;
-locationManager是CLLocationManager的对象，用来管理整个定位的。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;重点：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;配置info.plist，添加一个Required background modes，Array类型的，然后在Required background modes里面Item 0对应的Value设置为App registers for location updates，这样就解决了iOS9后台定位出现蓝条的问题了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2&gt;&lt;strong&gt;UI Testing&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;Xcode7中苹果引入了一种新的方式在应用中进行测试——UI Testting，UI Testting允许我们找到UI元素与之交互，还能检查属性和状态。UI Testting已经完全集成进了Xcode7的测试报告，可以和单元测试一起执行。使用起来跟之前Xcode5出来的XCTest差不多，Xcode bots提供对此的支持，而且command line支持当UI测试失败时会立即发出通知。&lt;/p&gt;
-
-&lt;p&gt;可以参考Github上的Demo，步骤：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;在DemoTests.m里创建一个test开头的方法&lt;/li&gt;
-&lt;li&gt;在setUp()里启动应用 &lt;code&gt;XCUIApplication().launch()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;新建一个方法test开头的，在里面获取应用&lt;code&gt;let app = XCUIApplication()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;的到&lt;code&gt;let app = XCUIApplication()&lt;/code&gt;，a&lt;code&gt;pp.buttons[“View Detail”].tap()?&lt;/code&gt;。buttons是当前这个界面的所有按钮的集合，[]里面写按钮的名字，tap()就是执行这个按钮所对应的方法，可以是网络请求、界面跳转等等。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2&gt;URL scheme&lt;/h2&gt;
-
-&lt;p&gt;在iOS9中，如果使用URL scheme必须在&amp;quot;Info.plist&amp;quot;中将你要在外部调用的URL scheme列为白名单，否则不能使用。&lt;/p&gt;
-
-&lt;p&gt;配置info.plist，添加一个&lt;code&gt;LSApplicationQueriesSchemes&lt;/code&gt;，Array类型的，然后在&lt;code&gt;LSApplicationQueriesSchemes&lt;/code&gt;的Item里面添加urlscheme就行了，urlscheme是任意一个字符串，就是你自己需要使用的urlscheme，iOS9 URL scheme白名单适配就完成了。&lt;/p&gt;
-
-&lt;h2&gt;出现大量的警告&lt;/h2&gt;
-
-&lt;p&gt;Xcode7后运行以前的项目后出现大量的警告如：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;(null): warning: /var/folders/p4/z7zy68r92hd3p5ry5g2v3k_8rlwzzr/C/org.llvm.clang.dalmo/ModuleCache/1TXZDLI9N2EMV/Foundation-3DFYNEBRQSXST.pcm: No such file or directory。
-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;作为一个有洁癖的我反正是不能忍，出现警告的大致原因跟我上面提到的开启Bitcode，.dSYM文件不能用来符号化有关，Xcode试图去创建dSYM文件，但是你又不需要。&lt;/p&gt;
-
-&lt;h3&gt;解决方法&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Build Settings ——&amp;gt;Build Options——&amp;gt;Debug Information Format&lt;/li&gt;
-&lt;li&gt;Debug下的DWARF with dsYM File改成DWARF&lt;/li&gt;
-&lt;li&gt;Release下的还是之前默认的DWARF with dsYM File不变&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;参考资料：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/ChenYilong/iOS9AdaptationTips&quot;&gt;iOS9AdaptationTips&lt;/a&gt; &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.cocoachina.com/ios/20150821/13140.html&quot;&gt;iOS9学习系列&lt;/a&gt; &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/shinobicontrols/iOS9-day-by-day&quot;&gt;iOS9-day-by-day&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 27 Sep 2015 02:15:06 +0800</pubDate>
-        <link>http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
         
         <category>iOS</category>
         
