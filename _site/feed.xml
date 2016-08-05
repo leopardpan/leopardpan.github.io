@@ -5,8 +5,8 @@
     <description>iOS | Machine Learning</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 05 Aug 2016 16:25:08 +0800</pubDate>
-    <lastBuildDate>Fri, 05 Aug 2016 16:25:08 +0800</lastBuildDate>
+    <pubDate>Fri, 05 Aug 2016 17:54:28 +0800</pubDate>
+    <lastBuildDate>Fri, 05 Aug 2016 17:54:28 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -156,8 +156,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 &lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000&quot;&gt;SMTP发送邮件&lt;/a&gt;     &lt;/p&gt;
 </description>
         <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/08/Python%E5%8F%91%E9%82%AE%E4%BB%B6/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/08/Python%E5%8F%91%E9%82%AE%E4%BB%B6/</guid>
+        <link>http://baixin.io/2016/08/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95iOS%E9%A1%B9%E7%9B%AE/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/08/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95iOS%E9%A1%B9%E7%9B%AE/</guid>
         
         <category>python</category>
         

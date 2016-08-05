@@ -59,7 +59,7 @@ html {
 body {
   font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 1em;
-  color: #666666;
+  color: #000000;
   -webkit-font-smoothing: antialiased; }
 
 ::selection {
@@ -660,7 +660,7 @@ nav {
 
 .navigation__item {
   display: inline-block;
-  margin: 5px 1px 0 0;
+  margin: 10px 10px 0 0;
   line-height: 1em; }
   .navigation__item a {
     display: block;
@@ -675,7 +675,7 @@ nav {
 
 .navigation--social a {
   border: 0px;
-  padding: 6px 8px 6px 9px; }
+  padding: 12px 16px 6px 9px; }
   .navigation--social a .label {
     display: none; }
   .navigation--social a .icon {
