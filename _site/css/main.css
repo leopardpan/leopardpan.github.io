@@ -991,7 +991,7 @@ input[type="tel"] {
     margin-bottom: .4em; } }
 
 
-/*头像效果*/
+/*头像效果-start*/
 
 html {
     font-family: sans-serif;
@@ -1194,7 +1194,6 @@ body {
   }
 }
 
-
 .ih-item.circle .img:before {
     position: absolute;
     display: block;
@@ -1224,5 +1223,5 @@ body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
+/*头像效果-end*/
 

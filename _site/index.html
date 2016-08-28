@@ -44,10 +44,8 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-
-        <!-- <a href="/#blog" title="前往 潘柏信 的主页" class="blog-button"><img src="/assets/images/avatar.jpg" width="80" alt="潘柏信 logo" class="panel-cover__logo logo" /></a> -->
-
-        <div class="ih-item circle effect right_to_left">
+        <!-- 头像效果-start -->
+        <div class="ih-item circle effect right_to_left">            
             <a href="/#blog" title="前往 潘柏信 的主页" class="blog-button">
                 <div class="img"><img src="/assets/images/avatar.jpg" alt="img"></div>
                 <div class="info">
@@ -58,6 +56,7 @@
                 </div>
             </a>
         </div>
+        <!-- 头像效果-end -->
         <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for 潘柏信" class="blog-button">潘柏信</a></h1>
         
         <span class="panel-cover__subtitle panel-subtitle">个人站</span>
@@ -153,6 +152,13 @@
     </li>
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/07/Codeless/" title="访问 老司机带你剖析无码统计">老司机带你剖析无码统计</a></h2>
+      <p class="excerpt">什么? 产品又来活了？ 要我去统计所有按钮的点击次数？     况且这种事情根本没技术含量，在点击事件里传写配置参数就行了啊。你还在为统计事件埋点痛苦吗？     你是用这么大堆大堆的代码来统计按钮点击次数的吗？你的项目已经上线了，忘了埋点统计 按钮 ?  老司机教你怎么破。即使记得项目已经上线了，你只需要在网页上轻轻点击几下，就可以统计按钮点击次数了。  技术原理  　　从上面的图可以看出，开发者只要有一台电脑和一个测试设备就可以实现无码集成埋点了。客户端与Web端交互使用的是长连接，这...&hellip;</p>
+      <div class="post-list__meta"><time datetime="2016-07-15 00:00:00 +0800" class="post-list__meta--date date">2016-07-15</time> &#8226; Tag<a href="/tags"><span class="post-list__meta--tags tags">技术</span><a class="btn-border-small" href=/2016/07/Codeless/>阅读全文...</a></div>
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/" title="访问 Git日常操作">Git日常操作</a></h2>
       <p class="excerpt">版本控制器　　顾名思义，就是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历等等，都可以使用git来管理(svn也行)。使用版本控制器的目的是为了可以查看以前的修改记录，如：你上周周每天都有对项目进行修改，等这周忽然发现上周某些修改其实是有问题的，或者因为其它原因你想看看你上次没修改之前的一些记录，这时你会怎么做？修改之前拷贝一份出来？有问题直接看之前的备份就行了，是的这样是可以解决刚才的问题，那么...&hellip;</p>
       <div class="post-list__meta"><time datetime="2016-07-13 00:00:00 +0800" class="post-list__meta--date date">2016-07-13</time> &#8226; Tag<a href="/tags"><span class="post-list__meta--tags tags">工具</span><a class="btn-border-small" href=/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/>阅读全文...</a></div>
@@ -205,13 +211,6 @@
       <h2 class="post-list__post-title post-title"><a href="/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/" title="访问 iOS动态更新">iOS动态更新</a></h2>
       <p class="excerpt">1、控件到 window 的层级关系:2、分析控件的详细路径:3、动态修改控件:4、工具篇:视图的层级关系每个 App , 至少有一个根 Window , 通常情况下我们只用一个 。window 有一个 rootViewController , 这就是我们所谓的根视图 , 我们所有的控制器都是放在 rootViewController 里面的。这个是最简单的层级关系如果在项目里有了这么一个路径 , 我们可以做什么呢？   在当项目很复杂 , 可以其它地方可以直接修改这个控件的状态当某个控件...&hellip;</p>
       <div class="post-list__meta"><time datetime="2016-01-09 19:15:06 +0800" class="post-list__meta--date date">2016-01-09</time> &#8226; Tag<a href="/tags"><span class="post-list__meta--tags tags">iOS</span><a class="btn-border-small" href=/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/>阅读全文...</a></div>
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/" title="访问 iOS 9 变化笔记">iOS 9 变化笔记</a></h2>
-      <p class="excerpt">这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。App Transport SecurityiOS9和OS X El Capitan的一个新特性，App Transport Security 的目地是提高Apple 操作系统的安全性以及在此操作系统上运行的任何应用的安全性。ATS是苹果针对与 NSURL这一层做的封装，iOS9后ATS默认是开启的，即网络传输需要使用HTTPS。如果想在iOS9后继续使用HTTP的话，有两条路可以走：在Info.plis...&hellip;</p>
-      <div class="post-list__meta"><time datetime="2015-09-27 02:15:06 +0800" class="post-list__meta--date date">2015-09-27</time> &#8226; Tag<a href="/tags"><span class="post-list__meta--tags tags">iOS</span><a class="btn-border-small" href=/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/>阅读全文...</a></div>
       <hr class="post-list__divider" />
     </li>
     
