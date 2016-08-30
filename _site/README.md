@@ -25,11 +25,6 @@ $ gem install jekyll
 如果你只想要我博客里的头像效果，你只需要拿 leopardpan.github.io/_includes/side-panel.html 文件里面 `头像效果` 和 leopardpan.github.io/css/main.css 里面最后面 `头像效果` 部分就行了。
 
 
-#### 小屏或移动设备效果。
-
-
-![](/assets/images/img5.png)
-
 ***
 
 #### 博客首页   

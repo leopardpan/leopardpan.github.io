@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>iOS动态更新</title>
-  <meta name="description" content="1、控件到 window 的层级关系:2、分析控件的详细路径:3、动态修改控件:4、工具篇:">
+  <meta name="description" content="  1、控件到 window 的层级关系:  2、分析控件的详细路径:  3、动态修改控件:  4、工具篇:">
   <meta name="author" content="Wei Wang">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="iOS动态更新">
-  <meta name="twitter:description" content="1、控件到 window 的层级关系:2、分析控件的详细路径:3、动态修改控件:4、工具篇:">
+  <meta name="twitter:description" content="  1、控件到 window 的层级关系:  2、分析控件的详细路径:  3、动态修改控件:  4、工具篇:">
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="iOS动态更新">
-  <meta property="og:description" content="1、控件到 window 的层级关系:2、分析控件的详细路径:3、动态修改控件:4、工具篇:">
+  <meta property="og:description" content="  1、控件到 window 的层级关系:  2、分析控件的详细路径:  3、动态修改控件:  4、工具篇:">
   
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -154,103 +154,94 @@
 
   <section class="post">
     <ul>
-<li>1、控件到 <code>window</code> 的层级关系:<br></li>
-<li>2、分析控件的详细路径:</li>
-<li>3、动态修改控件:<br></li>
-<li>4、工具篇:</li>
+  <li>1、控件到 <code>window</code> 的层级关系:</li>
+  <li>2、分析控件的详细路径:</li>
+  <li>3、动态修改控件:</li>
+  <li>4、工具篇:</li>
 </ul>
 
 <!--more-->
 
-<h3>视图的层级关系</h3>
+<h3 id="section">视图的层级关系</h3>
 
 <p>每个 <code>App</code> , 至少有一个根 <code>Window</code> , 通常情况下我们只用一个 。<code>window</code> 有一个 <code>rootViewController</code> , 这就是我们所谓的根视图 , 我们所有的控制器都是放在 <code>rootViewController</code> 里面的。</p>
 
-<p><img src="/img/bVqwV3" alt="Dynamic-image1.jpeg"></p>
+<p><img src="/img/bVqwV3" alt="Dynamic-image1.jpeg" /></p>
 
 <p>这个是最简单的层级关系</p>
 
-<p>如果在项目里有了这么一个路径 , 我们可以做什么呢？   </p>
+<p>如果在项目里有了这么一个路径 , 我们可以做什么呢？</p>
 
 <ul>
-<li>在当项目很复杂 , 可以其它地方可以直接修改这个控件的状态</li>
-<li>当某个控件命名存在却又没有显示出来 , 可以通过路径来辅助查找</li>
-<li>由服务器下发一些配置 , 使用 <code>Runtime</code> 去动态的修改已上线的项目</li>
+  <li>在当项目很复杂 , 可以其它地方可以直接修改这个控件的状态</li>
+  <li>当某个控件命名存在却又没有显示出来 , 可以通过路径来辅助查找</li>
+  <li>由服务器下发一些配置 , 使用 <code>Runtime</code> 去动态的修改已上线的项目</li>
 </ul>
 
 <p>下面将介绍如何使用代码来找出这些视图(控件)的路径</p>
 
-<h3>分析控件的详细路径</h3>
+<h3 id="section-1">分析控件的详细路径</h3>
 
-<h4>1、找出根 <code>Window</code> :</h4>
+<h4 id="window-">1、找出根 <code>Window</code> :</h4>
 
-<p>每一个视图、控件 , 他们最终的根都是main函数返回的 <code>application</code> , 通过 <code>[UIApplication sharedApplication]</code> 可以得到 。 <code>application</code> 的 <code>windows</code> 属性是一个数组 , 这里面装的是这个应用的所有 <code>Window</code> , 我们通常用的是第一个也就是 <code>application.windows[0]</code>    </p>
+<p>每一个视图、控件 , 他们最终的根都是main函数返回的 <code>application</code> , 通过 <code>[UIApplication sharedApplication]</code> 可以得到 。 <code>application</code> 的 <code>windows</code> 属性是一个数组 , 这里面装的是这个应用的所有 <code>Window</code> , 我们通常用的是第一个也就是 <code>application.windows[0]</code></p>
 
-<h4>2、遍历视图 :</h4>
+<h4 id="section-2">2、遍历视图 :</h4>
 
-<p>得到了 <code>window</code> 对象一切都好办了 。 然后拿到 <code>window</code> 的 <code>rootViewController</code> , 在获取 <code>rootViewController</code> 里面所有的 <code>childViewControllers</code> 和 <code>view</code> 里的 <code>subviews</code> , 一直递归下去就可以得到当前屏幕里所有视图对象了 , 同时可以通过 <code>runtime</code> 把它们的 <code>property</code>、<code>delegate</code> 都获取出来。  </p>
+<p>得到了 <code>window</code> 对象一切都好办了 。 然后拿到 <code>window</code> 的 <code>rootViewController</code> , 在获取 <code>rootViewController</code> 里面所有的 <code>childViewControllers</code> 和 <code>view</code> 里的 <code>subviews</code> , 一直递归下去就可以得到当前屏幕里所有视图对象了 , 同时可以通过 <code>runtime</code> 把它们的 <code>property</code>、<code>delegate</code> 都获取出来。</p>
 
-<p>结合 <code>Reveal</code> 或者 <code>Xcode</code> 自带的 <code>Captuer View Hiearachy</code> , 我们可以推测一下这两个的的实现原理了 :  </p>
+<p>结合 <code>Reveal</code> 或者 <code>Xcode</code> 自带的 <code>Captuer View Hiearachy</code> , 我们可以推测一下这两个的的实现原理了 :</p>
 
-<p>1、根据应用得到根视图<br>
-2、递归获取里面的所有控件<br>
+<p>1、根据应用得到根视图  <br />
+2、递归获取里面的所有控件 <br />
 3、按照他们的层级关系一层一层的画出来</p>
 
-<h3>动态修改控件</h3>
+<h3 id="section-3">动态修改控件</h3>
 
-<p>1、把上面获取到的所有控件的详细信息上传到服务器 。<br>
-2、根据业务需求由服务器给我们下发对应的配置列表，以 <code>button</code> 为例 : 配置列表里必须要有 :    </p>
+<p>1、把上面获取到的所有控件的详细信息上传到服务器 。 <br />
+2、根据业务需求由服务器给我们下发对应的配置列表，以 <code>button</code> 为例 : 配置列表里必须要有 :  <br />
+&gt; 1)、<code>button</code> 的全路径 : 如 <code>UIWindow</code> -&gt; <code>UIWindow</code> -&gt; <code>UIView</code> -&gt; <code>UIView</code> -&gt; <code>UILayoutContainerView</code> -&gt; <code>UITabBar</code> -&gt; <code>UIView</code> —&gt; <code>UIButton</code>  <br />
+&gt; 2)、<code>button</code> 的唯一标识 : 如 <code>tag</code> 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 <code>button</code> 同一层次的视图搞混 。<br />
+&gt; 3)、 根据路径及唯一标识来匹配 <code>App</code> 里的控件 , 匹配和上面的查找原理是相通的。 <br />
+&gt; 4)、 匹配成功代表  <code>button</code> 确实存在 , 根据业务需求做后续操作 。 <br />
+&gt; 提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。</p>
 
-<blockquote>
-<p>1)、<code>button</code> 的全路径 : 如 <code>UIWindow</code> -&gt; <code>UIWindow</code> -&gt; <code>UIView</code> -&gt; <code>UIView</code> -&gt; <code>UILayoutContainerView</code> -&gt; <code>UITabBar</code> -&gt; <code>UIView</code> —&gt; <code>UIButton</code><br>
-2)、<code>button</code> 的唯一标识 : 如 <code>tag</code> 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 <code>button</code> 同一层次的视图搞混 。<br>
-3)、 根据路径及唯一标识来匹配 <code>App</code> 里的控件 , 匹配和上面的查找原理是相通的。<br>
-4)、 匹配成功代表  <code>button</code> 确实存在 , 根据业务需求做后续操作 。<br>
-提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。</p>
-</blockquote>
+<p>3、修改 <code>button</code> 的状态。
+&gt; 1)、 如某个按钮点了会 <code>Crash</code> 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 <code>button</code> 的 <code>enabled</code> 属性 。 <br />
+&gt; 2)、 如某业务暂时关闭 , 可以直接修改入口 <code>按钮</code> frame为0 , 前提是要自动布局已做好 。  <br />
+&gt; 3)、 如给购买 <code>按钮</code> 添加监听事件 <code>addTarget: action: forControlEvents:</code>   <br />
+&gt; <code>target</code> 也可以通过上面 <code>遍历视图</code> 获取到 , <code>action</code> 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。</p>
 
-<p>3、修改 <code>button</code> 的状态。</p>
+<p>4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 : 
+&gt;1、使用Runtime <code>Method Swizzing</code> ,  直接把修改控件的方法与 <code>didMoveToSuperview</code> 和 <code>didMoveToWindow</code> 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。 <br />
+&gt;2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在<code>viewDidLoad</code> 里面初始化控件 , 在 <code>viewWillAppear:</code> 里面动态修改 。<br />
+&gt; 建议使用第一种适用范围更强 。</p>
 
-<blockquote>
-<p>1)、 如某个按钮点了会 <code>Crash</code> 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 <code>button</code> 的 <code>enabled</code> 属性 。<br>
-2)、 如某业务暂时关闭 , 可以直接修改入口 <code>按钮</code> frame为0 , 前提是要自动布局已做好 。<br>
-3)、 如给购买 <code>按钮</code> 添加监听事件 <code>addTarget: action: forControlEvents:</code><br>
-<code>target</code> 也可以通过上面 <code>遍历视图</code> 获取到 , <code>action</code> 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。  </p>
-</blockquote>
-
-<p>4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 : </p>
-
-<blockquote>
-<p>1、使用Runtime <code>Method Swizzing</code> ,  直接把修改控件的方法与 <code>didMoveToSuperview</code> 和 <code>didMoveToWindow</code> 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。<br>
-2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在<code>viewDidLoad</code> 里面初始化控件 , 在 <code>viewWillAppear:</code> 里面动态修改 。<br>
-建议使用第一种适用范围更强 。</p>
-</blockquote>
-
-<p>上架后的 <code>应用</code> 可能会遇到的一些突发状况 , 未测出的<code>Crash</code>、临时改点小需求 , 等等 , 我们总不能每次因为一点小改动就重新提交一次 <code>App Store</code> , 先不说 <code>App Store</code> 的审核时间 , 频繁的让用户去更新应用 , 用户也会烦的 。使用这篇文章所讲的来实现动态更新是再合适不过了 。   </p>
+<p>上架后的 <code>应用</code> 可能会遇到的一些突发状况 , 未测出的<code>Crash</code>、临时改点小需求 , 等等 , 我们总不能每次因为一点小改动就重新提交一次 <code>App Store</code> , 先不说 <code>App Store</code> 的审核时间 , 频繁的让用户去更新应用 , 用户也会烦的 。使用这篇文章所讲的来实现动态更新是再合适不过了 。</p>
 
 <p>首先上面讲的 <code>动态更新</code> 是完全脱离出来的一个模块 , 跟业务逻辑没有任何关系 , 只需要部署一次就行了 , 等开发下一个项目也可以直接拿过去使用 。这里的动态更新适用于局部的视图、控件的修改 , 如果你有其它需求可以考虑 <a href="https://github.com/bang590/JSPatch">JSPatch</a> , 下发脚本也是一个不错的选择 。</p>
 
-<h3>工具篇</h3>
-
-<p>使用一些UI调试的辅助工具 , 使我们查看视图在项目中得层次结构更为方便 。<br>
+<h3 id="section-4">工具篇</h3>
+<p>使用一些UI调试的辅助工具 , 使我们查看视图在项目中得层次结构更为方便 。      <br />
 常用的UI调试的工具：</p>
 
 <ul>
-<li>Captuer View Hiearachy</li>
-<li>Reveal</li>
+  <li>Captuer View Hiearachy</li>
+  <li>Reveal</li>
 </ul>
 
-<p>Xcode自带的 <code>Captuer View Hiearachy</code> 实现步骤:  </p>
+<p>Xcode自带的 <code>Captuer View Hiearachy</code> 实现步骤:</p>
 
 <ul>
-<li>1、打开Xcode , 运行项目 , 选择最顶部的 <code>Debug</code></li>
-<li>2、<code>Debug</code> -&gt; <code>View Debugging</code> -&gt; <code>Show View Frames</code></li>
-<li>3、<code>Debug</code> -&gt; <code>View Debugging</code> -&gt; <code>Captuer View Hiearachy</code></li>
+  <li>1、打开Xcode , 运行项目 , 选择最顶部的 <code>Debug</code></li>
+  <li>2、<code>Debug</code> -&gt; <code>View Debugging</code> -&gt; <code>Show View Frames</code></li>
+  <li>3、<code>Debug</code> -&gt; <code>View Debugging</code> -&gt; <code>Captuer View Hiearachy</code></li>
 </ul>
 
 <p>Xcode里面就变成了三维的视图了 , Xcode左侧展示出来的是层级关系的树状图 。</p>
 
 <p>Reveal的功能相对来说更强大 , 适用于UI调试视图查找 。使用方法请看 <a href="http://support.revealapp.com/kb/getting-started/reveal">Reveal集成指南</a> 。</p>
+
 
 
   </section>

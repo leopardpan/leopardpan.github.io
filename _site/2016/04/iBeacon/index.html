@@ -155,58 +155,57 @@
   <section class="post">
     <p>iOS上对iBeacon的技术调研及基本使用。</p>
 
-<!-- more -->  
+<!-- more -->
 
-<h2>背景</h2>
+<h2 id="section">背景</h2>
 
-<h4>简介：</h4>
+<h4 id="section-1">简介：</h4>
 
 <ul>
-<li><p><strong>概念：</strong> iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</p></li>
-<li><p>iBeacon的形状多种多样，大致如下图。
-<img src="/assets/images/iBeacon.png" alt=""></p></li>
+  <li>
+    <p><strong>概念：</strong> iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</p>
+  </li>
+  <li>
+    <p>iBeacon的形状多种多样，大致如下图。
+<img src="/assets/images/iBeacon.png" alt="" /></p>
+  </li>
 </ul>
 
-<h4>目前哪些地方有iBeacon：</h4>
-
+<h4 id="ibeacon">目前哪些地方有iBeacon：</h4>
 <ul>
-<li>微信摇一摇：使用微信的人应该都知道微信有一个 <code>周边摇一摇</code> 功能， 使用的就是iBeacon技术。<br>
-
-<ul>
-<li>很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。<br></li>
-</ul></li>
-<li>走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。<br></li>
-<li>帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。<br></li>
-<li>iBeacon还可实现地理围栏、室内定位等功能。</li>
+  <li>微信摇一摇：使用微信的人应该都知道微信有一个 <code>周边摇一摇</code> 功能， 使用的就是iBeacon技术。
+    <ul>
+      <li>很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。</li>
+    </ul>
+  </li>
+  <li>走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。</li>
+  <li>帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。</li>
+  <li>iBeacon还可实现地理围栏、室内定位等功能。</li>
 </ul>
 
-<h4>iBeacon技术</h4>
+<h4 id="ibeacon-1">iBeacon技术</h4>
+<p>Apple的 <code>CoreLocation.frame</code> 里把iBeacon封装成了一个 <code>CLBeacon</code> 类，<code>CLBeacon</code> 大致有下面几个属性组成：<code>Major</code> 、<code>Minor</code> 、 <code>proximity</code> 、 <code>rssi</code> 、 <code>accuracy</code> 。</p>
 
-<p>Apple的 <code>CoreLocation.frame</code> 里把iBeacon封装成了一个 <code>CLBeacon</code> 类，<code>CLBeacon</code> 大致有下面几个属性组成：<code>Major</code> 、<code>Minor</code> 、 <code>proximity</code> 、 <code>rssi</code> 、 <code>accuracy</code> 。   </p>
-
-<h4>使用iBeacon技术对App开发者使用的额外成本:</h4>
-
+<h4 id="ibeaconapp">使用iBeacon技术对App开发者使用的额外成本:</h4>
 <ul>
-<li>1、用户需要添加 <code>CoreLocation.framework</code> ，<code>App</code> 才具备定位的功能。</li>
-<li>2、<code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code>requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
-<li>3、<a href="https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html">苹果iBeacon官方代码</a>。<br></li>
+  <li>1、用户需要添加 <code>CoreLocation.framework</code> ，<code>App</code> 才具备定位的功能。</li>
+  <li>2、<code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code>requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
+  <li>3、<a href="https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html">苹果iBeacon官方代码</a>。</li>
 </ul>
 
-<h4>检测iBeacon信号对用户的必要条件：</h4>
-
+<h4 id="ibeacon-2">检测iBeacon信号对用户的必要条件：</h4>
 <ul>
-<li>用户设备iOS7或更新操作系统。</li>
-<li>用户蓝牙设备4.0或更新。</li>
-<li>用户蓝牙设备必须开启。</li>
-<li>用户设备定位服务必须开启，允许应用访问位置信息。</li>
+  <li>用户设备iOS7或更新操作系统。</li>
+  <li>用户蓝牙设备4.0或更新。</li>
+  <li>用户蓝牙设备必须开启。</li>
+  <li>用户设备定位服务必须开启，允许应用访问位置信息。</li>
 </ul>
 
-<h4>iBeacon能唤醒应用</h4>
-
+<h4 id="ibeacon-3">iBeacon能唤醒应用</h4>
 <ul>
-<li>前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。</li>
-<li>现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。</li>
-<li>影响：导致App用户在并没有使用 <code>App</code> 的情况下, <code>App</code> 有了长达几个小时的后台使用时长。</li>
+  <li>前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。</li>
+  <li>现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。</li>
+  <li>影响：导致App用户在并没有使用 <code>App</code> 的情况下, <code>App</code> 有了长达几个小时的后台使用时长。</li>
 </ul>
 
 
