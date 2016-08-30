@@ -10,7 +10,7 @@ permalink: /:year/:month/:title/
 
 # Format
 highlighter: rouge
-# markdown: redcarpet
+markdown: redcarpet
 redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
 
