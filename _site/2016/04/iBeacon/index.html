@@ -163,7 +163,7 @@
 
 <ul>
   <li>
-    <p><strong>概念：</strong> iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code>iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</p>
+    <p><strong>概念：</strong> iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 <code class="highlighter-rouge">iBeacon</code> 硬件设备在不做任何处理的情况下一般可使用两三年左右。</p>
   </li>
   <li>
     <p>iBeacon的形状多种多样，大致如下图。
@@ -173,7 +173,7 @@
 
 <h4 id="ibeacon">目前哪些地方有iBeacon：</h4>
 <ul>
-  <li>微信摇一摇：使用微信的人应该都知道微信有一个 <code>周边摇一摇</code> 功能， 使用的就是iBeacon技术。
+  <li>微信摇一摇：使用微信的人应该都知道微信有一个 <code class="highlighter-rouge">周边摇一摇</code> 功能， 使用的就是iBeacon技术。
     <ul>
       <li>很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。</li>
     </ul>
@@ -184,12 +184,12 @@
 </ul>
 
 <h4 id="ibeacon-1">iBeacon技术</h4>
-<p>Apple的 <code>CoreLocation.frame</code> 里把iBeacon封装成了一个 <code>CLBeacon</code> 类，<code>CLBeacon</code> 大致有下面几个属性组成：<code>Major</code> 、<code>Minor</code> 、 <code>proximity</code> 、 <code>rssi</code> 、 <code>accuracy</code> 。</p>
+<p>Apple的 <code class="highlighter-rouge">CoreLocation.frame</code> 里把iBeacon封装成了一个 <code class="highlighter-rouge">CLBeacon</code> 类，<code class="highlighter-rouge">CLBeacon</code> 大致有下面几个属性组成：<code class="highlighter-rouge">Major</code> 、<code class="highlighter-rouge">Minor</code> 、 <code class="highlighter-rouge">proximity</code> 、 <code class="highlighter-rouge">rssi</code> 、 <code class="highlighter-rouge">accuracy</code> 。</p>
 
 <h4 id="ibeaconapp">使用iBeacon技术对App开发者使用的额外成本:</h4>
 <ul>
-  <li>1、用户需要添加 <code>CoreLocation.framework</code> ，<code>App</code> 才具备定位的功能。</li>
-  <li>2、<code>App</code> 开发者需要开启定位功能需要配置：在 <code>Xcode</code> 的 <code>info.plist</code> 里面添加 <code>NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code>requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
+  <li>1、用户需要添加 <code class="highlighter-rouge">CoreLocation.framework</code> ，<code class="highlighter-rouge">App</code> 才具备定位的功能。</li>
+  <li>2、<code class="highlighter-rouge">App</code> 开发者需要开启定位功能需要配置：在 <code class="highlighter-rouge">Xcode</code> 的 <code class="highlighter-rouge">info.plist</code> 里面添加 <code class="highlighter-rouge">NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code class="highlighter-rouge">requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
   <li>3、<a href="https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html">苹果iBeacon官方代码</a>。</li>
 </ul>
 
@@ -205,7 +205,7 @@
 <ul>
   <li>前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。</li>
   <li>现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。</li>
-  <li>影响：导致App用户在并没有使用 <code>App</code> 的情况下, <code>App</code> 有了长达几个小时的后台使用时长。</li>
+  <li>影响：导致App用户在并没有使用 <code class="highlighter-rouge">App</code> 的情况下, <code class="highlighter-rouge">App</code> 有了长达几个小时的后台使用时长。</li>
 </ul>
 
 

@@ -162,7 +162,7 @@
 <p>iOS9和OS X El Capitan的一个新特性，App Transport Security 的目地是提高Apple 操作系统的安全性以及在此操作系统上运行的任何应用的安全性。ATS是苹果针对与 NSURL这一层做的封装，iOS9后ATS默认是开启的，即网络传输需要使用HTTPS。如果想在iOS9后继续使用HTTP的话，有两条路可以走：</p>
 
 <ol>
-  <li>在Info.plist中添加 <code>NSAppTransportSecurity</code>类型Dictionary，在<code>NSAppTransportSecurity</code>下添加<code>NSAllowsArbitraryLoads</code>，Boolean 为 YES。</li>
+  <li>在Info.plist中添加 <code class="highlighter-rouge">NSAppTransportSecurity</code>类型Dictionary，在<code class="highlighter-rouge">NSAppTransportSecurity</code>下添加<code class="highlighter-rouge">NSAllowsArbitraryLoads</code>，Boolean 为 YES。</li>
   <li>直接使用CFNetwork做网络请求，ASIHTTPRequest就是基于CFNetwotk做的封装，如果有需求的同学可以看看ASI里面的源码，如果某个时间段你又想要使用HTTPS的话，ASI对SSL/TSL的证书验证有点问题，证书验证还得自己封装一下才行。刚才我说道，ATS是苹果针对与NSURL这一层做的封装，所以我们使用CFNetwork或者更底层做网络请求的话是不受ATS限制的。</li>
 </ol>
 
@@ -200,7 +200,7 @@ discoveryd：OS X Yosemite后苹果新出的一种进程。</p>
 <h2 id="section"><strong>后台定位</strong></h2>
 <p>iOS9后苹果为了对保障用户的地理位置的隐私对App请求后台定位有了权限设置，则需要多加一些代码。如果不适配iOS9，就不能偷偷在后台定位，如果没有后台定位的权限也是可以在后台定位的，只是会出现蓝条。</p>
 
-<p>开启后台定位功能：<code>locationManager.allowsBackgroundLocationUpdates = YES;</code>
+<p>开启后台定位功能：<code class="highlighter-rouge">locationManager.allowsBackgroundLocationUpdates = YES;</code>
 locationManager是CLLocationManager的对象，用来管理整个定位的。</p>
 
 <p><strong>重点：</strong></p>
@@ -216,23 +216,24 @@ locationManager是CLLocationManager的对象，用来管理整个定位的。</p
 
 <ol>
   <li>在DemoTests.m里创建一个test开头的方法</li>
-  <li>在setUp()里启动应用 <code>XCUIApplication().launch()</code></li>
-  <li>新建一个方法test开头的，在里面获取应用<code>let app = XCUIApplication()</code></li>
-  <li>的到<code>let app = XCUIApplication()</code>，a<code>pp.buttons[“View Detail”].tap()?</code>。buttons是当前这个界面的所有按钮的集合，[]里面写按钮的名字，tap()就是执行这个按钮所对应的方法，可以是网络请求、界面跳转等等。</li>
+  <li>在setUp()里启动应用 <code class="highlighter-rouge">XCUIApplication().launch()</code></li>
+  <li>新建一个方法test开头的，在里面获取应用<code class="highlighter-rouge">let app = XCUIApplication()</code></li>
+  <li>的到<code class="highlighter-rouge">let app = XCUIApplication()</code>，a<code class="highlighter-rouge">pp.buttons[“View Detail”].tap()?</code>。buttons是当前这个界面的所有按钮的集合，[]里面写按钮的名字，tap()就是执行这个按钮所对应的方法，可以是网络请求、界面跳转等等。</li>
 </ol>
 
 <h2 id="url-scheme">URL scheme</h2>
 
 <p>在iOS9中，如果使用URL scheme必须在”Info.plist”中将你要在外部调用的URL scheme列为白名单，否则不能使用。</p>
 
-<p>配置info.plist，添加一个<code>LSApplicationQueriesSchemes</code>，Array类型的，然后在<code>LSApplicationQueriesSchemes</code>的Item里面添加urlscheme就行了，urlscheme是任意一个字符串，就是你自己需要使用的urlscheme，iOS9 URL scheme白名单适配就完成了。</p>
+<p>配置info.plist，添加一个<code class="highlighter-rouge">LSApplicationQueriesSchemes</code>，Array类型的，然后在<code class="highlighter-rouge">LSApplicationQueriesSchemes</code>的Item里面添加urlscheme就行了，urlscheme是任意一个字符串，就是你自己需要使用的urlscheme，iOS9 URL scheme白名单适配就完成了。</p>
 
 <h2 id="section-1">出现大量的警告</h2>
 
 <p>Xcode7后运行以前的项目后出现大量的警告如：</p>
 
-<pre><code class="language-bash">(null): warning: /var/folders/p4/z7zy68r92hd3p5ry5g2v3k_8rlwzzr/C/org.llvm.clang.dalmo/ModuleCache/1TXZDLI9N2EMV/Foundation-3DFYNEBRQSXST.pcm: No such file or directory。
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>null<span class="o">)</span>: warning: /var/folders/p4/z7zy68r92hd3p5ry5g2v3k_8rlwzzr/C/org.llvm.clang.dalmo/ModuleCache/1TXZDLI9N2EMV/Foundation-3DFYNEBRQSXST.pcm: No such file or directory。
 </code></pre>
+</div>
 
 <p>作为一个有洁癖的我反正是不能忍，出现警告的大致原因跟我上面提到的开启Bitcode，.dSYM文件不能用来符号化有关，Xcode试图去创建dSYM文件，但是你又不需要。</p>
 
