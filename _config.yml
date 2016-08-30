@@ -10,9 +10,9 @@ permalink: /:year/:month/:title/
 
 # Format
 highlighter: rouge
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
+# markdown: redcarpet
+# redcarpet:
+  # extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
 cover_color: clear
