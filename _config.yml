@@ -10,9 +10,6 @@ permalink: /:year/:month/:title/
 
 # Format
 highlighter: rouge
-# markdown: redcarpet
-# redcarpet:
-  # extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
 cover_color: clear
@@ -26,7 +23,7 @@ nav:
     - {title: Wiki, description: Wiki, url: 'http://wiki.baixin.io'}
     
 # Pagination
-gems: [jekyll-paginate]
+gems: [jekyll-paginate,jekyll-sitemap]
 paginate: 10
 paginate_path: "page/:num/"
 
