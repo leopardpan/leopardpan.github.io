@@ -3,10 +3,10 @@
   <channel>
     <title>潘柏信</title>
     <description></description>
-    <link>http://baixin.io/</link>
-    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 31 Aug 2016 18:20:10 +0800</pubDate>
-    <lastBuildDate>Wed, 31 Aug 2016 18:20:10 +0800</lastBuildDate>
+    <link>http://www.baixin.io/</link>
+    <atom:link href="http://www.baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 31 Aug 2016 18:52:21 +0800</pubDate>
+    <lastBuildDate>Wed, 31 Aug 2016 18:52:21 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -162,8 +162,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/08/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95iOS%E9%A1%B9%E7%9B%AE/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/08/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95iOS%E9%A1%B9%E7%9B%AE/</guid>
+        <link>http://www.baixin.io/2016/08/PythonTestiOSProject/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/08/PythonTestiOSProject/</guid>
         
         <category>python</category>
         
@@ -212,8 +212,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Codeless/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
+        <link>http://www.baixin.io/2016/07/Codeless/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/Codeless/</guid>
         
         <category>技术</category>
         
@@ -272,8 +272,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</guid>
+        <link>http://www.baixin.io/2016/07/GitNote/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/GitNote/</guid>
         
         <category>工具</category>
         
@@ -447,8 +447,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/iOS%E5%BC%80%E5%8F%91%E8%BF%8E%E6%9D%A5%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%98%A5%E5%A4%A9-TensorFlow/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/iOS%E5%BC%80%E5%8F%91%E8%BF%8E%E6%9D%A5%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%98%A5%E5%A4%A9-TensorFlow/</guid>
+        <link>http://www.baixin.io/2016/07/iOS-TensorFlow/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/iOS-TensorFlow/</guid>
         
         <category>机器学习</category>
         
@@ -484,8 +484,8 @@ error: Xcode 7.3.0 or later is required.
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/ML(1)/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/ML(1)/</guid>
+        <link>http://www.baixin.io/2016/07/ML(1)/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/ML(1)/</guid>
         
         <category>机器学习</category>
         
@@ -566,8 +566,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
+        <link>http://www.baixin.io/2016/06/HEXO(2)/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/06/HEXO(2)/</guid>
         
         <category>博客</category>
         
@@ -598,8 +598,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 
 </description>
         <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
+        <link>http://www.baixin.io/2016/06/DevTool/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/06/DevTool/</guid>
         
         <category>工具</category>
         
@@ -664,8 +664,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Apr 2016 02:25:06 +0800</pubDate>
-        <link>http://baixin.io/2016/04/iBeacon/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
+        <link>http://www.baixin.io/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/04/iBeacon/</guid>
         
         <category>技术分享</category>
         
@@ -839,8 +839,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 
 </description>
         <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+        <link>http://www.baixin.io/2016/04/CocoaPod/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/04/CocoaPod/</guid>
         
         <category>工具</category>
         
@@ -940,8 +940,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 
 </description>
         <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/01/iOS%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</guid>
+        <link>http://www.baixin.io/2016/01/iOS-OTA/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/01/iOS-OTA/</guid>
         
         <category>iOS</category>
         
