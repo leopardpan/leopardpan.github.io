@@ -1,7 +1,7 @@
 # 个人博客    
 
 
-敬请线上右上角star,你的star是我持续更新的动力,谢谢 😄.
+敬请线上右上角star,你的star是我持续更新的动力, 谢谢 😄.
 
 
 你可以 [下载博客](https://github.com/leopardpan/leopardpan.github.io/archive/master.zip) , 然后cd 到 ../leopardpan.github.io/ 目录下， 使用命令 `jekyll server` 看看效果。
@@ -28,8 +28,6 @@ $ gem install jekyll
 ***
 
 #### 博客首页   
-
-
 
 ![](/assets/images/img4.png)   
 
