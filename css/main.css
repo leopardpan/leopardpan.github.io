@@ -731,7 +731,6 @@ i {
     margin: 0 0 2.2em 0; 
 }
 .post-list li:hover {
-
     -moz-box-shadow:4px 4px 4px #c9e1f6, 
     -4px -4px 4px #c9e1f6, 
     4px -4px 4px #c9e1f6, 
@@ -759,7 +758,6 @@ i {
     color: #333333; }
 .post-list__post-title a:hover {
     color: #000000; 
-    /*background-color:  #666666;*/
   }
 }
 
