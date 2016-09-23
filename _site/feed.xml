@@ -5,8 +5,8 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 12:21:33 +0800</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 12:21:33 +0800</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 15:12:14 +0800</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 15:12:14 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -714,14 +714,15 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;h4 id=&quot;ibeacon-1&quot;&gt;iBeacon技术（代码）&lt;/h4&gt;
 &lt;p&gt;　　Apple的 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.frame&lt;/code&gt; 里把iBeacon封装成了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 大致有下面几个属性组成：&lt;code class=&quot;highlighter-rouge&quot;&gt;Major&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;Minor&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;proximity&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;rssi&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; 。&lt;/p&gt;
 
-&lt;h4 id=&quot;ibeaconapp&quot;&gt;使用iBeacon技术对App开发者使用的额外成本:&lt;/h4&gt;
+&lt;h4 id=&quot;ibeacopn&quot;&gt;开发者如何使用iBeacopn?:&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;1、用户需要添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.framework&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 才具备定位的功能。&lt;/li&gt;
-  &lt;li&gt;2、&lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 开发者需要开启定位功能需要配置：在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;info.plist&lt;/code&gt; 里面添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
-  &lt;li&gt;3、&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码&lt;/a&gt;。&lt;/li&gt;
+  &lt;li&gt;1、用户需要添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.framework&lt;/code&gt; ，App 才具备定位的功能。&lt;/li&gt;
+  &lt;li&gt;2、App 开发者需要开启定位功能需要配置：在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;info.plist&lt;/code&gt; 里面添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;ibeacon-2&quot;&gt;检测iBeacon信号对用户的必要条件：&lt;/h4&gt;
+&lt;p&gt;Note: &lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码例子&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;ibeacon-2&quot;&gt;iBeacon硬件设备条件：&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;用户设备iOS7或更新操作系统。&lt;/li&gt;
   &lt;li&gt;用户蓝牙设备4.0或更新。&lt;/li&gt;
@@ -732,9 +733,10 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;h4 id=&quot;ibeacon-3&quot;&gt;iBeacon能唤醒应用&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。&lt;/li&gt;
-  &lt;li&gt;现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。&lt;/li&gt;
+  &lt;li&gt;现象：App能被iBeacon信号唤醒，即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。&lt;/li&gt;
   &lt;li&gt;影响：导致App用户在并没有使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 的情况下, &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 有了长达几个小时的后台使用时长。&lt;/li&gt;
 &lt;/ul&gt;
+
 </description>
         <pubDate>Wed, 06 Apr 2016 19:25:06 +0800</pubDate>
         <link>http://baixin.io/2016/04/iBeacon/</link>

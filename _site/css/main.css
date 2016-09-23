@@ -725,21 +725,43 @@ i {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  text-align: left; }
-  .post-list li {
-    margin: 0 0 2.2em 0; }
-    .post-list li:last-child hr {
-      display: none; }
+  text-align: left; 
+}
+.post-list li {
+    margin: 0 0 2.2em 0; 
+}
+.post-list li:hover {
+
+    -moz-box-shadow:4px 4px 4px #c9e1f6, 
+    -4px -4px 4px #c9e1f6, 
+    4px -4px 4px #c9e1f6, 
+    -4px 4px 4px #c9e1f6; 
+    -webkit-box-shadow:4px 4px 4px #c9e1f6, 
+    -4px -4px 4px #c9e1f6, 
+    4px -4px 4px #c9e1f6, 
+    -4px 4px 4px #c9e1f6; 
+    box-shadow:4px 4px 4px #c9e1f6, 
+    -4px -4px 4px #c9e1f6, 
+    4px -4px 4px #c9e1f6, 
+    -4px 4px 4px #c9e1f6;
+}
+
+.post-list li:last-child hr {
+      display: none; 
+}
 
 .post-list__post-title {
   margin-top: 0;
   margin-bottom: .2em;
   font-size: 1.5em;
   line-height: 1.3em; }
-  .post-list__post-title a {
+.post-list__post-title a {
     color: #333333; }
-    .post-list__post-title a:hover {
-      color: #7b0f19; }
+.post-list__post-title a:hover {
+    color: #000000; 
+    /*background-color:  #666666;*/
+  }
+}
 
 .post-list__meta {
   display: block;

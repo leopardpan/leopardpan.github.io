@@ -180,14 +180,15 @@
 <h4 id="ibeacon-1">iBeacon技术（代码）</h4>
 <p>　　Apple的 <code class="highlighter-rouge">CoreLocation.frame</code> 里把iBeacon封装成了一个 <code class="highlighter-rouge">CLBeacon</code> 类，<code class="highlighter-rouge">CLBeacon</code> 大致有下面几个属性组成：<code class="highlighter-rouge">Major</code> 、<code class="highlighter-rouge">Minor</code> 、 <code class="highlighter-rouge">proximity</code> 、 <code class="highlighter-rouge">rssi</code> 、 <code class="highlighter-rouge">accuracy</code> 。</p>
 
-<h4 id="ibeaconapp">使用iBeacon技术对App开发者使用的额外成本:</h4>
+<h4 id="ibeacopn">开发者如何使用iBeacopn?:</h4>
 <ul>
-  <li>1、用户需要添加 <code class="highlighter-rouge">CoreLocation.framework</code> ，<code class="highlighter-rouge">App</code> 才具备定位的功能。</li>
-  <li>2、<code class="highlighter-rouge">App</code> 开发者需要开启定位功能需要配置：在 <code class="highlighter-rouge">Xcode</code> 的 <code class="highlighter-rouge">info.plist</code> 里面添加 <code class="highlighter-rouge">NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code class="highlighter-rouge">requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
-  <li>3、<a href="https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html">苹果iBeacon官方代码</a>。</li>
+  <li>1、用户需要添加 <code class="highlighter-rouge">CoreLocation.framework</code> ，App 才具备定位的功能。</li>
+  <li>2、App 开发者需要开启定位功能需要配置：在 <code class="highlighter-rouge">Xcode</code> 的 <code class="highlighter-rouge">info.plist</code> 里面添加 <code class="highlighter-rouge">NSLocationAlwaysUsageDescription</code>(允许后台访问位置信息) 或 <code class="highlighter-rouge">requestWhenInUseAuthorization</code>(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。</li>
 </ul>
 
-<h4 id="ibeacon-2">检测iBeacon信号对用户的必要条件：</h4>
+<p>Note: <a href="https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html">苹果iBeacon官方代码例子</a>。</p>
+
+<h4 id="ibeacon-2">iBeacon硬件设备条件：</h4>
 <ul>
   <li>用户设备iOS7或更新操作系统。</li>
   <li>用户蓝牙设备4.0或更新。</li>
@@ -198,9 +199,10 @@
 <h4 id="ibeacon-3">iBeacon能唤醒应用</h4>
 <ul>
   <li>前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。</li>
-  <li>现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。</li>
+  <li>现象：App能被iBeacon信号唤醒，即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。</li>
   <li>影响：导致App用户在并没有使用 <code class="highlighter-rouge">App</code> 的情况下, <code class="highlighter-rouge">App</code> 有了长达几个小时的后台使用时长。</li>
 </ul>
+
 
 
   </section>
