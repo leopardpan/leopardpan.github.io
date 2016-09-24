@@ -9,7 +9,7 @@ tags: 调研
 
 图一 iOS 系统自带的 `App icon` , 图二 第三方 `App icon` , 图三 通过 `iBeacon` 信号激活的 `demo icon`
 
-<img src="/assets/images/tfimg/image01.jpg" width="200px" /> <img src="/assets/images/tfimg/image02.jpg" width="200px" /> <img src="/assets/images/tfimg/image03.jpg" width="200px" />	
+<img src="/assets/images/icon/image01.jpg" width="200px" /> <img src="/assets/images/icon/image02.jpg" width="200px" /> <img src="/assets/images/icon/image03.jpg" width="200px" />	
 
 
 
