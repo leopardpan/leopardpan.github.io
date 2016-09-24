@@ -107,8 +107,8 @@ h2 {
 
 h3 {
   font-size: 1.2em; 
-  text-indent: 4px; /* 字段缩进*/
-  border-radius: 4px; /* 圆角*/
+  text-indent: 4px; 
+  border-radius: 4px; 
   padding:6px 15px;
   margin-bottom: 20px;
   background:#a0b3d6;
@@ -316,18 +316,12 @@ img::-moz-selection {
 .date,
 .time,
 .author{ color: #c7c7c7; }
-.tags {
-  font-size: 1em;
-  color: #191970;
-  text-indent: 4px;
-  background-color: #E6E6FA;
-  border-radius: 6px;
-  padding: 3px 6px;
-  border: 1px solid #191970;
-}
 .date a,
 .time a,
 .author a,
+.tags {
+  color: #fff;
+}
 .tags a {
 color: #666666; }
 .date a:hover,
@@ -660,7 +654,8 @@ hr {
 .btn-mobile-close__icon {
   position: relative;
   top: 10px;
-  color: #FFF; }
+  color: #FFF; 
+}
 
 nav {
   display: inline-block;
@@ -736,6 +731,7 @@ i {
 .post-list li {
     
     /*width: 400px;*/
+    /*margin-right: 10px;*/
     margin: 0 0 2.2em 0;
 
     -moz-box-shadow:4px 4px 4px #efefef, 
@@ -752,7 +748,7 @@ i {
     -4px 4px 4px #efefef;
 }
 .post-list li:hover {
-
+    transform:scale(1.01,1.01); 
     -moz-box-shadow:4px 4px 4px #c9e1f6, 
     -4px -4px 4px #c9e1f6, 
     4px -4px 4px #c9e1f6, 
@@ -793,14 +789,48 @@ i {
   margin: .7em 0 0 0;
   font-size: .9em;
   color: #c7c7c7; 
+  display: inline-block;
+}
+
+.tag-img-icon img{
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: block;
+  float: left;
 }
 
 .post-list__meta--date {
   margin-right: .5em;
-  color: #c7c7c7; }
+  margin-top: 3px;
+  color: #c7c7c7; 
+  float: left;
+
+}
 
 .post-list__meta--tags {
-  margin-left: .5em; }
+  
+  font-size: .5em;
+  height: 20px;
+  margin-top: 2px;
+  margin-left: 0px;
+  padding-left: 5px;
+  padding-right: 10px;
+  padding-top: -5px;
+  padding-bottom: 3px;
+  background-size: 100% 100%;
+  float: left;
+  font-size: 0.9em;
+}
+
+.post-list-icon-mate {
+  height: 20px;
+  background-size: 100% 100%;
+  padding-top: -5px;
+  padding-bottom: 3px;
+  margin-top: 2px;
+  float: left;
+}
 
 .post-list__divider {
   width: 30%;
@@ -939,7 +969,6 @@ input[type="tel"] {
   .btn-mobile-menu {
     display: block; 
   }
-
   .panel-main {
     display: table;
     position: relative; 
