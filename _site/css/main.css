@@ -609,11 +609,14 @@ hr {
     border-color: #7b0f19; }
 
 .btn-border-small {
-  border: 1px solid #BF1827;
-  border-radius: 10px;
-  padding: 6px 8px;
-  font-size: .8em;
-  margin-left: 20px; }
+  /*border: 1px solid #BF1827;*/
+  /*border-radius: 10px;*/
+  /*padding: 6px 8px;*/
+  font-size: 1.0em;
+  height: 30px;
+  /*text-decoration: underline;*/
+  margin-left: 20px; 
+}
 
 .btn-secondary {
   border-color: #5BA4E5;
@@ -828,6 +831,12 @@ i {
   padding-top: -5px;
   padding-bottom: 3px;
   margin-top: 2px;
+  float: left;
+}
+.post-list-small-mate {
+  height: 30px;
+  background-size: 100% 100%;
+  margin-top: 3px;
   float: left;
 }
 
