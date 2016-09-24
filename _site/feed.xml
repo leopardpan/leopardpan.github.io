@@ -5,8 +5,8 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 24 Sep 2016 11:24:44 +0800</pubDate>
-    <lastBuildDate>Sat, 24 Sep 2016 11:24:44 +0800</lastBuildDate>
+    <pubDate>Sat, 24 Sep 2016 19:14:17 +0800</pubDate>
+    <lastBuildDate>Sat, 24 Sep 2016 19:14:17 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -15,7 +15,7 @@
 
 &lt;p&gt;图一 iOS 系统自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图二 第三方 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图三 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号激活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo icon&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/tfimg/image01.jpg&quot; width=&quot;200px&quot; /&gt; &lt;img src=&quot;/assets/images/tfimg/image02.jpg&quot; width=&quot;200px&quot; /&gt; &lt;img src=&quot;/assets/images/tfimg/image03.jpg&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.jpg&quot; width=&quot;200px&quot; /&gt; &lt;img src=&quot;/assets/images/icon/image02.jpg&quot; width=&quot;200px&quot; /&gt; &lt;img src=&quot;/assets/images/icon/image03.jpg&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt;&lt;/h3&gt;
 

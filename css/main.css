@@ -556,7 +556,7 @@ hr {
     color: #FFF; }
 
 .cover-navigation {
-  margin-top: 10px; }
+  margin-top: 42px; }
 
 .cover-navigation--social {
   margin-left: 30px; }
@@ -645,7 +645,7 @@ hr {
   right: 0;
   left: 0;
   width: 100%;
-  height: 35px;
+  height: 55px;
   background: rgba(51, 51, 51, 0.98);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center; }
@@ -653,7 +653,9 @@ hr {
 .btn-mobile-menu__icon,
 .btn-mobile-close__icon {
   position: relative;
-  top: 10px;
+  top: 22px;
+  float: left;;
+  margin-left: 20px;
   color: #FFF; 
 }
 
@@ -670,7 +672,7 @@ nav {
 
 .navigation__item {
   display: inline-block;
-  margin: 10px 10px 0 0;
+  margin: 5px 1px 0 0;
   line-height: 1em; }
   .navigation__item a {
     display: block;
@@ -685,13 +687,12 @@ nav {
 
 .navigation--social a {
   border: 0px;
-  padding: 12px 16px 6px 9px; }
+  padding: 6px 8px 6px 9px; }
   .navigation--social a .label {
     display: none; }
   .navigation--social a .icon {
     display: block;
     font-size: 1.7em; }
-
 .pagination {
   display: block;
   margin: 0 0 4em 0; }
@@ -727,13 +728,11 @@ i {
   padding: 0;
   list-style-type: none;
   text-align: left; 
+  display: inline-block;
 }
 .post-list li {
-    
-    /*width: 400px;*/
-    /*margin-right: 10px;*/
     margin: 0 0 2.2em 0;
-
+    float: left;
     -moz-box-shadow:4px 4px 4px #efefef, 
     -4px -4px 4px #efefef, 
     4px -4px 4px #efefef, 
@@ -1025,10 +1024,10 @@ input[type="tel"] {
   .navigation-wrapper {
     display: none;
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 20px;
     left: 0;
-    width: 100%;
+    float: left;
+    width: 300px;
     padding: 20px 0;
     background: rgba(51, 51, 51, 0.98);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
@@ -1037,27 +1036,23 @@ input[type="tel"] {
       display: block; 
   }
 
-  .cover-navigation {
+ .cover-navigation {
     display: block;
     position: relative;
     float: left;
     clear: left;
-    width: 100%; 
-  }
-  .cover-navigation .navigation {
-    display: block;
-    width: 100%; 
-  }
-  .cover-navigation .navigation li {
-      width: 80%;
-      margin-bottom: .4em; 
-    }
-  .cover-navigation.navigation--social {
-    padding-top: 5px; 
-  }
-  .cover-navigation.navigation--social .navigation li {
-    display: inline-block;
-    width: 25.8%; }
+    width: 100%; }
+    .cover-navigation .navigation {
+      display: block;
+      width: 100%; }
+      .cover-navigation .navigation li {
+        width: 80%;
+        margin-bottom: .4em; }
+    .cover-navigation.navigation--social {
+      padding-top: 5px; }
+      .cover-navigation.navigation--social .navigation li {
+        display: inline-block;
+        width: 20%; }
 
   .content-wrapper {
     width: 80%;
