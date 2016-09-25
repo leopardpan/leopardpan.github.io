@@ -1,5 +1,6 @@
-_site
+_site/
+.sass-cache/
 .DS_Store
 .idea
 *.swp
-
+.Trashes
