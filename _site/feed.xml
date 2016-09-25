@@ -5,8 +5,8 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Sep 2016 10:28:54 +0800</pubDate>
-    <lastBuildDate>Sun, 25 Sep 2016 10:28:54 +0800</lastBuildDate>
+    <pubDate>Sun, 25 Sep 2016 10:42:23 +0800</pubDate>
+    <lastBuildDate>Sun, 25 Sep 2016 10:42:23 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -83,7 +83,7 @@
         <link>http://baixin.io/2016/09/iOS%E8%AE%BE%E5%A4%87%E5%B7%A6%E4%B8%8B%E8%A7%92%E5%87%BA%E7%8E%B0Appicon/</link>
         <guid isPermaLink="true">http://baixin.io/2016/09/iOS%E8%AE%BE%E5%A4%87%E5%B7%A6%E4%B8%8B%E8%A7%92%E5%87%BA%E7%8E%B0Appicon/</guid>
         
-        <category>调研</category>
+        <category>iOS</category>
         
         
       </item>
@@ -742,7 +742,7 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
         <link>http://baixin.io/2016/04/iBeacon/</link>
         <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
         
-        <category>技术分享</category>
+        <category>技术</category>
         
         
       </item>
@@ -918,7 +918,7 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
         <link>http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
         <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
         
-        <category>工具</category>
+        <category>iOS</category>
         
         
       </item>
