@@ -2,7 +2,7 @@
 layout: post
 title: "iOS设备左下角出现Appicon"
 date: 2016-09-23 
-tags: 调研  
+tags: iOS   
 ---
 
 最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的 App icon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。
