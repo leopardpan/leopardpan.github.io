@@ -5,13 +5,13 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Sep 2016 10:42:23 +0800</pubDate>
-    <lastBuildDate>Sun, 25 Sep 2016 10:42:23 +0800</lastBuildDate>
+    <pubDate>Tue, 27 Sep 2016 13:20:10 +0800</pubDate>
+    <lastBuildDate>Tue, 27 Sep 2016 13:20:10 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
         <title>iOS设备左下角出现Appicon</title>
-        <description>&lt;p&gt;最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的 App icon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。&lt;/p&gt;
+        <description>&lt;p&gt;最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。&lt;/p&gt;
 
 &lt;p&gt;图一 iOS 系统自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图二 第三方 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图三 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号激活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo icon&lt;/code&gt;&lt;/p&gt;
 
@@ -80,8 +80,8 @@
 &lt;a href=&quot;https://www.v2ex.com/t/142320&quot;&gt;关于 IOS8 锁屏左下方出现的 APP ICON&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 23 Sep 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/09/iOS%E8%AE%BE%E5%A4%87%E5%B7%A6%E4%B8%8B%E8%A7%92%E5%87%BA%E7%8E%B0Appicon/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/09/iOS%E8%AE%BE%E5%A4%87%E5%B7%A6%E4%B8%8B%E8%A7%92%E5%87%BA%E7%8E%B0Appicon/</guid>
+        <link>http://baixin.io/2016/09/iOSLowerLeftAppicon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/09/iOSLowerLeftAppicon/</guid>
         
         <category>iOS</category>
         
@@ -241,8 +241,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/08/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95iOS%E9%A1%B9%E7%9B%AE/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/08/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95iOS%E9%A1%B9%E7%9B%AE/</guid>
+        <link>http://baixin.io/2016/08/PythonTestAutomationiOS/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/08/PythonTestAutomationiOS/</guid>
         
         <category>python</category>
         
@@ -351,8 +351,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Git%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C/</guid>
+        <link>http://baixin.io/2016/07/GitTutorial/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/GitTutorial/</guid>
         
         <category>工具</category>
         
@@ -374,9 +374,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;如下图：&lt;/p&gt;
 &lt;div align=&quot;center&quot;&gt;
-	&lt;img src=&quot;/assets/images/tfimg/ck.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/mouse2.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/wb.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
+	&lt;img src=&quot;/assets/images/tfimg/image02.png&quot; height=&quot;300&quot; width=&quot;480&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。&lt;/p&gt;
@@ -384,8 +382,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 &lt;p&gt;但是在某些事物的识别准确度方便却差强人意，比如下图：&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/ipod2.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/ipod1.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;    
+　　&lt;img src=&quot;/assets/images/tfimg/image01.png&quot; height=&quot;300&quot; width=&quot;320&quot; /&gt;
 &lt;/div&gt;
 &lt;p&gt;　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。&lt;/p&gt;
 
@@ -526,8 +523,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/iOS%E5%BC%80%E5%8F%91%E8%BF%8E%E6%9D%A5%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%98%A5%E5%A4%A9-TensorFlow/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/iOS%E5%BC%80%E5%8F%91%E8%BF%8E%E6%9D%A5%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%98%A5%E5%A4%A9-TensorFlow/</guid>
+        <link>http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</guid>
         
         <category>机器学习</category>
         
@@ -563,8 +560,8 @@ error: Xcode 7.3.0 or later is required.
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/ML(1)/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/ML(1)/</guid>
+        <link>http://baixin.io/2016/07/MachineLearning_-introduce/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_-introduce/</guid>
         
         <category>机器学习</category>
         
@@ -573,7 +570,7 @@ error: Xcode 7.3.0 or later is required.
     
       <item>
         <title>HEXO进阶</title>
-        <description>&lt;p&gt;最近有好多朋友问我类似的问题, 同样也是我想解决的问题, 下面将会介绍解决几个问题。&lt;/p&gt;
+        <description>&lt;p&gt;HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如果你也在使用HEXO，不妨看看，应该会有些帮助。&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -623,19 +620,25 @@ error: Xcode 7.3.0 or later is required.
 &lt;h2 id=&quot;section-1&quot;&gt;让百度能搜索到你的博客&lt;/h2&gt;
 
 &lt;h3 id=&quot;section-2&quot;&gt;为什么要使用百度搜索？&lt;/h3&gt;
-&lt;p&gt;有人可能会说作为一个开发人员, 你不会用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
+
+&lt;p&gt;　　有人可能会说作为一个开发人员, 你不会用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
 
 &lt;h3 id=&quot;github-page-&quot;&gt;为什么使用百度搜索不到 Github Page 上的博客？&lt;/h3&gt;
-&lt;p&gt;有人联系过 ` Github Support 部门&lt;code class=&quot;highlighter-rouge&quot;&gt; , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。
-### 如何让百度能搜索你的博客?
-根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
+
+&lt;p&gt;有人联系过 Github Support 部门 , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;如何让百度能搜索你的博客?&lt;/h3&gt;
+
+&lt;p&gt;　　根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
 * 自己搞个VPS,博客部署在VPS上。
-* 博客部署 &lt;/code&gt;Coding.net&lt;code class=&quot;highlighter-rouge&quot;&gt; 上, &lt;/code&gt;GitCafe&lt;code class=&quot;highlighter-rouge&quot;&gt;已经合并到 &lt;/code&gt;Coding&lt;code class=&quot;highlighter-rouge&quot;&gt; 。
-我使用的是第二种方法, 博客部署在 &lt;/code&gt;Coding.net&lt;code class=&quot;highlighter-rouge&quot;&gt; 上也相对简单些。
-#### 在Coding上部署你的博客。
-Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:     
-**注意一:**       
-　　在&lt;/code&gt;Coding Page&lt;code class=&quot;highlighter-rouge&quot;&gt; 上部署博客,需要把博客推送到&lt;/code&gt;coding-pages ` 分支上, 分支名字是固定的。  &lt;br /&gt;
+* 博客部署 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上, &lt;code class=&quot;highlighter-rouge&quot;&gt;GitCafe&lt;/code&gt;已经合并到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding&lt;/code&gt; 。
+我使用的是第二种方法, 博客部署在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上也相对简单些。&lt;/p&gt;
+
+&lt;h4 id=&quot;coding&quot;&gt;在Coding上部署你的博客。&lt;/h4&gt;
+
+&lt;p&gt;　　Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:   &lt;br /&gt;
+&lt;strong&gt;注意一:&lt;/strong&gt;     &lt;br /&gt;
+　　在&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code class=&quot;highlighter-rouge&quot;&gt;coding-pages &lt;/code&gt; 分支上, 分支名字是固定的。  &lt;br /&gt;
 &lt;strong&gt;注意二:&lt;/strong&gt;   &lt;br /&gt;
 　　&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。&lt;/p&gt;
 
@@ -645,8 +648,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/</guid>
+        <link>http://baixin.io/2016/06/HEXO_-Introduce/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_-Introduce/</guid>
         
         <category>博客</category>
         
@@ -677,8 +680,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 
 </description>
         <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</guid>
+        <link>http://baixin.io/2016/06/Develop_Tool/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/Develop_Tool/</guid>
         
         <category>工具</category>
         
@@ -915,8 +918,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 
 </description>
         <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+        <link>http://baixin.io/2016/04/CocoaPod_Use/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod_Use/</guid>
         
         <category>iOS</category>
         

@@ -17,9 +17,7 @@ tags: 机器学习
 
 如下图：
 <div align="center">
-	<img src="/assets/images/tfimg/ck.jpg" height="300" width="160" />
-　　<img src="/assets/images/tfimg/mouse2.jpg" height="300" width="160" />
-　　<img src="/assets/images/tfimg/wb.jpg" height="300" width="160" />
+	<img src="/assets/images/tfimg/image02.png" height="300" width="480" />
 </div> 
 
 上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。
@@ -27,8 +25,7 @@ tags: 机器学习
 但是在某些事物的识别准确度方便却差强人意，比如下图：    
 
 <div align="center">
-　　<img src="/assets/images/tfimg/ipod2.jpg" height="300" width="160" />
-　　<img src="/assets/images/tfimg/ipod1.jpg" height="300" width="160" />    
+　　<img src="/assets/images/tfimg/image01.png" height="300" width="320" />
 </div> 
 　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。
 

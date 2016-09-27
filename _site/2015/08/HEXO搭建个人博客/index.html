@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>HEXO搭建个人博客</title>
-  <meta name="description" content="　　经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。">
+  <meta name="description" content="　　经过各种找资料，踩过各种坑，终于使用hexo搭建个人博客初步完成了，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。">
   <meta name="author" content="Wei Wang">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="HEXO搭建个人博客">
-  <meta name="twitter:description" content="　　经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。">
+  <meta name="twitter:description" content="　　经过各种找资料，踩过各种坑，终于使用hexo搭建个人博客初步完成了，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。">
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="HEXO搭建个人博客">
-  <meta property="og:description" content="　　经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。">
+  <meta property="og:description" content="　　经过各种找资料，踩过各种坑，终于使用hexo搭建个人博客初步完成了，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。">
   
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -157,7 +157,7 @@
   </header>
 
   <section class="post">
-    <p>　　经过各种找资料，踩过何种坑，终于搭建好了hexo，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。</p>
+    <p>　　经过各种找资料，踩过各种坑，终于使用hexo搭建个人博客初步完成了，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。</p>
 
 <p>　　本篇文章累计了大量评论，和我的一些解答，读者有什么问题可以先看看评论，或者搜下关键字，如果还是有问题可以给我在评论里给我留言，问题很着急的可以加我ＱＱ：1499065178　，或者给我发邮件：leopardpan@163.com，都可以，如果你已经搭建完成了，可以看看我的另一篇博客<a href="http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/">HEXO进阶</a>，有讲如何能百度搜索你的博客、多台电脑使用HEXO发布博客等。</p>
 
@@ -184,12 +184,12 @@
 <h3 id="hexo">正式安装HEXO　</h3>
 <p>Node和Git都安装好后，可执行如下命令安装hexo：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo npm install -g hexo
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo npm install -g hexo
 </code></pre>
 </div>
 
 <h3 id="section-2">初始化</h3>
-<p>然后，执行init命令初始化hexo到你指定的目录，我是直接cd到目标目录执行hexo init的。命令：</p>
+<p>创建一个文件夹，如：Blog，cd到Blog里执行hexo init的。命令：</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>hexo init
 </code></pre>
@@ -198,7 +198,7 @@
 <p>好啦，至此，全部安装工作已经完成！</p>
 
 <h3 id="section-3">生成静态页面</h3>
-<p>cd 到你的init目录，执行如下命令，生成静态页面至hexo\public\目录。</p>
+<p>继续再Blog目录下执行如下命令，生成静态页面</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>hexo generate （hexo g  也可以）   
 </code></pre>
@@ -288,15 +288,25 @@ npm install hexo-renderer-marked --save
 <p>再点击网址<a href="http://0.0.0.0:4000">http://0.0.0.0:4000</a> OK终于可以看到属于你自己的blog啦，?，虽然很简陋，但好歹有了一个属于自己的小窝了。<a href="https://disqus.com/home/discussion/bsspirit/hexogithubweb/">参考链接</a>，本地已经简单的设置好了，但是现在域名和服务器都是基于自己的电脑，接下来需要跟github进行关联。</p>
 
 <h2 id="github-1">配置Github</h2>
-<p>### 建立Repository</p>
+
+<h3 id="repository">建立Repository</h3>
 
 <p>建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】，固定写法
-然后建立关联，我的blog在本地/Users/leopard/blog，blog是我之前建的东西也全在这里面，有：</p>
+然后建立关联，我的Blog在本地/Users/leopard/Blog，Blog是我之前建的东西也全在这里面，有：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>_config.yml	node_modules	public		source　　　　
-db.json		package.json	scaffolds	themes　　　　　
-</code></pre>
-</div>
+<blockquote>
+  <p>Blog      <br />
+　｜      <br />
+　｜－－ _config.yml     <br />
+　｜－－ node_modules    <br />
+　｜－－ public              <br />
+　｜－－ source    　　　 　
+　｜－－ db.json	        <br />
+　｜－－ package.json        <br />
+　｜－－ scaffolds        <br />
+　｜－－ themes          　　　　　
+　　　</p>
+</blockquote>
 
 <p>现在我们需要_config.yml文件，来建立关联，命令：</p>
 
@@ -377,7 +387,7 @@ hexo version  #查看Hexo的版本
         
         
         <li class="next">
-            <a href="/2015/09/iOS9-%E5%8F%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-toggle="tooltip" data-placement="top" title="iOS 9 变化笔记">下一篇：  <span>iOS 9 变化笔记</span>
+            <a href="/2015/09/iOS9_Note/" data-toggle="tooltip" data-placement="top" title="iOS 9 变化笔记">下一篇：  <span>iOS 9 变化笔记</span>
             </a>
         </li>
         
