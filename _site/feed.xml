@@ -3,11 +3,90 @@
   <channel>
     <title>潘柏信</title>
     <description></description>
-    <link>http://www.baixin.io/</link>
-    <atom:link href="http://www.baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 31 Aug 2016 18:52:21 +0800</pubDate>
-    <lastBuildDate>Wed, 31 Aug 2016 18:52:21 +0800</lastBuildDate>
+    <link>http://baixin.io/</link>
+    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 28 Sep 2016 13:50:36 +0800</pubDate>
+    <lastBuildDate>Wed, 28 Sep 2016 13:50:36 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>iOS设备左下角出现Appicon</title>
+        <description>&lt;p&gt;最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。&lt;/p&gt;
+
+&lt;p&gt;图一 iOS 系统自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图二 第三方 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图三 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号激活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo icon&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h4 id=&quot;appstoreapp-&quot;&gt;1、AppStore根据地点对App 推荐&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;简介&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;iOS 8会基于你的位置在锁屏界面上展示一个app快捷打开方式。比如你正在星巴克附近，那iOS 8会在锁屏界面上展示星巴克应用的icon，方便你快速打开。一些用户也表示会在锁屏界面收到app推荐，比如你在Costco和Apple Store附近，即便你之前没有安装过这些应用。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;apphandoff&quot;&gt;2、App实现了handoff功能&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html&quot;&gt;handoff简介&lt;/a&gt;：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;OS X 10.10 Yosemite&lt;/code&gt; 新增了一个酷炫的功能 “Hand Off”，打开这个功能之后，用户可以在 Mac 上对 iPad 和 iPhone 进行操作，比如能够编写 iPhone 上未完成的邮件，并且可以在Mac上打开 iPhone 的热点等等， Mac 的 Hand Off 功能只能识别 Mac 周围的 iPhone 手机。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;handoff有几个要求：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1 两台设备都要登录同一个 iCloud 账号。&lt;/li&gt;
+      &lt;li&gt;2 两台设备上的app有相同的 TeamID 。&lt;/li&gt;
+      &lt;li&gt;3 锁屏（或dock）设备上的app支持的 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSUserActivityTypes&lt;/code&gt; 包含活动设备上的app当前的UserActivityType。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;appibeaconappibeacon&quot;&gt;3、App内有iBeacon信号接收功能，App被iBeacon信号唤醒&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/ibeacon/&quot;&gt;iBeacon简介&lt;/a&gt;&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;是苹果公司2013年9月发布的移动设备用OS（iOS7）上配备的新功能。工作原理类似之前的蓝牙技术，由 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 发射信号，iOS设备定位接受，反馈信号。根据这项简单的定位技术可以做出许多的相应技术应用,如：&lt;code class=&quot;highlighter-rouge&quot;&gt;室内定位&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;商品推荐&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;微信摇一摇&lt;/code&gt; 等。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;App icon出现的原因&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 具备后台定位的能力，只要用户把蓝牙(4.0或以后)开启 和 允许 App 访问位置信息。在有被 App 检测的 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 出现时，如果设备是锁屏状态，设备的左下角就会出现该 App 的 icon 。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sdkicon&quot;&gt;SDK导致设备左下角icon出现的影响范围及解决方案&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;影响范围&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;用户手机在锁屏状态下，附近有微信(或以后加入的 UUID ) &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号出现时，设备左下角会出现 icon 。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;解决方案：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1、解释：目前没有解决方案，但可以给开发者解释，我们会开发出一个新功能不定时的激活App , 但并不会影响我们的正常时长统计。 定期激活App功能模块默认是开启的，但会提供用户手动关闭的接口。&lt;/li&gt;
+      &lt;li&gt;2、SDK 内 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 功能，去掉后台检测。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;参考链接:  &lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020&quot;&gt;Make app appear as iOS 8 Suggested App at lockscreen&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890&quot;&gt;Can I get my iOS app to appear on the lower left corner of the lock screen?&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://www.zhihu.com/question/26653964&quot;&gt;为什么 iOS 8 锁屏界面的左下角经常会出现某个应用的小图标？&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://www.v2ex.com/t/142320&quot;&gt;关于 IOS8 锁屏左下方出现的 APP ICON&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/09/iOSLowerLeftAppicon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/09/iOSLowerLeftAppicon/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
     
       <item>
         <title>Python自动化测试iOS项目</title>
@@ -162,8 +241,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/08/PythonTestiOSProject/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/08/PythonTestiOSProject/</guid>
+        <link>http://baixin.io/2016/08/PythonTestAutomationiOS/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/08/PythonTestAutomationiOS/</guid>
         
         <category>python</category>
         
@@ -212,8 +291,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/07/Codeless/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/07/Codeless/</guid>
+        <link>http://baixin.io/2016/07/Codeless/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
         
         <category>技术</category>
         
@@ -272,8 +351,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/07/GitNote/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/07/GitNote/</guid>
+        <link>http://baixin.io/2016/07/GitTutorial/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/GitTutorial/</guid>
         
         <category>工具</category>
         
@@ -295,9 +374,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;如下图：&lt;/p&gt;
 &lt;div align=&quot;center&quot;&gt;
-	&lt;img src=&quot;/assets/images/tfimg/ck.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/mouse2.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/wb.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
+	&lt;img src=&quot;/assets/images/tfimg/image02.png&quot; height=&quot;300&quot; width=&quot;480&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。&lt;/p&gt;
@@ -305,8 +382,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 &lt;p&gt;但是在某些事物的识别准确度方便却差强人意，比如下图：&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/ipod2.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/ipod1.jpg&quot; height=&quot;300&quot; width=&quot;160&quot; /&gt;    
+　　&lt;img src=&quot;/assets/images/tfimg/image01.png&quot; height=&quot;300&quot; width=&quot;320&quot; /&gt;
 &lt;/div&gt;
 &lt;p&gt;　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。&lt;/p&gt;
 
@@ -447,8 +523,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/07/iOS-TensorFlow/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/07/iOS-TensorFlow/</guid>
+        <link>http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</guid>
         
         <category>机器学习</category>
         
@@ -484,8 +560,8 @@ error: Xcode 7.3.0 or later is required.
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/07/ML(1)/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/07/ML(1)/</guid>
+        <link>http://baixin.io/2016/07/MachineLearning_introduce/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_introduce/</guid>
         
         <category>机器学习</category>
         
@@ -494,7 +570,7 @@ error: Xcode 7.3.0 or later is required.
     
       <item>
         <title>HEXO进阶</title>
-        <description>&lt;p&gt;最近有好多朋友问我类似的问题, 同样也是我想解决的问题, 下面将会介绍解决几个问题。&lt;/p&gt;
+        <description>&lt;p&gt;HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如果你也在使用HEXO，不妨看看，应该会有些帮助。&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -544,19 +620,25 @@ error: Xcode 7.3.0 or later is required.
 &lt;h2 id=&quot;section-1&quot;&gt;让百度能搜索到你的博客&lt;/h2&gt;
 
 &lt;h3 id=&quot;section-2&quot;&gt;为什么要使用百度搜索？&lt;/h3&gt;
-&lt;p&gt;有人可能会说作为一个开发人员, 你不会用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
+
+&lt;p&gt;　　有人可能会说作为一个开发人员, 你不会用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
 
 &lt;h3 id=&quot;github-page-&quot;&gt;为什么使用百度搜索不到 Github Page 上的博客？&lt;/h3&gt;
-&lt;p&gt;有人联系过 ` Github Support 部门&lt;code class=&quot;highlighter-rouge&quot;&gt; , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。
-### 如何让百度能搜索你的博客?
-根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
+
+&lt;p&gt;有人联系过 Github Support 部门 , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;如何让百度能搜索你的博客?&lt;/h3&gt;
+
+&lt;p&gt;　　根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
 * 自己搞个VPS,博客部署在VPS上。
-* 博客部署 &lt;/code&gt;Coding.net&lt;code class=&quot;highlighter-rouge&quot;&gt; 上, &lt;/code&gt;GitCafe&lt;code class=&quot;highlighter-rouge&quot;&gt;已经合并到 &lt;/code&gt;Coding&lt;code class=&quot;highlighter-rouge&quot;&gt; 。
-我使用的是第二种方法, 博客部署在 &lt;/code&gt;Coding.net&lt;code class=&quot;highlighter-rouge&quot;&gt; 上也相对简单些。
-#### 在Coding上部署你的博客。
-Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:     
-**注意一:**       
-　　在&lt;/code&gt;Coding Page&lt;code class=&quot;highlighter-rouge&quot;&gt; 上部署博客,需要把博客推送到&lt;/code&gt;coding-pages ` 分支上, 分支名字是固定的。  &lt;br /&gt;
+* 博客部署 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上, &lt;code class=&quot;highlighter-rouge&quot;&gt;GitCafe&lt;/code&gt;已经合并到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding&lt;/code&gt; 。
+我使用的是第二种方法, 博客部署在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上也相对简单些。&lt;/p&gt;
+
+&lt;h4 id=&quot;coding&quot;&gt;在Coding上部署你的博客。&lt;/h4&gt;
+
+&lt;p&gt;　　Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:   &lt;br /&gt;
+&lt;strong&gt;注意一:&lt;/strong&gt;     &lt;br /&gt;
+　　在&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code class=&quot;highlighter-rouge&quot;&gt;coding-pages &lt;/code&gt; 分支上, 分支名字是固定的。  &lt;br /&gt;
 &lt;strong&gt;注意二:&lt;/strong&gt;   &lt;br /&gt;
 　　&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。&lt;/p&gt;
 
@@ -566,8 +648,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/06/HEXO(2)/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/06/HEXO(2)/</guid>
+        <link>http://baixin.io/2016/06/HEXO_Advanced/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
         
         <category>博客</category>
         
@@ -598,8 +680,8 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 
 </description>
         <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://www.baixin.io/2016/06/DevTool/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/06/DevTool/</guid>
+        <link>http://baixin.io/2016/06/Develop_Tool/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/Develop_Tool/</guid>
         
         <category>工具</category>
         
@@ -607,14 +689,12 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
       </item>
     
       <item>
-        <title>iBeacon 能为开发者做什么？</title>
-        <description>&lt;p&gt;iOS上对iBeacon的技术调研及基本使用。&lt;/p&gt;
+        <title>我们日常生活中的iBeacon</title>
+        <description>&lt;p&gt;　　随着低功耗蓝牙的推出，iBeacon的使用是越来越广泛了，如：微信的附近摇一摇功能，又或者是当你进入大型商场，一些店铺给你推送通知，VR场景识别等等，这些表示iBeacon已经与我们的生活精密相连了。&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;背景&lt;/h2&gt;
-
-&lt;h4 id=&quot;section-1&quot;&gt;简介：&lt;/h4&gt;
+&lt;h4 id=&quot;section&quot;&gt;简介：&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -628,27 +708,24 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 
 &lt;h4 id=&quot;ibeacon&quot;&gt;目前哪些地方有iBeacon：&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;微信摇一摇：使用微信的人应该都知道微信有一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;周边摇一摇&lt;/code&gt; 功能， 使用的就是iBeacon技术。
-    &lt;ul&gt;
-      &lt;li&gt;很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。&lt;/li&gt;
-  &lt;li&gt;帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。&lt;/li&gt;
-  &lt;li&gt;iBeacon还可实现地理围栏、室内定位等功能。&lt;/li&gt;
+  &lt;li&gt;1、微信摇一摇：使用微信的人应该都知道微信有一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;周边摇一摇&lt;/code&gt; 功能， 使用的就是iBeacon技术。 很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。&lt;/li&gt;
+  &lt;li&gt;2、走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。&lt;/li&gt;
+  &lt;li&gt;3、帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。&lt;/li&gt;
+  &lt;li&gt;4、iBeacon还可实现地理围栏、室内定位等功能。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;ibeacon-1&quot;&gt;iBeacon技术&lt;/h4&gt;
-&lt;p&gt;Apple的 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.frame&lt;/code&gt; 里把iBeacon封装成了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 大致有下面几个属性组成：&lt;code class=&quot;highlighter-rouge&quot;&gt;Major&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;Minor&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;proximity&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;rssi&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; 。&lt;/p&gt;
+&lt;h4 id=&quot;ibeacon-1&quot;&gt;iBeacon技术（代码）&lt;/h4&gt;
+&lt;p&gt;　　Apple的 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.frame&lt;/code&gt; 里把iBeacon封装成了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 大致有下面几个属性组成：&lt;code class=&quot;highlighter-rouge&quot;&gt;Major&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;Minor&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;proximity&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;rssi&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; 。&lt;/p&gt;
 
-&lt;h4 id=&quot;ibeaconapp&quot;&gt;使用iBeacon技术对App开发者使用的额外成本:&lt;/h4&gt;
+&lt;h4 id=&quot;ibeacopn&quot;&gt;开发者如何使用iBeacopn?:&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;1、用户需要添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.framework&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 才具备定位的功能。&lt;/li&gt;
-  &lt;li&gt;2、&lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 开发者需要开启定位功能需要配置：在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;info.plist&lt;/code&gt; 里面添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
-  &lt;li&gt;3、&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码&lt;/a&gt;。&lt;/li&gt;
+  &lt;li&gt;1、用户需要添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.framework&lt;/code&gt; ，App 才具备定位的功能。&lt;/li&gt;
+  &lt;li&gt;2、App 开发者需要开启定位功能需要配置：在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;info.plist&lt;/code&gt; 里面添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;ibeacon-2&quot;&gt;检测iBeacon信号对用户的必要条件：&lt;/h4&gt;
+&lt;p&gt;Note: &lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码例子&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;ibeacon-2&quot;&gt;iBeacon硬件设备条件：&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;用户设备iOS7或更新操作系统。&lt;/li&gt;
   &lt;li&gt;用户蓝牙设备4.0或更新。&lt;/li&gt;
@@ -659,15 +736,16 @@ Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像�
 &lt;h4 id=&quot;ibeacon-3&quot;&gt;iBeacon能唤醒应用&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。&lt;/li&gt;
-  &lt;li&gt;现象：App能被iBeacon信号唤醒。即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。&lt;/li&gt;
+  &lt;li&gt;现象：App能被iBeacon信号唤醒，即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。&lt;/li&gt;
   &lt;li&gt;影响：导致App用户在并没有使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 的情况下, &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 有了长达几个小时的后台使用时长。&lt;/li&gt;
 &lt;/ul&gt;
+
 </description>
-        <pubDate>Thu, 07 Apr 2016 02:25:06 +0800</pubDate>
-        <link>http://www.baixin.io/2016/04/iBeacon/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/04/iBeacon/</guid>
+        <pubDate>Wed, 06 Apr 2016 19:25:06 +0800</pubDate>
+        <link>http://baixin.io/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
         
-        <category>技术分享</category>
+        <category>技术</category>
         
         
       </item>
@@ -713,7 +791,8 @@ sudo gem update --system
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;### 安装cocoapods&lt;/p&gt;
+
+&lt;h3 id=&quot;cocoapods-1&quot;&gt;安装cocoapods&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install cocoapods
@@ -724,7 +803,7 @@ sudo gem update --system
 
 &lt;p&gt;pod setup 在执行时会比较慢，因为Cocoapods 要将它的信息下载到 ~/.cocoapods目录下, 耐心等待…&lt;/p&gt;
 
-&lt;h4 id=&quot;cocoapods-1&quot;&gt;提升cocoapods的安装速度&lt;/h4&gt;
+&lt;h4 id=&quot;cocoapods-2&quot;&gt;提升cocoapods的安装速度&lt;/h4&gt;
 
 &lt;p&gt;所有的项目的 Podspec 文件都托管在https://github.com/CocoaPods/Specs。第一次执行 pod setup 时，CocoaPods 会将这些podspec索引文件更新到本地的 ~/.cocoapods/目录下，这个索引文件比较大，有 80M 左右。
 作者akinliu 在 gitcafe 和 oschina 上建立了 CocoaPods 索引库的镜像(在国内),我们可以使用CocoaPods国内的镜像索引，操作时会快多了,如gitcafe：&lt;/p&gt;
@@ -737,7 +816,7 @@ pod repo update
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;cocoapods-2&quot;&gt;使用cocoapods&lt;/h3&gt;
+&lt;h3 id=&quot;cocoapods-3&quot;&gt;使用cocoapods&lt;/h3&gt;
 
 &lt;p&gt;cocoapods安装完成后，使用 pod search 命令来验证一下&lt;/p&gt;
 
@@ -839,109 +918,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 
 </description>
         <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://www.baixin.io/2016/04/CocoaPod/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/04/CocoaPod/</guid>
-        
-        <category>工具</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>iOS动态更新</title>
-        <description>&lt;ul&gt;
-  &lt;li&gt;1、控件到 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 的层级关系:&lt;/li&gt;
-  &lt;li&gt;2、分析控件的详细路径:&lt;/li&gt;
-  &lt;li&gt;3、动态修改控件:&lt;/li&gt;
-  &lt;li&gt;4、工具篇:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;视图的层级关系&lt;/h3&gt;
-
-&lt;p&gt;每个 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; , 至少有一个根 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; , 通常情况下我们只用一个 。&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 有一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; , 这就是我们所谓的根视图 , 我们所有的控制器都是放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; 里面的。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/bVqwV3&quot; alt=&quot;Dynamic-image1.jpeg&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这个是最简单的层级关系&lt;/p&gt;
-
-&lt;p&gt;如果在项目里有了这么一个路径 , 我们可以做什么呢？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;在当项目很复杂 , 可以其它地方可以直接修改这个控件的状态&lt;/li&gt;
-  &lt;li&gt;当某个控件命名存在却又没有显示出来 , 可以通过路径来辅助查找&lt;/li&gt;
-  &lt;li&gt;由服务器下发一些配置 , 使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Runtime&lt;/code&gt; 去动态的修改已上线的项目&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下面将介绍如何使用代码来找出这些视图(控件)的路径&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;分析控件的详细路径&lt;/h3&gt;
-
-&lt;h4 id=&quot;window-&quot;&gt;1、找出根 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; :&lt;/h4&gt;
-
-&lt;p&gt;每一个视图、控件 , 他们最终的根都是main函数返回的 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; , 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;[UIApplication sharedApplication]&lt;/code&gt; 可以得到 。 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;windows&lt;/code&gt; 属性是一个数组 , 这里面装的是这个应用的所有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; , 我们通常用的是第一个也就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;application.windows[0]&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;section-2&quot;&gt;2、遍历视图 :&lt;/h4&gt;
-
-&lt;p&gt;得到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 对象一切都好办了 。 然后拿到 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; , 在获取 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; 里面所有的 &lt;code class=&quot;highlighter-rouge&quot;&gt;childViewControllers&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt; 里的 &lt;code class=&quot;highlighter-rouge&quot;&gt;subviews&lt;/code&gt; , 一直递归下去就可以得到当前屏幕里所有视图对象了 , 同时可以通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;runtime&lt;/code&gt; 把它们的 &lt;code class=&quot;highlighter-rouge&quot;&gt;property&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;delegate&lt;/code&gt; 都获取出来。&lt;/p&gt;
-
-&lt;p&gt;结合 &lt;code class=&quot;highlighter-rouge&quot;&gt;Reveal&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Captuer View Hiearachy&lt;/code&gt; , 我们可以推测一下这两个的的实现原理了 :&lt;/p&gt;
-
-&lt;p&gt;1、根据应用得到根视图  &lt;br /&gt;
-2、递归获取里面的所有控件 &lt;br /&gt;
-3、按照他们的层级关系一层一层的画出来&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;动态修改控件&lt;/h3&gt;
-
-&lt;p&gt;1、把上面获取到的所有控件的详细信息上传到服务器 。 &lt;br /&gt;
-2、根据业务需求由服务器给我们下发对应的配置列表，以 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 为例 : 配置列表里必须要有 :  &lt;br /&gt;
-&amp;gt; 1)、&lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的全路径 : 如 &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWindow&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWindow&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UILayoutContainerView&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UITabBar&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; —&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIButton&lt;/code&gt;  &lt;br /&gt;
-&amp;gt; 2)、&lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的唯一标识 : 如 &lt;code class=&quot;highlighter-rouge&quot;&gt;tag&lt;/code&gt; 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 同一层次的视图搞混 。&lt;br /&gt;
-&amp;gt; 3)、 根据路径及唯一标识来匹配 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 里的控件 , 匹配和上面的查找原理是相通的。 &lt;br /&gt;
-&amp;gt; 4)、 匹配成功代表  &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 确实存在 , 根据业务需求做后续操作 。 &lt;br /&gt;
-&amp;gt; 提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。&lt;/p&gt;
-
-&lt;p&gt;3、修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的状态。
-&amp;gt; 1)、 如某个按钮点了会 &lt;code class=&quot;highlighter-rouge&quot;&gt;Crash&lt;/code&gt; 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;enabled&lt;/code&gt; 属性 。 &lt;br /&gt;
-&amp;gt; 2)、 如某业务暂时关闭 , 可以直接修改入口 &lt;code class=&quot;highlighter-rouge&quot;&gt;按钮&lt;/code&gt; frame为0 , 前提是要自动布局已做好 。  &lt;br /&gt;
-&amp;gt; 3)、 如给购买 &lt;code class=&quot;highlighter-rouge&quot;&gt;按钮&lt;/code&gt; 添加监听事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;addTarget: action: forControlEvents:&lt;/code&gt;   &lt;br /&gt;
-&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt; 也可以通过上面 &lt;code class=&quot;highlighter-rouge&quot;&gt;遍历视图&lt;/code&gt; 获取到 , &lt;code class=&quot;highlighter-rouge&quot;&gt;action&lt;/code&gt; 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。&lt;/p&gt;
-
-&lt;p&gt;4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 : 
-&amp;gt;1、使用Runtime &lt;code class=&quot;highlighter-rouge&quot;&gt;Method Swizzing&lt;/code&gt; ,  直接把修改控件的方法与 &lt;code class=&quot;highlighter-rouge&quot;&gt;didMoveToSuperview&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;didMoveToWindow&lt;/code&gt; 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。 &lt;br /&gt;
-&amp;gt;2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在&lt;code class=&quot;highlighter-rouge&quot;&gt;viewDidLoad&lt;/code&gt; 里面初始化控件 , 在 &lt;code class=&quot;highlighter-rouge&quot;&gt;viewWillAppear:&lt;/code&gt; 里面动态修改 。&lt;br /&gt;
-&amp;gt; 建议使用第一种适用范围更强 。&lt;/p&gt;
-
-&lt;p&gt;上架后的 &lt;code class=&quot;highlighter-rouge&quot;&gt;应用&lt;/code&gt; 可能会遇到的一些突发状况 , 未测出的&lt;code class=&quot;highlighter-rouge&quot;&gt;Crash&lt;/code&gt;、临时改点小需求 , 等等 , 我们总不能每次因为一点小改动就重新提交一次 &lt;code class=&quot;highlighter-rouge&quot;&gt;App Store&lt;/code&gt; , 先不说 &lt;code class=&quot;highlighter-rouge&quot;&gt;App Store&lt;/code&gt; 的审核时间 , 频繁的让用户去更新应用 , 用户也会烦的 。使用这篇文章所讲的来实现动态更新是再合适不过了 。&lt;/p&gt;
-
-&lt;p&gt;首先上面讲的 &lt;code class=&quot;highlighter-rouge&quot;&gt;动态更新&lt;/code&gt; 是完全脱离出来的一个模块 , 跟业务逻辑没有任何关系 , 只需要部署一次就行了 , 等开发下一个项目也可以直接拿过去使用 。这里的动态更新适用于局部的视图、控件的修改 , 如果你有其它需求可以考虑 &lt;a href=&quot;https://github.com/bang590/JSPatch&quot;&gt;JSPatch&lt;/a&gt; , 下发脚本也是一个不错的选择 。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;工具篇&lt;/h3&gt;
-&lt;p&gt;使用一些UI调试的辅助工具 , 使我们查看视图在项目中得层次结构更为方便 。      &lt;br /&gt;
-常用的UI调试的工具：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Captuer View Hiearachy&lt;/li&gt;
-  &lt;li&gt;Reveal&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Xcode自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Captuer View Hiearachy&lt;/code&gt; 实现步骤:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1、打开Xcode , 运行项目 , 选择最顶部的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;2、&lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;View Debugging&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Show View Frames&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;3、&lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;View Debugging&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Captuer View Hiearachy&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Xcode里面就变成了三维的视图了 , Xcode左侧展示出来的是层级关系的树状图 。&lt;/p&gt;
-
-&lt;p&gt;Reveal的功能相对来说更强大 , 适用于UI调试视图查找 。使用方法请看 &lt;a href=&quot;http://support.revealapp.com/kb/getting-started/reveal&quot;&gt;Reveal集成指南&lt;/a&gt; 。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
-        <link>http://www.baixin.io/2016/01/iOS-OTA/</link>
-        <guid isPermaLink="true">http://www.baixin.io/2016/01/iOS-OTA/</guid>
+        <link>http://baixin.io/2016/04/CocoaPod_Use/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod_Use/</guid>
         
         <category>iOS</category>
         

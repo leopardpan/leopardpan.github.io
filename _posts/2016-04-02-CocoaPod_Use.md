@@ -2,10 +2,10 @@
 layout: post
 title: CocoaPods使用心得
 date: 2016-04-02
-tag: 工具 
----
+tag: iOS 
+--- 
 
-## 简介：
+## 简介：   
 　　本章介绍什么是 `CocoaPods` ,如何使用 `CocoaPods` , 以及 `CocoaPods` 的原理,和使用 `CocoaPods` 时经常出现的一些问题。
 
 <!--more-->
@@ -13,11 +13,11 @@ tag: 工具
 　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。
 
 
-### 安装CocoaPods　
+### 安装CocoaPods　    
 
 　　Mac下自带ruby,使用ruby的gem命令安装,ruby的软件源被墙了,把官方的ruby源替换成国内的淘宝源。
 
-### 更换Gem源
+### 更换Gem源   
 
 ```bash
 $ gem sources --remove https://rubygems.org/
@@ -43,7 +43,8 @@ http://ruby.taobao.org/
 sudo gem update --system
 
 ```
-### 安装cocoapods
+
+### 安装cocoapods        
 
 ```bash
 

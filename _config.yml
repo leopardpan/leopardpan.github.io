@@ -4,7 +4,7 @@ subtitle: 个人站
 description: 
 creator: <a href="http://baixin.io">@leopardpan</a>
 
-url: "http://www.baixin.io"
+url: "http://baixin.io"
 
 permalink: /:year/:month/:title/
 
@@ -20,7 +20,9 @@ blog_button:
 
 # Navigation buttons in the front page.s
 nav:
-    - {title: Wiki, description: Wiki, url: 'http://wiki.baixin.io'}
+    - {title: Wiki, description: Wiki, url: 'http://wiki.baixin.io'}     
+    - {title: 标签, description: tags, url: '/tags'}      
+    - {title: 所有文章, description: archive, url: '/archive'}   
     
 # Pagination
 gems: [jekyll-paginate,jekyll-sitemap]
