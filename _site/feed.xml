@@ -5,8 +5,8 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Sep 2016 13:20:10 +0800</pubDate>
-    <lastBuildDate>Tue, 27 Sep 2016 13:20:10 +0800</lastBuildDate>
+    <pubDate>Wed, 28 Sep 2016 13:50:36 +0800</pubDate>
+    <lastBuildDate>Wed, 28 Sep 2016 13:50:36 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -15,7 +15,7 @@
 
 &lt;p&gt;图一 iOS 系统自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图二 第三方 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图三 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号激活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo icon&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.jpg&quot; width=&quot;200px&quot; /&gt; &lt;img src=&quot;/assets/images/icon/image02.jpg&quot; width=&quot;200px&quot; /&gt; &lt;img src=&quot;/assets/images/icon/image03.jpg&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt;&lt;/h3&gt;
 
@@ -560,8 +560,8 @@ error: Xcode 7.3.0 or later is required.
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/MachineLearning_-introduce/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_-introduce/</guid>
+        <link>http://baixin.io/2016/07/MachineLearning_introduce/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_introduce/</guid>
         
         <category>机器学习</category>
         
@@ -648,8 +648,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/06/HEXO_-Introduce/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_-Introduce/</guid>
+        <link>http://baixin.io/2016/06/HEXO_Advanced/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
         
         <category>博客</category>
         
