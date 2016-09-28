@@ -1,7 +1,7 @@
 _site/
 .sass-cache/
 *.DS_Store
-*CNAME
+CNAME
 .idea
 *.swp
 .Trashes
