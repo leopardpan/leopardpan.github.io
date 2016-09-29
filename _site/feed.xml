@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>潘柏信</title>
-    <description></description>
+    <description>技术博客, HEXO, Jekyll</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 28 Sep 2016 13:50:36 +0800</pubDate>
-    <lastBuildDate>Wed, 28 Sep 2016 13:50:36 +0800</lastBuildDate>
+    <pubDate>Thu, 29 Sep 2016 18:41:13 +0800</pubDate>
+    <lastBuildDate>Thu, 29 Sep 2016 18:41:13 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
