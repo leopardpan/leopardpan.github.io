@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>潘柏信</title>
-    <description>技术博客, HEXO, Jekyll</description>
-    <link>http://baixin.io/</link>
-    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 29 Sep 2016 18:41:13 +0800</pubDate>
-    <lastBuildDate>Thu, 29 Sep 2016 18:41:13 +0800</lastBuildDate>
+    <description></description>
+    <link>http://www.baixin.io/</link>
+    <atom:link href="http://www.baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 30 Sep 2016 11:06:28 +0800</pubDate>
+    <lastBuildDate>Fri, 30 Sep 2016 11:06:28 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -80,8 +80,8 @@
 &lt;a href=&quot;https://www.v2ex.com/t/142320&quot;&gt;关于 IOS8 锁屏左下方出现的 APP ICON&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 23 Sep 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/09/iOSLowerLeftAppicon/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/09/iOSLowerLeftAppicon/</guid>
+        <link>http://www.baixin.io/2016/09/iOSLowerLeftAppicon/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/09/iOSLowerLeftAppicon/</guid>
         
         <category>iOS</category>
         
@@ -241,8 +241,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/08/PythonTestAutomationiOS/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/08/PythonTestAutomationiOS/</guid>
+        <link>http://www.baixin.io/2016/08/PythonTestAutomationiOS/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/08/PythonTestAutomationiOS/</guid>
         
         <category>python</category>
         
@@ -291,8 +291,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Codeless/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
+        <link>http://www.baixin.io/2016/07/Codeless/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/Codeless/</guid>
         
         <category>技术</category>
         
@@ -351,8 +351,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 </description>
         <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/GitTutorial/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/GitTutorial/</guid>
+        <link>http://www.baixin.io/2016/07/GitTutorial/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/GitTutorial/</guid>
         
         <category>工具</category>
         
@@ -523,8 +523,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</guid>
+        <link>http://www.baixin.io/2016/07/iOSMachineLearning_TensorFlow/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/iOSMachineLearning_TensorFlow/</guid>
         
         <category>机器学习</category>
         
@@ -560,8 +560,8 @@ error: Xcode 7.3.0 or later is required.
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/MachineLearning_introduce/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_introduce/</guid>
+        <link>http://www.baixin.io/2016/07/MachineLearning_introduce/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/07/MachineLearning_introduce/</guid>
         
         <category>机器学习</category>
         
@@ -648,8 +648,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/06/HEXO_Advanced/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
+        <link>http://www.baixin.io/2016/06/HEXO_Advanced/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/06/HEXO_Advanced/</guid>
         
         <category>博客</category>
         
@@ -680,8 +680,8 @@ error: Xcode 7.3.0 or later is required.
 
 </description>
         <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/06/Develop_Tool/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/Develop_Tool/</guid>
+        <link>http://www.baixin.io/2016/06/Develop_Tool/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/06/Develop_Tool/</guid>
         
         <category>工具</category>
         
@@ -742,8 +742,8 @@ error: Xcode 7.3.0 or later is required.
 
 </description>
         <pubDate>Wed, 06 Apr 2016 19:25:06 +0800</pubDate>
-        <link>http://baixin.io/2016/04/iBeacon/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
+        <link>http://www.baixin.io/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/04/iBeacon/</guid>
         
         <category>技术</category>
         
@@ -918,8 +918,8 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 
 </description>
         <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/04/CocoaPod_Use/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod_Use/</guid>
+        <link>http://www.baixin.io/2016/04/CocoaPod_Use/</link>
+        <guid isPermaLink="true">http://www.baixin.io/2016/04/CocoaPod_Use/</guid>
         
         <category>iOS</category>
         
