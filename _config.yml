@@ -2,9 +2,9 @@
 title: 潘柏信
 subtitle: 个人站
 description: 
-creator: <a href="http://baixin.io">@leopardpan</a>
+creator: <a href="http://www.baixin.io">@leopardpan</a>
 
-url: "http://baixin.io"
+url: "http://www.baixin.io"
 
 permalink: /:year/:month/:title/
 
@@ -41,7 +41,11 @@ social:
     # twitter: 
     mail: leopardpan@icloud.com
 
+# 百度统计
+baidu:
+    id: 8ba1c6be0953b6f9c2ba38e57f615421  
+
 # Google Analytics
 ga:
-    # id: your_ga_id
-    # host: your_host
+    id: UA-84134159-3   
+    host: auto  
