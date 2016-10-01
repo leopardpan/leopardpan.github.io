@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>老司机带你剖析无码统计</title>
+  <meta name="description" content="　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 无码统计 ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。　　文章主要分为：使用场景、实现原理、适用范...">
+  <meta name="author" content="Wei Wang">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="老司机带你剖析无码统计">
+  <meta name="twitter:description" content="　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 无码统计 ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。　　文章主要分为：使用场景、实现原理、适用范...">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="老司机带你剖析无码统计">
+  <meta property="og:description" content="　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 无码统计 ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。　　文章主要分为：使用场景、实现原理、适用范...">
+  
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://baixin.io/2016/07/Codeless/">
+  <link rel="alternate" type="application/rss+xml" title="潘柏信" href="http://baixin.io/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+  
+  <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?'8ba1c6be0953b6f9c2ba38e57f615421'";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+  </script>
+  
+
+
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-84134159-3', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <!-- 头像效果-start -->
+        <div class="ih-item circle effect right_to_left">            
+            <a href="/#blog" title="前往 潘柏信 的主页" class="blog-button">
+                <div class="img"><img src="/assets/images/avatar.jpg" alt="img"></div>
+                <div class="info">
+                    <div class="info-back">
+                        <h2>leopardpan</h2>
+                        <p>iOS | Machine Learning</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- 头像效果-end -->
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for 潘柏信" class="blog-button">潘柏信</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">个人站</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description"></p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+                
+                  <li class="navigation__item"><a href="http://talkingdatasdk.coding.me" target="_blank" title="Team博客">Team博客</a></li>
+                
+                  <li class="navigation__item"><a href="/tags" target="_blank" title="tags">标签</a></li>
+                
+                  <li class="navigation__item"><a href="/archive" target="_blank" title="archive">所有文章</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  
+  <!-- Weibo -->
+  <li class="navigation__item">
+    <a href="http://weibo.com/5366874726" title="@5366874726 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+  
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/leopardpan" title="@leopardpan 的 Github" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+  
+  
+
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:leopardpan@icloud.com" title="Contact me">
+      <i class='social fa fa-envelope'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-clear"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title">老司机带你剖析无码统计</h1>
+    <div class="post-meta">
+      <time datetime="2016-07-15 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2016-07-15</time>
+     
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span id="busuanzi_container_page_pv">　　阅读：<span id="busuanzi_value_page_pv"></span>次</span>
+    </p>
+    </div>
+  </header>
+
+  <section class="post">
+    <p>　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 <code class="highlighter-rouge">无码统计</code> ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。
+　　文章主要分为：使用场景、实现原理、适用范围、使用详情 四个模块，不管你是产品，还是开发人员又或者是运营人员都适合读这篇文章。            <br />
+　　在App开发过程中我们应该都有过类似的需求：想统计某些按钮的点击次数。例如，我们开发了一个注册模块，注册流程有些复杂，整个注册功能开发完成后，我们肯定是想知道到底有没有用户使用注册功能，而又有多少用户使用？       <br />
+　　有什么方式能知道呢？</p>
+
+<ul>
+  <li>
+    <p>后台看注册系统?    <br />
+　有些麻烦，需要后台去数据库里查看，还要做成数据可视化的才方便看。</p>
+  </li>
+  <li>
+    <p>查看注册按钮的点击情况?   <br />
+　这是最直观的。 主看看两块就行，注册按钮的点击次数 和 提交注册按钮的点击次数，如果发现注册按钮被点击多次（如1W次），而提交注册的点击次数却只有几次，这就可以反映出，很多用户看到的我们的注册流程太复杂，然后选择放弃注册了。同样的道理，我们通过同样的方式可以验证我们其它的功能模块是否有用户经常使用，从而来重新规划我们的设计需求。</p>
+  </li>
+</ul>
+
+<p>　　一整个功能模块的完成涉及到 产品、UI设计、开发、测试 等几个部分，资源和人力的消耗还是挺大的，所以我们在开发过程是否继续维护这些功能模块，还是开发新功能是要经过慎重衡量，而衡量这些最有说服力的依据就是用户的使用数据，这些数据来源是刚才说的 按钮的点击次数，页面的停留时长 等等。</p>
+
+<h3 id="section">使用场景</h3>
+
+<p>　　分析用户App的使用情况当然是直接用数据说话，那么想知道某些按钮的点击次数，就一定需要App的开发人员去具体的按钮点击方法里面埋点才行，有的公司有自己的一套完整的统计埋点系统，有的公司是使用第三方统计，最终都是可以看到按钮的点击次数的，不管怎么样想知道按钮的点击必须要App的开发人员亲自去写代码埋点才行，而这篇文章主要讲的是 <code class="highlighter-rouge">无码统计</code> 按钮点击次数。也就是不需要开发介入，我们就能知道按钮的点击了，开发人员只要负责他的业务开发就行，下面是一张 <code class="highlighter-rouge">传统埋点</code> 统计和 <code class="highlighter-rouge">灵动分析</code> 统计，灵动是TalkingData的SDK无码统计的一个功能。</p>
+
+<p><img src="/assets/images/codeless/image01.png" alt="" /></p>
+
+<p>先大致讲下左边 <code class="highlighter-rouge">传统</code> 埋点统计流程</p>
+
+<blockquote>
+  <ul>
+    <li>首先需要制定埋点需求、设计埋点方案，需求有了后就去找开发沟通，埋点需求的讨论，双方确认需求通过后，然后准备需求文档，开发再根据文档来写具体的埋点代码。</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>代码写完后，App打包给测试人员，测试人员进行测试，同时还要对埋点参数的数据安全审核，参数是否有包含公司敏感信息。</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>测试通过后就需要上线了，这个过程一般是开发人员去完成的。iOS需要提交到AppStore上，以前大家都知道，一个审核周期就是一两周，还有随时被拒的可能，现在虽然周期变短了，但审核也还是挺严格的（走快捷通道的除外）。Android需要在各个渠道上重新发布，也是很麻烦的。</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>如果前面几部都顺利完成了的话，接下来就等待用户更新了，如果埋点统计功能跟其它新功能一起上线的话，我们更新就有理由了，如果仅仅这一版仅仅只是埋点统计功能，那么让用户更新App的理由又是一件头疼的事情了，不管怎么样经常让用户更新App多少会对用户用些影响的。</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>最终的结果应该是部分用户更新了App，那么我们能统计到按钮点击的用户了就只是更新了App的这一部分用户了，而且他们更新的时间是不一样的，最终我们终于可以看需求上的埋点统计了。</li>
+  </ul>
+</blockquote>
+
+<p>再看看右边 <code class="highlighter-rouge">灵动</code> 统计流程</p>
+
+<p>同样需要制定需求，但是需求方可以直接根据自己的需求去使用 <code class="highlighter-rouge">灵动</code> 了，使用了灵动就可以直接看按钮的点击率了，这个过程不需要开发介入，也不需要用户去更新App。</p>
+
+<p>　　从这张图可以看出，不需要开发人员介入，可以开发成功，提高开发效率，而且埋点也很灵活，需求人员（可以是产品，也可以是运营）可以直接使用灵动，也不需要用户更新，那么数据反馈会比传统埋点快很多，使用了就可以立即生效，需求方的观察周期也缩短了，能更灵活的做出决策。</p>
+
+<h3 id="section-1">实现原理</h3>
+
+<p>　　上面大致介绍了下 <code class="highlighter-rouge">灵动</code> 能给我们解决什么问题，这里讲的是 <code class="highlighter-rouge">灵动</code> 是通过什么样的技术手段实现，这里可能对于开发人员来说更喜欢，大家先看一张灵动使用时的一个交互</p>
+
+<p><img src="/assets/images/codeless/image02.png" alt="" /></p>
+
+<p>　　这张图分成两部分看，先看上面，一个用户在操作Client和PC，Client和PC通讯是通过一个Wss的服务器建立的长连接，这是灵动调试时的一个交互。       <br />
+　　也就是说，用户使用灵动分析时，需要一个安装自己App的移动设备，这个App必须要集成TalkingData的统计分析SDK才行，SDK初始化时的AppID是在TalkingData创建应用时分配的。另一端用户要打开TalkingData的灵动网页，在App启动的时候摇一摇手机，然后就可以建立一个wss的长连接了。用户就可以直接在网页上给按钮添加监听事件了，添加完成后，在手机上点击该按钮，网页上就会提示被点击，调试完成后点击全部生效，配置数据就会保存到下面https的服务器。       <br />
+　　我们的所有用户在启动App的时候，都可以从https服务器里获取到这套配置，客户端根据这套配置找到具体的按钮，监听点击事件，当按钮被点击后，就可以统计到了。</p>
+
+<p>接下来再看看灵动调试过程中数据是具体怎么进行数据交互的。</p>
+
+<p><img src="/assets/images/codeless/image03.png" alt="" /></p>
+
+<p>　　可以看到App客户端和Web端交互主要分为四部分：<code class="highlighter-rouge">设备信息</code> 、 <code class="highlighter-rouge">App基本结构</code> 、<code class="highlighter-rouge">控件绑定配置</code> 、<code class="highlighter-rouge">按钮点击信息</code> ，<code class="highlighter-rouge">设备信息</code> 主要是用来确认设备是调试者的设备，因为其它的终端用户也可能会误触发调试，<code class="highlighter-rouge">App基本结构</code>是用来在Web上展示移动App的，然后在Web上绑定了控件，就会把<code class="highlighter-rouge">控件绑定配置</code>发送给客户端，客户端根据配置监听绑定，当终端用户点击控件后，客户端就会把<code class="highlighter-rouge">按钮点击信息</code>传给Web端，Web显示控件被点击。</p>
+
+<p>　　再回头看看实现原理的第一张图片，调试完成数据就会从WSS的长连接服务器存储到HTTPS的服务器，此后其它终端用户只要在再次启动App就能获取到埋点配置了，SDK根据埋点配置去找到具体的控件(按钮)，监听点击，当用户点击控件时就可以调用自定义埋点的方法，之后的数据处理就跟自定义埋点是一样的原理了。   <br />
+　　可能有同学会有疑问，所有的App每次启动的时候都会去获取埋点配置，是不是会很耗流量？ 答案是不会的，服务器在没有埋点配置的时候每次将获取不到信息，那么将不会有什么流量消耗。如果服务器有配置了，App才会有些流量消耗的，而且这些配置信息是经过压缩的，所以流量消耗也不大，App获取到了配置之后就会做本地缓存，服务器配置不变的情况下再次获取配置也不会有流量的消耗，只有在下一次运营人员修改了新的控件绑定时才会消耗一些流量。 所以整个无码统计对终端用户的流量的影响是很小的。    <br />
+　　你也可以参考这套逻辑试试自己也部署这么一套无码统计，之后就不用再担心运营给的埋点统计需求了，让他们自己去用无码统计吧。 如果嫌麻烦的话也可以用<a href="https://www.talkingdata.com/products.jsp?languagetype=zh_cn">TalkingData的灵动分析(无码统计)</a> 帮你完成，同样也可以让运营人员自己去完成埋点的统计。</p>
+
+
+
+  </section>
+</article>
+
+<section>
+       <ul class="pager">
+        
+        <li class="previous">
+            <a href="/2016/07/GitTutorial/" data-toggle="tooltip" data-placement="top" title="Git日常操作">上一篇：  <span>Git日常操作</span>
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2016/08/PythonTestAutomationiOS/" data-toggle="tooltip" data-placement="top" title="Python自动化测试iOS项目">下一篇：  <span>Python自动化测试iOS项目</span>
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+<section class="post-comments">
+
+  
+    <div class="ds-thread" data-thread-key="/2016/07/Codeless/" data-title="老司机带你剖析无码统计" data-url="http://baixin.io/2016/07/Codeless/"></div>
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"leopard"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+  
+  
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+       <p class="copyright text-muted">
+        Copyright &copy; 潘柏信 2016 Theme by <a href="http://baixin.io/">leopardpan</a> |
+        <iframe
+            style="margin-left: 2px; margin-bottom:-5px;"
+            frameborder="0" scrolling="0" width="91px" height="20px"
+            src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+        </iframe>
+    </p>
+    	<div align="right">
+			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+			<span id="busuanzi_value_page_pv"></span> 本站访问：<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> 次
+      	</div>
+
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+    
+  </body>
+
+</html>

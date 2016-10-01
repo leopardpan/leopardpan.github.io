@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>潘柏信</title>
+    <description></description>
+    <link>http://baixin.io/</link>
+    <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 01 Oct 2016 18:36:02 +0800</pubDate>
+    <lastBuildDate>Sat, 01 Oct 2016 18:36:02 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>iOS设备左下角出现Appicon</title>
+        <description>&lt;p&gt;最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。&lt;/p&gt;
+
+&lt;p&gt;图一 iOS 系统自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图二 第三方 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图三 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号激活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo icon&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h4 id=&quot;appstoreapp-&quot;&gt;1、AppStore根据地点对App 推荐&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;简介&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;iOS 8会基于你的位置在锁屏界面上展示一个app快捷打开方式。比如你正在星巴克附近，那iOS 8会在锁屏界面上展示星巴克应用的icon，方便你快速打开。一些用户也表示会在锁屏界面收到app推荐，比如你在Costco和Apple Store附近，即便你之前没有安装过这些应用。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;apphandoff&quot;&gt;2、App实现了handoff功能&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html&quot;&gt;handoff简介&lt;/a&gt;：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;OS X 10.10 Yosemite&lt;/code&gt; 新增了一个酷炫的功能 “Hand Off”，打开这个功能之后，用户可以在 Mac 上对 iPad 和 iPhone 进行操作，比如能够编写 iPhone 上未完成的邮件，并且可以在Mac上打开 iPhone 的热点等等， Mac 的 Hand Off 功能只能识别 Mac 周围的 iPhone 手机。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;handoff有几个要求：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1 两台设备都要登录同一个 iCloud 账号。&lt;/li&gt;
+      &lt;li&gt;2 两台设备上的app有相同的 TeamID 。&lt;/li&gt;
+      &lt;li&gt;3 锁屏（或dock）设备上的app支持的 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSUserActivityTypes&lt;/code&gt; 包含活动设备上的app当前的UserActivityType。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;appibeaconappibeacon&quot;&gt;3、App内有iBeacon信号接收功能，App被iBeacon信号唤醒&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/ibeacon/&quot;&gt;iBeacon简介&lt;/a&gt;&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;是苹果公司2013年9月发布的移动设备用OS（iOS7）上配备的新功能。工作原理类似之前的蓝牙技术，由 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 发射信号，iOS设备定位接受，反馈信号。根据这项简单的定位技术可以做出许多的相应技术应用,如：&lt;code class=&quot;highlighter-rouge&quot;&gt;室内定位&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;商品推荐&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;微信摇一摇&lt;/code&gt; 等。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;App icon出现的原因&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 具备后台定位的能力，只要用户把蓝牙(4.0或以后)开启 和 允许 App 访问位置信息。在有被 App 检测的 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 出现时，如果设备是锁屏状态，设备的左下角就会出现该 App 的 icon 。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sdkicon&quot;&gt;SDK导致设备左下角icon出现的影响范围及解决方案&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;影响范围&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;用户手机在锁屏状态下，附近有微信(或以后加入的 UUID ) &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号出现时，设备左下角会出现 icon 。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;解决方案：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1、解释：目前没有解决方案，但可以给开发者解释，我们会开发出一个新功能不定时的激活App , 但并不会影响我们的正常时长统计。 定期激活App功能模块默认是开启的，但会提供用户手动关闭的接口。&lt;/li&gt;
+      &lt;li&gt;2、SDK 内 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 功能，去掉后台检测。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;参考链接:  &lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020&quot;&gt;Make app appear as iOS 8 Suggested App at lockscreen&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890&quot;&gt;Can I get my iOS app to appear on the lower left corner of the lock screen?&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://www.zhihu.com/question/26653964&quot;&gt;为什么 iOS 8 锁屏界面的左下角经常会出现某个应用的小图标？&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://www.v2ex.com/t/142320&quot;&gt;关于 IOS8 锁屏左下方出现的 APP ICON&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/09/iOSLowerLeftAppicon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/09/iOSLowerLeftAppicon/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Python自动化测试iOS项目</title>
+        <description>&lt;p&gt;作为一个开发人员，为了保证自己的代码的健壮，写单元测试是必不可少的环节，然而最痛快的是每天去手动跑一遍所有的case。那么什么能帮我们解决这些繁琐的操作呢，大家应该会想到自动化测试脚本了，是的，我们可以借助脚本来完成全自动化测试，下面是我列的每天脚本自动执行流程：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;1、&lt;code class=&quot;highlighter-rouge&quot;&gt;pull&lt;/code&gt; git仓库里面的最新代码到本地。&lt;/li&gt;
+    &lt;li&gt;2、然后打包成&lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt;。&lt;/li&gt;
+    &lt;li&gt;3、安装到模拟器上。&lt;/li&gt;
+    &lt;li&gt;4、运行App，执行单元测试，生成测试数据并保存到本地。&lt;/li&gt;
+    &lt;li&gt;5、脚本读取测试数据，邮件发送给相关人员。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当这些全自动化后，可以大大减少开发人员的维护成本，即使每次项目里面有新增模块后，增加测试case就行了，下面会介绍自动测试这5步具体怎么去执行，整个脚本是使用Python写的，代码很少功能也很简单，但这已经可以帮我们完成基本的自动化测试了，这就是脚本的强大之处，选择Pyhton纯属个人喜好，最近也在学习Python，当然了最终使用什么语言看你自己。&lt;/p&gt;
+
+&lt;h3 id=&quot;pythonshell&quot;&gt;python执行shell命令完成测试&lt;/h3&gt;
+
+&lt;p&gt;首先确认本机上安装了&lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; 。  &lt;br /&gt;
+脚本判断本地是否存在项目，不存在则使用命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone ...&lt;/code&gt; ，存在则使用命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull ...&lt;/code&gt; 。     &lt;br /&gt;
+这些在Linux的命令都可以使用脚本来完成的，python的 &lt;code class=&quot;highlighter-rouge&quot;&gt;os.popen()&lt;/code&gt; 方法 就是可以在Linux上执行shell命令。   &lt;br /&gt;
+&lt;strong&gt;例如：&lt;/strong&gt;  把下面这段代码添加到一个 test.py 的文件里，然后在终端上执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;python test.py&lt;/code&gt; 命令你就会看到，你的当前目录下正在下载我的博客了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+
+os.popen(&#39;git clone https://github.com/leopardpan/leopardpan.github.io.git&#39;)   
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;git pull 。。。 更新代码也是一样的。&lt;/p&gt;
+
+&lt;p&gt;接下来的打包、安装、运行都是使用python执行shell命令&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;把iOS项目打包成App，下面的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Demo&lt;/code&gt; 是项目的名字&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcodebuild -project Demo.xcodeproj -target Demo -configuration Debug -sdk iphonesimulator’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这行脚本运行完成后，你就会发现同会生成一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; 的文件夹。&lt;br /&gt;
+Debug参数表示现在是Debug模式，如果Xcode里面改成Release了，这里需要改成Release。&lt;br /&gt;
+xcodebuild 命令是 Xcode Command Line Tools 的一部分。通过调用这个命令，可以完成 iOS 工程的编译，打包和签名过程。可以使用 xcodebuild –help 来看看具体有哪些功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;打开iOS模拟器，这里运行的是&lt;code class=&quot;highlighter-rouge&quot;&gt;iPhone 6 Plus&lt;/code&gt; 你也可以换成其它型号的模拟器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun instruments -w “iPhone 6 Plus”’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;把刚才打包生成的App安装到模拟器上&lt;/strong&gt;    &lt;br /&gt;
+在安装之前要先卸载App,不然你运行的永远是最初安装的那个，后来安装的不会覆盖之前的，卸载App&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun simctl uninstall booted com.test.Demo’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bundle Identifier&lt;/code&gt;，我的是 com.test.Demo，然后再安装App&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun simctl install booted build/Debug-iphonesimulator/Demo.app ‘)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是.app的路径，我打包的时候的是Debug，所以这个的文件夹名称是Debug-iphonesimulator。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;在模拟器里运行App&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun simctl launch booted com.test.Demo’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bundle Identifier&lt;/code&gt;，我的是 com.test.Demo。&lt;/p&gt;
+
+&lt;p&gt;到目前为止，你就会发现你的项目已经运行起来了，你可以在项目是Debug模式下一启动就执行单元测试，然后把对应的测试数据保存到本地为data.json。然后在使用python脚本读取测试文件的数据，最终使用邮件发送给相关人员，pyhton读取数据很简单，一行代码就行&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;data = open(‘data.json’).read()&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;data里面就是json字符串，为了脚本操作简单，我在存储的时候直接把json格式的转成了字符串类型。&lt;/p&gt;
+
+&lt;h3 id=&quot;python&quot;&gt;python发送邮件&lt;/h3&gt;
+
+&lt;p&gt;我使用的是SMTP进行邮件发送的，SMTP是发送邮件的协议，Python内置对SMTP的支持，可以发送纯文本邮件、HTML邮件以及带附件的邮件。&lt;/p&gt;
+
+&lt;p&gt;Python对SMTP支持有smtplib和email两个模块，email负责构造邮件，smtplib负责发送邮件，具体代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from email import encoders
+from email.header import Header
+from email.mime.text import MIMEText
+from email.utils import parseaddr, formataddr
+import smtplib
+
+def format_addr(self,s):
+    name, addr = parseaddr(s)
+    return formataddr(( \
+        Header(name, &#39;utf-8&#39;).encode(), \
+        addr.encode(&#39;utf-8&#39;) if isinstance(addr, unicode) else addr))
+
+def send_mail(self, mail, message, title):
+	from_addr = &#39;leopardpan@163.com&#39;
+	password = &#39;&#39;
+	to_addr = mail
+	smtp_server = &#39;smtp.163.com&#39;
+
+	msg = MIMEText(message, &#39;plain&#39;, &#39;utf-8&#39;)
+	msg[&#39;From&#39;] = self.format_addr(u&#39;自动化测试邮件 &amp;lt;%s&amp;gt;&#39; % from_addr)
+	msg[&#39;To&#39;] = self.format_addr(u&#39;管理员 &amp;lt;%s&amp;gt;&#39; % to_addr)
+	msg[&#39;Subject&#39;] = Header(title, &#39;utf-8&#39;).encode()
+
+	server = smtplib.SMTP(smtp_server, 25)
+	server.set_debuglevel(1)
+	server.login(from_addr, password)
+	server.sendmail(from_addr, [to_addr], msg.as_string())
+	server.quit()
+
+send_mail(&#39;leopardpan@icloud.com&#39;,&#39;正文&#39;,&#39;标题&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;from_addr是发送方的邮箱地址，password是开通SMTP时输入的密码   &lt;br /&gt;
+smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要写成smtp_server = ‘smtp.gmail.com’ 了。&lt;/p&gt;
+
+&lt;p&gt;方法 send_mail(self, mail, message, title): 有四个参数，第一个不用传，第二个参数是收信人的邮箱，第三个是邮件的正文，第四个是邮件的标题，方法调用格式： &lt;code class=&quot;highlighter-rouge&quot;&gt;send_mail(&#39;leopardpan@icloud.com&#39;,&#39;正文&#39;,&#39;标题&#39;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;注意：发送方的邮箱必须要开通SMTP功能才行，否则会报错&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;SMTPSenderRefused: (550, ‘User has no permission’, ‘leopardpan@163.com’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;163的SMTP开通，需要你登录网易邮箱，然后点击顶部的设置就会出现&lt;code class=&quot;highlighter-rouge&quot;&gt;POP3/SMTP/IMAP&lt;/code&gt;，点击之后，勾选选择开启，这个时候需要你输入密码，记住这个密码就是上面代码中的&lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt;，如果你都完成的话，你把上面的代码拷贝出现，把邮箱修改成你自己的，使用 pyhton 运行一下吧。&lt;/p&gt;
+
+&lt;p&gt;上面的几个流程结合起来就可以实现一个简单的自动化测试了，如果你有什么建议和意见欢迎讨论。&lt;/p&gt;
+
+&lt;p&gt;参考链接：
+&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000&quot;&gt;SMTP发送邮件&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/08/PythonTestAutomationiOS/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/08/PythonTestAutomationiOS/</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>老司机带你剖析无码统计</title>
+        <description>&lt;p&gt;　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。
+　　文章主要分为：使用场景、实现原理、适用范围、使用详情 四个模块，不管你是产品，还是开发人员又或者是运营人员都适合读这篇文章。            &lt;br /&gt;
+　　在App开发过程中我们应该都有过类似的需求：想统计某些按钮的点击次数。例如，我们开发了一个注册模块，注册流程有些复杂，整个注册功能开发完成后，我们肯定是想知道到底有没有用户使用注册功能，而又有多少用户使用？       &lt;br /&gt;
+　　有什么方式能知道呢？&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;后台看注册系统?    &lt;br /&gt;
+　有些麻烦，需要后台去数据库里查看，还要做成数据可视化的才方便看。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看注册按钮的点击情况?   &lt;br /&gt;
+　这是最直观的。 主看看两块就行，注册按钮的点击次数 和 提交注册按钮的点击次数，如果发现注册按钮被点击多次（如1W次），而提交注册的点击次数却只有几次，这就可以反映出，很多用户看到的我们的注册流程太复杂，然后选择放弃注册了。同样的道理，我们通过同样的方式可以验证我们其它的功能模块是否有用户经常使用，从而来重新规划我们的设计需求。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;　　一整个功能模块的完成涉及到 产品、UI设计、开发、测试 等几个部分，资源和人力的消耗还是挺大的，所以我们在开发过程是否继续维护这些功能模块，还是开发新功能是要经过慎重衡量，而衡量这些最有说服力的依据就是用户的使用数据，这些数据来源是刚才说的 按钮的点击次数，页面的停留时长 等等。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;使用场景&lt;/h3&gt;
+
+&lt;p&gt;　　分析用户App的使用情况当然是直接用数据说话，那么想知道某些按钮的点击次数，就一定需要App的开发人员去具体的按钮点击方法里面埋点才行，有的公司有自己的一套完整的统计埋点系统，有的公司是使用第三方统计，最终都是可以看到按钮的点击次数的，不管怎么样想知道按钮的点击必须要App的开发人员亲自去写代码埋点才行，而这篇文章主要讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; 按钮点击次数。也就是不需要开发介入，我们就能知道按钮的点击了，开发人员只要负责他的业务开发就行，下面是一张 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统埋点&lt;/code&gt; 统计和 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动分析&lt;/code&gt; 统计，灵动是TalkingData的SDK无码统计的一个功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;先大致讲下左边 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统&lt;/code&gt; 埋点统计流程&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;首先需要制定埋点需求、设计埋点方案，需求有了后就去找开发沟通，埋点需求的讨论，双方确认需求通过后，然后准备需求文档，开发再根据文档来写具体的埋点代码。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;代码写完后，App打包给测试人员，测试人员进行测试，同时还要对埋点参数的数据安全审核，参数是否有包含公司敏感信息。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;测试通过后就需要上线了，这个过程一般是开发人员去完成的。iOS需要提交到AppStore上，以前大家都知道，一个审核周期就是一两周，还有随时被拒的可能，现在虽然周期变短了，但审核也还是挺严格的（走快捷通道的除外）。Android需要在各个渠道上重新发布，也是很麻烦的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;如果前面几部都顺利完成了的话，接下来就等待用户更新了，如果埋点统计功能跟其它新功能一起上线的话，我们更新就有理由了，如果仅仅这一版仅仅只是埋点统计功能，那么让用户更新App的理由又是一件头疼的事情了，不管怎么样经常让用户更新App多少会对用户用些影响的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;最终的结果应该是部分用户更新了App，那么我们能统计到按钮点击的用户了就只是更新了App的这一部分用户了，而且他们更新的时间是不一样的，最终我们终于可以看需求上的埋点统计了。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;再看看右边 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 统计流程&lt;/p&gt;
+
+&lt;p&gt;同样需要制定需求，但是需求方可以直接根据自己的需求去使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 了，使用了灵动就可以直接看按钮的点击率了，这个过程不需要开发介入，也不需要用户去更新App。&lt;/p&gt;
+
+&lt;p&gt;　　从这张图可以看出，不需要开发人员介入，可以开发成功，提高开发效率，而且埋点也很灵活，需求人员（可以是产品，也可以是运营）可以直接使用灵动，也不需要用户更新，那么数据反馈会比传统埋点快很多，使用了就可以立即生效，需求方的观察周期也缩短了，能更灵活的做出决策。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;实现原理&lt;/h3&gt;
+
+&lt;p&gt;　　上面大致介绍了下 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 能给我们解决什么问题，这里讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 是通过什么样的技术手段实现，这里可能对于开发人员来说更喜欢，大家先看一张灵动使用时的一个交互&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image02.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;　　这张图分成两部分看，先看上面，一个用户在操作Client和PC，Client和PC通讯是通过一个Wss的服务器建立的长连接，这是灵动调试时的一个交互。       &lt;br /&gt;
+　　也就是说，用户使用灵动分析时，需要一个安装自己App的移动设备，这个App必须要集成TalkingData的统计分析SDK才行，SDK初始化时的AppID是在TalkingData创建应用时分配的。另一端用户要打开TalkingData的灵动网页，在App启动的时候摇一摇手机，然后就可以建立一个wss的长连接了。用户就可以直接在网页上给按钮添加监听事件了，添加完成后，在手机上点击该按钮，网页上就会提示被点击，调试完成后点击全部生效，配置数据就会保存到下面https的服务器。       &lt;br /&gt;
+　　我们的所有用户在启动App的时候，都可以从https服务器里获取到这套配置，客户端根据这套配置找到具体的按钮，监听点击事件，当按钮被点击后，就可以统计到了。&lt;/p&gt;
+
+&lt;p&gt;接下来再看看灵动调试过程中数据是具体怎么进行数据交互的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image03.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;　　可以看到App客户端和Web端交互主要分为四部分：&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 主要是用来确认设备是调试者的设备，因为其它的终端用户也可能会误触发调试，&lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt;是用来在Web上展示移动App的，然后在Web上绑定了控件，就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt;发送给客户端，客户端根据配置监听绑定，当终端用户点击控件后，客户端就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt;传给Web端，Web显示控件被点击。&lt;/p&gt;
+
+&lt;p&gt;　　再回头看看实现原理的第一张图片，调试完成数据就会从WSS的长连接服务器存储到HTTPS的服务器，此后其它终端用户只要在再次启动App就能获取到埋点配置了，SDK根据埋点配置去找到具体的控件(按钮)，监听点击，当用户点击控件时就可以调用自定义埋点的方法，之后的数据处理就跟自定义埋点是一样的原理了。   &lt;br /&gt;
+　　可能有同学会有疑问，所有的App每次启动的时候都会去获取埋点配置，是不是会很耗流量？ 答案是不会的，服务器在没有埋点配置的时候每次将获取不到信息，那么将不会有什么流量消耗。如果服务器有配置了，App才会有些流量消耗的，而且这些配置信息是经过压缩的，所以流量消耗也不大，App获取到了配置之后就会做本地缓存，服务器配置不变的情况下再次获取配置也不会有流量的消耗，只有在下一次运营人员修改了新的控件绑定时才会消耗一些流量。 所以整个无码统计对终端用户的流量的影响是很小的。    &lt;br /&gt;
+　　你也可以参考这套逻辑试试自己也部署这么一套无码统计，之后就不用再担心运营给的埋点统计需求了，让他们自己去用无码统计吧。 如果嫌麻烦的话也可以用&lt;a href=&quot;https://www.talkingdata.com/products.jsp?languagetype=zh_cn&quot;&gt;TalkingData的灵动分析(无码统计)&lt;/a&gt; 帮你完成，同样也可以让运营人员自己去完成埋点的统计。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/Codeless/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
+        
+        <category>技术</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Git日常操作</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;版本控制器&lt;/h3&gt;
+
+&lt;p&gt;　　顾名思义，就是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历等等，都可以使用git来管理(svn也行)。使用版本控制器的目的是为了可以查看以前的修改记录，如：你上周周每天都有对项目进行修改，等这周忽然发现上周某些修改其实是有问题的，或者因为其它原因你想看看你上次没修改之前的一些记录，这时你会怎么做？修改之前拷贝一份出来？有问题直接看之前的备份就行了，是的这样是可以解决刚才的问题，那么时间就会就会出现：项目1.0，项目1.0完成版，项目1.0最终版，项目1.0再也不改版，项目1.0打死也不改版。。。毕业设计的时候大家有没有遇到过这种？在项目上可能你不会这样做，因为项目本身的体积就不小,如果拷贝这么多份的话，先不说是不是很难管理，你的电脑内存就仅仅够装几个项目。再者，如果你的电脑忽然挂了，里面的资料全没了，那么你之前做的项目是不是也都白费了，有些人遇到这种事估计想死的心都有了。那么应该怎么来解决呢，我刚才提到的，有很多个版本需要修改，或者是防止电脑挂掉，项目丢失这些问题都是可以用 &lt;code class=&quot;highlighter-rouge&quot;&gt;版本控制器&lt;/code&gt; 来解决的，&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;工作流程&lt;/h3&gt;
+&lt;p&gt;　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：&lt;a href=&quot;http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html&quot;&gt;为什么Git比SVN好&lt;/a&gt;。我使用的的Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了，我没自己安装过就不乱贴链接了，你可以自己在Google或者百度上一搜Git安装，教程一大把。     &lt;br /&gt;
+　　你可以把Git看成是一个仓库管理员，它可以操作本地的仓库和远端的仓库，如果在没有服务器的情况下，也就不会有远端的仓库，那我们就先说本地仓库。
+&lt;strong&gt;建立仓库：&lt;/strong&gt;    &lt;br /&gt;
+你在目标文件夹下使命令：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;git init&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;就会创建一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;.git&lt;/code&gt; 隐藏文件，相当于已经建立了一个本地仓库。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;添加到暂存区：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;git add .&lt;/li&gt;
+    &lt;li&gt;git commit -m ‘提交记录1’&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;add . &lt;/code&gt; . 代表这个目录下的所有文件。&lt;code class=&quot;highlighter-rouge&quot;&gt;git add .&lt;/code&gt; 就是把这个目录下的所有文件都添加进来，然后 &lt;code class=&quot;highlighter-rouge&quot;&gt;git commit -m &#39;提交记录1&#39;&lt;/code&gt; 然后提交，-m 后面的是提交记录，每次提交的时候都需要写提交记录，内容自己定义，目的是为了以后方便查找记录，回退到现在这次提交上等等操作。到目前为止，你就已经有本地仓库了，你再次对文件内容做修改后，继续做类似的操作 &lt;code class=&quot;highlighter-rouge&quot;&gt;git add .&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;git commit -m &#39;提交记录2&#39;&lt;/code&gt;… 每次你可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt; 查看，是有你的文件内容有修改，如果有，就会有红色的提示信息，当你使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git add .&lt;/code&gt; 之后在使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt; 查看，就会变成绿色的提示信息了，等你使用&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit -m &#39;提交记录3&#39;&lt;/code&gt; 后再使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt; 查看，就会发现你没有新的修改信息了，这个时候你就可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git log&lt;/code&gt; 就会然后之前每次的提交信息。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;其它&lt;/h3&gt;
+
+&lt;p&gt;git branc 查看时如出现&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;(HEAD detached at analytics_v2)&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;dev&lt;/li&gt;
+    &lt;li&gt;master&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;代表现在已经进入一个临时的HEAD，可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -b temp&lt;/code&gt; 创建一个 temp branch，这样临时HEAD上修改的东西就不会被丢掉了。
+然后切换到 dev 分支上，在使用 git branch merge temp，就可以把 temp 分支上的代码合并到 dev 上了。&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/GitTutorial/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/GitTutorial/</guid>
+        
+        <category>工具</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iOS开发迎来机器学习的春天---TensorFlow</title>
+        <description>&lt;div align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
+&lt;/div&gt;
+
+&lt;p&gt;　　&lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 &lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt;的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt; 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？           &lt;br /&gt;
+　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能够将&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt;应用在移动端，敲响移动端&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;工业化的大门呢？&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;想象一下，某一天你身处一个完全陌生的环境，周围都是陌生的事物，而运行在iPhone的某个APP却对这个环境了如指掌，你要做的就是打开这个APP，输入你需要了解的事物，iPhone告诉你这个事物的信息，你也就没有了陌生事物了。世界就在眼前！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如下图：&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/tfimg/image02.png&quot; height=&quot;300&quot; width=&quot;480&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。&lt;/p&gt;
+
+&lt;p&gt;但是在某些事物的识别准确度方便却差强人意，比如下图：&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/image01.png&quot; height=&quot;300&quot; width=&quot;320&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+　　&lt;img src=&quot;/assets/images/tfimg/wq.jpg&quot; height=&quot;320&quot; width=&quot;240&quot; /&gt;  
+&lt;/div&gt;
+
+&lt;p&gt;　　上面的例子来自于TensorFlow官方iOSDemo，暂且不评述TensorFlow的识别准确度如何，毕竟它还年轻，但是仅凭其识别能力的体现，也给机器学习在移动端的运用带来了无限的可能。&lt;/p&gt;
+
+&lt;h3 id=&quot;tensorflowtf&quot;&gt;一、TensorFlow（简称TF）&lt;/h3&gt;
+
+&lt;p&gt;　　去年，Google资深系统专家Jeff Dean在湾区机器学习大会上隆重介绍了其第二代深度学习系统&lt;a href=&quot;http://www.tensorflow.org/&quot;&gt;TensorFlow&lt;/a&gt;，一时间网络上针对TensorFlow的文章铺天盖地，&lt;a href=&quot;http://www.leiphone.com/news/201511/UDLyNds2oSTwM2yZ.html&quot;&gt;揭秘TensorFlow：Google开源到底开的是什么？&lt;/a&gt;、&lt;a href=&quot;http://www.leiphone.com/news/201511/Voza1pFNQB4bzKdR.html&quot;&gt;Google开源TensorFlow系统，这背后都有什么门道？&lt;/a&gt;、&lt;a href=&quot;http://www.zhihu.com/question/37243838&quot;&gt;如何评价Google发布的第二代深度学习系统TensorFlow?&lt;/a&gt;等等文章，TensorFlow的燎原之火一直在燃烧蔓延着，其&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;GitHub上的开源库&lt;/a&gt;在此文撰写时，也已经被&lt;code class=&quot;highlighter-rouge&quot;&gt;star：27550&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;fork：11054&lt;/code&gt;了。🔥 🔥 🔥 🔥 🔥&lt;/p&gt;
+
+&lt;p&gt;不负众望，Google一直宣称平台移植性非常好的TensorFlow，终于在2016年6月27日，发布0.9版本，宣布移动端支持。&lt;a href=&quot;https://developers.googleblog.com/2016/06/tensorflow-v09-now-available-with.html&quot;&gt;TensorFlow v0.9 now available with improved mobile support&lt;/a&gt;( 有墙💢 )，同时也给出了移动端的&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples&quot;&gt;Demo&lt;/a&gt;，对于代码为生的程序员，身处大数据处理为主导的&lt;a href=&quot;http://www.talkingdata.com/&quot;&gt;TalkingData&lt;/a&gt;，也小试身手了一把，下载TensorFlow源码，查看编译指南，开始跳坑、填坑之路，也成就了此篇拙文的产生。&lt;/p&gt;
+
+&lt;h3 id=&quot;tensorflowios&quot;&gt;二、从TensorFlow到iOS静态库&lt;/h3&gt;
+
+&lt;p&gt;对于iOS平台下如何使用TensorFlow，TensorFlow给出了详细的编译脚本命令，详情请查看&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile&quot;&gt;官方文档的命令&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;第一步. 工具准备&lt;/h5&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;工欲善其事必先利其器&lt;/code&gt;，在开始编译工作之前，需要准备一些编译所必须的工具：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;: Mac os x 上包管理工具，具体使用方法可参考&lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot;&gt;Doc&lt;/a&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Homebrew安装好之后，依次安装三个辅助性编译工具：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install libtool   
+$ brew install autoconf   
+$ brew install automake   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;三个工具的含义，请参考：&lt;a href=&quot;https://en.wikipedia.org/wiki/GNU_Libtool&quot;&gt;https://en.wikipedia.org/wiki/GNU_Libtool&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;tensorflow&quot;&gt;第二步. 克隆TensorFlow&lt;/h5&gt;
+
+&lt;p&gt;Google以&lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache 2.0&lt;/a&gt;开源协议将TensorFlow开源在&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;GitHub&lt;/a&gt;上，我们可以直接使用TensorFlow源码。&lt;/p&gt;
+
+&lt;p&gt;在任意你想存放TensorFlow源码的地方（建议不要放在桌面。^_^），clone项目。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone https://github.com/tensorflow/tensorflow 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;第三步. 编译前准备&lt;/h5&gt;
+
+&lt;p&gt;　　在TensorFlow的&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下，有很多可使用的编译脚本，其中&lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;脚本专门用来一键编译TensorFlow iOS静态库。虽然可以直接使用此脚本进行一键编译，但是因为有墙，某些依赖需要提前做处理。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载protobuf&lt;/p&gt;
+
+    &lt;p&gt;protobuf 是编译前唯一需要特殊处理的依赖库，&lt;a href=&quot;https://github.com/google/protobuf/archive/master.zip&quot;&gt;点击下载&lt;/a&gt;，下载protobuf之后，解压，备用。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载googlemock&lt;/p&gt;
+
+    &lt;p&gt;虽然protobuf编译脚本&lt;code class=&quot;highlighter-rouge&quot;&gt;autogen.sh&lt;/code&gt;中的googlemock链接地址&lt;code class=&quot;highlighter-rouge&quot;&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip&lt;/code&gt;无法直接下载到，但是细心的人会发现，在浏览器中输入&lt;code class=&quot;highlighter-rouge&quot;&gt;https://googlemock.googlecode.com/&lt;/code&gt;地址后，会跳转到&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/google/googlemock&lt;/code&gt;地址，google在GiHub上的仓库地址。而GitHub上的仓库，我们可以直接的下载，克隆等。&lt;/p&gt;
+
+    &lt;p&gt;我们直接在GitHub上下载googlemock(&lt;a href=&quot;https://github.com/google/googlemock/archive/master.zip&quot;&gt;点击下载&lt;/a&gt;)，下载完成后，修改压缩包名字为&lt;code class=&quot;highlighter-rouge&quot;&gt;gmock-1.7.0.zip&lt;/code&gt;，修改后将此压缩包移至上一步protobuf文件夹目录下，备用。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改下载依赖脚本，移除protobuf的下载&lt;/p&gt;
+
+    &lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下，&lt;code class=&quot;highlighter-rouge&quot;&gt;download_dependencies.sh&lt;/code&gt;脚本用来下载相关依赖，打开此脚本文件，注释掉或者直接删掉&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/google/protobuf.git ${DOWNLOADS_DIR}/protobuf&lt;/code&gt;部分，目的是不让脚本去下载protobuf。&lt;/p&gt;
+
+    &lt;p&gt;上面三步准备好后，接下来就进入静态库编译了。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;第四步. 一键编译&lt;/h5&gt;
+
+&lt;p&gt;　　前面已经知道在TensorFlow文件夹&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下的&lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;脚本是用来编译iOS静态库的脚本，因此可以直接执行此脚本，开始静态库的编译工作了。&lt;/p&gt;
+
+&lt;p&gt;　　但是有一个问题大家可能会发现，由于编译TensorFlow需要用到protobuf，但是protobuf使我们自己手动下载的，该怎么让手动下载的protobuf能够直接让&lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;脚本使用呢？&lt;/p&gt;
+
+&lt;p&gt;　　答案是&lt;code class=&quot;highlighter-rouge&quot;&gt;复制、粘贴&lt;/code&gt;。可能有些low，但是有效。执行命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;之后，立即把之前手动下载的protobuf文件夹拷贝进&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/downloads&lt;/code&gt;目录。（放心，你拷贝的速度会很快，不会影响编译的执行的。^_^）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ build_all_ios.sh    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;　　一切准备就绪，接下来就是静静的等待编译完成了。在Mac编译的过程中，建议插上电源，最好不要让设备休眠断电，也最好不要去干别的东西，出去溜达一圈，回来后就看到战果了。&lt;/p&gt;
+
+&lt;p&gt;编译完成之后，会在&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/gen/&lt;/code&gt;目录下看到编译的结果，关于这些静态库该如何使用，自己的项目如何应用，请参考&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples&quot;&gt;TensorFlow iOS Examples&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;三、遇到的问题&lt;/h3&gt;
+
+&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用），这也是上面编译前准备为什么要那么做的原因。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;解决： 请参考 『第三步. 编译前准备』。&lt;/p&gt;
+
+&lt;p&gt;2、没有Xcode。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xcrun: error: SDK &quot;iphoneos&quot; cannot be located
+xcrun: error: SDK &quot;iphoneos&quot; cannot be located
+xcrun: error: unable to lookup item &#39;PlatformPath&#39; in SDK &#39;iphoneos&#39;
++ IPHONEOS_PLATFORM=
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;解决：安装Xcode，从上面报错的命令中可以看到，在编译静态库的过程中使用了&lt;code class=&quot;highlighter-rouge&quot;&gt;xcrun&lt;/code&gt;，而此命令是xCode本身具有的能力。&lt;/p&gt;
+
+&lt;p&gt;3、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
+error: Xcode 7.3.0 or later is required.
++ exit 1
+&lt;/code&gt;/&lt;/p&gt;
+
+&lt;p&gt;解决：更新Xcode至最新版本，并且保证默认路径下是最新/版本。&lt;/p&gt;
+
+&lt;p&gt;如果Xcode是7.3，并且没有条件更新Xcode，你可以修改&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/compile_ios_tensorflow.sh&lt;/code&gt; 里的&lt;code class=&quot;highlighter-rouge&quot;&gt;REQUIRED_XCODE_VERSION=7.3.0&lt;/code&gt;，为&lt;code class=&quot;highlighter-rouge&quot;&gt;REQUIRED_XCODE_VERSION=7.3&lt;/code&gt;。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;四、参考链接&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://tensorfly.cn/&quot;&gt;TensorFlow 中文社区&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.tensorflow.org/mobile.html&quot;&gt;TensorFlow for Mobile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://chenrudan.github.io/blog/2015/11/18/comparethreeopenlib.html&quot;&gt;Caffe、TensorFlow、MXnet三个开源库对比&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://weibo.com/p/1001603907610737775666&quot;&gt;如何评价Tensorflow和其它深度学习系统&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80&quot;&gt;深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>机器学习入门（名词科普）</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;通用名词&lt;/h3&gt;
+
+&lt;h4 id=&quot;ml&quot;&gt;ML&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 机器学习(Machine Learning)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。
+　　它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。&lt;/p&gt;
+
+&lt;h4 id=&quot;dl&quot;&gt;DL&lt;/h4&gt;
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 深度学习（Deep Learning）是机器学习拉出的分支，它试图使用包含复杂结构或由多重非线性变换构成的多个处理层对数据进行高层抽象的算法。        &lt;br /&gt;
+　　深度学习是机器学习中表征学习方法。观测值（例如一幅图像）可以使用多种方式来表示，如每个像素强度值的矢量，或者更抽象地表示成一系列边、特定形状的区域等。而使用某些特定的表示方法更容易从实例中学习任务（例如，人脸识别或面部表情识别）。深度学习的好处是将用非监督式或半监督式的特征学习和分层特征提取的高效算法来替代手工获取特征。&lt;/p&gt;
+
+&lt;h4 id=&quot;cnn&quot;&gt;CNN&lt;/h4&gt;
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 卷积神经网络（Convolutional neural networks，简称CNNs）是一种深度的监督学习下的机器学习模型&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;算法名词&lt;/h3&gt;
+
+&lt;h4 id=&quot;knn&quot;&gt;KNN:&lt;/h4&gt;
+
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 邻近算法，或者说K最近邻(kNN，k-NearestNeighbor)分类算法。
+　　邻近算法是数据挖掘分类技术中最简单的方法之一。所谓K最近邻，就是k个最近的邻居的意思，说的是每个样本都可以用它最接近的k个邻居来代表。
+　　kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。该方法在确定分类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。 kNN方法在类别决策时，只与极少量的相邻样本有关。由于kNN方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，kNN方法较其他方法更为适合。&lt;/p&gt;
+
+&lt;h4 id=&quot;svm&quot;&gt;SVM:&lt;/h4&gt;
+&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 支持向量机（Support Vector Machine）。
+　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/07/MachineLearning_introduce/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_introduce/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>HEXO进阶</title>
+        <description>&lt;p&gt;HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如果你也在使用HEXO，不妨看看，应该会有些帮助。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1、博客部署样式出问题了怎么办？&lt;/li&gt;
+  &lt;li&gt;2、电脑重装或者误删了本地博客怎么办？&lt;/li&gt;
+  &lt;li&gt;3、想使用两台电脑写博客怎么办？&lt;/li&gt;
+  &lt;li&gt;4、为何使用百度搜不到我的博客？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;jekyll&quot;&gt;使用Jekyll解决前三个问题。&lt;/h3&gt;
+&lt;p&gt;不得不说 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 确实可以解决我上面三个问题, 因为 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 是直接把Markdown格式的文章直接放在github仓库里的, 相当于直接用git来管理博客了, &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt; 官方也很推荐 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 。 你可以先看下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 搭建博客的&lt;a href=&quot;voyagelab.github.io&quot;&gt;voyagelab&lt;/a&gt;, &lt;a href=&quot;https://github.com/voyagelab/voyagelab.github.io&quot;&gt;github地址&lt;/a&gt;, 当然了这只是很普通的, Jekyll 也有很多主题可以选择的, 更详细的请看&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;。
+在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 上逛了一个星期的我又回到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; , 发现 目前 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 对主题和一些插件的支持相对 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; 来说, 没那么友好, 可能有一些其它的方法只是我没找到而已,关于 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 搭建博客就介绍到这, 如果有问题的话可以评论, 或者联系我。&lt;/p&gt;
+
+&lt;h3 id=&quot;hexo&quot;&gt;使用Hexo解决上面前三个问题&lt;/h3&gt;
+&lt;p&gt;是的, 我大&lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt;同样可以解决上面三个问题, 那就是使用git。关于如何使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; 搭建博客请看我另一篇文章&lt;a href=&quot;http://www.baixin.io/2015/08/25/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;, 如果搭建的过程中出现了问题, 我们可以交流交流。现在我假设你已经能基本使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; 了, 接下来就看看如何来管理博客。&lt;/p&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;使用git管理博客&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt;是我管理博客的仓库地址。结构大致是:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;– Blog-Growing   &lt;br /&gt;
+　　|– .git   &lt;br /&gt;
+　　|– .gitignore  &lt;br /&gt;
+　　|– Hexo   &lt;br /&gt;
+　　　　|   ..  &lt;br /&gt;
+　　　　|   ..  &lt;br /&gt;
+　　　　|   整个博客的配置信息&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;你可以把我的的&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt; clone下来, 看看一些基本配置是怎么配置的。需要提醒的是, &lt;code class=&quot;highlighter-rouge&quot;&gt;要把主题下的.git给删除掉&lt;/code&gt; , 当然了你也可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git submodule&lt;/code&gt; 来管理, 具体的管理方法我这里就不做多的介绍了, 想了解的话可以私信我。
+上面的过程基本做完后, 怎么来解决我开篇提的前三个问题了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;具体实现:&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;一：家里电脑使用博客&lt;/strong&gt;      &lt;br /&gt;
+　　建立git远端仓库管理博客,并使用家里的电脑把本地博客的配置推送到远端仓库。 &lt;br /&gt;
+&lt;strong&gt;二：公司电脑使用博客&lt;/strong&gt;       &lt;br /&gt;
+　　到了公司只需要执行&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo npm install -g hexo&lt;/code&gt;,然后cd到你的博客目录下,如我cd 到Hexo目录下, 然后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo server&lt;/code&gt; 就可以在本地预览博客了。  &lt;br /&gt;
+&lt;strong&gt;三：使用Git保存&lt;/strong&gt;        &lt;br /&gt;
+　　修改好博客后记得先使用git来提交下, 即使下次把博客的样式修改坏了, 也可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git reset --hard&lt;/code&gt; 来回退。如: 我cd 到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Blog-Growing&lt;/code&gt; 目录下使用git提交。 &lt;br /&gt;
+&lt;strong&gt;四：博客提交&lt;/strong&gt;         &lt;br /&gt;
+　　1、修改好的博客使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo d&lt;/code&gt; 展示到博客页上。 &lt;br /&gt;
+　　2、git push 整个本地博客。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;提示:&lt;/strong&gt; 在这里 &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; 仅仅只是用户做博客的版本管理的, 博客的样式修改、基本部署还是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo&lt;/code&gt; 来操作的。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;让百度能搜索到你的博客&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;为什么要使用百度搜索？&lt;/h3&gt;
+
+&lt;p&gt;　　有人可能会说作为一个开发人员, 你不会用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
+
+&lt;h3 id=&quot;github-page-&quot;&gt;为什么使用百度搜索不到 Github Page 上的博客？&lt;/h3&gt;
+
+&lt;p&gt;有人联系过 Github Support 部门 , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;如何让百度能搜索你的博客?&lt;/h3&gt;
+
+&lt;p&gt;　　根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
+* 自己搞个VPS,博客部署在VPS上。
+* 博客部署 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上, &lt;code class=&quot;highlighter-rouge&quot;&gt;GitCafe&lt;/code&gt;已经合并到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding&lt;/code&gt; 。
+我使用的是第二种方法, 博客部署在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上也相对简单些。&lt;/p&gt;
+
+&lt;h4 id=&quot;coding&quot;&gt;在Coding上部署你的博客。&lt;/h4&gt;
+
+&lt;p&gt;　　Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:   &lt;br /&gt;
+&lt;strong&gt;注意一:&lt;/strong&gt;     &lt;br /&gt;
+　　在&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code class=&quot;highlighter-rouge&quot;&gt;coding-pages &lt;/code&gt; 分支上, 分支名字是固定的。  &lt;br /&gt;
+&lt;strong&gt;注意二:&lt;/strong&gt;   &lt;br /&gt;
+　　&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。&lt;/p&gt;
+
+&lt;p&gt;更详细的请看&lt;a href=&quot;https://coding.net/help/doc/pages/index.html&quot;&gt;Coding Pages 官网介绍&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;参考文章:
+&lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/06/HEXO_Advanced/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
+        
+        <category>博客</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>开发常用工具</title>
+        <description>&lt;p&gt;个人开发常用工具的收集&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;cmd Markdown&lt;/a&gt; 作业部落出版的Markdown编辑器&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/rest-client/rest-client&quot;&gt;RESTClient&lt;/a&gt; 一个开源的客户端HTTP调试工具。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/getlantern/lantern&quot;&gt;lantern&lt;/a&gt; 蓝灯,一款开源的翻墙工具。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles&lt;/a&gt; 青花瓷, 一款HTTP/HTTPS的抓包工具。
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/&quot;&gt;Charles 从入门到精通&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.sublimetext.com&quot;&gt;Sublime&lt;/a&gt; 一款强大的IDE,支持Python、JS、JSON格式化等等…更重要的是&lt;code class=&quot;highlighter-rouge&quot;&gt;Sublime&lt;/code&gt;支持的插件很多。
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.xuanfengge.com/practical-collection-of-sublime-plug-in.html&quot;&gt;实用的sublime插件集合&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
+        <link>http://baixin.io/2016/06/Develop_Tool/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/06/Develop_Tool/</guid>
+        
+        <category>工具</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>我们日常生活中的iBeacon</title>
+        <description>&lt;p&gt;　　随着低功耗蓝牙的推出，iBeacon的使用是越来越广泛了，如：微信的附近摇一摇功能，又或者是当你进入大型商场，一些店铺给你推送通知，VR场景识别等等，这些表示iBeacon已经与我们的生活精密相连了。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;简介：&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;概念：&lt;/strong&gt; iBeacon是iOS7后苹果出的一项新技术，支持蓝牙4.0(或以上)的iOS设备，工作方式是低功耗蓝牙（BLE），一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;iBeacon的形状多种多样，大致如下图。
+&lt;img src=&quot;/assets/images/iBeacon.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;ibeacon&quot;&gt;目前哪些地方有iBeacon：&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;1、微信摇一摇：使用微信的人应该都知道微信有一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;周边摇一摇&lt;/code&gt; 功能， 使用的就是iBeacon技术。 很多餐馆都部有iBeacon的点，如果你想验证直接监测微信的iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。&lt;/li&gt;
+  &lt;li&gt;2、走进某个商场时，忽然手机里推出一个通知，也是使用iBeacon技术。&lt;/li&gt;
+  &lt;li&gt;3、帝都的地跌站大部分也有微信UUID的iBeacon点，具体是用来做什么的还不是慢清楚。&lt;/li&gt;
+  &lt;li&gt;4、iBeacon还可实现地理围栏、室内定位等功能。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;ibeacon-1&quot;&gt;iBeacon技术（代码）&lt;/h4&gt;
+&lt;p&gt;　　Apple的 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.frame&lt;/code&gt; 里把iBeacon封装成了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 大致有下面几个属性组成：&lt;code class=&quot;highlighter-rouge&quot;&gt;Major&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;Minor&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;proximity&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;rssi&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;h4 id=&quot;ibeacopn&quot;&gt;开发者如何使用iBeacopn?:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;1、用户需要添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.framework&lt;/code&gt; ，App 才具备定位的功能。&lt;/li&gt;
+  &lt;li&gt;2、App 开发者需要开启定位功能需要配置：在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;info.plist&lt;/code&gt; 里面添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note: &lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码例子&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;ibeacon-2&quot;&gt;iBeacon硬件设备条件：&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;用户设备iOS7或更新操作系统。&lt;/li&gt;
+  &lt;li&gt;用户蓝牙设备4.0或更新。&lt;/li&gt;
+  &lt;li&gt;用户蓝牙设备必须开启。&lt;/li&gt;
+  &lt;li&gt;用户设备定位服务必须开启，允许应用访问位置信息。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;ibeacon-3&quot;&gt;iBeacon能唤醒应用&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;前提：App具备上面使用iBeacon的功能，并且允许后台访问位置信息。&lt;/li&gt;
+  &lt;li&gt;现象：App能被iBeacon信号唤醒，即使App已经被用户手动杀死掉了，App也能被iBeacon技术唤醒，并且能执行一系列操作。&lt;/li&gt;
+  &lt;li&gt;影响：导致App用户在并没有使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 的情况下, &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 有了长达几个小时的后台使用时长。&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Wed, 06 Apr 2016 19:25:06 +0800</pubDate>
+        <link>http://baixin.io/2016/04/iBeacon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
+        
+        <category>技术</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>CocoaPods使用心得</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;简介：&lt;/h2&gt;
+&lt;p&gt;　　本章介绍什么是 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; ,如何使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; , 以及 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; 的原理,和使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; 时经常出现的一些问题。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。&lt;/p&gt;
+
+&lt;h3 id=&quot;cocoapods&quot;&gt;安装CocoaPods　&lt;/h3&gt;
+
+&lt;p&gt;　　Mac下自带ruby,使用ruby的gem命令安装,ruby的软件源被墙了,把官方的ruby源替换成国内的淘宝源。&lt;/p&gt;
+
+&lt;h3 id=&quot;gem&quot;&gt;更换Gem源&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources --remove https://rubygems.org/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources -a https://ruby.taobao.org/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.移除掉原有的源（服务器在国外，速度较慢）。&lt;/li&gt;
+  &lt;li&gt;2.等1有反应之后再敲2命令（替换成淘宝上的ruby镜像https）。&lt;/li&gt;
+  &lt;li&gt;3.验证是否成功。成功如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; CURRENT SOURCES &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt;
+
+http://ruby.taobao.org/
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;gem-1&quot;&gt;更新Gem源&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+sudo gem update --system
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;cocoapods-1&quot;&gt;安装cocoapods&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install cocoapods
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pod setup
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;pod setup 在执行时会比较慢，因为Cocoapods 要将它的信息下载到 ~/.cocoapods目录下, 耐心等待…&lt;/p&gt;
+
+&lt;h4 id=&quot;cocoapods-2&quot;&gt;提升cocoapods的安装速度&lt;/h4&gt;
+
+&lt;p&gt;所有的项目的 Podspec 文件都托管在https://github.com/CocoaPods/Specs。第一次执行 pod setup 时，CocoaPods 会将这些podspec索引文件更新到本地的 ~/.cocoapods/目录下，这个索引文件比较大，有 80M 左右。
+作者akinliu 在 gitcafe 和 oschina 上建立了 CocoaPods 索引库的镜像(在国内),我们可以使用CocoaPods国内的镜像索引，操作时会快多了,如gitcafe：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+pod repo remove master
+pod repo add master https://gitcafe.com/akuandev/Specs.git
+pod repo update
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;cocoapods-3&quot;&gt;使用cocoapods&lt;/h3&gt;
+
+&lt;p&gt;cocoapods安装完成后，使用 pod search 命令来验证一下&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+pod search AFNetworking
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;终端将会有如下结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;AFNetworking &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+A delightful iOS and OS X networking framework.
+pod &lt;span class=&quot;s1&quot;&gt;&#39;AFNetworking&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.0.4&#39;&lt;/span&gt;
+- Homepage: https://github.com/AFNetworking/AFNetworking
+- Source:   https://github.com/AFNetworking/AFNetworking.git
+- Versions: 3.0.4, 3.0.3, 3.0.2, 3.0.1, 3.0.0, 3.0.0-beta.3, 3.0.0-beta.2,
+3.0.0-beta.1, 2.6.3, 2.6.2, 2.6.1, 2.6.0, 2.5.4, 2.5.3, 2.5.2, 2.5.1, 2.5.0,
+2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.0, 2.0.3,
+2.0.2, 2.0.1, 2.0.0, 2.0.0-RC3, 2.0.0-RC2, 2.0.0-RC1, 1.3.4, 1.3.3, 1.3.2,
+1.3.1, 1.3.0, 1.2.1, 1.2.0, 1.1.0, 1.0.1, 1.0, 1.0RC3, 1.0RC2, 1.0RC1,
+0.10.1, 0.10.0, 0.9.2, 0.9.1, 0.9.0, 0.7.0, 0.5.1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master repo]
+- Subspecs:
+- AFNetworking/Serialization &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+- AFNetworking/Security &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+- AFNetworking/Reachability &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+- AFNetworking/NSURLSession &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+- AFNetworking/UIKit &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;AFNetworking+AutoRetry &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.0.5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Auto Retries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;AFNetworking requests
+pod &lt;span class=&quot;s1&quot;&gt;&#39;AFNetworking+AutoRetry&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 0.0.5&#39;&lt;/span&gt;
+- Homepage: https://github.com/shaioz/AFNetworking-AutoRetry
+- Source:   https://github.com/shaioz/AFNetworking-AutoRetry.git
+- Versions: 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master repo]
+
+.........太多了，省略
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;pod search 是CocoaPods的一个搜索命令,我们可以用来搜索任何托管在CocoaPods上的三方库。&lt;/p&gt;
+
+&lt;p&gt;使用CocoaPods时需要新建一个 Podfile 的文件,cd 到 我的Demo项目里，Demo目录下有三个文件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+Demo 、  Demo.xcodeproj  、 DemoTests
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;新建 Podfile&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+touch Podfile
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;vim 编辑 Podfile&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim Podfile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;由于是新建的 Podfile 里面应该是空白的。然后我们在里面添加依赖库，格式如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+platform :ios
+pod &lt;span class=&quot;s1&quot;&gt;&#39;Reachability&#39;&lt;/span&gt;,  &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.0.0&#39;&lt;/span&gt;
+pod &lt;span class=&quot;s1&quot;&gt;&#39;ASIHTTPRequest&#39;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;‘~&amp;gt; 3.0.0’ 是 Reachability 的版本号, 设定了版本号CocoaPods就会下载对应的版本,ASIHTTPRequest没指定版本号,CocoaPods就会下载最新版本的ASIHTTPRequest。
+退出编辑，执行 pod install 下载三方库。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+pod install
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;完成后我Demo项目下的文件多了几个:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Demo 、  Demo.xcodeproj  、 DemoTests （之前的三个）
+
+Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个时候我们打开Demo项目是点击 Demo.xcworkspace 文件了，到此CocoaPods的基本使用已经讲完了，接下来的CocoaPods的原理，和让我们自己的三方库也支持CocoaPods。&lt;/p&gt;
+
+&lt;p&gt;待续…&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.jobbole.com/53365/&quot;&gt;深入理解 CocoaPods&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/04/CocoaPod_Use/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod_Use/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
