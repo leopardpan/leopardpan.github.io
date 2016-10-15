@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>老司机带你剖析无码统计</title>
+  <meta name="description" content="点击阅读原文">
+  <meta name="author" content="leopardpan">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="老司机带你剖析无码统计">
+  <meta name="twitter:description" content="点击阅读原文">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="老司机带你剖析无码统计">
+  <meta property="og:description" content="点击阅读原文">
+  
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://baixin.io/2016/07/Codeless/">
+  <link rel="alternate" type="application/rss+xml" title="潘柏信" href="http://baixin.io/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+  
+  <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?8ba1c6be0953b6f9c2ba38e57f615421";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+  </script>
+  
+
+
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-84134159-3', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <!-- 头像效果-start -->
+        <div class="ih-item circle effect right_to_left">            
+            <a href="/#blog" title="前往 潘柏信 的主页" class="blog-button">
+                <div class="img"><img src="/assets/images/avatar.jpg" alt="img"></div>
+                <div class="info">
+                    <div class="info-back">
+                        <h2>leopardpan</h2>
+                        <p>iOS | Machine Learning</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- 头像效果-end -->
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for 潘柏信" class="blog-button">潘柏信</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">个人站</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description"></p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客主页</a></li>
+                
+                  <li class="navigation__item"><a href="/archive" title="archive">所有文章</a></li>
+                
+                  <li class="navigation__item"><a href="/tags" title="tags">标签</a></li>
+                
+                <div class="navigation__flink" >友情链接:</div>                
+                
+                  <li class="navigation__flink_item">
+                    <a href="http://talkingdatasdk.coding.me" target="_blank" title="TakingDataSDK博客">TakingDataSDK博客</a>
+                    </li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  
+  <!-- Weibo -->
+  <li class="navigation__item">
+    <a href="http://weibo.com/5366874726" title="@5366874726 的微博" target="_blank">
+      <i class='social fa fa-weibo fa-2x'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+  
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/leopardpan" title="@leopardpan 的 Github" target="_blank">
+      <i class='social fa fa-github fa-2x'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+  
+  
+
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss fa-2x'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:leopardpan@icloud.com" title="Contact me">
+      <i class='social fa fa-envelope fa-2x'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-clear"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title">老司机带你剖析无码统计</h1>
+    <div class="post-meta">
+      <time datetime="2016-07-15 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2016-07-15</time>
+     
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span id="busuanzi_container_page_pv">　　阅读：<span id="busuanzi_value_page_pv"></span>次</span>
+    </p>
+    </div>
+  </header>
+
+  <section class="post">
+    <p><a href="http://baixin.io/2016/07/Codeless/">点击阅读原文</a></p>
+
+<p>什么? 产品又来活了？ 要我去统计所有按钮的点击次数？  <br />
+<img src="/assets/images/codeless/img1.png" alt="" /></p>
+
+<p>况且这种事情根本没技术含量，在点击事件里传写配置参数就行了啊。</p>
+
+<h3 id="section">你还在为统计事件埋点痛苦吗？</h3>
+
+<p><img src="/assets/images/codeless/code.png" alt="" /></p>
+
+<p>你是用这么大堆大堆的代码来统计按钮点击次数的吗？你的项目已经上线了，忘了埋点统计 <code class="highlighter-rouge">按钮</code> ?  老司机教你怎么破。</p>
+
+<p><strong>即使记得项目已经上线了，你只需要在网页上轻轻点击几下，就可以统计按钮点击次数了。</strong></p>
+
+<p><img src="/assets/images/codeless/codeless2.png" alt="" /></p>
+
+<h3 id="section-1">技术原理</h3>
+
+<p><img src="/assets/images/codeless/img2.png" alt="" /></p>
+
+<p>　　从上面的图可以看出，开发者只要有一台电脑和一个测试设备就可以实现无码集成埋点了。客户端与Web端交互使用的是长连接，这样才能保证数据的实时性，由于数据量传输较大，所以建议在Wifi下使用，当然了如果你是土豪，在4G下也是没问题的。  <br />
+　　首先是客户端通过某种方式，例如摇一摇、几根手指长按屏幕多少秒…，开启了灵动绑定功能，Web页面同时也开启了灵动，双方建立长连接，然后就可以进入上图红色虚线框里面。建立长连接之后，首先Web端要验证Client是否为自己的调试设备，这个时候必须要把设备的一些基本信息发送上去，如：设备的名称、所在的Wifi名称，目的是防止其他App用户的一些行为吴触发，也响应了这次调试的长连接。</p>
+
+<h3 id="app">网页上显示App界面</h3>
+
+<p>　　调试设备确认成功之后，就要给Web发送App里当前页面的信息，Web再展示出来，如下图。</p>
+
+<p><img src="/assets/images/codeless/codeless1.png" alt="" /></p>
+
+<p>　　从上图可以看到，左下角手机里的App的页面已经展示在网页中了，导航按钮、头像按钮、下面的Tabbar按钮在Web页上已经加了一些不同颜色的框，看图左上角的提示，被框住的元素表示都是可追踪的元素，也就是想统计这些元素的点击事件，可以直接使用灵动功能，不需要你写一行代码。估计有些同学会好奇，我手机上的App怎么就能在网页中显示呢？他怎么知道我App里面的代码是怎么写的，使用的什么技术。其实想让手机里的App在网页中显示出来并不难，你只需要把当前的屏幕截个屏，然后传给后台，后台再传给网页，就能显示了。当然了我这里指的截屏是说使用代码获取当前屏幕图像，相信这个大家都能理解，只要在需要截屏的视图控制器里面写个截屏的代码不就行了么。但是，如果你不知道当前控制器是哪个呢？作为一个SDK，你仅仅只是个App里面的一段可执行代码，你并不知道App现在显示的是哪个视图控制器，用户做了什么操作也不知道。     <br />
+　　那么我们就需要去找到当前屏幕锁显示的内容，每个App是有多个Window的，我们所看到的App界面是现在在keywindow上的，通过 <code class="highlighter-rouge">UIApplication</code> 的单利就可以找到这个window。但是在iOS里面的弹框如：<code class="highlighter-rouge">UIAlertView</code> 、<code class="highlighter-rouge">UIActionSheet</code> ，包括一些自定义的弹框，这些东西也是展示在Keywindow上的，如果你就直接把keywindo截屏发送给网页的话，那么网页显示出来的只有那个弹框，而背景却是黑色的，网页上显示的东西跟你手机里的App将不一样。 换种思路去解决这个问题，如果不截keywindow的屏呢？ 在iOS里面，如果开发者不主动去切换window的话，系统默认会取数组windows里面的第一个元素windows[0]，所以我们可以直接或者windows的第一个元素，然后截屏，那么即使有刚才说的弹框，截出来的效果也不会被影响。如果你的业务必须有多个window的切换，可以考虑上面说到的keywindow，每次有界面切换的时候还需要重新截屏，这样才能保证网页上跟App显示的一致。</p>
+
+<h3 id="app-1">网页上显示App界面可点击</h3>
+<p>　　上面讲到的仅仅只是在网页上显示App里当前的界面，当你鼠标滑动到按钮上时，发现按钮并没任何反应也不能点击。原因很简单，客户端只传了当前界面的截图，说白了就一张图片而已。那么如何才能做到跟上面的图片一样，客户端的按钮可以在网页上显示后并能点击然后绑定呢？这就需要Web端的同学配合了，首先你得把移动端的视图的层级结构跟Web端同学讲清楚了，然后客户端的再根据视图的层级结构，获取每一层的详细信息，包括：类的继承关系、所有的属性值、所在的视图的层级等信息传给Web端，然后Web端根据之前约定好的规则做显示，比如说一个按钮，继承UIControl，所以它在Web页上能绑定，然后根据frame来显示绑定时所显示框的位置，是否已经绑定过的属性来显示，可追踪元素是否已经被追踪过，以及一些其它的属性来细化网页上App页面的细节。</p>
+
+<h3 id="section-2">绑定事件生成</h3>
+<p>　　回头看看上面技术原理那张图，现在已经走到了PC展示App的阶段了，然后就是用户(开发者)，在网页上绑定控件，绑定好了之后信息会实时的传给客户端，客户端会根据绑定的配置信息找到具体的控件绑定。技术原理跟刚才说刚才提到的获取App里层级结构信息差不多，之前是获取层级结构信息，现在是根据Web端发过来的信息去找具体的控件，然后客户端绑定，现在因为按钮已经存在了，所以你可以直接找到它然后绑定就OK了，但是如果我有界面切换呢？ 之前绑定按钮那个界面已经消失了，对象已经释放了。现在我们再回到原来的界面该什么时候去给这个按钮加点击事件？我们需要一个通用的方案，不管按钮什么时候创建，我们都能去动态绑定。   <br />
+　　相信大家已经有思路了，动态绑定就要用到Runtime了，我们可以动态在UIView的两个方法 <code class="highlighter-rouge">didMoveToWindow</code> 、 <code class="highlighter-rouge">didMoveToWindow</code> 里面去绑定，这两个方法在视图加载的时候系统会自动调用，而且这个时候按钮一定是创建了，这样按钮在任何时候去创建都能去动态绑定了。按钮被绑定后，后面基本上就没什么了，调试的时候每次点击，使用长连接把点击事件实时的发送给Web端显示，然后点击全部生效按钮，所有的调试信息都会被保存在数据库里面。等下次App启动的时候，获取配置信息，和之前绑定的流程一样绑定按钮，当按钮被用户点击后，调用普通的埋点事件，把按钮配置信息的对应ID传进去传给后台，这样就完成了整套无码统计的流程了。</p>
+
+
+
+  </section>
+</article>
+
+<section>
+       <ul class="pager">
+        
+        <li class="previous">
+            <a href="/2016/07/GitTutorial/" data-toggle="tooltip" data-placement="top" title="Git日常操作">上一篇：  <span>Git日常操作</span>
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2016/08/PythonTestAutomationiOS/" data-toggle="tooltip" data-placement="top" title="Python自动化测试iOS项目">下一篇：  <span>Python自动化测试iOS项目</span>
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+<section class="post-comments">
+
+  
+    <div class="ds-thread" data-thread-key="/2016/07/Codeless/" data-title="老司机带你剖析无码统计" data-url="http://baixin.io/2016/07/Codeless/"></div>
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"leopard"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+  
+  
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+       <p class="copyright text-muted">
+        Copyright &copy; 潘柏信 2016 Theme by <a href="http://baixin.io/">leopardpan</a> |
+        <iframe
+            style="margin-left: 2px; margin-bottom:-5px;"
+            frameborder="0" scrolling="0" width="91px" height="20px"
+            src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+        </iframe>
+    </p>
+    	<div align="right">
+			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+			<span id="busuanzi_value_page_pv"></span> 本站访问：<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> 次
+      	</div>
+
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+    
+  </body>
+
+</html>

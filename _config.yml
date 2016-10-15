@@ -16,17 +16,22 @@ cover_color: clear
 
 # The blog button should not be removed.
 blog_button:
-    title: 博客
+    title: 博客主页
 
 # Navigation buttons in the front page.s
 nav:
-    - {title: Team博客, description: Team博客, url: 'http://talkingdatasdk.coding.me'}     
-    - {title: 标签, description: tags, url: '/tags'}      
     - {title: 所有文章, description: archive, url: '/archive'}   
+    - {title: 标签, description: tags, url: '/tags'}      
     
+
+# 友情链接
+flink:
+    - {title: TakingDataSDK博客, description: TakingDataSDK博客, url: 'http://talkingdatasdk.coding.me'}     
+    
+
 # Pagination
 gems: [jekyll-paginate,jekyll-sitemap]
-paginate: 10
+paginate: 20
 paginate_path: "page/:num/"
 
 # Comment
@@ -41,11 +46,13 @@ social:
     # twitter: 
     mail: leopardpan@icloud.com
 
-# 百度统计
+# 百度统计 
+# 使用博客模板请去掉或者更换 id 
 baidu:
     id: 8ba1c6be0953b6f9c2ba38e57f615421  
 
 # Google Analytics
+# 使用博客模板请去掉或者更换 id
 ga:
     id: UA-84134159-3   
     host: auto  

@@ -7,7 +7,7 @@ tag: 工具
 
 个人开发常用工具的收集
 
-<!--more-->
+[点击阅读原文]()     
 
 * [cmd Markdown](https://www.zybuluo.com/mdeditor) 作业部落出版的Markdown编辑器       
 * [RESTClient](https://github.com/rest-client/rest-client) 一个开源的客户端HTTP调试工具。    

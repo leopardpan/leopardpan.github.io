@@ -8,7 +8,7 @@ tag: iOS
 ## 简介：   
 　　本章介绍什么是 `CocoaPods` ,如何使用 `CocoaPods` , 以及 `CocoaPods` 的原理,和使用 `CocoaPods` 时经常出现的一些问题。
 
-<!--more-->
+[点击阅读原文](http://baixin.io/2016/04/CocoaPod_Use/)     
 
 　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。
 

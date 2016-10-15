@@ -7,6 +7,8 @@ tag: 机器学习
 
 ---
 
+[点击阅读原文](http://baixin.io/2016/07/MachineLearning_introduce/)     
+
 ### 通用名词  
 
 #### ML
