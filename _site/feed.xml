@@ -5,9 +5,114 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 15 Oct 2016 21:07:01 +0800</pubDate>
-    <lastBuildDate>Sat, 15 Oct 2016 21:07:01 +0800</lastBuildDate>
+    <pubDate>Sun, 16 Oct 2016 12:13:46 +0800</pubDate>
+    <lastBuildDate>Sun, 16 Oct 2016 12:13:46 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Jekyll搭建个人博客</title>
+        <description>&lt;p&gt;　　之前写了一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程获得了很好评，尤其是在&lt;a href=&quot;http://www.jianshu.com/p/465830080ea9&quot;&gt;简书&lt;/a&gt;上面，目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。&lt;/p&gt;
+
+&lt;p&gt;　　如果你看过我的文章【HEXO搭建个人博客】会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用HEXO搭建的博客，后来发现使用HEXO在多台电脑上发布博客，操作起来并不是那么方便，果断的就转到了Jekyll上了，接下来我会讲如何使用Jekyll搭建博客，&lt;a href=&quot;http://baixin.io/#blog&quot;&gt;博客模板效果&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll&quot;&gt;Jekyll环境配置&lt;/h3&gt;
+
+&lt;p&gt;使用Jekyll搭建博客之前要确认下本机环境，Git环境（用于部署到远端）、Ruby环境（Jekyll是基于Ruby开发的）。
+&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;安装jekyll&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install jekyll     
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;创建博客&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll new myBlog    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;进入博客目录&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd myBlog  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;启动本地服务
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+$ jekyll serve
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;在浏览器里输入： &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt;，就可以看到你的博客效果了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/jekyll/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;so easy !&lt;/p&gt;
+
+&lt;p&gt;我们来看看myBlog里面有哪些文件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;myBlog　　　　　　　　　　　
+　　｜　　　　　　
+　　｜－－_config.yml　　　　　　　　　
+　　｜－－_includes　　　　　　　　
+　　｜－－_layouts　　　　　　　　　　
+　　｜－－_posts　　　　　　　
+　　｜－－_sass　　　　　　　　
+　　｜－－_site　　　　　　　　　　
+　　｜－－about.md　　　　　　　
+　　｜－－css　　　　　　　
+　　｜－－feed.xml　　　　　　　　
+　　｜－－index.html　　　　　　　
+　　｜　
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;进入_config.yml里面，修改成你想看到的信息，重新 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll server&lt;/code&gt; ，刷新浏览器就可以看到你刚刚修改的信息了。&lt;/p&gt;
+
+&lt;p&gt;到此，博客初步搭建算是完成了，&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;博客部署到远端&lt;/h3&gt;
+
+&lt;p&gt;　　我这里讲的是部署到Github Page(Coding Page也可以)创建一个github账号，然后创建一个跟你账户名一样的仓库，如我的github账户名叫&lt;a href=&quot;https://github.com/leopardpan&quot;&gt;leopardpan&lt;/a&gt;，我的github仓库名就叫&lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io&quot;&gt;leopardpan.github.io&lt;/a&gt;，创建好了之后，把刚才建立的myBlog项目push到username.github.io仓库里去（username指的是你的github用户名），检查你远端仓库已经跟你本地myBlog同步了，然后你在浏览器里输入username.github.io，就可以访问你的博客了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;使用我的博客模板&lt;/h3&gt;
+
+&lt;p&gt;虽然博客部署完成了，你会发现博客太简单不是你想要的，如果你喜欢我的模板的话，可以使用我的模板。&lt;/p&gt;
+
+&lt;p&gt;首先你要获取的我博客，&lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io.git&quot;&gt;Github项目地址&lt;/a&gt;，你可以直接&lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io/archive/master.zip&quot;&gt;点击下载博客&lt;/a&gt;，进去leopardpan.github.io/ 目录下， 使用命令部署本地服务&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll server   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在浏览器输入 &lt;a href=&quot;127.0.0.1:4000&quot;&gt;127.0.0.1:4000&lt;/a&gt; ， 就可以看到&lt;a href=&quot;http://baixin.io&quot;&gt;baixin.io&lt;/a&gt;博客效果了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;修改成你自己的博客&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;如果你想使用我的模板请把_posts/ 目录下的文章都去掉。&lt;/li&gt;
+    &lt;li&gt;修改_config.yml文件里面的内容为你自己的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;然后使用git push到你自己的仓库里面去，检查你远端仓库，在浏览器输入username.github.io就会发现，你有一个漂亮的主题模板了。&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll-1&quot;&gt;为什么要是用Jekyll&lt;/h3&gt;
+
+&lt;p&gt;使用了Jekyll你会发现如果你想使用多台电脑发博客都很方便，只要把远端github仓库里的博客clone下来，写文章后再提交就可以了，Hexo由于远端提交的是静态网页，所有无法直接写Markdown的文章。如果你想看Hexo搭建博客，可以看看我的另一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程。&lt;/p&gt;
+
+&lt;p&gt;如果你在搭建博客遇到问题，可以在&lt;a href=&quot;http://baixin.io/2016/06/jekyll_tutorials1/&quot;&gt;原文博客&lt;/a&gt;的评论里给我提问。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 14 Oct 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/10/jekyll_tutorials1/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/10/jekyll_tutorials1/</guid>
+        
+        <category>博客</category>
+        
+        
+      </item>
     
       <item>
         <title>iOS设备左下角出现Appicon</title>
@@ -788,182 +893,6 @@ error: Xcode 7.3.0 or later is required.
         <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
         
         <category>技术</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>CocoaPods使用心得</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;简介：&lt;/h2&gt;
-&lt;p&gt;　　本章介绍什么是 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; ,如何使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; , 以及 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; 的原理,和使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; 时经常出现的一些问题。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/04/CocoaPod_Use/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;　　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。&lt;/p&gt;
-
-&lt;h3 id=&quot;cocoapods&quot;&gt;安装CocoaPods　&lt;/h3&gt;
-
-&lt;p&gt;　　Mac下自带ruby,使用ruby的gem命令安装,ruby的软件源被墙了,把官方的ruby源替换成国内的淘宝源。&lt;/p&gt;
-
-&lt;h3 id=&quot;gem&quot;&gt;更换Gem源&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources --remove https://rubygems.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources -a https://ruby.taobao.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources -l
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;1.移除掉原有的源（服务器在国外，速度较慢）。&lt;/li&gt;
-  &lt;li&gt;2.等1有反应之后再敲2命令（替换成淘宝上的ruby镜像https）。&lt;/li&gt;
-  &lt;li&gt;3.验证是否成功。成功如下：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; CURRENT SOURCES &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt;
-
-http://ruby.taobao.org/
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;gem-1&quot;&gt;更新Gem源&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-sudo gem update --system
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;cocoapods-1&quot;&gt;安装cocoapods&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install cocoapods
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pod setup
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;pod setup 在执行时会比较慢，因为Cocoapods 要将它的信息下载到 ~/.cocoapods目录下, 耐心等待…&lt;/p&gt;
-
-&lt;h4 id=&quot;cocoapods-2&quot;&gt;提升cocoapods的安装速度&lt;/h4&gt;
-
-&lt;p&gt;所有的项目的 Podspec 文件都托管在https://github.com/CocoaPods/Specs。第一次执行 pod setup 时，CocoaPods 会将这些podspec索引文件更新到本地的 ~/.cocoapods/目录下，这个索引文件比较大，有 80M 左右。
-作者akinliu 在 gitcafe 和 oschina 上建立了 CocoaPods 索引库的镜像(在国内),我们可以使用CocoaPods国内的镜像索引，操作时会快多了,如gitcafe：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-pod repo remove master
-pod repo add master https://gitcafe.com/akuandev/Specs.git
-pod repo update
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;cocoapods-3&quot;&gt;使用cocoapods&lt;/h3&gt;
-
-&lt;p&gt;cocoapods安装完成后，使用 pod search 命令来验证一下&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-pod search AFNetworking
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;终端将会有如下结果：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;AFNetworking &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-A delightful iOS and OS X networking framework.
-pod &lt;span class=&quot;s1&quot;&gt;&#39;AFNetworking&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.0.4&#39;&lt;/span&gt;
-- Homepage: https://github.com/AFNetworking/AFNetworking
-- Source:   https://github.com/AFNetworking/AFNetworking.git
-- Versions: 3.0.4, 3.0.3, 3.0.2, 3.0.1, 3.0.0, 3.0.0-beta.3, 3.0.0-beta.2,
-3.0.0-beta.1, 2.6.3, 2.6.2, 2.6.1, 2.6.0, 2.5.4, 2.5.3, 2.5.2, 2.5.1, 2.5.0,
-2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.0, 2.0.3,
-2.0.2, 2.0.1, 2.0.0, 2.0.0-RC3, 2.0.0-RC2, 2.0.0-RC1, 1.3.4, 1.3.3, 1.3.2,
-1.3.1, 1.3.0, 1.2.1, 1.2.0, 1.1.0, 1.0.1, 1.0, 1.0RC3, 1.0RC2, 1.0RC1,
-0.10.1, 0.10.0, 0.9.2, 0.9.1, 0.9.0, 0.7.0, 0.5.1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master repo]
-- Subspecs:
-- AFNetworking/Serialization &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/Security &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/Reachability &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/NSURLSession &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/UIKit &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;AFNetworking+AutoRetry &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.0.5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Auto Retries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;AFNetworking requests
-pod &lt;span class=&quot;s1&quot;&gt;&#39;AFNetworking+AutoRetry&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 0.0.5&#39;&lt;/span&gt;
-- Homepage: https://github.com/shaioz/AFNetworking-AutoRetry
-- Source:   https://github.com/shaioz/AFNetworking-AutoRetry.git
-- Versions: 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master repo]
-
-.........太多了，省略
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;pod search 是CocoaPods的一个搜索命令,我们可以用来搜索任何托管在CocoaPods上的三方库。&lt;/p&gt;
-
-&lt;p&gt;使用CocoaPods时需要新建一个 Podfile 的文件,cd 到 我的Demo项目里，Demo目录下有三个文件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-Demo 、  Demo.xcodeproj  、 DemoTests
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;新建 Podfile&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-touch Podfile
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;vim 编辑 Podfile&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim Podfile
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;由于是新建的 Podfile 里面应该是空白的。然后我们在里面添加依赖库，格式如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-platform :ios
-pod &lt;span class=&quot;s1&quot;&gt;&#39;Reachability&#39;&lt;/span&gt;,  &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.0.0&#39;&lt;/span&gt;
-pod &lt;span class=&quot;s1&quot;&gt;&#39;ASIHTTPRequest&#39;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;‘~&amp;gt; 3.0.0’ 是 Reachability 的版本号, 设定了版本号CocoaPods就会下载对应的版本,ASIHTTPRequest没指定版本号,CocoaPods就会下载最新版本的ASIHTTPRequest。
-退出编辑，执行 pod install 下载三方库。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-pod install
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;完成后我Demo项目下的文件多了几个:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Demo 、  Demo.xcodeproj  、 DemoTests （之前的三个）
-
-Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这个时候我们打开Demo项目是点击 Demo.xcworkspace 文件了，到此CocoaPods的基本使用已经讲完了，接下来的CocoaPods的原理，和让我们自己的三方库也支持CocoaPods。&lt;/p&gt;
-
-&lt;p&gt;待续…&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://blog.jobbole.com/53365/&quot;&gt;深入理解 CocoaPods&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/04/CocoaPod_Use/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod_Use/</guid>
-        
-        <category>iOS</category>
         
         
       </item>

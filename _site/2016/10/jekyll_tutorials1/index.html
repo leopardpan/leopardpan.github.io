@@ -6,17 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <title>iOS设备左下角出现Appicon</title>
-  <meta name="description" content="最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。">
+  <title>Jekyll搭建个人博客</title>
+  <meta name="description" content="　　之前写了一篇HEXO搭建个人博客的教程获得了很好评，尤其是在简书上面，目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。">
   <meta name="author" content="leopardpan">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="iOS设备左下角出现Appicon">
-  <meta name="twitter:description" content="最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。">
+  <meta name="twitter:title" content="Jekyll搭建个人博客">
+  <meta name="twitter:description" content="　　之前写了一篇HEXO搭建个人博客的教程获得了很好评，尤其是在简书上面，目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。">
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="iOS设备左下角出现Appicon">
-  <meta property="og:description" content="最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。">
+  <meta property="og:title" content="Jekyll搭建个人博客">
+  <meta property="og:description" content="　　之前写了一篇HEXO搭建个人博客的教程获得了很好评，尤其是在简书上面，目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。">
   
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="http://baixin.io/2016/09/iOSLowerLeftAppicon/">
+  <link rel="canonical" href="http://baixin.io/2016/10/jekyll_tutorials1/">
   <link rel="alternate" type="application/rss+xml" title="潘柏信" href="http://baixin.io/feed.xml">
   
   <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
@@ -174,9 +174,9 @@
         <div class="content-wrapper__inner">
             <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
-    <h1 class="post-title">iOS设备左下角出现Appicon</h1>
+    <h1 class="post-title">Jekyll搭建个人博客</h1>
     <div class="post-meta">
-      <time datetime="2016-09-23 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2016-09-23</time>
+      <time datetime="2016-10-14 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2016-10-14</time>
      
       <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
       <span id="busuanzi_container_page_pv">　　阅读：<span id="busuanzi_value_page_pv"></span>次</span>
@@ -185,75 +185,99 @@
   </header>
 
   <section class="post">
-    <p>最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。</p>
+    <p>　　之前写了一篇<a href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">HEXO搭建个人博客</a>的教程获得了很好评，尤其是在<a href="http://www.jianshu.com/p/465830080ea9">简书</a>上面，目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。</p>
 
-<p>图一 iOS 系统自带的 <code class="highlighter-rouge">App icon</code> , 图二 第三方 <code class="highlighter-rouge">App icon</code> , 图三 通过 <code class="highlighter-rouge">iBeacon</code> 信号激活的 <code class="highlighter-rouge">demo icon</code></p>
+<p>　　如果你看过我的文章【HEXO搭建个人博客】会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用HEXO搭建的博客，后来发现使用HEXO在多台电脑上发布博客，操作起来并不是那么方便，果断的就转到了Jekyll上了，接下来我会讲如何使用Jekyll搭建博客，<a href="http://baixin.io/#blog">博客模板效果</a>。</p>
 
-<p><img src="/assets/images/icon/image01.png" alt="" /></p>
+<h3 id="jekyll">Jekyll环境配置</h3>
 
-<h3 id="app-icon">结论：有三种情况导致设备的左下角出现灰色的 <code class="highlighter-rouge">App icon</code></h3>
+<p>使用Jekyll搭建博客之前要确认下本机环境，Git环境（用于部署到远端）、Ruby环境（Jekyll是基于Ruby开发的）。
+<a href="http://jekyll.bootcss.com/">Jekyll中文文档</a>、<a href="https://jekyllrb.com/">Jekyll英文文档</a>、<a href="http://jekyllthemes.org/">Jekyll主题列表</a></p>
 
-<p><a href="http://baixin.io/2016/09/iOSLowerLeftAppicon/">点击阅读原文</a></p>
+<p>安装jekyll</p>
 
-<h4 id="appstoreapp-">1、AppStore根据地点对App 推荐</h4>
-<ul>
-  <li><strong>简介</strong>
-    <ul>
-      <li>iOS 8会基于你的位置在锁屏界面上展示一个app快捷打开方式。比如你正在星巴克附近，那iOS 8会在锁屏界面上展示星巴克应用的icon，方便你快速打开。一些用户也表示会在锁屏界面收到app推荐，比如你在Costco和Apple Store附近，即便你之前没有安装过这些应用。</li>
-    </ul>
-  </li>
-</ul>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gem install jekyll     
+</code></pre>
+</div>
 
-<h4 id="apphandoff">2、App实现了handoff功能</h4>
-<ul>
-  <li><strong><a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html">handoff简介</a>：</strong>
-    <ul>
-      <li><code class="highlighter-rouge">OS X 10.10 Yosemite</code> 新增了一个酷炫的功能 “Hand Off”，打开这个功能之后，用户可以在 Mac 上对 iPad 和 iPhone 进行操作，比如能够编写 iPhone 上未完成的邮件，并且可以在Mac上打开 iPhone 的热点等等， Mac 的 Hand Off 功能只能识别 Mac 周围的 iPhone 手机。</li>
-    </ul>
-  </li>
-  <li><strong>handoff有几个要求：</strong>
-    <ul>
-      <li>1 两台设备都要登录同一个 iCloud 账号。</li>
-      <li>2 两台设备上的app有相同的 TeamID 。</li>
-      <li>3 锁屏（或dock）设备上的app支持的 <code class="highlighter-rouge">NSUserActivityTypes</code> 包含活动设备上的app当前的UserActivityType。</li>
-    </ul>
-  </li>
-</ul>
+<p>创建博客</p>
 
-<h4 id="appibeaconappibeacon">3、App内有iBeacon信号接收功能，App被iBeacon信号唤醒</h4>
-<ul>
-  <li><strong><a href="https://developer.apple.com/ibeacon/">iBeacon简介</a></strong>：
-    <ul>
-      <li>是苹果公司2013年9月发布的移动设备用OS（iOS7）上配备的新功能。工作原理类似之前的蓝牙技术，由 <code class="highlighter-rouge">iBeacon</code> 发射信号，iOS设备定位接受，反馈信号。根据这项简单的定位技术可以做出许多的相应技术应用,如：<code class="highlighter-rouge">室内定位</code> 、<code class="highlighter-rouge">商品推荐</code> 、<code class="highlighter-rouge">微信摇一摇</code> 等。</li>
-    </ul>
-  </li>
-  <li><strong>App icon出现的原因</strong>：
-    <ul>
-      <li><code class="highlighter-rouge">iBeacon</code> 具备后台定位的能力，只要用户把蓝牙(4.0或以后)开启 和 允许 App 访问位置信息。在有被 App 检测的 <code class="highlighter-rouge">iBeacon</code> 出现时，如果设备是锁屏状态，设备的左下角就会出现该 App 的 icon 。</li>
-    </ul>
-  </li>
-</ul>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll new myBlog    
+</code></pre>
+</div>
 
-<h3 id="sdkicon">SDK导致设备左下角icon出现的影响范围及解决方案</h3>
-<ul>
-  <li><strong>影响范围</strong>：
-    <ul>
-      <li>用户手机在锁屏状态下，附近有微信(或以后加入的 UUID ) <code class="highlighter-rouge">iBeacon</code> 信号出现时，设备左下角会出现 icon 。</li>
-    </ul>
-  </li>
-  <li><strong>解决方案：</strong>
-    <ul>
-      <li>1、解释：目前没有解决方案，但可以给开发者解释，我们会开发出一个新功能不定时的激活App , 但并不会影响我们的正常时长统计。 定期激活App功能模块默认是开启的，但会提供用户手动关闭的接口。</li>
-      <li>2、SDK 内 <code class="highlighter-rouge">iBeacon</code> 功能，去掉后台检测。</li>
-    </ul>
-  </li>
-</ul>
+<p>进入博客目录</p>
 
-<p>参考链接:  <br />
-<a href="http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020">Make app appear as iOS 8 Suggested App at lockscreen</a>  <br />
-<a href="http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890">Can I get my iOS app to appear on the lower left corner of the lock screen?</a><br />
-<a href="https://www.zhihu.com/question/26653964">为什么 iOS 8 锁屏界面的左下角经常会出现某个应用的小图标？</a>  <br />
-<a href="https://www.v2ex.com/t/142320">关于 IOS8 锁屏左下方出现的 APP ICON</a></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd myBlog  
+</code></pre>
+</div>
+
+<p>启动本地服务
+<code class="highlighter-rouge">
+$ jekyll serve
+</code></p>
+
+<p>在浏览器里输入： <a href="http://localhost:4000">http://localhost:4000</a>，就可以看到你的博客效果了。</p>
+
+<p><img src="/assets/images/jekyll/image1.png" alt="" /></p>
+
+<p>so easy !</p>
+
+<p>我们来看看myBlog里面有哪些文件</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>myBlog　　　　　　　　　　　
+　　｜　　　　　　
+　　｜－－_config.yml　　　　　　　　　
+　　｜－－_includes　　　　　　　　
+　　｜－－_layouts　　　　　　　　　　
+　　｜－－_posts　　　　　　　
+　　｜－－_sass　　　　　　　　
+　　｜－－_site　　　　　　　　　　
+　　｜－－about.md　　　　　　　
+　　｜－－css　　　　　　　
+　　｜－－feed.xml　　　　　　　　
+　　｜－－index.html　　　　　　　
+　　｜　
+</code></pre>
+</div>
+
+<p>进入_config.yml里面，修改成你想看到的信息，重新 <code class="highlighter-rouge">jekyll server</code> ，刷新浏览器就可以看到你刚刚修改的信息了。</p>
+
+<p>到此，博客初步搭建算是完成了，</p>
+
+<h3 id="section">博客部署到远端</h3>
+
+<p>　　我这里讲的是部署到Github Page(Coding Page也可以)创建一个github账号，然后创建一个跟你账户名一样的仓库，如我的github账户名叫<a href="https://github.com/leopardpan">leopardpan</a>，我的github仓库名就叫<a href="https://github.com/leopardpan/leopardpan.github.io">leopardpan.github.io</a>，创建好了之后，把刚才建立的myBlog项目push到username.github.io仓库里去（username指的是你的github用户名），检查你远端仓库已经跟你本地myBlog同步了，然后你在浏览器里输入username.github.io，就可以访问你的博客了。</p>
+
+<h3 id="section-1">使用我的博客模板</h3>
+
+<p>虽然博客部署完成了，你会发现博客太简单不是你想要的，如果你喜欢我的模板的话，可以使用我的模板。</p>
+
+<p>首先你要获取的我博客，<a href="https://github.com/leopardpan/leopardpan.github.io.git">Github项目地址</a>，你可以直接<a href="https://github.com/leopardpan/leopardpan.github.io/archive/master.zip">点击下载博客</a>，进去leopardpan.github.io/ 目录下， 使用命令部署本地服务</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll server   
+</code></pre>
+</div>
+
+<p>在浏览器输入 <a href="127.0.0.1:4000">127.0.0.1:4000</a> ， 就可以看到<a href="http://baixin.io">baixin.io</a>博客效果了。</p>
+
+<h3 id="section-2">修改成你自己的博客</h3>
+
+<blockquote>
+  <ul>
+    <li>如果你想使用我的模板请把_posts/ 目录下的文章都去掉。</li>
+    <li>修改_config.yml文件里面的内容为你自己的。</li>
+  </ul>
+</blockquote>
+
+<p>然后使用git push到你自己的仓库里面去，检查你远端仓库，在浏览器输入username.github.io就会发现，你有一个漂亮的主题模板了。</p>
+
+<h3 id="jekyll-1">为什么要是用Jekyll</h3>
+
+<p>使用了Jekyll你会发现如果你想使用多台电脑发博客都很方便，只要把远端github仓库里的博客clone下来，写文章后再提交就可以了，Hexo由于远端提交的是静态网页，所有无法直接写Markdown的文章。如果你想看Hexo搭建博客，可以看看我的另一篇<a href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">HEXO搭建个人博客</a>的教程。</p>
+
+<p>如果你在搭建博客遇到问题，可以在<a href="http://baixin.io/2016/06/jekyll_tutorials1/">原文博客</a>的评论里给我提问。</p>
+
 
 
   </section>
@@ -263,15 +287,10 @@
        <ul class="pager">
         
         <li class="previous">
-            <a href="/2016/08/PythonTestAutomationiOS/" data-toggle="tooltip" data-placement="top" title="Python自动化测试iOS项目">上一篇：  <span>Python自动化测试iOS项目</span>
+            <a href="/2016/09/iOSLowerLeftAppicon/" data-toggle="tooltip" data-placement="top" title="iOS设备左下角出现Appicon">上一篇：  <span>iOS设备左下角出现Appicon</span>
             </a>
         </li>
         
-        
-        <li class="next">
-            <a href="/2016/10/jekyll_tutorials1/" data-toggle="tooltip" data-placement="top" title="Jekyll搭建个人博客">下一篇：  <span>Jekyll搭建个人博客</span>
-            </a>
-        </li>
         
     </ul>
 </section>
@@ -279,7 +298,7 @@
 <section class="post-comments">
 
   
-    <div class="ds-thread" data-thread-key="/2016/09/iOSLowerLeftAppicon/" data-title="iOS设备左下角出现Appicon" data-url="http://baixin.io/2016/09/iOSLowerLeftAppicon/"></div>
+    <div class="ds-thread" data-thread-key="/2016/10/jekyll_tutorials1/" data-title="Jekyll搭建个人博客" data-url="http://baixin.io/2016/10/jekyll_tutorials1/"></div>
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"leopard"};
