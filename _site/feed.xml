@@ -5,8 +5,8 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 Oct 2016 12:13:46 +0800</pubDate>
-    <lastBuildDate>Sun, 16 Oct 2016 12:13:46 +0800</lastBuildDate>
+    <pubDate>Mon, 17 Oct 2016 11:07:18 +0800</pubDate>
+    <lastBuildDate>Mon, 17 Oct 2016 11:07:18 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -124,8 +124,6 @@ $ jekyll serve
 
 &lt;h3 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/09/iOSLowerLeftAppicon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
 &lt;h4 id=&quot;appstoreapp-&quot;&gt;1、AppStore根据地点对App 推荐&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;简介&lt;/strong&gt;
@@ -180,6 +178,8 @@ $ jekyll serve
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/09/iOSLowerLeftAppicon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;参考链接:  &lt;br /&gt;
 &lt;a href=&quot;http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020&quot;&gt;Make app appear as iOS 8 Suggested App at lockscreen&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890&quot;&gt;Can I get my iOS app to appear on the lower left corner of the lock screen?&lt;/a&gt;&lt;br /&gt;
@@ -208,8 +208,6 @@ $ jekyll serve
     &lt;li&gt;5、脚本读取测试数据，邮件发送给相关人员。&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/08/PythonTestAutomationiOS/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;当这些全自动化后，可以大大减少开发人员的维护成本，即使每次项目里面有新增模块后，增加测试case就行了，下面会介绍自动测试这5步具体怎么去执行，整个脚本是使用Python写的，代码很少功能也很简单，但这已经可以帮我们完成基本的自动化测试了，这就是脚本的强大之处，选择Pyhton纯属个人喜好，最近也在学习Python，当然了最终使用什么语言看你自己。&lt;/p&gt;
 
@@ -345,6 +343,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;上面的几个流程结合起来就可以实现一个简单的自动化测试了，如果你有什么建议和意见欢迎讨论。&lt;/p&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/08/PythonTestAutomationiOS/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;参考链接：
 &lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000&quot;&gt;SMTP发送邮件&lt;/a&gt;&lt;/p&gt;
 
@@ -360,45 +360,95 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
     
       <item>
         <title>老司机带你剖析无码统计</title>
-        <description>&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/Codeless/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;p&gt;　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。&lt;/p&gt;
 
-&lt;p&gt;什么? 产品又来活了？ 要我去统计所有按钮的点击次数？  &lt;br /&gt;
-&lt;img src=&quot;/assets/images/codeless/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;　　文章主要分为：使用场景、实现原理、适用范围、使用详情四个模块，不管你是产品，还是开发人员又或者是运营人员都适合读这篇文章。&lt;/p&gt;
 
-&lt;p&gt;况且这种事情根本没技术含量，在点击事件里传写配置参数就行了啊。&lt;/p&gt;
+&lt;p&gt;　　在App开发过程中我们应该都有过类似的需求：想统计某些按钮的点击次数。例如，我们开发了一个注册模块，注册流程有些复杂，整个注册功能开发完成后，我们想知道到底有没有用户使用注册功能，而又有多少用户使用？&lt;/p&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;你还在为统计事件埋点痛苦吗？&lt;/h3&gt;
+&lt;p&gt;有什么方式能知道呢？&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;后台看注册系统?    &lt;br /&gt;
+　有些麻烦，需要后台去数据库里查看，还要做成数据可视化的才方便看。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;你是用这么大堆大堆的代码来统计按钮点击次数的吗？你的项目已经上线了，忘了埋点统计 &lt;code class=&quot;highlighter-rouge&quot;&gt;按钮&lt;/code&gt; ?  老司机教你怎么破。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;查看注册按钮的点击情况?   &lt;br /&gt;
+　这是最直观的。 主看看两块就行，注册按钮的点击次数 和 提交注册按钮的点击次数，如果发现注册按钮被点击多次（如1W次），而提交注册的点击次数却只有几次，这就可以反映出，很多用户看到的我们的注册流程太复杂，然后选择放弃注册了。同样的道理，我们通过同样的方式可以验证我们其它的功能模块是否有用户经常使用，从而来重新规划我们的设计需求。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;&lt;strong&gt;即使记得项目已经上线了，你只需要在网页上轻轻点击几下，就可以统计按钮点击次数了。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;　　一整个功能模块的完成涉及到 产品、UI设计、开发、测试 等几个部分，资源和人力的消耗还是挺大的，所以我们在开发过程是否继续维护这些功能模块，还是开发新功能是要经过慎重衡量，而衡量这些最有说服力的依据就是用户的使用数据，这些数据来源是刚才说的 按钮的点击次数，页面的停留时长 等等。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/codeless2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;使用场景&lt;/h3&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;技术原理&lt;/h3&gt;
+&lt;p&gt;　　分析用户App的使用情况当然是直接用数据说话，那么想知道某些按钮的点击次数，就一定需要App的开发人员去具体的按钮点击方法里面埋点才行，有的公司有自己的一套完整的统计埋点系统，有的公司是使用第三方统计，最终都是可以看到按钮的点击次数的，不管怎么样想知道按钮的点击必须要App的开发人员亲自去写代码埋点才行，而这篇文章主要讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; 按钮点击次数。也就是不需要开发介入，我们就能知道按钮的点击了，开发人员只要负责他的业务开发就行，下面是一张 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统埋点&lt;/code&gt; 统计和 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动分析&lt;/code&gt; 统计，灵动是TalkingData的SDK无码统计的一个功能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image01.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;　　从上面的图可以看出，开发者只要有一台电脑和一个测试设备就可以实现无码集成埋点了。客户端与Web端交互使用的是长连接，这样才能保证数据的实时性，由于数据量传输较大，所以建议在Wifi下使用，当然了如果你是土豪，在4G下也是没问题的。  &lt;br /&gt;
-　　首先是客户端通过某种方式，例如摇一摇、几根手指长按屏幕多少秒…，开启了灵动绑定功能，Web页面同时也开启了灵动，双方建立长连接，然后就可以进入上图红色虚线框里面。建立长连接之后，首先Web端要验证Client是否为自己的调试设备，这个时候必须要把设备的一些基本信息发送上去，如：设备的名称、所在的Wifi名称，目的是防止其他App用户的一些行为吴触发，也响应了这次调试的长连接。&lt;/p&gt;
+&lt;p&gt;先大致讲下左边 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统&lt;/code&gt; 埋点统计流程&lt;/p&gt;
 
-&lt;h3 id=&quot;app&quot;&gt;网页上显示App界面&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;首先需要制定埋点需求、设计埋点方案，需求有了后就去找开发沟通，埋点需求的讨论，双方确认需求通过后，然后准备需求文档，开发再根据文档来写具体的埋点代码。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;　　调试设备确认成功之后，就要给Web发送App里当前页面的信息，Web再展示出来，如下图。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;代码写完后，App打包给测试人员，测试人员进行测试，同时还要对埋点参数的数据安全审核，参数是否有包含公司敏感信息。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/codeless1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;测试通过后就需要上线了，这个过程一般是开发人员去完成的。iOS需要提交到AppStore上，以前大家都知道，一个审核周期就是一两周，还有随时被拒的可能，现在虽然周期变短了，但审核也还是挺严格的（走快捷通道的除外）。Android需要在各个渠道上重新发布，也是很麻烦的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;　　从上图可以看到，左下角手机里的App的页面已经展示在网页中了，导航按钮、头像按钮、下面的Tabbar按钮在Web页上已经加了一些不同颜色的框，看图左上角的提示，被框住的元素表示都是可追踪的元素，也就是想统计这些元素的点击事件，可以直接使用灵动功能，不需要你写一行代码。估计有些同学会好奇，我手机上的App怎么就能在网页中显示呢？他怎么知道我App里面的代码是怎么写的，使用的什么技术。其实想让手机里的App在网页中显示出来并不难，你只需要把当前的屏幕截个屏，然后传给后台，后台再传给网页，就能显示了。当然了我这里指的截屏是说使用代码获取当前屏幕图像，相信这个大家都能理解，只要在需要截屏的视图控制器里面写个截屏的代码不就行了么。但是，如果你不知道当前控制器是哪个呢？作为一个SDK，你仅仅只是个App里面的一段可执行代码，你并不知道App现在显示的是哪个视图控制器，用户做了什么操作也不知道。     &lt;br /&gt;
-　　那么我们就需要去找到当前屏幕锁显示的内容，每个App是有多个Window的，我们所看到的App界面是现在在keywindow上的，通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;UIApplication&lt;/code&gt; 的单利就可以找到这个window。但是在iOS里面的弹框如：&lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;UIActionSheet&lt;/code&gt; ，包括一些自定义的弹框，这些东西也是展示在Keywindow上的，如果你就直接把keywindo截屏发送给网页的话，那么网页显示出来的只有那个弹框，而背景却是黑色的，网页上显示的东西跟你手机里的App将不一样。 换种思路去解决这个问题，如果不截keywindow的屏呢？ 在iOS里面，如果开发者不主动去切换window的话，系统默认会取数组windows里面的第一个元素windows[0]，所以我们可以直接或者windows的第一个元素，然后截屏，那么即使有刚才说的弹框，截出来的效果也不会被影响。如果你的业务必须有多个window的切换，可以考虑上面说到的keywindow，每次有界面切换的时候还需要重新截屏，这样才能保证网页上跟App显示的一致。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;如果前面几部都顺利完成了的话，接下来就等待用户更新了，如果埋点统计功能跟其它新功能一起上线的话，我们更新就有理由了，如果仅仅这一版仅仅只是埋点统计功能，那么让用户更新App的理由又是一件头疼的事情了，不管怎么样经常让用户更新App多少会对用户用些影响的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;h3 id=&quot;app-1&quot;&gt;网页上显示App界面可点击&lt;/h3&gt;
-&lt;p&gt;　　上面讲到的仅仅只是在网页上显示App里当前的界面，当你鼠标滑动到按钮上时，发现按钮并没任何反应也不能点击。原因很简单，客户端只传了当前界面的截图，说白了就一张图片而已。那么如何才能做到跟上面的图片一样，客户端的按钮可以在网页上显示后并能点击然后绑定呢？这就需要Web端的同学配合了，首先你得把移动端的视图的层级结构跟Web端同学讲清楚了，然后客户端的再根据视图的层级结构，获取每一层的详细信息，包括：类的继承关系、所有的属性值、所在的视图的层级等信息传给Web端，然后Web端根据之前约定好的规则做显示，比如说一个按钮，继承UIControl，所以它在Web页上能绑定，然后根据frame来显示绑定时所显示框的位置，是否已经绑定过的属性来显示，可追踪元素是否已经被追踪过，以及一些其它的属性来细化网页上App页面的细节。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;最终的结果应该是部分用户更新了App，那么我们能统计到按钮点击的用户了就只是更新了App的这一部分用户了，而且他们更新的时间是不一样的，最终我们终于可以看需求上的埋点统计了。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;绑定事件生成&lt;/h3&gt;
-&lt;p&gt;　　回头看看上面技术原理那张图，现在已经走到了PC展示App的阶段了，然后就是用户(开发者)，在网页上绑定控件，绑定好了之后信息会实时的传给客户端，客户端会根据绑定的配置信息找到具体的控件绑定。技术原理跟刚才说刚才提到的获取App里层级结构信息差不多，之前是获取层级结构信息，现在是根据Web端发过来的信息去找具体的控件，然后客户端绑定，现在因为按钮已经存在了，所以你可以直接找到它然后绑定就OK了，但是如果我有界面切换呢？ 之前绑定按钮那个界面已经消失了，对象已经释放了。现在我们再回到原来的界面该什么时候去给这个按钮加点击事件？我们需要一个通用的方案，不管按钮什么时候创建，我们都能去动态绑定。   &lt;br /&gt;
-　　相信大家已经有思路了，动态绑定就要用到Runtime了，我们可以动态在UIView的两个方法 &lt;code class=&quot;highlighter-rouge&quot;&gt;didMoveToWindow&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;didMoveToWindow&lt;/code&gt; 里面去绑定，这两个方法在视图加载的时候系统会自动调用，而且这个时候按钮一定是创建了，这样按钮在任何时候去创建都能去动态绑定了。按钮被绑定后，后面基本上就没什么了，调试的时候每次点击，使用长连接把点击事件实时的发送给Web端显示，然后点击全部生效按钮，所有的调试信息都会被保存在数据库里面。等下次App启动的时候，获取配置信息，和之前绑定的流程一样绑定按钮，当按钮被用户点击后，调用普通的埋点事件，把按钮配置信息的对应ID传进去传给后台，这样就完成了整套无码统计的流程了。&lt;/p&gt;
+&lt;p&gt;再看看右边 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 统计流程&lt;/p&gt;
+
+&lt;p&gt;同样需要制定需求，但是需求方可以直接根据自己的需求去使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 了，使用了灵动就可以直接看按钮的点击率了，这个过程不需要开发介入，也不需要用户去更新App。&lt;/p&gt;
+
+&lt;p&gt;　　从这张图可以看出，不需要开发人员介入，可以开发成功，提高开发效率，而且埋点也很灵活，需求人员（可以是产品，也可以是运营）可以直接使用灵动，也不需要用户更新，那么数据反馈会比传统埋点快很多，使用了就可以立即生效，需求方的观察周期也缩短了，能更灵活的做出决策。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;实现原理&lt;/h3&gt;
+
+&lt;p&gt;　　上面大致介绍了下 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 能给我们解决什么问题，这里讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 是通过什么样的技术手段实现，这里可能对于开发人员来说更喜欢，大家先看一张灵动使用时的一个交互&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image02.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;　　这张图分成两部分看，先看上面，一个用户在操作Client和PC，Client和PC通讯是通过一个Wss的服务器建立的长连接，这是灵动调试时的一个交互。       &lt;br /&gt;
+　　也就是说，用户使用灵动分析时，需要一个安装自己App的移动设备，这个App必须要集成TalkingData的统计分析SDK才行，SDK初始化时的AppID是在TalkingData创建应用时分配的。另一端用户要打开TalkingData的灵动网页，在App启动的时候摇一摇手机，然后就可以建立一个wss的长连接了。用户就可以直接在网页上给按钮添加监听事件了，添加完成后，在手机上点击该按钮，网页上就会提示被点击，调试完成后点击全部生效，配置数据就会保存到下面https的服务器。       &lt;br /&gt;
+　　我们的所有用户在启动App的时候，都可以从https服务器里获取到这套配置，客户端根据这套配置找到具体的按钮，监听点击事件，当按钮被点击后，就可以统计到了。&lt;/p&gt;
+
+&lt;p&gt;接下来再看看灵动调试过程中数据是具体怎么进行数据交互的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image03.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;　　可以看到App客户端和Web端交互主要分为四部分：&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 主要是用来确认设备是调试者的设备，因为其它的终端用户也可能会误触发调试，&lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt;是用来在Web上展示移动App的，然后在Web上绑定了控件，就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt;发送给客户端，客户端根据配置监听绑定，当终端用户点击控件后，客户端就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt;传给Web端，Web显示控件被点击。&lt;/p&gt;
+
+&lt;p&gt;　　再回头看看实现原理的第一张图片，调试完成数据就会从WSS的长连接服务器存储到HTTPS的服务器，此后其它终端用户只要在再次启动App就能获取到埋点配置了，SDK根据埋点配置去找到具体的控件(按钮)，监听点击，当用户点击控件时就可以调用自定义埋点的方法，之后的数据处理就跟自定义埋点是一样的原理了。   &lt;br /&gt;
+　　可能有同学会有疑问，所有的App每次启动的时候都会去获取埋点配置，是不是会很耗流量？ 答案是不会的，服务器在没有埋点配置的时候每次将获取不到信息，那么将不会有什么流量消耗。如果服务器有配置了，App才会有些流量消耗的，而且这些配置信息是经过压缩的，所以流量消耗也不大，App获取到了配置之后就会做本地缓存，服务器配置不变的情况下再次获取配置也不会有流量的消耗，只有在下一次运营人员修改了新的控件绑定时才会消耗一些流量。 所以整个无码统计对终端用户的流量的影响是很小的。    &lt;br /&gt;
+　　你也可以参考这套逻辑试试自己也部署这么一套无码统计，之后就不用再担心运营给的埋点统计需求了，让他们自己去用无码统计吧。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/Codeless/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
@@ -411,30 +461,28 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
       </item>
     
       <item>
-        <title>Git日常操作</title>
-        <description>&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/GitTutorial/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+        <title>Git教程1</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
+&lt;p&gt;　　Git是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历、毕业设计等等，都可以使用git来管理。&lt;/p&gt;
 
-&lt;p&gt;　　顾名思义，就是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历等等，都可以使用git来管理。使用版本控制器的目的是为了可以查看以前的修改记录，如：你上周每天都有对项目进行修改，等这周忽然发现上周某些修改其实是有问题的，或者因为其它原因你想看看你上次没修改之前的一些记录，这时你会怎么做？修改之前拷贝一份出来？有问题直接看之前的备份就行了，是的这样是可以解决刚才的问题，那么时间就会就会出现：项目1.0，项目1.0完成版，项目1.0最终版，项目1.0再也不改版，项目1.0打死也不改版。。。毕业设计的时候大家有没有遇到过这种？在项目上可能你不会这样做，因为项目本身的体积就不小,如果拷贝这么多份的话，先不说是不是很难管理，你的电脑内存就仅仅够装几个项目。再者，如果你的电脑忽然挂了，里面的资料全没了，那么你之前做的项目是不是也都白费了，有些人遇到这种事估计想死的心都有了。那么应该怎么来解决呢，我刚才提到的，有很多个版本需要修改，或者是防止电脑挂掉，项目丢失这些问题都是可以用 &lt;code class=&quot;highlighter-rouge&quot;&gt;版本控制器&lt;/code&gt; 来解决的，&lt;/p&gt;
-
-&lt;p&gt;　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：&lt;a href=&quot;http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html&quot;&gt;为什么Git比SVN好&lt;/a&gt;。我使用的的Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了，我没自己安装过就不乱贴链接了，你可以自己在Google或者百度上一搜Git安装，教程一大把。     &lt;br /&gt;
-　　你可以把Git看成是一个仓库管理员，它可以操作本地的仓库和远端的仓库，如果在没有服务器的情况下，也就不会有远端的仓库，那我们就先说本地仓库。&lt;/p&gt;
+&lt;p&gt;　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：&lt;a href=&quot;http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html&quot;&gt;为什么Git比SVN好&lt;/a&gt;。我使用的是Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了。&lt;/p&gt;
 
 &lt;h3 id=&quot;git&quot;&gt;安装Git&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;在Mac OS X上安装Git&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;提供两种方法参考：      &lt;br /&gt;
-&amp;gt;* 1、通过homebrew安装Git，具体方法请参考&lt;a href=&quot;http://brew.sh/&quot;&gt;homebrew的文档&lt;/a&gt;    &lt;br /&gt;
-&amp;gt;* 2、直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode。&lt;/p&gt;
+&lt;p&gt;提供两种方法参考：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1、通过homebrew安装Git，具体方法请参考&lt;a href=&quot;http://brew.sh/&quot;&gt;homebrew的文档&lt;/a&gt;    &lt;br /&gt;
+2、直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;&lt;strong&gt;在Windows上安装Git&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;从&lt;a href=&quot;https://git-for-windows.github.io&quot;&gt;https://git-for-windows.github.io&lt;/a&gt; 下载，然后按默认选项安装即可，安装完成后，在开始菜单里找到“Git”-&amp;gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;p&gt;从&lt;a href=&quot;https://git-for-windows.github.io&quot;&gt;https://git-for-windows.github.io&lt;/a&gt; 下载，然后按默认选项安装即可，安装完成后，在开始菜单里找到“Git”-&amp;gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;git-1&quot;&gt;配置Git&lt;/h3&gt;
@@ -448,9 +496,11 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;“Your Name”： 是每次提交时所显示的用户名，因为Git是分布式版本控制系统，当我们push到远端时，就需要区分每个提交记录具体是谁提交的，这个”Your Name”就是最好的区分。        &lt;br /&gt;
-“email@example.com”： 是你远端仓库的email     &lt;br /&gt;
-–global： 用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然我们也可以对某个仓库指定不同的用户名和Email地址。&lt;/p&gt;
+&lt;p&gt;“Your Name”： 是每次提交时所显示的用户名，因为Git是分布式版本控制系统，当我们push到远端时，就需要区分每个提交记录具体是谁提交的，这个”Your Name”就是最好的区分。&lt;/p&gt;
+
+&lt;p&gt;“email@example.com”： 是你远端仓库的email&lt;/p&gt;
+
+&lt;p&gt;–global：用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然我们也可以对某个仓库指定不同的用户名和Email地址。&lt;/p&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;开始使用-建立仓库：&lt;/h3&gt;
 
@@ -479,11 +529,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;blockquote&gt;
   &lt;ul&gt;
-    &lt;li&gt;
-      &lt;ul&gt;
-        &lt;li&gt;(HEAD detached at analytics_v2)&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
+    &lt;li&gt;(HEAD detached at analytics_v2)&lt;/li&gt;
     &lt;li&gt;dev&lt;/li&gt;
     &lt;li&gt;master&lt;/li&gt;
   &lt;/ul&gt;
@@ -491,6 +537,8 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;代表现在已经进入一个临时的HEAD，可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -b temp&lt;/code&gt; 创建一个 temp branch，这样临时HEAD上修改的东西就不会被丢掉了。
 然后切换到 dev 分支上，在使用 git branch merge temp，就可以把 temp 分支上的代码合并到 dev 上了。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/GitTutorial/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
@@ -507,8 +555,6 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
         <description>&lt;div align=&quot;center&quot;&gt;
 	&lt;img src=&quot;/assets/images/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
 &lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;　　&lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 &lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt;的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt; 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？           &lt;br /&gt;
 　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能够将&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt;应用在移动端，敲响移动端&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;工业化的大门呢？&lt;/p&gt;
@@ -657,6 +703,8 @@ error: Xcode 7.3.0 or later is required.
 
 &lt;p&gt;如果Xcode是7.3，并且没有条件更新Xcode，你可以修改&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/compile_ios_tensorflow.sh&lt;/code&gt; 里的&lt;code class=&quot;highlighter-rouge&quot;&gt;REQUIRED_XCODE_VERSION=7.3.0&lt;/code&gt;，为&lt;code class=&quot;highlighter-rouge&quot;&gt;REQUIRED_XCODE_VERSION=7.3&lt;/code&gt;。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）&lt;/p&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;section-4&quot;&gt;四、参考链接&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -678,9 +726,7 @@ error: Xcode 7.3.0 or later is required.
     
       <item>
         <title>机器学习入门（名词科普）</title>
-        <description>&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/MachineLearning_introduce/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;通用名词&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;section&quot;&gt;通用名词&lt;/h3&gt;
 
 &lt;h4 id=&quot;ml&quot;&gt;ML&lt;/h4&gt;
 
@@ -705,6 +751,8 @@ error: Xcode 7.3.0 or later is required.
 &lt;h4 id=&quot;svm&quot;&gt;SVM:&lt;/h4&gt;
 &lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 支持向量机（Support Vector Machine）。
 　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/MachineLearning_introduce/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
         <link>http://baixin.io/2016/07/MachineLearning_introduce/</link>
@@ -718,8 +766,6 @@ error: Xcode 7.3.0 or later is required.
       <item>
         <title>HEXO进阶</title>
         <description>&lt;p&gt;HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如果你也在使用HEXO，不妨看看，应该会有些帮助。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/06/HEXO_Advanced/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;1、博客部署样式出问题了怎么办？&lt;/li&gt;
@@ -791,6 +837,8 @@ error: Xcode 7.3.0 or later is required.
 
 &lt;p&gt;更详细的请看&lt;a href=&quot;https://coding.net/help/doc/pages/index.html&quot;&gt;Coding Pages 官网介绍&lt;/a&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/06/HEXO_Advanced/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;参考文章:
 &lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -806,8 +854,6 @@ error: Xcode 7.3.0 or later is required.
       <item>
         <title>开发常用工具</title>
         <description>&lt;p&gt;个人开发常用工具的收集&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;cmd Markdown&lt;/a&gt; 作业部落出版的Markdown编辑器&lt;/li&gt;
@@ -838,8 +884,6 @@ error: Xcode 7.3.0 or later is required.
       <item>
         <title>我们日常生活中的iBeacon</title>
         <description>&lt;p&gt;　　随着低功耗蓝牙的推出，iBeacon的使用是越来越广泛了，如：微信的附近摇一摇功能，又或者是当你进入大型商场，一些店铺给你推送通知，VR场景识别等等，这些表示iBeacon已经与我们的生活精密相连了。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/04/iBeacon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;section&quot;&gt;简介：&lt;/h4&gt;
 
@@ -887,6 +931,7 @@ error: Xcode 7.3.0 or later is required.
   &lt;li&gt;影响：导致App用户在并没有使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 的情况下, &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 有了长达几个小时的后台使用时长。&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/04/iBeacon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 06 Apr 2016 19:25:06 +0800</pubDate>
         <link>http://baixin.io/2016/04/iBeacon/</link>

@@ -6,17 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <title>Git日常操作</title>
-  <meta name="description" content="点击阅读原文">
+  <title>Git教程1</title>
+  <meta name="description" content="介绍">
   <meta name="author" content="leopardpan">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Git日常操作">
-  <meta name="twitter:description" content="点击阅读原文">
+  <meta name="twitter:title" content="Git教程1">
+  <meta name="twitter:description" content="介绍">
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Git日常操作">
-  <meta property="og:description" content="点击阅读原文">
+  <meta property="og:title" content="Git教程1">
+  <meta property="og:description" content="介绍">
   
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -104,7 +104,7 @@
                 <div class="navigation__flink" >友情链接:</div>                
                 
                   <li class="navigation__flink_item">
-                    <a href="http://talkingdatasdk.coding.me" target="_blank" title="TakingDataSDK博客">TakingDataSDK博客</a>
+                    <a href="http://talkingdata.me" target="_blank" title="TakingDataSDK博客">TakingDataSDK博客</a>
                     </li>
                 
               </ul>
@@ -174,7 +174,7 @@
         <div class="content-wrapper__inner">
             <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
-    <h1 class="post-title">Git日常操作</h1>
+    <h1 class="post-title">Git教程1</h1>
     <div class="post-meta">
       <time datetime="2016-07-13 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2016-07-13</time>
      
@@ -185,29 +185,27 @@
   </header>
 
   <section class="post">
-    <p><a href="http://baixin.io/2016/07/GitTutorial/">点击阅读原文</a></p>
+    <h3 id="section">介绍</h3>
 
-<h3 id="section">介绍</h3>
+<p>　　Git是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历、毕业设计等等，都可以使用git来管理。</p>
 
-<p>　　顾名思义，就是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历等等，都可以使用git来管理。使用版本控制器的目的是为了可以查看以前的修改记录，如：你上周每天都有对项目进行修改，等这周忽然发现上周某些修改其实是有问题的，或者因为其它原因你想看看你上次没修改之前的一些记录，这时你会怎么做？修改之前拷贝一份出来？有问题直接看之前的备份就行了，是的这样是可以解决刚才的问题，那么时间就会就会出现：项目1.0，项目1.0完成版，项目1.0最终版，项目1.0再也不改版，项目1.0打死也不改版。。。毕业设计的时候大家有没有遇到过这种？在项目上可能你不会这样做，因为项目本身的体积就不小,如果拷贝这么多份的话，先不说是不是很难管理，你的电脑内存就仅仅够装几个项目。再者，如果你的电脑忽然挂了，里面的资料全没了，那么你之前做的项目是不是也都白费了，有些人遇到这种事估计想死的心都有了。那么应该怎么来解决呢，我刚才提到的，有很多个版本需要修改，或者是防止电脑挂掉，项目丢失这些问题都是可以用 <code class="highlighter-rouge">版本控制器</code> 来解决的，</p>
-
-<p>　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：<a href="http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html">为什么Git比SVN好</a>。我使用的的Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了，我没自己安装过就不乱贴链接了，你可以自己在Google或者百度上一搜Git安装，教程一大把。     <br />
-　　你可以把Git看成是一个仓库管理员，它可以操作本地的仓库和远端的仓库，如果在没有服务器的情况下，也就不会有远端的仓库，那我们就先说本地仓库。</p>
+<p>　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：<a href="http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html">为什么Git比SVN好</a>。我使用的是Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了。</p>
 
 <h3 id="git">安装Git</h3>
 
 <p><strong>在Mac OS X上安装Git</strong></p>
 
-<p>提供两种方法参考：      <br />
-&gt;* 1、通过homebrew安装Git，具体方法请参考<a href="http://brew.sh/">homebrew的文档</a>    <br />
-&gt;* 2、直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode。</p>
+<p>提供两种方法参考：</p>
+
+<blockquote>
+  <p>1、通过homebrew安装Git，具体方法请参考<a href="http://brew.sh/">homebrew的文档</a>    <br />
+2、直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode。</p>
+</blockquote>
 
 <p><strong>在Windows上安装Git</strong></p>
 
 <blockquote>
-  <ul>
-    <li>从<a href="https://git-for-windows.github.io">https://git-for-windows.github.io</a> 下载，然后按默认选项安装即可，安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！</li>
-  </ul>
+  <p>从<a href="https://git-for-windows.github.io">https://git-for-windows.github.io</a> 下载，然后按默认选项安装即可，安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！</p>
 </blockquote>
 
 <h3 id="git-1">配置Git</h3>
@@ -221,9 +219,11 @@
   </ul>
 </blockquote>
 
-<p>“Your Name”： 是每次提交时所显示的用户名，因为Git是分布式版本控制系统，当我们push到远端时，就需要区分每个提交记录具体是谁提交的，这个”Your Name”就是最好的区分。        <br />
-“email@example.com”： 是你远端仓库的email     <br />
-–global： 用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然我们也可以对某个仓库指定不同的用户名和Email地址。</p>
+<p>“Your Name”： 是每次提交时所显示的用户名，因为Git是分布式版本控制系统，当我们push到远端时，就需要区分每个提交记录具体是谁提交的，这个”Your Name”就是最好的区分。</p>
+
+<p>“email@example.com”： 是你远端仓库的email</p>
+
+<p>–global：用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然我们也可以对某个仓库指定不同的用户名和Email地址。</p>
 
 <h3 id="section-1">开始使用-建立仓库：</h3>
 
@@ -252,11 +252,7 @@
 
 <blockquote>
   <ul>
-    <li>
-      <ul>
-        <li>(HEAD detached at analytics_v2)</li>
-      </ul>
-    </li>
+    <li>(HEAD detached at analytics_v2)</li>
     <li>dev</li>
     <li>master</li>
   </ul>
@@ -264,6 +260,8 @@
 
 <p>代表现在已经进入一个临时的HEAD，可以使用 <code class="highlighter-rouge">git checkout -b temp</code> 创建一个 temp branch，这样临时HEAD上修改的东西就不会被丢掉了。
 然后切换到 dev 分支上，在使用 git branch merge temp，就可以把 temp 分支上的代码合并到 dev 上了。</p>
+
+<p><a href="http://baixin.io/2016/07/GitTutorial/">点击阅读原文</a></p>
 
 
 
@@ -290,7 +288,7 @@
 <section class="post-comments">
 
   
-    <div class="ds-thread" data-thread-key="/2016/07/GitTutorial/" data-title="Git日常操作" data-url="http://baixin.io/2016/07/GitTutorial/"></div>
+    <div class="ds-thread" data-thread-key="/2016/07/GitTutorial/" data-title="Git教程1" data-url="http://baixin.io/2016/07/GitTutorial/"></div>
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"leopard"};
