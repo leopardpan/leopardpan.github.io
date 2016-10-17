@@ -13,8 +13,6 @@ tags: iOS
 
 ### 结论：有三种情况导致设备的左下角出现灰色的 `App icon` 
 
-[点击阅读原文](http://baixin.io/2016/09/iOSLowerLeftAppicon/)     
-
 #### 1、AppStore根据地点对App 推荐
 * **简介** 
 	* iOS 8会基于你的位置在锁屏界面上展示一个app快捷打开方式。比如你正在星巴克附近，那iOS 8会在锁屏界面上展示星巴克应用的icon，方便你快速打开。一些用户也表示会在锁屏界面收到app推荐，比如你在Costco和Apple Store附近，即便你之前没有安装过这些应用。   
@@ -40,6 +38,8 @@ tags: iOS
 * **解决方案：**
 	* 1、解释：目前没有解决方案，但可以给开发者解释，我们会开发出一个新功能不定时的激活App , 但并不会影响我们的正常时长统计。 定期激活App功能模块默认是开启的，但会提供用户手动关闭的接口。
 	* 2、SDK 内 `iBeacon` 功能，去掉后台检测。
+
+[点击阅读原文](http://baixin.io/2016/09/iOSLowerLeftAppicon/)     
 
 参考链接:    
 [Make app appear as iOS 8 Suggested App at lockscreen](http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020)    

@@ -6,8 +6,6 @@ tag: 博客
 
 HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如果你也在使用HEXO，不妨看看，应该会有些帮助。
 
-[点击阅读原文](http://baixin.io/2016/06/HEXO_Advanced/)     
-
 * 1、博客部署样式出问题了怎么办？
 * 2、电脑重装或者误删了本地博客怎么办？
 * 3、想使用两台电脑写博客怎么办？
@@ -74,6 +72,8 @@ HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如�
 　　`Coding Page` 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。   
 
 更详细的请看[Coding Pages 官网介绍](https://coding.net/help/doc/pages/index.html).
+
+[点击阅读原文](http://baixin.io/2016/06/HEXO_Advanced/)     
 
 参考文章:
 [解决 Github Pages 禁止百度爬虫的方法与可行性分析](http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/)

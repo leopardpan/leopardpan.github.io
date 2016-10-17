@@ -9,8 +9,6 @@ tags: 机器学习
 	<img src="/assets/images/tfimg/logo.jpg" height="300" width="500">  
 </div> 
 
-[点击阅读原文](http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/)        
-
 　　`人工智能`、`机器学习`都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 `人工智能`、`数据挖掘`的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 `机器学习`、`数据挖掘` 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？             
 　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能够将`机器学习`、`深度学习`应用在移动端，敲响移动端`机器学习`工业化的大门呢？
 
@@ -148,6 +146,8 @@ error: Xcode 7.3.0 or later is required.
 
 如果Xcode是7.3，并且没有条件更新Xcode，你可以修改`tensorflow/contrib/makefile/compile_ios_tensorflow.sh` 里的`REQUIRED_XCODE_VERSION=7.3.0`，为`REQUIRED_XCODE_VERSION=7.3`。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）
 
+
+[点击阅读原文](http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/)        
 
 ### 四、参考链接 
  

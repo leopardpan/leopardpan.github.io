@@ -14,8 +14,6 @@ tags: python
  >* 5、脚本读取测试数据，邮件发送给相关人员。    
 
 
-[点击阅读原文](http://baixin.io/2016/08/PythonTestAutomationiOS/)     
-
 当这些全自动化后，可以大大减少开发人员的维护成本，即使每次项目里面有新增模块后，增加测试case就行了，下面会介绍自动测试这5步具体怎么去执行，整个脚本是使用Python写的，代码很少功能也很简单，但这已经可以帮我们完成基本的自动化测试了，这就是脚本的强大之处，选择Pyhton纯属个人喜好，最近也在学习Python，当然了最终使用什么语言看你自己。   
 
 ### python执行shell命令完成测试       
@@ -124,6 +122,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 上面的几个流程结合起来就可以实现一个简单的自动化测试了，如果你有什么建议和意见欢迎讨论。
 
 
+[点击阅读原文](http://baixin.io/2016/08/PythonTestAutomationiOS/)     
 
 参考链接：
 [SMTP发送邮件](http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000)     
