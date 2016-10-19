@@ -187,7 +187,7 @@
   <section class="post">
     <p>　　经过各种找资料，踩过各种坑，终于使用hexo搭建个人博客初步完成了，域名目前用得时github的，我的hexo是3.1.1版本，hexo不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。</p>
 
-<p>　　本篇文章累计了大量评论，和我的一些解答，读者有什么问题可以先看看评论，或者搜下关键字，如果还是有问题可以给我在评论里给我留言，问题很着急的可以加我ＱＱ：1499065178　，或者给我发邮件：leopardpan@163.com，都可以，如果你已经搭建完成了，可以看看我的另一篇博客<a href="http://baixin.io/2016/06/HEXO%E8%BF%9B%E9%98%B6/">HEXO进阶</a>，有讲如何能百度搜索你的博客、多台电脑使用HEXO发布博客等。</p>
+<p>　　本篇文章累计了大量评论，和我的一些解答，读者有什么问题可以先看看评论，或者搜下关键字，如果还是有问题可以给我在评论里给我留言，问题很着急的可以加我ＱＱ：1499065178　，或者给我发邮件：mailto:leopardpan@163.com，都可以，如果你已经搭建完成了，可以看看我的另一篇博客<a href="http://baixin.io/2016/06/HEXO_Advanced/">HEXO进阶</a>，有讲如何能百度搜索你的博客、多台电脑使用HEXO发布博客等。我现在的博客是使用Jekyll搭建的，请看<a href="http://baixin.io/2016/10/jekyll_tutorials1/">Jekyll搭建个人博客</a></p>
 
 <h2 id="section">正文：</h2>
 <p>　这边教程是针对与Mac的，<a href="http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool">参考链接</a>，由于原文讲到的hexo是以前的老版本，所以现在的版本配置的时候会有些改动。</p>
@@ -242,58 +242,38 @@
 <p>浏览器输入<a href="就可以看到最原始的效果了">http://localhost:4000</a>
 我不知道你们能不能，反正我不能，因为我还有环境没配置好</p>
 
-<p>我把我报的一些错，和解决方式列出来：
-## 一</p>
+<h3 id="hexo-1">常见的HEXO配置错误：</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>ERROR Plugin load failed: hexo-server
+
+原因： Besides, utilities are separated into a standalone module. hexo.util is not reachable anymore.
+
+解决方法，执行命令：$ sudo npm install hexo-server
+
 </code></pre>
 </div>
 
-<p>原因：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>执行命令hexo server，提示：Usage: hexo&lt;Command&gt; ....
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Besides, utilities are separated into a standalone module. hexo.util is not reachable anymore.
+原因：我认为是没有生成本地服务
+
+解决方法，执行命令：$ npm install hexo-server --save
+
+提示：hexo-server@0.1.2 node_modules/hexo-server
+.... 
+
+表示成功了[参考](https://hexo.io/zh-cn/docs/server.html)
+
 </code></pre>
 </div>
 
-<h3 id="section-5">解决方法，执行命令：</h3>
+<p>这个时候再执行：$ hexo-server</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo npm install hexo-server
-</code></pre>
-</div>
-
-<h2 id="section-6">二</h2>
-<p>执行命令hexo server，有如下提示：
-Usage: hexo<command />
-….</p>
-
-<p>原因：
-我认为是没有生成本地服务
-解决方法，执行命令：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>npm install hexo-server --save
-</code></pre>
-</div>
-
-<p>提示：hexo-server@0.1.2 node_modules/hexo-server
-…. 
-表示成功了<a href="https://hexo.io/zh-cn/docs/server.html">参考</a></p>
-
-<p>这个时候再执行：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>hexo-server
-</code></pre>
-</div>
-
-<p>得到:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
-</code></pre>
-</div>
+<p>得到: INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</p>
 
 <p>这个时候再点击<a href="http://0.0.0.0:4000">http://0.0.0.0:4000</a>，正常情况下应该是最原始的画面，但是我看到的是：
 白板和Cannot GET /   几个字
-原因：
-由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：</p>
+原因： 由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>npm install hexo-renderer-ejs --save
 npm install hexo-renderer-stylus --save
@@ -399,7 +379,7 @@ hexo version  #查看Hexo的版本
 　<a href="https://github.com/litten/hexo-theme-yilia">Yilia</a> - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。  <br />
 　<a href="https://github.com/Voidly/pacman">Pacman voidy</a> - A theme with dynamic tagcloud and dynamic snow</p>
 
-<h2 id="section-7">一些基本路径</h2>
+<h2 id="section-5">一些基本路径</h2>
 <p>　文章在source/_posts，如果你不怕麻烦的话可以跟我一样直接用vim去编辑，支持markdown语法，你有好的编辑软件，给我也推荐下，感激不尽?。如果想修改头像可以直接在主题的_config.yml文件里面修改，友情链接，之类的都在这里，修改名字在public/index.html里修改，开始打理你的博客吧，有什么问题或者建议，都可以提出来，我会继续完善的。</p>
 
 <h2 id="markdown">Markdown语法参考链接</h2>
