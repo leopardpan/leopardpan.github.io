@@ -196,10 +196,6 @@
 
 <p>每个 <code class="highlighter-rouge">App</code> , 至少有一个根 <code class="highlighter-rouge">Window</code> , 通常情况下我们只用一个 。<code class="highlighter-rouge">window</code> 有一个 <code class="highlighter-rouge">rootViewController</code> , 这就是我们所谓的根视图 , 我们所有的控制器都是放在 <code class="highlighter-rouge">rootViewController</code> 里面的。</p>
 
-<p><img src="/img/bVqwV3" alt="Dynamic-image1.jpeg" /></p>
-
-<p>这个是最简单的层级关系</p>
-
 <p>如果在项目里有了这么一个路径 , 我们可以做什么呢？</p>
 
 <ul>
@@ -229,23 +225,59 @@
 <h3 id="section-3">动态修改控件</h3>
 
 <p>1、把上面获取到的所有控件的详细信息上传到服务器 。 <br />
-2、根据业务需求由服务器给我们下发对应的配置列表，以 <code class="highlighter-rouge">button</code> 为例 : 配置列表里必须要有 :  <br />
-&gt; 1)、<code class="highlighter-rouge">button</code> 的全路径 : 如 <code class="highlighter-rouge">UIWindow</code> -&gt; <code class="highlighter-rouge">UIWindow</code> -&gt; <code class="highlighter-rouge">UIView</code> -&gt; <code class="highlighter-rouge">UIView</code> -&gt; <code class="highlighter-rouge">UILayoutContainerView</code> -&gt; <code class="highlighter-rouge">UITabBar</code> -&gt; <code class="highlighter-rouge">UIView</code> —&gt; <code class="highlighter-rouge">UIButton</code>  <br />
-&gt; 2)、<code class="highlighter-rouge">button</code> 的唯一标识 : 如 <code class="highlighter-rouge">tag</code> 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 <code class="highlighter-rouge">button</code> 同一层次的视图搞混 。<br />
-&gt; 3)、 根据路径及唯一标识来匹配 <code class="highlighter-rouge">App</code> 里的控件 , 匹配和上面的查找原理是相通的。 <br />
-&gt; 4)、 匹配成功代表  <code class="highlighter-rouge">button</code> 确实存在 , 根据业务需求做后续操作 。 <br />
-&gt; 提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。</p>
+2、根据业务需求由服务器给我们下发对应的配置列表，以 <code class="highlighter-rouge">button</code> 为例 : 配置列表里必须要有 :</p>
 
-<p>3、修改 <code class="highlighter-rouge">button</code> 的状态。
-&gt; 1)、 如某个按钮点了会 <code class="highlighter-rouge">Crash</code> 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 <code class="highlighter-rouge">button</code> 的 <code class="highlighter-rouge">enabled</code> 属性 。 <br />
-&gt; 2)、 如某业务暂时关闭 , 可以直接修改入口 <code class="highlighter-rouge">按钮</code> frame为0 , 前提是要自动布局已做好 。  <br />
-&gt; 3)、 如给购买 <code class="highlighter-rouge">按钮</code> 添加监听事件 <code class="highlighter-rouge">addTarget: action: forControlEvents:</code>   <br />
-&gt; <code class="highlighter-rouge">target</code> 也可以通过上面 <code class="highlighter-rouge">遍历视图</code> 获取到 , <code class="highlighter-rouge">action</code> 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。</p>
+<blockquote>
+  <p>1)、<code class="highlighter-rouge">button</code> 的全路径 : 如 <code class="highlighter-rouge">UIWindow</code> -&gt; <code class="highlighter-rouge">UIWindow</code> -&gt; <code class="highlighter-rouge">UIView</code> -&gt; <code class="highlighter-rouge">UIView</code> -&gt; <code class="highlighter-rouge">UILayoutContainerView</code> -&gt; <code class="highlighter-rouge">UITabBar</code> -&gt; <code class="highlighter-rouge">UIView</code> —&gt; <code class="highlighter-rouge">UIButton</code></p>
+</blockquote>
 
-<p>4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 : 
-&gt;1、使用Runtime <code class="highlighter-rouge">Method Swizzing</code> ,  直接把修改控件的方法与 <code class="highlighter-rouge">didMoveToSuperview</code> 和 <code class="highlighter-rouge">didMoveToWindow</code> 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。 <br />
-&gt;2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在<code class="highlighter-rouge">viewDidLoad</code> 里面初始化控件 , 在 <code class="highlighter-rouge">viewWillAppear:</code> 里面动态修改 。<br />
-&gt; 建议使用第一种适用范围更强 。</p>
+<blockquote>
+  <p>2)、<code class="highlighter-rouge">button</code> 的唯一标识 : 如 <code class="highlighter-rouge">tag</code> 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 <code class="highlighter-rouge">button</code> 同一层次的视图搞混 。</p>
+</blockquote>
+
+<blockquote>
+  <p>3)、 根据路径及唯一标识来匹配 <code class="highlighter-rouge">App</code> 里的控件 , 匹配和上面的查找原理是相通的。</p>
+</blockquote>
+
+<blockquote>
+  <p>4)、 匹配成功代表  <code class="highlighter-rouge">button</code> 确实存在 , 根据业务需求做后续操作 。</p>
+</blockquote>
+
+<blockquote>
+  <p>提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。</p>
+</blockquote>
+
+<p>3、修改 <code class="highlighter-rouge">button</code> 的状态。</p>
+
+<blockquote>
+  <p>1)、 如某个按钮点了会 <code class="highlighter-rouge">Crash</code> 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 <code class="highlighter-rouge">button</code> 的 <code class="highlighter-rouge">enabled</code> 属性 。</p>
+</blockquote>
+
+<blockquote>
+  <p>2)、 如某业务暂时关闭 , 可以直接修改入口 <code class="highlighter-rouge">按钮</code> frame为0 , 前提是要自动布局已做好 。</p>
+</blockquote>
+
+<blockquote>
+  <p>3)、 如给购买 <code class="highlighter-rouge">按钮</code> 添加监听事件 <code class="highlighter-rouge">addTarget: action: forControlEvents:</code></p>
+</blockquote>
+
+<blockquote>
+  <p><code class="highlighter-rouge">target</code> 也可以通过上面 <code class="highlighter-rouge">遍历视图</code> 获取到 , <code class="highlighter-rouge">action</code> 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。</p>
+</blockquote>
+
+<p>4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 :</p>
+
+<blockquote>
+  <p>1、使用Runtime <code class="highlighter-rouge">Method Swizzing</code> ,  直接把修改控件的方法与 <code class="highlighter-rouge">didMoveToSuperview</code> 和 <code class="highlighter-rouge">didMoveToWindow</code> 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。</p>
+</blockquote>
+
+<blockquote>
+  <p>2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在<code class="highlighter-rouge">viewDidLoad</code> 里面初始化控件 , 在 <code class="highlighter-rouge">viewWillAppear:</code> 里面动态修改 。</p>
+</blockquote>
+
+<blockquote>
+  <p>建议使用第一种适用范围更强 。</p>
+</blockquote>
 
 <p>上架后的 <code class="highlighter-rouge">应用</code> 可能会遇到的一些突发状况 , 未测出的<code class="highlighter-rouge">Crash</code>、临时改点小需求 , 等等 , 我们总不能每次因为一点小改动就重新提交一次 <code class="highlighter-rouge">App Store</code> , 先不说 <code class="highlighter-rouge">App Store</code> 的审核时间 , 频繁的让用户去更新应用 , 用户也会烦的 。使用这篇文章所讲的来实现动态更新是再合适不过了 。</p>
 

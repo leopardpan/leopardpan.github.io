@@ -115,6 +115,131 @@ categories: tag标签的分类，如：categories: 随笔
 $ jekyll server   
 ```
 
+### 如果你本机没配置过任何jekyll的环境，可能会报错
+
+```
+/Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require': cannot load such file -- bundler (LoadError)
+	from /Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/lib/jekyll/plugin_manager.rb:34:in `require_from_bundler'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/exe/jekyll:9:in `<top (required)>'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `load'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `<main>'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `eval'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `<main>'
+
+```
+
+原因： 没有安装 bundler ，执行安装 bundler 命令
+
+```
+
+$ gem install bundler
+
+```
+
+
+提示： 
+
+```
+Fetching: bundler-1.13.5.gem (100%)
+Successfully installed bundler-1.13.5
+Parsing documentation for bundler-1.13.5
+Installing ri documentation for bundler-1.13.5
+Done installing documentation for bundler after 5 seconds
+1 gem installed
+
+```
+
+再次执行 $ jekyll server  ，提示
+
+```
+
+Could not find proper version of jekyll (3.1.1) in any of the sources
+Run `bundle install` to install missing gems.
+
+```
+
+跟着提示运行命令
+
+```
+$ bundle install
+```
+
+这个时候你可能会发现 bundle install 运行卡主不动了。
+
+如果很长时间都没任何提示的话，你可以尝试修改 gem 的 source
+
+```
+$ gem sources --remove https://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+
+http://ruby.taobao.org
+
+```
+
+再次执行命令 $ bundle install，发现开始有动静了
+
+```
+Fetching gem metadata from https://rubygems.org/...........
+Fetching version metadata from https://rubygems.org/..
+Fetching dependency metadata from https://rubygems.org/.
+。。。
+Installing jekyll-watch 1.3.1
+Installing jekyll 3.1.1
+Bundle complete! 3 Gemfile dependencies, 17 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+```
+
+bundler安装完成，后再次启动本地服务 
+
+```
+$ jekyll server
+
+```
+
+继续报错
+
+```
+Configuration file: /Users/tendcloud-Caroline/Desktop/leopardpan.github.io/_config.yml
+  Dependency Error: Yikes! It looks like you don't have jekyll-sitemap or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full error message from Ruby is: 'cannot load such file -- jekyll-sitemap' If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/! 
+jekyll 3.1.1 | Error:  jekyll-sitemap
+
+```
+表示 当前的 jekyll 版本是 3.1.1 ，无法使用 jekyll-sitemap 
+
+解决方法有两个
+
+> 1、打开当前目录下的 _config.yml 文件，把 gems: [jekyll-paginate,jekyll-sitemap] 换成 gems: [jekyll-paginate] ，也就是去掉jekyll-sitemap。
+
+> 2、升级 jekyll 版本，我当前的是 jekyll 3.1.2 。
+
+修改完成后保存配置，再次执行
+
+```
+$ jekyll server
+
+```
+提示
+
+```
+Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+            Source: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github
+       Destination: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.901 seconds.
+ Auto-regeneration: enabled for '/Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github'
+Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+
+```
+
+表示本地服务部署成功。
+
 在浏览器输入 [127.0.0.1:4000](127.0.0.1:4000) ， 就可以看到[baixin.io](http://baixin.io)博客效果了。
 
 ### 修改成你自己的博客

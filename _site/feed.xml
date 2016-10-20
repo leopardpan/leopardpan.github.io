@@ -5,20 +5,20 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 19 Oct 2016 15:21:49 +0800</pubDate>
-    <lastBuildDate>Wed, 19 Oct 2016 15:21:49 +0800</lastBuildDate>
+    <pubDate>Thu, 20 Oct 2016 15:04:28 +0800</pubDate>
+    <lastBuildDate>Thu, 20 Oct 2016 15:04:28 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
         <title>Jekyll搭建个人博客</title>
-        <description>&lt;p&gt;　　之前写了一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程获得了很好评，尤其是在&lt;a href=&quot;http://www.jianshu.com/p/465830080ea9&quot;&gt;简书&lt;/a&gt;上面，目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。&lt;/p&gt;
+        <description>&lt;p&gt;　之前写了一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程获得了很好评，尤其是在&lt;a href=&quot;http://www.jianshu.com/p/465830080ea9&quot;&gt;简书&lt;/a&gt;上目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。&lt;/p&gt;
 
-&lt;p&gt;　　如果你看过我的文章会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用 HEXO 搭建的博客，后来发现使用 HEXO 在多台电脑上发布博客，操作起来并不是那么方便，果断就转到了 Jekyll 上了，接下来我会讲如何使用 Jekyll 搭建博客，&lt;a href=&quot;http://baixin.io/#blog&quot;&gt;博客模板效果&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;　如果你看过我的文章会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用 HEXO 搭建的博客，后来发现使用 HEXO 在多台电脑上发布博客，操作起来并不是那么方便，果断就转到了 Jekyll 上了，接下来我会讲如何使用 Jekyll 搭建博客，&lt;a href=&quot;http://baixin.io/#blog&quot;&gt;博客模板效果&lt;/a&gt;。&lt;/p&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
-&lt;p&gt;　　使用 Jekyll 搭建博客之前要确认下本机环境，Git 环境（用于部署到远端）、Ruby 环境（Jekyll 是基于 Ruby 开发的）、管理器 gem。
-&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;。
-　　Jekyll 是一个免费的简单静态网页生成工具，可以配合第三方服务例如： Disqus（评论）、多说(评论) 以及分享 等扩展功能，不需要数据库支持。并且 Jekyll 可以部署在Github（国外） 或 Coding（国内） 上，可以绑定自己的域名，而且这是完全免费的。&lt;/p&gt;
+&lt;p&gt;　使用 Jekyll 搭建博客之前要确认下本机环境，Git 环境（用于部署到远端）、Ruby 环境（Jekyll 是基于 Ruby 开发的）、包管理器 gem。&lt;/p&gt;
+
+&lt;p&gt;　　Jekyll 是一个免费的简单静态网页生成工具，可以配合第三方服务例如： Disqus（评论）、多说(评论) 以及分享 等等扩展功能，Jekyll 可以直接部署在 Github（国外） 或 Coding（国内） 上，可以绑定自己的域名。&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;。&lt;/p&gt;
 
 &lt;h3 id=&quot;jekyll-&quot;&gt;Jekyll 环境配置&lt;/h3&gt;
 
@@ -40,10 +40,11 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;启动本地服务
-&lt;code class=&quot;highlighter-rouge&quot;&gt;
-$ jekyll serve
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;启动本地服务&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;在浏览器里输入： &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt;，就可以看到你的博客效果了。&lt;/p&gt;
 
@@ -51,7 +52,7 @@ $ jekyll serve
 
 &lt;p&gt;so easy !&lt;/p&gt;
 
-&lt;p&gt;我们来看看myBlog里面有哪些文件&lt;/p&gt;
+&lt;p&gt;我们来看看 myBlog 里面有哪些文件&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;myBlog　　　　　　　　　　　
 　　｜　　　　　　
@@ -69,18 +70,19 @@ $ jekyll serve
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;进入_config.yml里面，修改成你想看到的信息，重新 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll server&lt;/code&gt; ，刷新浏览器就可以看到你刚刚修改的信息了。&lt;/p&gt;
+&lt;p&gt;进入 _config.yml 里面，修改成你想看到的信息，重新 jekyll server ，刷新浏览器就可以看到你刚刚修改的信息了。&lt;/p&gt;
 
 &lt;p&gt;到此，博客初步搭建算是完成了，&lt;/p&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;博客部署到远端&lt;/h3&gt;
 
-&lt;p&gt;　　我这里讲的是部署到 Github Page 创建一个 github 账号，然后创建一个跟你账户名一样的仓库，如我的 github 账户名叫 &lt;a href=&quot;https://github.com/leopardpan&quot;&gt;leopardpan&lt;/a&gt;，我的 github 仓库名就叫 &lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io&quot;&gt;leopardpan.github.io&lt;/a&gt;，创建好了之后，把刚才建立的 myBlog 项目 push 到 username.github.io仓库里去（username指的是你的github用户名），检查你远端仓库已经跟你本地 myBlog 同步了，然后你在浏览器里输入 username.github.io ，就可以访问你的博客了。&lt;/p&gt;
+&lt;p&gt;　我这里讲的是部署到 Github Page 创建一个 github 账号，然后创建一个跟你账户名一样的仓库，如我的 github 账户名叫 &lt;a href=&quot;https://github.com/leopardpan&quot;&gt;leopardpan&lt;/a&gt;，我的 github 仓库名就叫 &lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io&quot;&gt;leopardpan.github.io&lt;/a&gt;，创建好了之后，把刚才建立的 myBlog 项目 push 到 username.github.io仓库里去（username指的是你的github用户名），检查你远端仓库已经跟你本地 myBlog 同步了，然后你在浏览器里输入 username.github.io ，就可以访问你的博客了。&lt;/p&gt;
 
 &lt;h3 id=&quot;section-2&quot;&gt;编写文章&lt;/h3&gt;
 
-&lt;p&gt;　　所有的文章都是 _posts 目录下面，文章格式为 mardown 格式，文章文件名可以是 .mardown 或者 .md。
-　　编写一篇新文章很简单，你可以直接从 _posts/ 目录下复制一份出来 &lt;code class=&quot;highlighter-rouge&quot;&gt;2016-10-16-welcome-to-jekyll副本.markdown&lt;/code&gt; ，修改名字为 2016-10-16-article1.markdown ，注意：文章名的格式前面必须为 2016-10-16- ，日期可以修改，但必须为 年-月-日- 格式，后面的article1是整个文章的连接URL，如果文章名为中文，那么文章的连接URL就会变成这样的：http://baixin.io/2015/08/%E6%90%AD%E5/ ， 所以建议文章名最好是英文的或者阿拉伯数字。 双击 2016-10-16-article1.markdown 打开&lt;/p&gt;
+&lt;p&gt;　　所有的文章都是 _posts 目录下面，文章格式为 mardown 格式，文章文件名可以是 .mardown 或者 .md。&lt;/p&gt;
+
+&lt;p&gt;　　编写一篇新文章很简单，你可以直接从 _posts/ 目录下复制一份出来 &lt;code class=&quot;highlighter-rouge&quot;&gt;2016-10-16-welcome-to-jekyll副本.markdown&lt;/code&gt; ，修改名字为 2016-10-16-article1.markdown ，注意：文章名的格式前面必须为 2016-10-16- ，日期可以修改，但必须为 年-月-日- 格式，后面的 article1 是整个文章的连接 URL，如果文章名为中文，那么文章的连接URL就会变成这样的：http://baixin.io/2015/08/%E6%90%AD%E5/ ， 所以建议文章名最好是英文的或者阿拉伯数字。 双击 2016-10-16-article1.markdown 打开&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 ---
@@ -90,14 +92,14 @@ date:   2016-10-16 11:29:08 +0800
 categories: jekyll update
 ---
 
-....
+正文...
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;title: 显示的文章名， 如：title: 我的第一篇文章 。
-date:  显示的文章发布日期，如：date: 2016-10-16 。
-categories: tag标签的分类，如：categories: 随笔 。&lt;/p&gt;
+&lt;p&gt;title: 显示的文章名， 如：title: 我的第一篇文章                  &lt;br /&gt;
+date:  显示的文章发布日期，如：date: 2016-10-16                        &lt;br /&gt;
+categories: tag标签的分类，如：categories: 随笔&lt;/p&gt;
 
 &lt;p&gt;注意：文章头部格式必须为上面的，…. 就是文章的正文内容。&lt;/p&gt;
 
@@ -119,20 +121,20 @@ categories: tag标签的分类，如：categories: 随笔 。&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;ul&gt;
-    &lt;li&gt;如果你想使用我的模板请把_posts/ 目录下的文章都去掉。&lt;/li&gt;
-    &lt;li&gt;修改_config.yml文件里面的内容为你自己的。&lt;/li&gt;
+    &lt;li&gt;如果你想使用我的模板请把 _posts/ 目录下的文章都去掉。&lt;/li&gt;
+    &lt;li&gt;修改 _config.yml 文件里面的内容为你自己的。&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;然后使用git push到你自己的仓库里面去，检查你远端仓库，在浏览器输入username.github.io就会发现，你有一个漂亮的主题模板了。&lt;/p&gt;
+&lt;p&gt;然后使用 git push 到你自己的仓库里面去，检查你远端仓库，在浏览器输入 username.github.io 就会发现，你有一个漂亮的主题模板了。&lt;/p&gt;
 
-&lt;h3 id=&quot;jekyll&quot;&gt;为什么要是用Jekyll&lt;/h3&gt;
+&lt;h3 id=&quot;jekyll&quot;&gt;为什么要是用 Jekyll&lt;/h3&gt;
 
-&lt;p&gt;使用了Jekyll你会发现如果你想使用多台电脑发博客都很方便，只要把远端github仓库里的博客clone下来，写文章后再提交就可以了，Hexo由于远端提交的是静态网页，所有无法直接写Markdown的文章。如果你想看Hexo搭建博客，可以看看我的另一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程。&lt;/p&gt;
+&lt;p&gt;使用了 Jekyll 你会发现如果你想使用多台电脑发博客都很方便，只要把远端 github 仓库里的博客 clone 下来，写文章后再提交就可以了，Hexo 由于远端提交的是静态网页，所有无法直接写 Markdown 的文章。如果你想看 Hexo 搭建博客，可以看看我的另一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程。&lt;/p&gt;
 
 &lt;p&gt;如果你在搭建博客遇到问题，可以在&lt;a href=&quot;http://baixin.io/2016/06/jekyll_tutorials1/&quot;&gt;原文博客&lt;/a&gt;的评论里给我提问。&lt;/p&gt;
 
-&lt;p&gt;后面会继续介绍，在我的博客基础上，如何修改成你自己喜欢的Style，欢迎继续关注我博客的更新。&lt;/p&gt;
+&lt;p&gt;后面会继续介绍，在我的博客基础上，如何修改成你自己喜欢的 Style，欢迎继续关注我博客的更新。&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 14 Oct 2016 00:00:00 +0800</pubDate>
@@ -148,13 +150,13 @@ categories: tag标签的分类，如：categories: 随笔 。&lt;/p&gt;
         <title>iOS设备左下角出现Appicon</title>
         <description>&lt;p&gt;最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。&lt;/p&gt;
 
-&lt;p&gt;图一 iOS 系统自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图二 第三方 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt; , 图三 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号激活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo icon&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;图一 iOS 系统自带的 App icon , 图二 第三方 App icon , 图三 通过 iBeacon 信号激活的 demo icon&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 &lt;code class=&quot;highlighter-rouge&quot;&gt;App icon&lt;/code&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 App icon&lt;/h2&gt;
 
-&lt;h4 id=&quot;appstoreapp-&quot;&gt;1、AppStore根据地点对App 推荐&lt;/h4&gt;
+&lt;h3 id=&quot;appstoreapp-&quot;&gt;1、AppStore根据地点对App 推荐&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;简介&lt;/strong&gt;
     &lt;ul&gt;
@@ -163,7 +165,7 @@ categories: tag标签的分类，如：categories: 随笔 。&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;apphandoff&quot;&gt;2、App实现了handoff功能&lt;/h4&gt;
+&lt;h3 id=&quot;apphandoff&quot;&gt;2、App实现了handoff功能&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html&quot;&gt;handoff简介&lt;/a&gt;：&lt;/strong&gt;
     &lt;ul&gt;
@@ -179,7 +181,7 @@ categories: tag标签的分类，如：categories: 随笔 。&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;appibeaconappibeacon&quot;&gt;3、App内有iBeacon信号接收功能，App被iBeacon信号唤醒&lt;/h4&gt;
+&lt;h3 id=&quot;appibeaconappibeacon&quot;&gt;3、App内有iBeacon信号接收功能，App被iBeacon信号唤醒&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/ibeacon/&quot;&gt;iBeacon简介&lt;/a&gt;&lt;/strong&gt;：
     &lt;ul&gt;
@@ -189,21 +191,6 @@ categories: tag标签的分类，如：categories: 随笔 。&lt;/p&gt;
   &lt;li&gt;&lt;strong&gt;App icon出现的原因&lt;/strong&gt;：
     &lt;ul&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 具备后台定位的能力，只要用户把蓝牙(4.0或以后)开启 和 允许 App 访问位置信息。在有被 App 检测的 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 出现时，如果设备是锁屏状态，设备的左下角就会出现该 App 的 icon 。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;sdkicon&quot;&gt;SDK导致设备左下角icon出现的影响范围及解决方案&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;影响范围&lt;/strong&gt;：
-    &lt;ul&gt;
-      &lt;li&gt;用户手机在锁屏状态下，附近有微信(或以后加入的 UUID ) &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 信号出现时，设备左下角会出现 icon 。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;解决方案：&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;1、解释：目前没有解决方案，但可以给开发者解释，我们会开发出一个新功能不定时的激活App , 但并不会影响我们的正常时长统计。 定期激活App功能模块默认是开启的，但会提供用户手动关闭的接口。&lt;/li&gt;
-      &lt;li&gt;2、SDK 内 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 功能，去掉后台检测。&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
