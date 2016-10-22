@@ -29,6 +29,7 @@
   
   <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
 
+<!-- 百度统计 -->
   
   <script>
       var _hmt = _hmt || [];
@@ -41,7 +42,7 @@
   </script>
   
 
-
+<!-- google 统计 -->
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,8 +75,16 @@
                 <div class="img"><img src="/assets/images/avatar.jpg" alt="img"></div>
                 <div class="info">
                     <div class="info-back">
-                        <h2>leopardpan</h2>
-                        <p>iOS | Machine Learning</p>
+                        <h2> 
+                            
+                                leopardpan
+                            
+                        </h2>
+                        <p>
+                           
+                                iOS / 机器学习
+                            
+                        </p>
                     </div>
                 </div>
             </a>
@@ -187,7 +196,7 @@
   <section class="post">
     <p>　　经过各种找资料，踩过各种坑，终于使用 hexo 搭建个人博客初步完成了，域名目前用得时 github 的，我的 hexo 是 3.1.1 版本，hexo 不同的版本，很多配置都不一样。好吧，废话不多说了，开始吧。</p>
 
-<p>　　本篇文章累计了大量评论，和我的一些解答，读者有什么问题可以先看看评论，或者搜下关键字，如果还是有问题可以给我在评论里给我留言，问题很着急的可以加我 ＱＱ：1499065178　，或者给我发邮件：mailto: leopardpan@163.com，都可以，如果你已经搭建完成了，可以看看我的另一篇博客<a href="http://baixin.io/2016/06/HEXO_Advanced/">HEXO进阶</a>，有讲如何能百度搜索你的博客、多台电脑使用HEXO发布博客等。我现在的博客是使用 Jekyll 搭建的，如果你想使用我现在的模板请看<a href="http://baixin.io/2016/10/jekyll_tutorials1/">Jekyll搭建个人博客</a></p>
+<p>　　本篇文章累计了大量评论，和我的一些解答，读者有什么问题可以先看看评论，或者搜下关键字，如果还是有问题可以给我在评论里给我留言，问题很着急的可以加我 ＱＱ：1499065178　，或者给我发邮件：<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#108;&#101;&#111;&#112;&#097;&#114;&#100;&#112;&#097;&#110;&#064;&#105;&#099;&#108;&#111;&#117;&#100;&#046;&#099;&#111;&#109;">&#108;&#101;&#111;&#112;&#097;&#114;&#100;&#112;&#097;&#110;&#064;&#105;&#099;&#108;&#111;&#117;&#100;&#046;&#099;&#111;&#109;</a>  ，都可以，如果你已经搭建完成了，可以看看我的另一篇博客<a href="http://baixin.io/2016/06/HEXO_Advanced/">HEXO进阶</a>，有讲如何能百度搜索你的博客、多台电脑使用HEXO发布博客等。我现在的博客是使用 Jekyll 搭建的，如果你想使用我现在的模板请看<a href="http://baixin.io/2016/10/jekyll_tutorials1/">Jekyll搭建个人博客</a></p>
 
 <h2 id="section">正文：</h2>
 <p>　这边教程是针对与Mac的，<a href="http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool">参考链接</a>，由于原文讲到的hexo是以前的老版本，所以现在的版本配置的时候会有些改动。</p>
@@ -382,11 +391,27 @@ hexo version  #查看Hexo的版本
 　<a href="https://github.com/Voidly/pacman">Pacman voidy</a> - A theme with dynamic tagcloud and dynamic snow</p>
 
 <h3 id="section-6">一些基本路径</h3>
-<p>　文章在source/_posts，如果你不怕麻烦的话可以跟我一样直接用vim去编辑，支持markdown语法，你有好的编辑软件，给我也推荐下，感激不尽?。如果想修改头像可以直接在主题的_config.yml文件里面修改，友情链接，之类的都在这里，修改名字在public/index.html里修改，开始打理你的博客吧，有什么问题或者建议，都可以提出来，我会继续完善的。</p>
+<p>　文章在 source/_posts，编辑器可以用 Sublime，支持 markdown 语法。如果想修改头像可以直接在主题的 _config.yml 文件里面修改，友情链接，之类的都在这里，修改名字在 public/index.html 里修改，开始打理你的博客吧，有什么问题或者建议，都可以提出来，我会继续完善的。</p>
 
-<h3 id="markdown">Markdown语法参考链接</h3>
-<p><a href="https://www.zybuluo.com/mdeditor">很实用的例子</a>
-转载请注明原地址，潘柏信的博客：<a href="http://leopardpan.github.io">http://leopardpan.github.io</a> 谢谢！</p>
+<p>Markdown语法参考链接: <a href="https://www.zybuluo.com/mdeditor">作业部落</a></p>
+
+<h3 id="qa">Q&amp;A</h3>
+
+<blockquote>
+  <p>问：如何让文章想只显示一部分和一个 <code class="highlighter-rouge">阅读全文</code> 的按钮？     <br />
+答：在文章中加一个 <code class="highlighter-rouge">&lt;!--more--&gt;</code> ， <code class="highlighter-rouge">&lt;!--more--&gt;</code> 后面的内容就不会显示出来了。</p>
+</blockquote>
+
+<p> </p>
+
+<blockquote>
+  <p>问：本地部署成功了，也能预览效果，但使用 username.github.io 访问，<code class="highlighter-rouge">出现 404 </code> .    <br />
+答：首先确认 hexo d 命令执行是否报错，如果没有报错，再查看一下你的 github 的 username.github.io 仓库，你的博客是否已经成功提交了，你的 github 邮箱也要通过验证才行。</p>
+</blockquote>
+
+<p> </p>
+
+<p>转载请注明原地址，潘柏信的博客：<a href="http://leopardpan.github.io">http://leopardpan.github.io</a> 谢谢！</p>
 
 
   </section>

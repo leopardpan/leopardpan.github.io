@@ -5,8 +5,8 @@
     <description></description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 20 Oct 2016 15:04:28 +0800</pubDate>
-    <lastBuildDate>Thu, 20 Oct 2016 15:04:28 +0800</lastBuildDate>
+    <pubDate>Fri, 21 Oct 2016 10:12:31 +0800</pubDate>
+    <lastBuildDate>Fri, 21 Oct 2016 10:12:31 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -115,6 +115,134 @@ categories: tag标签的分类，如：categories: 随笔&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;h3 id=&quot;jekyll&quot;&gt;如果你本机没配置过任何jekyll的环境，可能会报错&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require&#39;: cannot load such file -- bundler (LoadError)
+	from /Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/lib/jekyll/plugin_manager.rb:34:in `require_from_bundler&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/exe/jekyll:9:in `&amp;lt;top (required)&amp;gt;&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `load&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `&amp;lt;main&amp;gt;&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `eval&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `&amp;lt;main&amp;gt;&#39;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;原因： 没有安装 bundler ，执行安装 bundler 命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+$ gem install bundler
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;提示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fetching: bundler-1.13.5.gem (100%)
+Successfully installed bundler-1.13.5
+Parsing documentation for bundler-1.13.5
+Installing ri documentation for bundler-1.13.5
+Done installing documentation for bundler after 5 seconds
+1 gem installed
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再次执行 $ jekyll server  ，提示&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+Could not find proper version of jekyll (3.1.1) in any of the sources
+Run `bundle install` to install missing gems.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;跟着提示运行命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bundle install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个时候你可能会发现 bundle install 运行卡主不动了。&lt;/p&gt;
+
+&lt;p&gt;如果很长时间都没任何提示的话，你可以尝试修改 gem 的 source&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem sources --remove https://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+
+http://ruby.taobao.org
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再次执行命令 $ bundle install，发现开始有动静了&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fetching gem metadata from https://rubygems.org/...........
+Fetching version metadata from https://rubygems.org/..
+Fetching dependency metadata from https://rubygems.org/.
+。。。
+Installing jekyll-watch 1.3.1
+Installing jekyll 3.1.1
+Bundle complete! 3 Gemfile dependencies, 17 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;bundler安装完成，后再次启动本地服务&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll server
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;继续报错&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /Users/tendcloud-Caroline/Desktop/leopardpan.github.io/_config.yml
+  Dependency Error: Yikes! It looks like you don&#39;t have jekyll-sitemap or one of its dependencies installed. In order to use Jekyll as currently configured, you&#39;ll need to install this gem. The full error message from Ruby is: &#39;cannot load such file -- jekyll-sitemap&#39; If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/! 
+jekyll 3.1.1 | Error:  jekyll-sitemap
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;表示 当前的 jekyll 版本是 3.1.1 ，无法使用 jekyll-sitemap&lt;/p&gt;
+
+&lt;p&gt;解决方法有两个&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1、打开当前目录下的 _config.yml 文件，把 gems: [jekyll-paginate,jekyll-sitemap] 换成 gems: [jekyll-paginate] ，也就是去掉jekyll-sitemap。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、升级 jekyll 版本，我当前的是 jekyll 3.1.2 。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;修改完成后保存配置，再次执行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll server
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;提示&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+            Source: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github
+       Destination: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.901 seconds.
+ Auto-regeneration: enabled for &#39;/Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github&#39;
+Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;表示本地服务部署成功。&lt;/p&gt;
+
 &lt;p&gt;在浏览器输入 &lt;a href=&quot;127.0.0.1:4000&quot;&gt;127.0.0.1:4000&lt;/a&gt; ， 就可以看到&lt;a href=&quot;http://baixin.io&quot;&gt;baixin.io&lt;/a&gt;博客效果了。&lt;/p&gt;
 
 &lt;h3 id=&quot;section-4&quot;&gt;修改成你自己的博客&lt;/h3&gt;
@@ -128,7 +256,9 @@ categories: tag标签的分类，如：categories: 随笔&lt;/p&gt;
 
 &lt;p&gt;然后使用 git push 到你自己的仓库里面去，检查你远端仓库，在浏览器输入 username.github.io 就会发现，你有一个漂亮的主题模板了。&lt;/p&gt;
 
-&lt;h3 id=&quot;jekyll&quot;&gt;为什么要是用 Jekyll&lt;/h3&gt;
+&lt;h4 id=&quot;section-5&quot;&gt;【 如果想修改博客样式却不知道怎么修改，可以直接在评论里给我提问 】&lt;/h4&gt;
+
+&lt;h3 id=&quot;jekyll-1&quot;&gt;为什么要是用 Jekyll&lt;/h3&gt;
 
 &lt;p&gt;使用了 Jekyll 你会发现如果你想使用多台电脑发博客都很方便，只要把远端 github 仓库里的博客 clone 下来，写文章后再提交就可以了，Hexo 由于远端提交的是静态网页，所有无法直接写 Markdown 的文章。如果你想看 Hexo 搭建博客，可以看看我的另一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程。&lt;/p&gt;
 

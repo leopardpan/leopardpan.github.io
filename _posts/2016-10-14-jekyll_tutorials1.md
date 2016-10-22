@@ -1,17 +1,21 @@
 ---
 layout: post
-title: "Jekyll搭建个人博客"
+title: Jekyll搭建个人博客
 date: 2016-10-14 
 tags: 博客   
 ---
 
 　之前写了一篇[HEXO搭建个人博客](http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/)的教程获得了很好评，尤其是在[简书](http://www.jianshu.com/p/465830080ea9)上目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。
 
-　如果你看过我的文章会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用 HEXO 搭建的博客，后来发现使用 HEXO 在多台电脑上发布博客，操作起来并不是那么方便，果断就转到了 Jekyll 上了，接下来我会讲如何使用 Jekyll 搭建博客，[博客模板效果](http://baixin.io/#blog)。
+　如果你看过我的文章会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用 HEXO 搭建的博客，后来发现使用 HEXO 在多台电脑上发布博客，操作起来并不是那么方便，果断就转到了 Jekyll 上，接下来我会讲如何使用 Jekyll 搭建博客，[博客模板效果](http://baixin.io/#blog)。
 
 
 ### 介绍
-　使用 Jekyll 搭建博客之前要确认下本机环境，Git 环境（用于部署到远端）、Ruby 环境（Jekyll 是基于 Ruby 开发的）、包管理器 gem。
+
+ 　Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown （或者 Textile） 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll 也可以运行在 GitHub Page 上，也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是完全免费的
+
+　使用 Jekyll 搭建博客之前要确认下本机环境，Git 环境（用于部署到远端）、[Ruby](http://www.ruby-lang.org/en/downloads/) 环境（Jekyll 是基于 Ruby 开发的）、包管理器 [RubyGems](http://rubygems.org/pages/download)                
+　　如果你是 Mac 用户，你就需要安装 Xcode 和 Command-Line Tools了。下载方式 Preferences → Downloads → Components。
 
 　　Jekyll 是一个免费的简单静态网页生成工具，可以配合第三方服务例如： Disqus（评论）、多说(评论) 以及分享 等等扩展功能，Jekyll 可以直接部署在 Github（国外） 或 Coding（国内） 上，可以绑定自己的域名。[Jekyll中文文档](http://jekyll.bootcss.com/)、[Jekyll英文文档](https://jekyllrb.com/)、[Jekyll主题列表](http://jekyllthemes.org/)。
 
@@ -48,24 +52,37 @@ $ jekyll serve
 
 so easy !
 
-我们来看看 myBlog 里面有哪些文件
+### 目录结构
+　
+　Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 你用你最喜欢的标记语言来写文章，可以是 Markdown，也可以是 Textile,或者就是简单的 HTML, 然后 Jekyll 就会帮你套入一个或一系列的布局中。在整个过程中你可以设置URL路径, 你的文本在布局中的显示样式等等。这些都可以通过纯文本编辑来实现，最终生成的静态页面就是你的成品了。
+
+ 一个基本的 Jekyll 网站的目录结构一般是像这样的：
 
 ```
-myBlog　　　　　　　　　　　
-　　｜　　　　　　
-　　｜－－_config.yml　　　　　　　　　
-　　｜－－_includes　　　　　　　　
-　　｜－－_layouts　　　　　　　　　　
-　　｜－－_posts　　　　　　　
-　　｜－－_sass　　　　　　　　
-　　｜－－_site　　　　　　　　　　
-　　｜－－about.md　　　　　　　
-　　｜－－css　　　　　　　
-　　｜－－feed.xml　　　　　　　　
-　　｜－－index.html　　　　　　　
-　　｜　
+.
+├── _config.yml
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   ├── post.html
+|   └── page.html
+├── _posts
+|   └── 2016-10-08-welcome-to-jekyll.markdown
+├── _sass
+|   ├── _base.scss
+|   ├── _layout.scss
+|   └── _syntax-highlighting.scss
+├── about.md
+├── css
+|   └── main.scss
+├── feed.xml
+└── index.html
+
 ```
 
+这些目录结构以及具体的作用可以参考 [官网文档](http://jekyll.com.cn/docs/structure/) 
 
 进入 _config.yml 里面，修改成你想看到的信息，重新 jekyll server ，刷新浏览器就可以看到你刚刚修改的信息了。
 
@@ -248,6 +265,9 @@ Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpa
 >* 修改 _config.yml 文件里面的内容为你自己的。
 
 然后使用 git push 到你自己的仓库里面去，检查你远端仓库，在浏览器输入 username.github.io 就会发现，你有一个漂亮的主题模板了。      
+
+
+#### 【 如果想修改博客样式却不知道怎么修改，可以直接在评论里给我提问 】
 
 ### 为什么要是用 Jekyll
 

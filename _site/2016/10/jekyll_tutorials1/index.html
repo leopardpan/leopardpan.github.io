@@ -29,6 +29,7 @@
   
   <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
 
+<!-- 百度统计 -->
   
   <script>
       var _hmt = _hmt || [];
@@ -41,7 +42,7 @@
   </script>
   
 
-
+<!-- google 统计 -->
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,8 +75,16 @@
                 <div class="img"><img src="/assets/images/avatar.jpg" alt="img"></div>
                 <div class="info">
                     <div class="info-back">
-                        <h2>leopardpan</h2>
-                        <p>iOS | Machine Learning</p>
+                        <h2> 
+                            
+                                leopardpan
+                            
+                        </h2>
+                        <p>
+                           
+                                iOS / 机器学习
+                            
+                        </p>
                     </div>
                 </div>
             </a>
@@ -289,6 +298,134 @@ categories: tag标签的分类，如：categories: 随笔</p>
 </code></pre>
 </div>
 
+<h3 id="jekyll">如果你本机没配置过任何jekyll的环境，可能会报错</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require': cannot load such file -- bundler (LoadError)
+	from /Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/lib/jekyll/plugin_manager.rb:34:in `require_from_bundler'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/exe/jekyll:9:in `&lt;top (required)&gt;'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `load'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `&lt;main&gt;'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `eval'
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `&lt;main&gt;'
+
+</code></pre>
+</div>
+
+<p>原因： 没有安装 bundler ，执行安装 bundler 命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+$ gem install bundler
+
+</code></pre>
+</div>
+
+<p>提示：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Fetching: bundler-1.13.5.gem (100%)
+Successfully installed bundler-1.13.5
+Parsing documentation for bundler-1.13.5
+Installing ri documentation for bundler-1.13.5
+Done installing documentation for bundler after 5 seconds
+1 gem installed
+
+</code></pre>
+</div>
+
+<p>再次执行 $ jekyll server  ，提示</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+Could not find proper version of jekyll (3.1.1) in any of the sources
+Run `bundle install` to install missing gems.
+
+</code></pre>
+</div>
+
+<p>跟着提示运行命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ bundle install
+</code></pre>
+</div>
+
+<p>这个时候你可能会发现 bundle install 运行卡主不动了。</p>
+
+<p>如果很长时间都没任何提示的话，你可以尝试修改 gem 的 source</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gem sources --remove https://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+
+http://ruby.taobao.org
+
+</code></pre>
+</div>
+
+<p>再次执行命令 $ bundle install，发现开始有动静了</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Fetching gem metadata from https://rubygems.org/...........
+Fetching version metadata from https://rubygems.org/..
+Fetching dependency metadata from https://rubygems.org/.
+。。。
+Installing jekyll-watch 1.3.1
+Installing jekyll 3.1.1
+Bundle complete! 3 Gemfile dependencies, 17 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+</code></pre>
+</div>
+
+<p>bundler安装完成，后再次启动本地服务</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll server
+
+</code></pre>
+</div>
+
+<p>继续报错</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Configuration file: /Users/tendcloud-Caroline/Desktop/leopardpan.github.io/_config.yml
+  Dependency Error: Yikes! It looks like you don't have jekyll-sitemap or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full error message from Ruby is: 'cannot load such file -- jekyll-sitemap' If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/! 
+jekyll 3.1.1 | Error:  jekyll-sitemap
+
+</code></pre>
+</div>
+<p>表示 当前的 jekyll 版本是 3.1.1 ，无法使用 jekyll-sitemap</p>
+
+<p>解决方法有两个</p>
+
+<blockquote>
+  <p>1、打开当前目录下的 _config.yml 文件，把 gems: [jekyll-paginate,jekyll-sitemap] 换成 gems: [jekyll-paginate] ，也就是去掉jekyll-sitemap。</p>
+</blockquote>
+
+<blockquote>
+  <p>2、升级 jekyll 版本，我当前的是 jekyll 3.1.2 。</p>
+</blockquote>
+
+<p>修改完成后保存配置，再次执行</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll server
+
+</code></pre>
+</div>
+<p>提示</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+            Source: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github
+       Destination: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.901 seconds.
+ Auto-regeneration: enabled for '/Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github'
+Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+
+</code></pre>
+</div>
+
+<p>表示本地服务部署成功。</p>
+
 <p>在浏览器输入 <a href="127.0.0.1:4000">127.0.0.1:4000</a> ， 就可以看到<a href="http://baixin.io">baixin.io</a>博客效果了。</p>
 
 <h3 id="section-4">修改成你自己的博客</h3>
@@ -302,7 +439,9 @@ categories: tag标签的分类，如：categories: 随笔</p>
 
 <p>然后使用 git push 到你自己的仓库里面去，检查你远端仓库，在浏览器输入 username.github.io 就会发现，你有一个漂亮的主题模板了。</p>
 
-<h3 id="jekyll">为什么要是用 Jekyll</h3>
+<h4 id="section-5">【 如果想修改博客样式却不知道怎么修改，可以直接在评论里给我提问 】</h4>
+
+<h3 id="jekyll-1">为什么要是用 Jekyll</h3>
 
 <p>使用了 Jekyll 你会发现如果你想使用多台电脑发博客都很方便，只要把远端 github 仓库里的博客 clone 下来，写文章后再提交就可以了，Hexo 由于远端提交的是静态网页，所有无法直接写 Markdown 的文章。如果你想看 Hexo 搭建博客，可以看看我的另一篇<a href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">HEXO搭建个人博客</a>的教程。</p>
 
