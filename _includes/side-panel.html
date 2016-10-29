@@ -36,6 +36,7 @@
         <p class="panel-cover__description">{{ site.welcome_message }}</p>
         {% endif %}
         
+
         <div class="navigation-wrapper">
           <div>
             <nav class="cover-navigation cover-navigation--primary">
@@ -44,17 +45,12 @@
                 {% for item in site.nav %}
                   <li class="navigation__item"><a href="{{item.url}}" title="{{item.description}}">{{item.title}}</a></li>
                 {% endfor %}
-                <div class="navigation__flink" >友情链接:</div>                
-                {% for item in site.flink %}
-                  <li class="navigation__flink_item">
-                    <a href="{{item.url}}" target="_blank" title="{{item.description}}">{{item.title}}</a>
-                    </li>
-                {% endfor %}
               </ul>
             </nav>
-          </div>
-          
-          <div>{% include social.html %}</div>
+          </div>          
+        </div>
+
+
         </div>
       </div>
     </div>

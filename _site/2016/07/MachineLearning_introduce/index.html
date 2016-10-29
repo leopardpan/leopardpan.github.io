@@ -59,9 +59,30 @@
 
   <body>
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    <span class="mobile btn-mobile-menu">        
+      <div class="nav_container">
+         <nav class="nav-menu-item" style = "float:right">
+            <i class="nav-menu-item">
+              <a href="/#blog" title="" class="blog-button">  博客主页
+              </a>
+            </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/archive" title="archive" class="btn-mobile-menu__icon">
+                      所有文章
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/tags" title="tags" class="btn-mobile-menu__icon">
+                      标签
+                  </a>
+                </i>
+            
+          </nav>
+      </div>
     </span>
     
     <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
@@ -95,11 +116,12 @@
         <span class="panel-cover__subtitle panel-subtitle">个人站</span>
         
         <hr class="panel-cover__divider" />
-        <p class="panel-cover__description"></p>
+        <p class="panel-cover__description">欢迎来到我的个人站~</p>
         <hr class="panel-cover__divider panel-cover__divider--secondary" />
         
         
         
+
         <div class="navigation-wrapper">
           <div>
             <nav class="cover-navigation cover-navigation--primary">
@@ -110,64 +132,12 @@
                 
                   <li class="navigation__item"><a href="/tags" title="tags">标签</a></li>
                 
-                <div class="navigation__flink" >友情链接:</div>                
-                
-                  <li class="navigation__flink_item">
-                    <a href="http://talkingdata.me" target="_blank" title="TakingDataSDK博客">TakingDataSDK博客</a>
-                    </li>
-                
               </ul>
             </nav>
-          </div>
-          
-          <div><nav class="cover-navigation navigation--social">
-  <ul class="navigation">
+          </div>          
+        </div>
 
-  
-  <!-- Weibo -->
-  <li class="navigation__item">
-    <a href="http://weibo.com/5366874726" title="@5366874726 的微博" target="_blank">
-      <i class='social fa fa-weibo fa-2x'></i>
-      <span class="label">Weibo</span>
-    </a>
-  </li>
-  
 
-  
-  <!-- Github -->
-  <li class="navigation__item">
-    <a href="https://github.com/leopardpan" title="@leopardpan 的 Github" target="_blank">
-      <i class='social fa fa-github fa-2x'></i>
-      <span class="label">Github</span>
-    </a>
-  </li>
-  
-  
-  
-
-  
-
-  <!-- RSS -->
-  <li class="navigation__item">
-    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
-      <i class='social fa fa-rss fa-2x'></i>
-      <span class="label">RSS</span>
-    </a>
-  </li>
-
-  
-  <!-- Email -->
-  <li class="navigation__item">
-    <a href="mailto:leopardpan@icloud.com" title="Contact me">
-      <i class='social fa fa-envelope fa-2x'></i>
-      <span class="label">Email</span>
-    </a>
-  </li>
-  
-
-  </ul>
-</nav>
-</div>
         </div>
       </div>
     </div>
@@ -267,19 +237,71 @@
 
             <section class="footer">
     <footer>
-       <p class="copyright text-muted">
-        Copyright &copy; 潘柏信 2016 Theme by <a href="http://baixin.io/">leopardpan</a> |
-        <iframe
-            style="margin-left: 2px; margin-bottom:-5px;"
-            frameborder="0" scrolling="0" width="91px" height="20px"
-            src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
-        </iframe>
-    </p>
-    	<div align="right">
-			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-			<span id="busuanzi_value_page_pv"></span> 本站访问：<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> 次
-      	</div>
+        <div class = "footer_div">  
+        <nav class="cover-navigation navigation--social">
+          <ul class="navigation">
 
+          
+          <!-- Weibo -->
+          <li class="navigation__item_social">
+            <a href="http://weibo.com/5366874726" title="@5366874726 的微博" target="_blank">
+              <i class='social fa fa-weibo fa-2x'></i>
+              <span class="label">Weibo</span>
+            </a>
+          </li>
+          
+
+          
+          <!-- Github -->
+          <li class="navigation__item_social">
+            <a href="https://github.com/leopardpan" title="@leopardpan 的 Github" target="_blank">
+              <i class='social fa fa-github fa-2x'></i>
+              <span class="label">Github</span>
+            </a>
+          </li>
+          
+          
+          
+
+          
+
+          <!-- RSS -->
+          <li class="navigation__item_social">
+            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+              <i class='social fa fa-rss fa-2x'></i>
+              <span class="label">RSS</span>
+            </a>
+          </li>
+
+          
+          <!-- Email -->
+          <li class="navigation__item_social">
+            <a href="mailto:leopardpan@icloud.com" title="Contact me">
+              <i class='social fa fa-envelope fa-2x'></i>
+              <span class="label">Email</span>
+            </a>
+          </li>
+          
+
+          </ul>
+        </nav>
+
+        </div>
+
+        <div class = "footer_div">  
+           <p class="copyright text-muted">
+            Copyright &copy; 潘柏信 2016 Theme by <a href="http://baixin.io/">leopardpan</a> |
+            <iframe
+                style="margin-left: 2px; margin-bottom:-5px;"
+                frameborder="0" scrolling="0" width="91px" height="20px"
+                src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+            </iframe>
+            </p>
+        	<div align="right">
+    			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    			<span id="busuanzi_value_page_pv"></span> 本站访问：<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> 次
+          	</div>
+        <div>
     </footer>
 </section>
 

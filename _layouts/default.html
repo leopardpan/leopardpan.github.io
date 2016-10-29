@@ -5,9 +5,23 @@
 
   <body>
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    <span class="mobile btn-mobile-menu">        
+      <div class="nav_container">
+         <nav class="nav-menu-item" style = "float:right">
+            <i class="nav-menu-item">
+              <a href="/#blog" title="{{site.blog_button.description}}" class="blog-button">  {{site.blog_button.title}}
+              </a>
+            </i>
+            {% for item in site.nav %}
+                <i class="nav-menu-item">
+
+                  <a href="{{item.url}}" title="{{item.description}}" class="btn-mobile-menu__icon">
+                      {{item.title}}
+                  </a>
+                </i>
+            {% endfor %}
+          </nav>
+      </div>
     </span>
     
     {% include side-panel.html %}

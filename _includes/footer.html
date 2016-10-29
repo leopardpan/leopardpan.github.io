@@ -1,17 +1,85 @@
 <section class="footer">
     <footer>
-       <p class="copyright text-muted">
-        Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }} Theme by <a href="http://baixin.io/">leopardpan</a> |
-        <iframe
-            style="margin-left: 2px; margin-bottom:-5px;"
-            frameborder="0" scrolling="0" width="91px" height="20px"
-            src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
-        </iframe>
-    </p>
-    	<div align="right">
-			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-			<span id="busuanzi_value_page_pv"></span> 本站访问：<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> 次
-      	</div>
+        <div class = "footer_div">  
+        <nav class="cover-navigation navigation--social">
+          <ul class="navigation">
 
+          {% if site.social.weibo %}
+          <!-- Weibo -->
+          <li class="navigation__item_social">
+            <a href="http://weibo.com/{{site.social.weibo}}" title="@{{site.social.weibo}} 的微博" target="_blank">
+              <i class='social fa fa-weibo fa-2x'></i>
+              <span class="label">Weibo</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if site.social.github %}
+          <!-- Github -->
+          <li class="navigation__item_social">
+            <a href="https://github.com/{{site.social.github}}" title="@{{site.social.github}} 的 Github" target="_blank">
+              <i class='social fa fa-github fa-2x'></i>
+              <span class="label">Github</span>
+            </a>
+          </li>
+          {% endif %}
+          
+          {% if site.social.twitter %}
+          <!-- Twitter -->
+          <li class="navigation__item_social">
+            <a href="http://twitter.com/{{site.social.twitter}}" title="@{{site.social.twitter}}" target="_blank">
+              <i class='social fa fa-twitter fa-2x'></i>
+              <span class="label">Twitter</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if site.social.gplus %}
+          <!-- Google Plus -->
+          <li class="navigation__item_social">
+            <a href="https://plus.google.com/{{site.social.gplus}}" rel="author" title="Google+" target="_blank">
+              <i class='social fa fa-google-plus-square fa-2x'></i>
+              <span class="label">Google Plus</span>
+            </a>
+          </li>
+          {% endif %}
+
+          <!-- RSS -->
+          <li class="navigation__item_social">
+            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+              <i class='social fa fa-rss fa-2x'></i>
+              <span class="label">RSS</span>
+            </a>
+          </li>
+
+          {% if site.social.mail %}
+          <!-- Email -->
+          <li class="navigation__item_social">
+            <a href="mailto:{{site.social.mail}}" title="Contact me">
+              <i class='social fa fa-envelope fa-2x'></i>
+              <span class="label">Email</span>
+            </a>
+          </li>
+          {% endif %}
+
+          </ul>
+        </nav>
+
+        </div>
+
+        <div class = "footer_div">  
+           <p class="copyright text-muted">
+            Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }} Theme by <a href="http://baixin.io/">leopardpan</a> |
+            <iframe
+                style="margin-left: 2px; margin-bottom:-5px;"
+                frameborder="0" scrolling="0" width="91px" height="20px"
+                src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+            </iframe>
+            </p>
+        	<div align="right">
+    			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    			<span id="busuanzi_value_page_pv"></span> 本站访问：<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> 次
+          	</div>
+        <div>
     </footer>
 </section>
