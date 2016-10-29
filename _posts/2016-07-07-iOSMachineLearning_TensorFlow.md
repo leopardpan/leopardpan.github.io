@@ -6,7 +6,7 @@ tags: 机器学习
 ---
 
 <div align="center">
-	<img src="/assets/images/tfimg/logo.jpg" height="300" width="500">  
+	<img src="/images/posts/tfimg/logo.jpg" height="300" width="500">  
 </div> 
 
 　　`人工智能`、`机器学习`都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 `人工智能`、`数据挖掘`的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 `机器学习`、`数据挖掘` 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？             
@@ -16,7 +16,7 @@ tags: 机器学习
 
 如下图：
 <div align="center">
-	<img src="/assets/images/tfimg/image02.png" height="300" width="480" />
+	<img src="/images/posts/tfimg/image02.png" height="300" width="480" />
 </div> 
 
 上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。
@@ -24,12 +24,12 @@ tags: 机器学习
 但是在某些事物的识别准确度方便却差强人意，比如下图：    
 
 <div align="center">
-　　<img src="/assets/images/tfimg/image01.png" height="300" width="320" />
+　　<img src="/images/posts/tfimg/image01.png" height="300" width="320" />
 </div> 
 　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。
 
 <div align="center">
-　　<img src="/assets/images/tfimg/wq.jpg" height="320" width="240" />  
+　　<img src="/images/posts/tfimg/wq.jpg" height="320" width="240" />  
 </div> 
 
 　　上面的例子来自于TensorFlow官方iOSDemo，暂且不评述TensorFlow的识别准确度如何，毕竟它还年轻，但是仅凭其识别能力的体现，也给机器学习在移动端的运用带来了无限的可能。

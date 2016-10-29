@@ -48,7 +48,7 @@ $ jekyll serve
 
 在浏览器里输入： [http://localhost:4000](http://localhost:4000)，就可以看到你的博客效果了。
 
-![](/assets/images/jekyll/image1.png)
+![](/images/posts/jekyll/image1.png)
 
 so easy !
 

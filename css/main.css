@@ -392,7 +392,7 @@ img::-moz-selection {
   .footer {
     display: block;
     padding: 2em 0 0 0;
-    border-top: 2px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
     font-size: .7em;
     color: #b3b3b3; }
 
@@ -504,7 +504,7 @@ img::-moz-selection {
     width: 100%;
     max-width: none;
     height: 100%;
-    background: url(../images/background-cover.jpg) top left no-repeat #666666;
+    background: url(/images/background-cover.jpg) top left no-repeat #666666;
     background-size: cover; }
 
   .panel-cover--collapsed {

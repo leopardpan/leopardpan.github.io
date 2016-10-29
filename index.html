@@ -12,15 +12,15 @@ layout: default
       <div class="post-list__meta">
         <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">{{ post.date | date: "%F"}}</time> 
         <div class = "tag-img-icon">
-          <img src="/assets/images/tag-alt-icon.png" /> 
+          <img src="/images/tag-alt-icon.png" /> 
         </div>
         <a href="/tags">
           <div class = "post-list-icon-mate">
-            <span class="post-list__meta--tags" style="background-image: url('/assets/images/tag-bg-left.png') "></span>
+            <span class="post-list__meta--tags" style="background-image: url('/images/tag-bg-left.png') "></span>
             <!-- <img src="/assets/images/tag-bg-left.png" />     -->
           </div>
           <div class = "post-list-icon-mate">
-            <span class="post-list__meta--tags tags" style="background-image: url('/assets/images/tag-bg-right.png') ">{{ post.tags }}</span>
+            <span class="post-list__meta--tags tags" style="background-image: url('/images/tag-bg-right.png') ">{{ post.tags }}</span>
           </div>
           <div class = "post-list-small-mate">
           <a class="btn-border-small" href={{ post.url }}>阅读全文...</a>

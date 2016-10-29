@@ -5,8 +5,8 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Oct 2016 09:37:28 +0800</pubDate>
-    <lastBuildDate>Sat, 29 Oct 2016 09:37:28 +0800</lastBuildDate>
+    <pubDate>Sat, 29 Oct 2016 23:37:40 +0800</pubDate>
+    <lastBuildDate>Sat, 29 Oct 2016 23:37:40 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -23,11 +23,11 @@
 
 &lt;p&gt;选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5寸一系列屏幕尺寸的选项。直接点击不同屏幕尺寸，以及横竖屏选项，切换不同的屏幕显示。在iPad上还可以选择是否分屏，功能非常强大。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-10ee84feb6d27b99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;800&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image1.png&quot; height=&quot;200&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在右边有一个 Vary for Traits 选项，点击这个选项就可以同时显示所有可选的屏幕样式，功能和上面图片都一样，只是显示上看起来比较多。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-b5530ad9123e4536.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;800&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image2.png&quot; height=&quot;160&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;还有一点，新创建的 XIB 控件尺寸，不再是之前 600*600 的方块了，而是默认是6s的长方形 XIB 文件，看起来舒服多了。&lt;/p&gt;
 
@@ -37,13 +37,13 @@
 
 &lt;p&gt;可能苹果也意识到这个问题的存在，在Xcode8中可以通过Automatically manage signing选项，让苹果为我们管理证书和配置文件，设置也都是由苹果来完成的。在Xcode8中新建项目，这个选项默认是被勾选的。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-cf9c731bd73b5d89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;800&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image3.png&quot; height=&quot;350&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;从上面图中可以看到，苹果帮我们自动管理了证书和配置文件。而且在之前的项目中，如果想要设置安装后显示在手机上的App名字，还需要自己到Info.plist文件中，修改Display Name字段，而现在直接在General中就可以做修改，这个修改和Info.plist是同步的。&lt;/p&gt;
 
 &lt;p&gt;但是，如果我想自己管理证书和描述文件呢？只需要去掉Automatically manage signing选项。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-e20e67a56b48ee0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;200&quot; width=&quot;800&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image4.png&quot; height=&quot;350&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;如果自己到Build Settings中手动设置证书和描述文件，可以发现Provisioning Profile选项已经被标明为Deprecated，也就是苹果并不推荐手动设置。&lt;/p&gt;
 
@@ -53,23 +53,23 @@
 
 &lt;p&gt;在 Xcode8 中支持了开发插件工程，并且为我们提供了一个插件模板，开发的插件可以上传到App Store 下载。苹果这么做有一个原因在于，之前 Xcode和插件是运行在同一个进程的，所以插件的崩溃也会导致Xcode崩溃。苹果现在将插件作为一个单独的应用程序，分开进程运行，不会对Xcode带来其他影响。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-17294f7b2cf34b76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image5.png&quot; height=&quot;350&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;runtime-issues&quot;&gt;Runtime Issues&lt;/h3&gt;
 
 &lt;p&gt;在开发过程中，因为语法或明显的代码错误(例如Retain Cycle)，编译器可以发现并报黄色或红色警告。但是一些因为代码逻辑导致的错误，编译器并没有办法找到。例如下面的这句代码，因为代码逻辑的问题导致两个数组相互引用，都不能释放。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-f01ac2add89b5680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image6.png&quot; height=&quot;180&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这时候可以通过 Xcode8 提供的 Runtime Issues 新特性，查找到运行过程中出现的问题，并通过 Graph 的方式将问题可视化的展现给开发者。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-7b90ab84fab271fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image7.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;debug-memory-graph&quot;&gt;Debug Memory Graph&lt;/h3&gt;
 
 &lt;p&gt;在Xcode6中出现了Debug View Hierarchy新特性，可以通过其调试当前App的视图层级，查找UI相关的bug非常方便。在Xcode8中苹果为开发者提供了Debug Memory Graph特性，通过这个新特性，可以直接选择一个对象，查看与其相关的内存关系。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-1032a96564ebd880.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image8.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Debug Memory Graph 和 Runtime Issues 可以配合使用，通过 Debug Memory Graph 分析内存关系完成后，点击 Runtime Issues 可以看到已经发现的内存问题。&lt;/p&gt;
 
@@ -79,7 +79,7 @@
 
 &lt;p&gt;如果不想立刻就迁移到Swift3，可以在Builder Settings中进行设置，选择Use Legacy Swift Language Version设置为YES，就可以继续使用旧版本的Swift2.3。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-ba61ed8f2c714769.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image9.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;其他更新&lt;/h3&gt;
 
@@ -94,7 +94,7 @@
 
 &lt;p&gt;但是 Xcode8 打开之前旧项目的 XIB或SB 文件时，会弹出下面的弹框， 这时候一般直接选择Choose Device即可。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-fd01f67b947f1dab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image10.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;但是这样有个问题，如果Xcode8打开过这个XIB文件，并选择Choose Device之后。其他的Xcode8以下版本的编译器，将无法再打开这个文件，会报以下错误：&lt;/p&gt;
 
@@ -136,7 +136,7 @@ Privacy - Calendars Usage Description	日历&lt;/p&gt;
 
 &lt;p&gt;但是在用Xcode8打包后，并且不对代码进行修改的情况下，会发现打包后苹果发来了一封邮件。这封邮件大概意思是如果需要使用推送通知，需要对代码做修改，否则将不能使用推送通知。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-e45ddc7d39d3ccfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image11.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这是因为在Xcode8之后，如果需要使用Push Notifications的功能，需要勾选Capabilities -&amp;gt; Push Notifications为YES，否则进行远程推送就会有问题，并且会收到苹果发来的这封邮件。&lt;/p&gt;
 
@@ -147,13 +147,13 @@ Privacy - Calendars Usage Description	日历&lt;/p&gt;
 &lt;p&gt;subsystem: com.apple.UIKit, category: HIDEventFiltered, enable_level: 0, persist_level: 0, default_ttl: 0, info_ttl: 0, debug_ttl: 0, generate_symptoms: 0, enable_oversize: 1, privacy_setting: 2, enable_private_data: 0
 在Target -&amp;gt; Edit Scheme -&amp;gt; Run -&amp;gt; Arguments中，添加OS_ACTIVITY_MODE字段，并设置为Disable即可。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-47b70077b3443c77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image12.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;顺便提一下，这两天在设置log选项的时候，发现可以通过在Arguments中设置参数，打印出App加载的时长，包括整体加载时长，动态库加载时长等。&lt;/p&gt;
 
 &lt;p&gt;在Environment Variables中添加DYLD_PRINT_STATISTICS字段，并设置为YES，在控制台就会打印加载时长。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/270478-22029fbbf21aab5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image13.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;awakefromnib&quot;&gt;awakeFromNib报警告&lt;/h3&gt;
 
@@ -216,7 +216,7 @@ Privacy - Calendars Usage Description	日历&lt;/p&gt;
 
 &lt;p&gt;在浏览器里输入： &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt;，就可以看到你的博客效果了。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/jekyll/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/jekyll/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;so easy !&lt;/p&gt;
 
@@ -464,7 +464,7 @@ Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpa
 
 &lt;p&gt;图一 iOS 系统自带的 App icon , 图二 第三方 App icon , 图三 通过 iBeacon 信号激活的 demo icon&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 App icon&lt;/h2&gt;
 
@@ -717,7 +717,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;　　分析用户App的使用情况当然是直接用数据说话，那么想知道某些按钮的点击次数，就一定需要App的开发人员去具体的按钮点击方法里面埋点才行，有的公司有自己的一套完整的统计埋点系统，有的公司是使用第三方统计，最终都是可以看到按钮的点击次数的，不管怎么样想知道按钮的点击必须要App的开发人员亲自去写代码埋点才行，而这篇文章主要讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; 按钮点击次数。也就是不需要开发介入，我们就能知道按钮的点击了，开发人员只要负责他的业务开发就行，下面是一张 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统埋点&lt;/code&gt; 统计和 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动分析&lt;/code&gt; 统计，灵动是TalkingData的SDK无码统计的一个功能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image01.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/codeless/image01.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;先大致讲下左边 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统&lt;/code&gt; 埋点统计流程&lt;/p&gt;
 
@@ -761,7 +761,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;　　上面大致介绍了下 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 能给我们解决什么问题，这里讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 是通过什么样的技术手段实现，这里可能对于开发人员来说更喜欢，大家先看一张灵动使用时的一个交互&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image02.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/codeless/image02.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;　　这张图分成两部分看，先看上面，一个用户在操作Client和PC，Client和PC通讯是通过一个Wss的服务器建立的长连接，这是灵动调试时的一个交互。       &lt;br /&gt;
 　　也就是说，用户使用灵动分析时，需要一个安装自己App的移动设备，这个App必须要集成TalkingData的统计分析SDK才行，SDK初始化时的AppID是在TalkingData创建应用时分配的。另一端用户要打开TalkingData的灵动网页，在App启动的时候摇一摇手机，然后就可以建立一个wss的长连接了。用户就可以直接在网页上给按钮添加监听事件了，添加完成后，在手机上点击该按钮，网页上就会提示被点击，调试完成后点击全部生效，配置数据就会保存到下面https的服务器。       &lt;br /&gt;
@@ -769,7 +769,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;接下来再看看灵动调试过程中数据是具体怎么进行数据交互的。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/codeless/image03.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/codeless/image03.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;　　可以看到App客户端和Web端交互主要分为四部分：&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 主要是用来确认设备是调试者的设备，因为其它的终端用户也可能会误触发调试，&lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt;是用来在Web上展示移动App的，然后在Web上绑定了控件，就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt;发送给客户端，客户端根据配置监听绑定，当终端用户点击控件后，客户端就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt;传给Web端，Web显示控件被点击。&lt;/p&gt;
 
@@ -790,7 +790,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
       </item>
     
       <item>
-        <title>Git教程1</title>
+        <title>Git教程</title>
         <description>&lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
 
 &lt;p&gt;　　Git是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历、毕业设计等等，都可以使用git来管理。&lt;/p&gt;
@@ -882,7 +882,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
       <item>
         <title>iOS开发迎来机器学习的春天---TensorFlow</title>
         <description>&lt;div align=&quot;center&quot;&gt;
-	&lt;img src=&quot;/assets/images/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
+	&lt;img src=&quot;/images/posts/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
 &lt;/div&gt;
 
 &lt;p&gt;　　&lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 &lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt;的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt; 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？           &lt;br /&gt;
@@ -894,7 +894,7 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;如下图：&lt;/p&gt;
 &lt;div align=&quot;center&quot;&gt;
-	&lt;img src=&quot;/assets/images/tfimg/image02.png&quot; height=&quot;300&quot; width=&quot;480&quot; /&gt;
+	&lt;img src=&quot;/images/posts/tfimg/image02.png&quot; height=&quot;300&quot; width=&quot;480&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。&lt;/p&gt;
@@ -902,12 +902,12 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 &lt;p&gt;但是在某些事物的识别准确度方便却差强人意，比如下图：&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/image01.png&quot; height=&quot;300&quot; width=&quot;320&quot; /&gt;
+　　&lt;img src=&quot;/images/posts/tfimg/image01.png&quot; height=&quot;300&quot; width=&quot;320&quot; /&gt;
 &lt;/div&gt;
 &lt;p&gt;　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;
-　　&lt;img src=&quot;/assets/images/tfimg/wq.jpg&quot; height=&quot;320&quot; width=&quot;240&quot; /&gt;  
+　　&lt;img src=&quot;/images/posts/tfimg/wq.jpg&quot; height=&quot;320&quot; width=&quot;240&quot; /&gt;  
 &lt;/div&gt;
 
 &lt;p&gt;　　上面的例子来自于TensorFlow官方iOSDemo，暂且不评述TensorFlow的识别准确度如何，毕竟它还年轻，但是仅凭其识别能力的体现，也给机器学习在移动端的运用带来了无限的可能。&lt;/p&gt;

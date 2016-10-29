@@ -18,8 +18,8 @@
   <meta property="og:title" content="老司机带你剖析无码统计">
   <meta property="og:description" content="　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 无码统计 ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。">
   
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
-  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   
   <link rel="stylesheet" href="/css/main.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -81,11 +81,18 @@
                   </a>
                 </i>
             
+                <i class="nav-menu-item">
+
+                  <a href="/about" title="about" class="btn-mobile-menu__icon">
+                      关于我
+                  </a>
+                </i>
+            
           </nav>
       </div>
     </span>
     
-    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/images/background-cover.jpg')">
   <div class="panel-main">
 
     <div class="panel-main__inner panel-inverted">
@@ -93,7 +100,7 @@
         <!-- 头像效果-start -->
         <div class="ih-item circle effect right_to_left">            
             <a href="/#blog" title="前往 潘柏信 的主页" class="blog-button">
-                <div class="img"><img src="/assets/images/avatar.jpg" alt="img"></div>
+                <div class="img"><img src="/images/avatar.jpg" alt="img"></div>
                 <div class="info">
                     <div class="info-back">
                         <h2> 
@@ -131,6 +138,8 @@
                   <li class="navigation__item"><a href="/archive" title="archive">所有文章</a></li>
                 
                   <li class="navigation__item"><a href="/tags" title="tags">标签</a></li>
+                
+                  <li class="navigation__item"><a href="/about" title="about">关于我</a></li>
                 
               </ul>
             </nav>
@@ -192,7 +201,7 @@
 
 <p>　　分析用户App的使用情况当然是直接用数据说话，那么想知道某些按钮的点击次数，就一定需要App的开发人员去具体的按钮点击方法里面埋点才行，有的公司有自己的一套完整的统计埋点系统，有的公司是使用第三方统计，最终都是可以看到按钮的点击次数的，不管怎么样想知道按钮的点击必须要App的开发人员亲自去写代码埋点才行，而这篇文章主要讲的是 <code class="highlighter-rouge">无码统计</code> 按钮点击次数。也就是不需要开发介入，我们就能知道按钮的点击了，开发人员只要负责他的业务开发就行，下面是一张 <code class="highlighter-rouge">传统埋点</code> 统计和 <code class="highlighter-rouge">灵动分析</code> 统计，灵动是TalkingData的SDK无码统计的一个功能。</p>
 
-<p><img src="/assets/images/codeless/image01.png" height="300" width="600" /></p>
+<p><img src="/images/posts/codeless/image01.png" height="300" width="600" /></p>
 
 <p>先大致讲下左边 <code class="highlighter-rouge">传统</code> 埋点统计流程</p>
 
@@ -236,7 +245,7 @@
 
 <p>　　上面大致介绍了下 <code class="highlighter-rouge">灵动</code> 能给我们解决什么问题，这里讲的是 <code class="highlighter-rouge">灵动</code> 是通过什么样的技术手段实现，这里可能对于开发人员来说更喜欢，大家先看一张灵动使用时的一个交互</p>
 
-<p><img src="/assets/images/codeless/image02.png" height="300" width="500" /></p>
+<p><img src="/images/posts/codeless/image02.png" height="300" width="500" /></p>
 
 <p>　　这张图分成两部分看，先看上面，一个用户在操作Client和PC，Client和PC通讯是通过一个Wss的服务器建立的长连接，这是灵动调试时的一个交互。       <br />
 　　也就是说，用户使用灵动分析时，需要一个安装自己App的移动设备，这个App必须要集成TalkingData的统计分析SDK才行，SDK初始化时的AppID是在TalkingData创建应用时分配的。另一端用户要打开TalkingData的灵动网页，在App启动的时候摇一摇手机，然后就可以建立一个wss的长连接了。用户就可以直接在网页上给按钮添加监听事件了，添加完成后，在手机上点击该按钮，网页上就会提示被点击，调试完成后点击全部生效，配置数据就会保存到下面https的服务器。       <br />
@@ -244,7 +253,7 @@
 
 <p>接下来再看看灵动调试过程中数据是具体怎么进行数据交互的。</p>
 
-<p><img src="/assets/images/codeless/image03.png" height="300" width="500" /></p>
+<p><img src="/images/posts/codeless/image03.png" height="300" width="500" /></p>
 
 <p>　　可以看到App客户端和Web端交互主要分为四部分：<code class="highlighter-rouge">设备信息</code> 、 <code class="highlighter-rouge">App基本结构</code> 、<code class="highlighter-rouge">控件绑定配置</code> 、<code class="highlighter-rouge">按钮点击信息</code> ，<code class="highlighter-rouge">设备信息</code> 主要是用来确认设备是调试者的设备，因为其它的终端用户也可能会误触发调试，<code class="highlighter-rouge">App基本结构</code>是用来在Web上展示移动App的，然后在Web上绑定了控件，就会把<code class="highlighter-rouge">控件绑定配置</code>发送给客户端，客户端根据配置监听绑定，当终端用户点击控件后，客户端就会把<code class="highlighter-rouge">按钮点击信息</code>传给Web端，Web显示控件被点击。</p>
 
@@ -263,7 +272,7 @@
        <ul class="pager">
         
         <li class="previous">
-            <a href="/2016/07/GitTutorial/" data-toggle="tooltip" data-placement="top" title="Git教程1">上一篇：  <span>Git教程1</span>
+            <a href="/2016/07/GitTutorial/" data-toggle="tooltip" data-placement="top" title="Git教程">上一篇：  <span>Git教程</span>
             </a>
         </li>
         
@@ -372,9 +381,6 @@
     </div>
     
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<script>hljs.initHighlightingOnLoad();</script>
-
 <script type="text/javascript" src="/js/main.js"></script>
 
 

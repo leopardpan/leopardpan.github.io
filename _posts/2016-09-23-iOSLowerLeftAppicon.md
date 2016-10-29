@@ -9,7 +9,7 @@ tags: iOS
 
 图一 iOS 系统自带的 App icon , 图二 第三方 App icon , 图三 通过 iBeacon 信号激活的 demo icon
 
-![](/assets/images/icon/image01.png)
+![](/images/posts/icon/image01.png)
 
 ## 结论：有三种情况导致设备的左下角出现灰色的 App icon
 
