@@ -877,6 +877,21 @@ img::-moz-selection {
   
   font-size: .5em;
   height: 20px;
+  width: 10px;
+  margin-top: 2px;
+  margin-left: 5px;
+  padding-left: 5px;
+  padding-right: 6px;
+  padding-top: -5px;
+  padding-bottom: 3px;
+  background-size: 100% 100%;
+  float: left;
+  font-size: 0.9em;
+}
+.post-list__meta--tags-right {
+  
+  font-size: .5em;
+  height: 20px;
   margin-top: 2px;
   margin-left: 0px;
   padding-left: 5px;
@@ -884,8 +899,11 @@ img::-moz-selection {
   padding-top: -5px;
   padding-bottom: 3px;
   background-size: 100% 100%;
+  background-color: rgba(187, 146, 111, 1);
   float: left;
+  border-radius: 0 5px 5px 0;
   font-size: 0.9em;
+  color: #fff;
 }
 
 .post-list-icon-mate {
@@ -896,6 +914,7 @@ img::-moz-selection {
   margin-top: 2px;
   float: left;
 }
+
 .post-list-small-mate {
   height: 30px;
   background-size: 100% 100%;

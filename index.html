@@ -17,10 +17,11 @@ layout: default
         <a href="/tags">
           <div class = "post-list-icon-mate">
             <span class="post-list__meta--tags" style="background-image: url('/images/tag-bg-left.png') "></span>
-            <!-- <img src="/assets/images/tag-bg-left.png" />     -->
           </div>
           <div class = "post-list-icon-mate">
-            <span class="post-list__meta--tags tags" style="background-image: url('/images/tag-bg-right.png') ">{{ post.tags }}</span>
+            <!-- <div class = "post-list-icon-right"> -->
+            <span class="post-list__meta--tags-right">{{ post.tags }}</span>
+            <!-- <div> -->
           </div>
           <div class = "post-list-small-mate">
           <a class="btn-border-small" href={{ post.url }}>阅读全文...</a>
