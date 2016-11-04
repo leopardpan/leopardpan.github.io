@@ -5,9 +5,71 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Oct 2016 23:37:40 +0800</pubDate>
-    <lastBuildDate>Sat, 29 Oct 2016 23:37:40 +0800</lastBuildDate>
+    <pubDate>Fri, 04 Nov 2016 19:17:20 +0800</pubDate>
+    <lastBuildDate>Fri, 04 Nov 2016 19:17:20 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>TensorFlow 在 iOS 平台上的使用(一)</title>
+        <description>&lt;p&gt;　　距离上次使用 TensorFlow 在iOS平台上做的小 Demo，已经过了四个月了，今天忽然想再看看,发现 Demo 已经不见了，我只能从头在编一次，这次发现编译 iOS 库，简单多了。&lt;/p&gt;
+
+&lt;p&gt;　　tensorflow &lt;a href=&quot;https://github.com/tensorflow/tensorflow/archive/master.zip&quot;&gt;下载地址&lt;/a&gt;，tensorflow 最近提交的时间：2016-11-03，commit：&lt;code class=&quot;highlighter-rouge&quot;&gt;7b7c02de56e013482b5fe5ab05e576dc98fe5742&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;p&gt;　　下载完成后打开文件，找到目录 &lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow-master/tensorflow/contrib/ios_examples&lt;/code&gt; 你会发现目录下有三个项目和一个 README.md 。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;benchmark 、 camera 、 simple 、README.md
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;如果你发现项目无法运行，请看这里&lt;/h3&gt;
+
+&lt;p&gt;　　对于任何项目我们首先打开的应该是 README.md ，里面一般情况都会有介绍如何使用这个项目，tensorflow 也不会例外。README 开头就说了，这个目录里有如何在 iOS 平台上使用 tensorflow 的例子，但是需要注意几点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;你的 Xcode 版本必须是 7.3 或更高版本，并且有安装 command-line 工具 。&lt;/li&gt;
+  &lt;li&gt;项目(Examples) 里必须包含一个静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; 。&lt;/li&gt;
+  &lt;li&gt;下载 &lt;a href=&quot;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&quot;&gt;Inception v1&lt;/a&gt;，解压后将 label 和 graph 放在 simple 和 camera 的项目中。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;camera-&quot;&gt;camera 项目的使用&lt;/h3&gt;
+
+&lt;p&gt;　　camera 项目在 tensorflow-master/tensorflow/contrib/ios_examples 目录下，如果你是直接打开 camera 项目，编译你会发现报错缺少 imagenet_comp_graph_label_strings.txt 和 tensorflow_inception_graph.pb 两个文件，这两个文件上面已经说到了下载 &lt;a href=&quot;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&quot;&gt;Inception v1&lt;/a&gt; 解压得到。现在还差 静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; ，这个需要我们自己编译。&lt;/p&gt;
+
+&lt;h4 id=&quot;libtensorflow-corea&quot;&gt;编译静态库：libtensorflow-core.a&lt;/h4&gt;
+
+&lt;p&gt;进入目录：tensorflow-master/tensorflow/contrib/makefile，你可以看到一大堆 .sh 结尾的文件，找到 build_all_ios.sh ，Mac 上可以直接在 termina（终端）上运行命令编译&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sh build_all_ios.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个编译的过程是很漫长的，一般在一个小时左右。也有可能你在编译的过程中会遇到问题，这次我只遇到一个问题：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;configure.ac:30: error: required file &#39;build-aux/ltmain.sh&#39; not found
+configure.ac:24: installing &#39;build-aux/missing&#39;
+Makefile.am: installing &#39;build-aux/depcomp&#39;
+parallel-tests: installing &#39;build-aux/test-driver&#39;
+autoreconf: automake failed with exit status: 1
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;解决方法是：先卸载 libtool 在重新安装，&lt;code class=&quot;highlighter-rouge&quot;&gt;brew uninstall libtool&lt;/code&gt; &amp;amp;&amp;amp; &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install libtool&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你还遇到了其它问题，可以看看我之前的一片文章 &lt;a href=&quot;http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/&quot;&gt;iOS开发迎来机器学习的春天—TensorFlow&lt;/a&gt; ，或者是直接去 tensorflow 的 &lt;a href=&quot;https://github.com/tensorflow/tensorflow/issues&quot;&gt;Issues&lt;/a&gt; 里面找。&lt;/p&gt;
+
+&lt;p&gt;一个小时后。。。　如果编译没出问题，你可以在目录　&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow-master/tensorflow/contrib/makefile／gen/lib&lt;/code&gt; 下找到一个静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; ，把这个静态库拷贝到 camera 项目中，然后编译运行。&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 03 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/11/TensorFlowOniOSUse1/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/11/TensorFlowOniOSUse1/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
     
       <item>
         <title>Xcode 8 使用笔记</title>
@@ -1176,36 +1238,6 @@ error: Xcode 7.3.0 or later is required.
         <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
         
         <category>博客</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>开发常用工具</title>
-        <description>&lt;p&gt;个人开发常用工具的收集&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;cmd Markdown&lt;/a&gt; 作业部落出版的Markdown编辑器&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/rest-client/rest-client&quot;&gt;RESTClient&lt;/a&gt; 一个开源的客户端HTTP调试工具。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/getlantern/lantern&quot;&gt;lantern&lt;/a&gt; 蓝灯,一款开源的翻墙工具。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles&lt;/a&gt; 青花瓷, 一款HTTP/HTTPS的抓包工具。
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/&quot;&gt;Charles 从入门到精通&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.sublimetext.com&quot;&gt;Sublime&lt;/a&gt; 一款强大的IDE,支持Python、JS、JSON格式化等等…更重要的是&lt;code class=&quot;highlighter-rouge&quot;&gt;Sublime&lt;/code&gt;支持的插件很多。
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.xuanfengge.com/practical-collection-of-sublime-plug-in.html&quot;&gt;实用的sublime插件集合&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/06/Develop_Tool/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/Develop_Tool/</guid>
-        
-        <category>工具</category>
         
         
       </item>

@@ -50,7 +50,7 @@
 
 #### 头像效果
 
-![](/assets/images/icon.gif)
+![](/images/readme//icon.gif)
 
 如果你只想要我博客里的头像效果，你只需要拿 leopardpan.github.io/_includes/side-panel.html 文件里面 `头像效果` 和 leopardpan.github.io/css/main.css 里面最后面 `头像效果` 部分就行了。
 
@@ -59,7 +59,7 @@
 
 #### 博客首页   
 
-![](/assets/images/img4.png)   
+![](/images/readme//img4.png)   
 
 ***  
 
@@ -67,13 +67,13 @@
 
 
 
-![](/assets/images/img3.png)
+![](/images/readme//img3.png)
 
 
-![](/assets/images/img2.png)
+![](/images/readme//img2.png)
 
 
-![](/assets/images/img1.png)
+![](/images/readme//img1.png)
 
 
 #### 感谢   
