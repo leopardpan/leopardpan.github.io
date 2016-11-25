@@ -5,9 +5,769 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 04 Nov 2016 19:17:20 +0800</pubDate>
-    <lastBuildDate>Fri, 04 Nov 2016 19:17:20 +0800</lastBuildDate>
+    <pubDate>Fri, 25 Nov 2016 11:46:27 +0800</pubDate>
+    <lastBuildDate>Fri, 25 Nov 2016 11:46:27 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>使用 TensorFlow 实现神经网络</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;介绍&lt;/h2&gt;
+
+&lt;p&gt;　　一直关注 &lt;code class=&quot;highlighter-rouge&quot;&gt;数据科学&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt; 的同学，一定会经常看到或听到关于 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 相关信息。如果你对 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 感兴趣，但却还没有实际动手操作过，你可以从这里得到实践。&lt;/p&gt;
+
+&lt;p&gt;　　在本文中，我将介绍 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; , 帮你了解 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的实际作用，并使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 来解决现实生活中的问题。 读这篇文章前，需要知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的基础知识和一些熟悉编程理念，文章中的代码是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pyhton&lt;/code&gt; 编写的，所以还需要了解一些 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt; 的基本语法，才能更有利对于文章的理解。&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/images/posts/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;目录&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#When-to-apply-neural-net&quot;&gt;什么时候应用神经网络？&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#solve-problems&quot;&gt;通常神经网络能解决的问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#popular-libraries&quot;&gt;了解图像数据和主流的库来解决问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#What-is-TensorFlow&quot;&gt;什么是 TensorFlow？&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#A-typical-flow&quot;&gt;TensorFlow 一个 典型 的 “ 流 ”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#MLP&quot;&gt;在 TensorFlow 中实现 MLP&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Limitations-of-TensorFlow&quot;&gt;TensorFlow 的限制&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vs-libraries&quot;&gt;TensorFlow 与其他库&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Where-to-go-from-here&quot;&gt;从这里去哪里？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;a-namewhen-to-apply-neural-neta&quot;&gt;&lt;a name=&quot;When-to-apply-neural-net&quot;&gt;&lt;/a&gt;什么时候用神经网络？&lt;/h3&gt;
+
+&lt;p&gt;　　&lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 已经在相当一段时间成为机器学习中的焦点。 对于 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 上这里有更详细的解释 &lt;a href=&quot;https://www.analyticsvidhya.com/blog/2016/08/evolution-core-concepts-deep-learning-neural-networks/&quot;&gt;点击阅读&lt;/a&gt; 。 其 “更深” 的功能在许多领域都有取得巨大的突破，如图像识别，语音和自然语言处理等。&lt;/p&gt;
+
+&lt;p&gt;　　主要的问题在于如何用好 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; ？现在，每天都会有许多新发现，这个领域就像一个金矿，为了成为这个 “淘金热” 的一部分，必须记住几件事：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;首先，&lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 需要有明确和翔实的数据（主要是大数据）训练&lt;/strong&gt;， 试着想象 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 作为一个孩子，它一开始会观察它父母走路，然后它试图自己走，每一步就像学习执行一个特定的任务。 它可能会失败几次，但经过几次失败的尝试，它将会如何走路。所以需要为孩子提供更多的机会，如果不让它走，它可能永远不会学习如何走路。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;一些人会利用 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 解决复杂的问题，如图像处理，&lt;/strong&gt;  &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 属于一类代表学习的算法，这些算法可以把复杂的问题分解为简单的形式，使他们成为可以理解的（或 “可表示”），就像吞咽食物之前的咀嚼，让我们更容易吸收和消化。这个分解的过程如果使用传统的算法来实现也可以，但是实现过程将会很困难。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;选择适当类型的 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; ，来解决问题，&lt;/strong&gt;  每个问题的复杂情况都不一样，所以数据决定你解决问题的方式。 例如，如果问题是序列生成的问题，&lt;code class=&quot;highlighter-rouge&quot;&gt;递归神经网络&lt;/code&gt; 更合适。如果它是图像相关的问题，想更好地解决可以采取 &lt;code class=&quot;highlighter-rouge&quot;&gt;卷积神经网络&lt;/code&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;最后最重要的就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;硬件&lt;/code&gt; 要求了，硬件是运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 模型的关键。&lt;/strong&gt; 神经网被 “发现” 很久以前，他们在近年来得到推崇的主要的原因就是计算资源更好，能更大发挥它的光芒，如果你想使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 解决这些现实生活中的问题，那么你得准备购买一些高端的硬件了😆！&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;a-namesolve-problemsa&quot;&gt;&lt;a name=&quot;solve-problems&quot;&gt;&lt;/a&gt;通常神经网络解决的问题&lt;/h3&gt;
+
+&lt;p&gt;　　神经网络是一种特殊类型的 机器学习（ML）算法。 因此，作为每个 ML 算法都遵循 数据预处理 、模型建立 和 模型评估 的工作流流程。为了简明起见，下面列出了如何处理 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 问题的 TODO 列表。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;检查它是否为 神经网络 ，把它看成一个传统的算法问题&lt;/li&gt;
+  &lt;li&gt;做一个调查，哪个 神经网络 框架最适合解决这个问题&lt;/li&gt;
+  &lt;li&gt;定义 神经网络 框架，通过它选择对应的 编程语言 和 库&lt;/li&gt;
+  &lt;li&gt;将数据转换为正确的格式并分批分割&lt;/li&gt;
+  &lt;li&gt;根据您的需要预处理数据&lt;/li&gt;
+  &lt;li&gt;增强数据以增加大小并制作更好的训练模型&lt;/li&gt;
+  &lt;li&gt;批次供给到 神经网络&lt;/li&gt;
+  &lt;li&gt;训练和监测，培训和验证数据集的变化&lt;/li&gt;
+  &lt;li&gt;测试你的模型，并保存以备将来使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;　　本文将专注于图像数据，我们从 TensorFlow 入手。&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namepopular-librariesa&quot;&gt;&lt;a name=&quot;popular-libraries&quot;&gt;&lt;/a&gt;了解图像数据和主流的库来解决问题&lt;/h3&gt;
+
+&lt;p&gt;　　图像大多排列为 3-D 阵列，具体指 高度、宽度 和 颜色通道。例如，如果你使用电脑截屏，它将首先转换成一个 3-D 数组，然后压缩它为 ‘.jpeg’ 或 ‘.png’ 文件格式。&lt;/p&gt;
+
+&lt;p&gt;　　虽然这些图像对于人类来说很容易理解，但计算机很难理解它们。 这种现象称为“语义空隙”。我们的大脑可以看看图像，并在几秒钟内读懂完整的图片。但计算机会将图像看作一个数字数组，问题来了，它想知道这是一张什么样的图像，我们应该怎么样把图像解释给机器它才能读懂？&lt;/p&gt;
+
+&lt;p&gt;　　在早期，人们试图将图像分解为机器的 “可理解” 格式，如“模板”。例如，面部总是具有在每个人中有所保留的特定结构，例如眼睛，鼻子或我们的脸的形状。 但是这种方法将是有缺陷的，因为当要识别的对象的数量将增加到一定量级时，“模板” 将不成立。&lt;/p&gt;
+
+&lt;p&gt;　　2012年一个深层神经网络架构赢得了 ImageNet 的挑战，从自然场景中识别对象，它在即将到来的 ImageNet 挑战中继续统治其主权，从而证明了解决图像问题的有用性。
+人们通常使用哪些 库 / 语言 来解决图像识别问题？&lt;a href=&quot;https://www.analyticsvidhya.com/blog/2016/08/deep-learning-path/&quot;&gt;最近的一次调查&lt;/a&gt;中，最流行的深度学习库，支持的最友好的语言有 Python ，其次是 Lua ，对 Java 和 Matlab 支持的也有。最流行的库举几个例子：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://caffe.berkeleyvision.org/&quot;&gt;Caffe&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://deeplearning4j.org/&quot;&gt;DeepLearning4j&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.tensorflow.org/&quot;&gt;TensorFlow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.deeplearning.net/software/theano&quot;&gt;Theano&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://torch.ch/&quot;&gt;Torch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;现在，我们了解了图像的存储方式以及使用的常用库，让我们看看 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 提供的功能。&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namewhat-is-tensorflowa-tensorflow-&quot;&gt;&lt;a name=&quot;What-is-TensorFlow&quot;&gt;&lt;/a&gt;什么是 TensorFlow ？&lt;/h3&gt;
+
+&lt;p&gt;让我们从官方定义开始.&lt;/p&gt;
+
+&lt;p&gt;　　“&lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 是一个开源软件库，用于使用数据流图进行数值计算。图中的节点表示数学运算，而图边表示在它们之间传递的多维数据阵列（也称为张量）。 灵活的架构允许您使用单一 API 将计算部署到桌面、服务器或移动设备中的一个或多个的 CPU 或 GPU 中。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.tensorfly.cn/images/tensors_flowing.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;　　如果感觉这听起来太高大上，不要担心。这里有我简单的定义，&lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 看起来没什么，只是 numpy 有些难以理解。如果你以前使用过 numpy ，理解 TensorFlow 将是手到擒来！ numpy 和 TensorFlow 之间的主要区别是 TensorFlow 遵循惰性编程范例。 TensorFlow 的操作基本上都是对 session 的操作，它首先构建一个所有操作的图形，当我们调用 session 时 TensorFlow 就开始工作了。它通过将内部数据表示转换为张量（Tensor，也称为多维数组）来构建为可扩展的。 构建计算图可以被认为是 TensorFlow 的主要成分。想更多地了解一个计算图形的数学结构，可以阅读 &lt;a href=&quot;http://colah.github.io/posts/2015-08-Backprop/&quot;&gt;这篇文章&lt;/a&gt; 。&lt;/p&gt;
+
+&lt;p&gt;　　通过上面的介绍，很容易将 TensorFlow 分类为神经网络库，但它不仅仅是如此。它被设计成一个强大的神经网络库， 但它有能力做更多的事情。可以构建它为其他机器学习算法，如 决策树 或 k-最近邻，你可以从字面上理解，你可以做一切你在 numpy 上能做的事情！我们暂且称它为 “全能的 numpy” 。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用 TensorFlow 的优点是：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;它有一个直观的结构&lt;/strong&gt; ，顾名思义它有 “张量流”，你可以轻松地可视每个图中的每一个部分。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;轻松地在 cpu / gpu 上进行分布式计算&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;平台的灵活性&lt;/strong&gt;  。可以随时随地运行模型，无论是在移动端、服务器还是 PC 上。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;a-namea-typical-flowatensorflow--&quot;&gt;&lt;a name=&quot;A-typical-flow&quot;&gt;&lt;/a&gt;TensorFlow 的典型 “流”&lt;/h3&gt;
+
+&lt;p&gt;　　每个库都有自己的“实现细节”，即一种写其遵循其编码范例的方式。 例如，当实现 scikit-learn 时，首先创建所需算法的对象，然后在训练和测试集上构建一个模型获得预测，如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;# define hyperparamters of ML algorithm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;svm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SVC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gamma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.001&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;100.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# train &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# test &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;正如我前面所说，TensorFlow 遵循一种懒惰的方法。 在 TensorFlow 中运行程序的通常工作流程如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;建立一个计算图&lt;/strong&gt;， 任何的数学运算可以使用 TensorFlow 支撑。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;初始化变量&lt;/strong&gt;， 编译预先定义的变量&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;创建 session&lt;/strong&gt;， 这是神奇的开始的地方 ！&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;在 session 中运行图&lt;/strong&gt;， 编译图形被传递到 session ，它开始执行它。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;关闭 session&lt;/strong&gt;， 结束这次使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;TensoFlow 中使用的术语很少&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;placeholder：将数据输入图形的一种方法
+feed_dict：将数值传递到计算图的字典
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;让我们写一个小程序来添加两个数字！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;
+# import tensorflow
+import tensorflow as tf
+
+# build computational graph
+a = tf.placeholder(tf.int16)
+b = tf.placeholder(tf.int16)
+
+addition = tf.add(a, b)
+
+# initialize variables
+init = tf.initialize_all_variables()
+
+# create session and run the graph
+with tf.Session() as sess:
+    sess.run(init)
+    print &quot;Addition: %i&quot; % sess.run(addition, feed_dict={a: 2, b: 3})
+
+# close session
+sess.close()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;a-namemlpa-tensorflow-&quot;&gt;&lt;a name=&quot;MLP&quot;&gt;&lt;/a&gt;在 TensorFlow 中实现神经网络&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;注意：我们可以使用不同的神经网络体系结构来解决这个问题，但是为了简单起见，我们在深入实施中讨论 &lt;code class=&quot;highlighter-rouge&quot;&gt;前馈多层感知器&lt;/code&gt;。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;让我们记住对神经网络的了解。&lt;/p&gt;
+
+&lt;p&gt;神经网络的典型实现如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;定义要编译的神经网络体系结构&lt;/li&gt;
+  &lt;li&gt;将数据传输到模型&lt;/li&gt;
+  &lt;li&gt;整个运行中，数据首先被分成批次，以便它可以被摄取。首先对批次进行预处理，扩增，然后送入神经网络进行训练&lt;/li&gt;
+  &lt;li&gt;然后，模型被逐步地训练&lt;/li&gt;
+  &lt;li&gt;显示特定数量的时间步长的精度&lt;/li&gt;
+  &lt;li&gt;训练后保存模型供将来使用&lt;/li&gt;
+  &lt;li&gt;在新数据上测试模型并检查其运行方式&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在这里，我们解决了我们深刻的学习实践中的问题 - [识别数字]，让再我们花一点时间看看问题陈述。&lt;/p&gt;
+
+&lt;p&gt;　　我们的问题是图像识别，以识别来自给定的 28×28 图像的数字。 我们有一个图像子集用于训练，其余的用于测试我们的模型。首先下载训练和测试文件。数据集包含数据集中所有图像的压缩文件， train.csv 和 test.csv 都有相应的训练和测试图像的名称。数据集中不提供任何其他功能，只是原始图像以 “.png” 格式提供。&lt;/p&gt;
+
+&lt;p&gt;　　如之前说的，我们将使用 TensorFlow 来创建一个神经网络模型。 所以首先在你的系统中安装 TensorFlow 。 请参考 &lt;a href=&quot;https://github.com/tensorflow/tensorflow/blob/master/tensorflow/g3doc/get_started/os_setup.md&quot;&gt;官方的安装指南&lt;/a&gt; 进行安装，按您的系统规格。&lt;/p&gt;
+
+&lt;p&gt;我们将按照上述模板&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;让我们来 导入所有需要的模块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.misc&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sklearn.metrics&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accuracy_score&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tensorflow&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tf&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;让我们来 设置一个种子值，这样我们就可以控制我们的模型随机性&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;# To stop potential randomness&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RandomState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第一步是设置目录路径，以便保管！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;root_dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;abspath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;../..&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;data&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sub_dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;sub&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# check for existence&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;现在让我们读取我们的数据集，这些是 .csv 格式，并有一个文件名以及相应的标签&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Train&#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;train.csv&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;（&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Test.csv&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sample_submission&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Sample_Submission.csv&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;文件名&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;标签&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.png&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.png&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2.png&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3.png&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4.png&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;让我们看看我们的数据是什么样子！我们读取我们的形象并显示出来。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Images&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flatten&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;gray&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;off&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.analyticsvidhya.com/wp-content/uploads/2016/10/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上面的图像表示为 numpy 数组，如下所示&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.analyticsvidhya.com/wp-content/uploads/2016/10/one.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;为了方便数据操作，让我们 的存储作为 numpy 的阵列的所有图片&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;image_path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Images&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flatten&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;float32&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;image_path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Images&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flatten&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;float32&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;由于这是典型的 ML 问题，为了测试我们的模型的正确功能，我们创建一个验证集，让我们以 70:30 的分割训练集 和 验证集&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;split_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;我们定义一些辅助函数，我们稍后在我们的程序中使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dense_to_one_hot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels_dense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_classes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Convert class labels from scalars to one-hot vectors&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;num_labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels_dense&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;index_offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_classes&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;labels_one_hot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_classes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;labels_one_hot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels_dense&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ravel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels_one_hot&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;preproc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unclean_batch_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Convert values to range 0-1&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;temp_batch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unclean_batch_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unclean_batch_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp_batch&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;batch_creator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Create batch with random samples and return appropriate format&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;batch_mask&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;_x&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_mask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;preproc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_mask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;label&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dense_to_one_hot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;主要部分！ 让我们定义我们的神经网络架构。 我们定义一个神经网络具有 3 层，输入、隐藏 和 输出， 输入和输出中的神经元数目是固定的，因为输入是我们的 28×28 图像，并且输出是表示类的 10×1 向量。 我们在隐藏层中取 500 神经元。这个数字可以根据你的需要变化。我们把值 赋给 其余变量。 可以阅读 &lt;a href=&quot;https://www.analyticsvidhya.com/blog/2016/03/introduction-deep-learning-fundamentals-neural-networks/&quot;&gt;神经网络的基础知识的文章&lt;/a&gt; ，以更深的了解它是如何工作。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;### set all variables&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# number of neurons in each layer&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;input_num_units&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;hidden_num_units&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;output_num_units&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# define placeholders&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# set remaining variables&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;epochs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;learning_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;### define weights and biases of the neural network (refer this article if you don&#39;t understand the terminologies)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&#39;hidden&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hidden_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&#39;output&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;biases&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&#39;hidden&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&#39;output&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_num_units&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;现在创建我们的神经网络计算图&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;hidden_layer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matmul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;hidden&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;biases&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;hidden&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;hidden_layer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;relu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden_layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;output_layer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matmul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden_layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;output&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;biases&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;output&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;此外，我们需要定义神经网络的成本&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reduce_mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;softmax_cross_entropy_with_logits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置优化器，即我们的反向传播算法。 这里我们使用 &lt;a href=&quot;https://arxiv.org/abs/1412.6980&quot;&gt;Adam&lt;/a&gt; ，这是梯度下降算法的高效变体。 有在 tensorflow 可用许多其它优化（参照 &lt;a href=&quot;https://www.tensorflow.org/versions/r0.11/api_docs/python/train.html#optimizers&quot;&gt;此处&lt;/a&gt; ）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;optimizer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AdamOptimizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;learning_rate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;learning_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minimize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;定义我们的神经网络结构后，让我们来 初始化所有的变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initialize_all_variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;现在让我们创建一个 Session ，并在 Session 中运行我们的神经网络。我们还验证我们创建的验证集的模型准确性&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# create initialized variables&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;c&quot;&gt;### for each epoch, do:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;###   for each batch, do:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;###     create pre-processed batch&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;###     run optimizer by feeding batch&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;###     find cost and reiterate to minimize&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epochs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;avg_cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;total_batch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_creator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;optimizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feed_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+            
+            &lt;span class=&quot;n&quot;&gt;avg_cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_batch&lt;/span&gt;
+            
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Epoch:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cost =&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;{:.5f}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;avg_cost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Training complete!&quot;&lt;/span&gt;
+    
+    
+    &lt;span class=&quot;c&quot;&gt;# find predictions on val set&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pred_temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reduce_mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pred_temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;float&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Validation Accuracy:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dense_to_one_hot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;val_y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)})&lt;/span&gt;
+    
+    &lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pred&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这将是上面代码的输出&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;Epoch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.93566&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Epoch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.82103&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Epoch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.98648&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Epoch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.57141&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Epoch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.44550&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Training&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Validation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Accuracy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.952823&lt;/span&gt;	
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;验证我们自己的眼睛，让我们来 想象它的预言&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Train&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Images&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flatten&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ 
+&lt;span class=&quot;n&quot;&gt;test_index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;.&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;49000&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Prediction is: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test_index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;gray&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;off&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pylab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;Prediction&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.analyticsvidhya.com/wp-content/uploads/2016/10/8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;我们看到的模型性能是相当不错！ 现在让我们 创建一个提交&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;sample_submission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;
+ 
+&lt;span class=&quot;n&quot;&gt;sample_submission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pred&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;sample_submission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub_dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;sub01.csv&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;　　终于完成了！ 我们刚刚创建了自己的训练神经网络！&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namelimitations-of-tensorflowatensorflow-&quot;&gt;&lt;a name=&quot;Limitations-of-TensorFlow&quot;&gt;&lt;/a&gt;TensorFlow 的限制&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;尽管 TensorFlow 是强大的，它仍然是一个低水平库，例如，它可以被认为是机器级语言，但对于大多数功能，您需要自己去模块化和高级接口，如 keras&lt;/li&gt;
+  &lt;li&gt;它仍然在继续开发和维护，这是多么👍啊！&lt;/li&gt;
+  &lt;li&gt;它取决于你的硬件规格，配置越高越好&lt;/li&gt;
+  &lt;li&gt;不是所有变成语言能使用它的 API 。&lt;/li&gt;
+  &lt;li&gt;TensorFlow 中仍然有很多库需要手动导入，比如 OpenCL 支持。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上面提到的大多数是在 TensorFlow 开发人员的愿景，他们已经制定了一个路线图，计划库未来应该如何开发。&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namevs-librariesatensorflow-&quot;&gt;&lt;a name=&quot;vs-libraries&quot;&gt;&lt;/a&gt;TensorFlow 与其他库&lt;/h3&gt;
+
+&lt;p&gt;　　TensorFlow 建立在类似的原理，如使用数学计算图表的 Theano 和 Torch，但是随着分布式计算的额外支持，TensorFlow 更好地解决复杂的问题。 此外，TensorFlow 模型的部署已经被支持，这使得它更容易用于工业目的，打开一些商业的三方库，如 Deeplearning4j ，H2O 和 Turi。 TensorFlow 有用于 Python，C ++ 和 Matlab 的 API 。 最近还出现了对 Ruby 和 R 等其他语言的支持。因此，TensorFlow 试图获得通用语言支持。&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namewhere-to-go-from-herea&quot;&gt;&lt;a name=&quot;Where-to-go-from-here&quot;&gt;&lt;/a&gt;从这里去哪里？&lt;/h3&gt;
+
+&lt;p&gt;　　以上你看到了如何用 TensorFlow 构建一个简单的神经网络，这段代码是为了让人们了解如何开始实现 TensorFlow。 要解决更复杂的现实生活中的问题，你必须在这篇文章的基础上在调整一些代码才行。&lt;/p&gt;
+
+&lt;p&gt;　　许多上述功能可以被抽象为给出无缝的端到端工作流，如果你使用 scikit-learn ，你可能知道一个高级库如何抽象“底层”实现，给终端用户一个更容易的界面。尽管 TensorFlow 已经提取了大多数实现，但是也有更高级的库，如 TF-slim 和 TFlearn。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;参考资源&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;TensorFlow 官方库&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Rajat Monga（TensorFlow技术负责人） &lt;a href=&quot;https://youtu.be/wmw8Bbb_eIE&quot;&gt;“TensorFlow为大家”&lt;/a&gt;  的视频&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jtoy/awesome-tensorflow/#github-projects&quot;&gt;一个专用资源的策划列表&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;关于原文&lt;/h3&gt;
+
+&lt;p&gt;感谢原文作者 &lt;a href=&quot;https://www.analyticsvidhya.com/blog/author/jalfaizy/&quot;&gt;Faizan Shaikh&lt;/a&gt; 的分享，
+这篇文章是在 &lt;a href=&quot;https://www.analyticsvidhya.com/blog/2016/10/an-introduction-to-implementing-neural-networks-using-tensorflow/&quot;&gt;An Introduction to Implementing Neural Networks using TensorFlow&lt;/a&gt; 的基础上做的翻译和局部调整，如果发现翻译中有不对或者歧义的的地方欢迎在下面评论里提问，我会加以修正 。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 20 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/11/neural_networks_using_TensorFlow/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/11/neural_networks_using_TensorFlow/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Markdown工具集</title>
+        <description>&lt;h3 id=&quot;markdown&quot;&gt;什么是 Markdown&lt;/h3&gt;
+
+&lt;p&gt;　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，&lt;strong&gt;粗体&lt;/strong&gt; 或者 &lt;em&gt;斜体&lt;/em&gt; 某些文字，更棒的是，它还可以.&lt;/p&gt;
+
+&lt;p&gt;　　很多产品的文档也是用markdown编写的，并且以“README.MD”的文件名保存在软件的目录下面。             &lt;br /&gt;
+　　&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;一些基本语法&lt;/h3&gt;
+
+&lt;p&gt;标题          &lt;br /&gt;
+H1 :# Header 1          &lt;br /&gt;
+H2 :## Header 2         &lt;br /&gt;
+H3 :### Header 3         &lt;br /&gt;
+H4 :#### Header 4         &lt;br /&gt;
+H5 :##### Header 5          &lt;br /&gt;
+H6 :###### Header 6    &lt;br /&gt;
+链接 :&lt;a href=&quot;URL&quot;&gt;Title&lt;/a&gt;      &lt;br /&gt;
+加粗 :&lt;strong&gt;Bold&lt;/strong&gt;      &lt;br /&gt;
+斜体字 :&lt;em&gt;Italics&lt;/em&gt;       &lt;br /&gt;
+&lt;em&gt;删除线 :&lt;del&gt;text&lt;/del&gt;        &lt;br /&gt;
+段落 : 段落之间空一行         &lt;br /&gt;
+换行符 : 一行结束时输入两个空格         &lt;br /&gt;
+列表 :&lt;/em&gt; 添加星号成为一个新的列表项。        &lt;br /&gt;
+引用 :&amp;gt; 引用内容             &lt;br /&gt;
+内嵌代码 : &lt;code class=&quot;highlighter-rouge&quot;&gt;alert(&#39;Hello World&#39;);&lt;/code&gt;      &lt;br /&gt;
+画水平线 (HR) :——–&lt;/p&gt;
+
+&lt;p&gt;css 的大部分语法同样可以在 markdown 上使用，但不同的渲染器渲染出来的 markdown 内容样式也不一样，下面这些链接里面有 markdown 基本语法，你也可以在下面几个平台上尝试着写一些。&lt;/p&gt;
+
+&lt;h3 id=&quot;markdown-&quot;&gt;一些好用的 Markdown 编辑器&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mahua.jser.me/?utm_source=mindstore.io&quot;&gt;MaHua&lt;/a&gt; 在线 Markdown 编辑器 ,无须测试。&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/markdown/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mdp.tylingsoft.com/&quot;&gt;Markdown Plus&lt;/a&gt; 一款 Markdown 编辑器，可以支持添加任务列表、emoji、流程图等。&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/markdown/image2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.zybuluo.com/cmd/?utm_source=mindstore.io&quot;&gt;Cmd Markdown&lt;/a&gt; 作业部落在线 Markdown 编辑器推出桌面版客户端啦，全平台支援。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/markdown/image3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/MacDownApp/macdown&quot;&gt;Macdown&lt;/a&gt; Github 上开源的 Mac 平台上的 Markdown 编辑器&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.gitbook.com/editor?utm_source=mindstore.io&quot;&gt;GitBook Editor&lt;/a&gt; 一款团队在线编辑文档工具。可以轻松书写笔记，支持团队协同编辑。同时支持 Markdown 语法，还保持了印象笔记的风格并可在线预览。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.glamdevelopment.com/outlinely?utm_source=mindstore.io&quot;&gt;Outlinely&lt;/a&gt; 界面简洁大方的大纲类 Mac 软件，使用起来很简单，而且支持输出 Markdown 格式。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://classeur.io/?utm_source=mindstore.io&quot;&gt;Classeur&lt;/a&gt; 实用简洁的 Markdown 写作工具，快速上手。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/geekcompany/DeerResume?utm_source=mindstore.io&quot;&gt;DeerResume&lt;/a&gt; 程序员专用 MarkDown 简历制作在线工具。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 20 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/11/markdownTool/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/11/markdownTool/</guid>
+        
+        <category>工具</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Mac知识整合</title>
+        <description>&lt;h3 id=&quot;dsstore-&quot;&gt;.DS_Store 文件是什么？&lt;/h3&gt;
+
+&lt;p&gt;.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件，如文件的图标位置或背景色，相当于 Windows 的 desktop.ini。&lt;/p&gt;
+
+&lt;p&gt;1，禁止.DS_store 生成：           &lt;br /&gt;
+打开 “终端” ，复制黏贴下面的命令，回车执行，重启Mac即可生效。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2，恢复.DS_store生成：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults delete com.apple.desktopservices DSDontWriteNetworkStores
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;显示隐藏文件&lt;/h3&gt;
+
+&lt;p&gt;在终端执行命令，显示隐藏文件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults write com.apple.finder AppleShowAllFiles -bool true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;恢复隐藏&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults write com.apple.finder AppleShowAllFiles -bool false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;执行命令后需要重新打开能看到效果。&lt;/p&gt;
+
+&lt;h3 id=&quot;pyhton-&quot;&gt;切换 Pyhton 环境&lt;/h3&gt;
+
+&lt;p&gt;我本地之前 Python 环境是 2.7.10 ，然后学习 Tensorflow 的时候，安装了 Python 3.5.2 ，把系统默认 Pyton 环境也设置成了 3.5.2 版本，今天运行以前写的 python 脚本发现运行不了了，因为python 2.7 和 3.5 的 语法有挺多改动，现在我需要把系统的 python 环境回退到 2.7。&lt;/p&gt;
+
+&lt;p&gt;可以直接修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt; 文件。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1、修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;vim ~/.bash_profile&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;修改方式有很多种，使用 vim  ，或者 cd ~/ 然后 open . 打开文件夹，找到 .bash_profile 文件，双击打开。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2、在&lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt; 文件里添加下面参数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;alias python=&quot;/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3、使用命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;source ~/.bash_profile&lt;/code&gt; 或者重启 终端 就 OK 了 。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;现在你再在终端输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; 就会发现，显示的信息为 2.7 了&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+Python 2.7.10 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default, Oct 23 2015, 19:19:21&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;GCC 4.2.1 Compatible Apple LLVM 7.0.0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;clang-700.0.59.5&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt; on darwin
+Type &lt;span class=&quot;s2&quot;&gt;&quot;help&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;copyright&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;credits&quot;&lt;/span&gt; or &lt;span class=&quot;s2&quot;&gt;&quot;license&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;more information.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 16 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/11/macTips/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/11/macTips/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
     
       <item>
         <title>TensorFlow 在 iOS 平台上的使用(一)</title>
@@ -937,307 +1697,6 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
         <guid isPermaLink="true">http://baixin.io/2016/07/GitTutorial/</guid>
         
         <category>工具</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>iOS开发迎来机器学习的春天---TensorFlow</title>
-        <description>&lt;div align=&quot;center&quot;&gt;
-	&lt;img src=&quot;/images/posts/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
-&lt;/div&gt;
-
-&lt;p&gt;　　&lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 &lt;code class=&quot;highlighter-rouge&quot;&gt;人工智能&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt;的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;数据挖掘&lt;/code&gt; 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？           &lt;br /&gt;
-　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能够将&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt;应用在移动端，敲响移动端&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;工业化的大门呢？&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;想象一下，某一天你身处一个完全陌生的环境，周围都是陌生的事物，而运行在iPhone的某个APP却对这个环境了如指掌，你要做的就是打开这个APP，输入你需要了解的事物，iPhone告诉你这个事物的信息，你也就没有了陌生事物了。世界就在眼前！&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;如下图：&lt;/p&gt;
-&lt;div align=&quot;center&quot;&gt;
-	&lt;img src=&quot;/images/posts/tfimg/image02.png&quot; height=&quot;300&quot; width=&quot;480&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。&lt;/p&gt;
-
-&lt;p&gt;但是在某些事物的识别准确度方便却差强人意，比如下图：&lt;/p&gt;
-
-&lt;div align=&quot;center&quot;&gt;
-　　&lt;img src=&quot;/images/posts/tfimg/image01.png&quot; height=&quot;300&quot; width=&quot;320&quot; /&gt;
-&lt;/div&gt;
-&lt;p&gt;　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。&lt;/p&gt;
-
-&lt;div align=&quot;center&quot;&gt;
-　　&lt;img src=&quot;/images/posts/tfimg/wq.jpg&quot; height=&quot;320&quot; width=&quot;240&quot; /&gt;  
-&lt;/div&gt;
-
-&lt;p&gt;　　上面的例子来自于TensorFlow官方iOSDemo，暂且不评述TensorFlow的识别准确度如何，毕竟它还年轻，但是仅凭其识别能力的体现，也给机器学习在移动端的运用带来了无限的可能。&lt;/p&gt;
-
-&lt;h3 id=&quot;tensorflowtf&quot;&gt;一、TensorFlow（简称TF）&lt;/h3&gt;
-
-&lt;p&gt;　　去年，Google资深系统专家Jeff Dean在湾区机器学习大会上隆重介绍了其第二代深度学习系统&lt;a href=&quot;http://www.tensorflow.org/&quot;&gt;TensorFlow&lt;/a&gt;，一时间网络上针对TensorFlow的文章铺天盖地，&lt;a href=&quot;http://www.leiphone.com/news/201511/UDLyNds2oSTwM2yZ.html&quot;&gt;揭秘TensorFlow：Google开源到底开的是什么？&lt;/a&gt;、&lt;a href=&quot;http://www.leiphone.com/news/201511/Voza1pFNQB4bzKdR.html&quot;&gt;Google开源TensorFlow系统，这背后都有什么门道？&lt;/a&gt;、&lt;a href=&quot;http://www.zhihu.com/question/37243838&quot;&gt;如何评价Google发布的第二代深度学习系统TensorFlow?&lt;/a&gt;等等文章，TensorFlow的燎原之火一直在燃烧蔓延着，其&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;GitHub上的开源库&lt;/a&gt;在此文撰写时，也已经被&lt;code class=&quot;highlighter-rouge&quot;&gt;star：27550&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;fork：11054&lt;/code&gt;了。🔥 🔥 🔥 🔥 🔥&lt;/p&gt;
-
-&lt;p&gt;不负众望，Google一直宣称平台移植性非常好的TensorFlow，终于在2016年6月27日，发布0.9版本，宣布移动端支持。&lt;a href=&quot;https://developers.googleblog.com/2016/06/tensorflow-v09-now-available-with.html&quot;&gt;TensorFlow v0.9 now available with improved mobile support&lt;/a&gt;( 有墙💢 )，同时也给出了移动端的&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples&quot;&gt;Demo&lt;/a&gt;，对于代码为生的程序员，身处大数据处理为主导的&lt;a href=&quot;http://www.talkingdata.com/&quot;&gt;TalkingData&lt;/a&gt;，也小试身手了一把，下载TensorFlow源码，查看编译指南，开始跳坑、填坑之路，也成就了此篇拙文的产生。&lt;/p&gt;
-
-&lt;h3 id=&quot;tensorflowios&quot;&gt;二、从TensorFlow到iOS静态库&lt;/h3&gt;
-
-&lt;p&gt;对于iOS平台下如何使用TensorFlow，TensorFlow给出了详细的编译脚本命令，详情请查看&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile&quot;&gt;官方文档的命令&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h5 id=&quot;section&quot;&gt;第一步. 工具准备&lt;/h5&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;工欲善其事必先利其器&lt;/code&gt;，在开始编译工作之前，需要准备一些编译所必须的工具：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;: Mac os x 上包管理工具，具体使用方法可参考&lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot;&gt;Doc&lt;/a&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Homebrew安装好之后，依次安装三个辅助性编译工具：&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install libtool   
-$ brew install autoconf   
-$ brew install automake   
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;三个工具的含义，请参考：&lt;a href=&quot;https://en.wikipedia.org/wiki/GNU_Libtool&quot;&gt;https://en.wikipedia.org/wiki/GNU_Libtool&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h5 id=&quot;tensorflow&quot;&gt;第二步. 克隆TensorFlow&lt;/h5&gt;
-
-&lt;p&gt;Google以&lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache 2.0&lt;/a&gt;开源协议将TensorFlow开源在&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot;&gt;GitHub&lt;/a&gt;上，我们可以直接使用TensorFlow源码。&lt;/p&gt;
-
-&lt;p&gt;在任意你想存放TensorFlow源码的地方（建议不要放在桌面。^_^），clone项目。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone https://github.com/tensorflow/tensorflow 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h5 id=&quot;section-1&quot;&gt;第三步. 编译前准备&lt;/h5&gt;
-
-&lt;p&gt;　　在TensorFlow的&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下，有很多可使用的编译脚本，其中&lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;脚本专门用来一键编译TensorFlow iOS静态库。虽然可以直接使用此脚本进行一键编译，但是因为有墙，某些依赖需要提前做处理。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;下载protobuf&lt;/p&gt;
-
-    &lt;p&gt;protobuf 是编译前唯一需要特殊处理的依赖库，&lt;a href=&quot;https://github.com/google/protobuf/archive/master.zip&quot;&gt;点击下载&lt;/a&gt;，下载protobuf之后，解压，备用。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;下载googlemock&lt;/p&gt;
-
-    &lt;p&gt;虽然protobuf编译脚本&lt;code class=&quot;highlighter-rouge&quot;&gt;autogen.sh&lt;/code&gt;中的googlemock链接地址&lt;code class=&quot;highlighter-rouge&quot;&gt;https://googlemock.googlecode.com/files/gmock-1.7.0.zip&lt;/code&gt;无法直接下载到，但是细心的人会发现，在浏览器中输入&lt;code class=&quot;highlighter-rouge&quot;&gt;https://googlemock.googlecode.com/&lt;/code&gt;地址后，会跳转到&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/google/googlemock&lt;/code&gt;地址，google在GiHub上的仓库地址。而GitHub上的仓库，我们可以直接的下载，克隆等。&lt;/p&gt;
-
-    &lt;p&gt;我们直接在GitHub上下载googlemock(&lt;a href=&quot;https://github.com/google/googlemock/archive/master.zip&quot;&gt;点击下载&lt;/a&gt;)，下载完成后，修改压缩包名字为&lt;code class=&quot;highlighter-rouge&quot;&gt;gmock-1.7.0.zip&lt;/code&gt;，修改后将此压缩包移至上一步protobuf文件夹目录下，备用。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;修改下载依赖脚本，移除protobuf的下载&lt;/p&gt;
-
-    &lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下，&lt;code class=&quot;highlighter-rouge&quot;&gt;download_dependencies.sh&lt;/code&gt;脚本用来下载相关依赖，打开此脚本文件，注释掉或者直接删掉&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/google/protobuf.git ${DOWNLOADS_DIR}/protobuf&lt;/code&gt;部分，目的是不让脚本去下载protobuf。&lt;/p&gt;
-
-    &lt;p&gt;上面三步准备好后，接下来就进入静态库编译了。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h5 id=&quot;section-2&quot;&gt;第四步. 一键编译&lt;/h5&gt;
-
-&lt;p&gt;　　前面已经知道在TensorFlow文件夹&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/&lt;/code&gt;目录下的&lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;脚本是用来编译iOS静态库的脚本，因此可以直接执行此脚本，开始静态库的编译工作了。&lt;/p&gt;
-
-&lt;p&gt;　　但是有一个问题大家可能会发现，由于编译TensorFlow需要用到protobuf，但是protobuf使我们自己手动下载的，该怎么让手动下载的protobuf能够直接让&lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;脚本使用呢？&lt;/p&gt;
-
-&lt;p&gt;　　答案是&lt;code class=&quot;highlighter-rouge&quot;&gt;复制、粘贴&lt;/code&gt;。可能有些low，但是有效。执行命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;build_all_ios.sh&lt;/code&gt;之后，立即把之前手动下载的protobuf文件夹拷贝进&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/downloads&lt;/code&gt;目录。（放心，你拷贝的速度会很快，不会影响编译的执行的。^_^）&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ build_all_ios.sh    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;　　一切准备就绪，接下来就是静静的等待编译完成了。在Mac编译的过程中，建议插上电源，最好不要让设备休眠断电，也最好不要去干别的东西，出去溜达一圈，回来后就看到战果了。&lt;/p&gt;
-
-&lt;p&gt;编译完成之后，会在&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/gen/&lt;/code&gt;目录下看到编译的结果，关于这些静态库该如何使用，自己的项目如何应用，请参考&lt;a href=&quot;https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples&quot;&gt;TensorFlow iOS Examples&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;三、遇到的问题&lt;/h3&gt;
-
-&lt;p&gt;1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用），这也是上面编译前准备为什么要那么做的原因。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;解决： 请参考 『第三步. 编译前准备』。&lt;/p&gt;
-
-&lt;p&gt;2、没有Xcode。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xcrun: error: SDK &quot;iphoneos&quot; cannot be located
-xcrun: error: SDK &quot;iphoneos&quot; cannot be located
-xcrun: error: unable to lookup item &#39;PlatformPath&#39; in SDK &#39;iphoneos&#39;
-+ IPHONEOS_PLATFORM=
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;解决：安装Xcode，从上面报错的命令中可以看到，在编译静态库的过程中使用了&lt;code class=&quot;highlighter-rouge&quot;&gt;xcrun&lt;/code&gt;，而此命令是xCode本身具有的能力。&lt;/p&gt;
-
-&lt;p&gt;3、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
-error: Xcode 7.3.0 or later is required.
-+ exit 1
-&lt;/code&gt;/&lt;/p&gt;
-
-&lt;p&gt;解决：更新Xcode至最新版本，并且保证默认路径下是最新/版本。&lt;/p&gt;
-
-&lt;p&gt;如果Xcode是7.3，并且没有条件更新Xcode，你可以修改&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow/contrib/makefile/compile_ios_tensorflow.sh&lt;/code&gt; 里的&lt;code class=&quot;highlighter-rouge&quot;&gt;REQUIRED_XCODE_VERSION=7.3.0&lt;/code&gt;，为&lt;code class=&quot;highlighter-rouge&quot;&gt;REQUIRED_XCODE_VERSION=7.3&lt;/code&gt;。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;四、参考链接&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://tensorfly.cn/&quot;&gt;TensorFlow 中文社区&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.tensorflow.org/mobile.html&quot;&gt;TensorFlow for Mobile&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://chenrudan.github.io/blog/2015/11/18/comparethreeopenlib.html&quot;&gt;Caffe、TensorFlow、MXnet三个开源库对比&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://weibo.com/p/1001603907610737775666&quot;&gt;如何评价Tensorflow和其它深度学习系统&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80&quot;&gt;深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/</guid>
-        
-        <category>机器学习</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>机器学习入门（名词科普）</title>
-        <description>&lt;h3 id=&quot;section&quot;&gt;通用名词&lt;/h3&gt;
-
-&lt;h4 id=&quot;ml&quot;&gt;ML&lt;/h4&gt;
-
-&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 机器学习(Machine Learning)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。
-　　它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。&lt;/p&gt;
-
-&lt;h4 id=&quot;dl&quot;&gt;DL&lt;/h4&gt;
-&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 深度学习（Deep Learning）是机器学习拉出的分支，它试图使用包含复杂结构或由多重非线性变换构成的多个处理层对数据进行高层抽象的算法。        &lt;br /&gt;
-　　深度学习是机器学习中表征学习方法。观测值（例如一幅图像）可以使用多种方式来表示，如每个像素强度值的矢量，或者更抽象地表示成一系列边、特定形状的区域等。而使用某些特定的表示方法更容易从实例中学习任务（例如，人脸识别或面部表情识别）。深度学习的好处是将用非监督式或半监督式的特征学习和分层特征提取的高效算法来替代手工获取特征。&lt;/p&gt;
-
-&lt;h4 id=&quot;cnn&quot;&gt;CNN&lt;/h4&gt;
-&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 卷积神经网络（Convolutional neural networks，简称CNNs）是一种深度的监督学习下的机器学习模型&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;算法名词&lt;/h3&gt;
-
-&lt;h4 id=&quot;knn&quot;&gt;KNN:&lt;/h4&gt;
-
-&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 邻近算法，或者说K最近邻(kNN，k-NearestNeighbor)分类算法。
-　　邻近算法是数据挖掘分类技术中最简单的方法之一。所谓K最近邻，就是k个最近的邻居的意思，说的是每个样本都可以用它最接近的k个邻居来代表。
-　　kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。该方法在确定分类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。 kNN方法在类别决策时，只与极少量的相邻样本有关。由于kNN方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，kNN方法较其他方法更为适合。&lt;/p&gt;
-
-&lt;h4 id=&quot;svm&quot;&gt;SVM:&lt;/h4&gt;
-&lt;p&gt;　　&lt;strong&gt;名词解释：&lt;/strong&gt; 支持向量机（Support Vector Machine）。
-　　在机器学习领域，支持向量机SVM(Support Vector Machine)是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/MachineLearning_introduce/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 05 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/MachineLearning_introduce/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/MachineLearning_introduce/</guid>
-        
-        <category>机器学习</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>HEXO进阶</title>
-        <description>&lt;p&gt;HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如果你也在使用HEXO，不妨看看，应该会有些帮助。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1、博客部署样式出问题了怎么办？&lt;/li&gt;
-  &lt;li&gt;2、电脑重装或者误删了本地博客怎么办？&lt;/li&gt;
-  &lt;li&gt;3、想使用两台电脑写博客怎么办？&lt;/li&gt;
-  &lt;li&gt;4、为何使用百度搜不到我的博客？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;jekyll&quot;&gt;使用Jekyll解决前三个问题。&lt;/h3&gt;
-&lt;p&gt;不得不说 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 确实可以解决我上面三个问题, 因为 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 是直接把Markdown格式的文章直接放在github仓库里的, 相当于直接用git来管理博客了, &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt; 官方也很推荐 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 。 你可以先看下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 搭建博客的&lt;a href=&quot;voyagelab.github.io&quot;&gt;voyagelab&lt;/a&gt;, &lt;a href=&quot;https://github.com/voyagelab/voyagelab.github.io&quot;&gt;github地址&lt;/a&gt;, 当然了这只是很普通的, Jekyll 也有很多主题可以选择的, 更详细的请看&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;。
-在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 上逛了一个星期的我又回到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; , 发现 目前 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 对主题和一些插件的支持相对 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; 来说, 没那么友好, 可能有一些其它的方法只是我没找到而已,关于 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; 搭建博客就介绍到这, 如果有问题的话可以评论, 或者联系我。&lt;/p&gt;
-
-&lt;h3 id=&quot;hexo&quot;&gt;使用Hexo解决上面前三个问题&lt;/h3&gt;
-&lt;p&gt;是的, 我大&lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt;同样可以解决上面三个问题, 那就是使用git。关于如何使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; 搭建博客请看我另一篇文章&lt;a href=&quot;http://www.baixin.io/2015/08/25/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;, 如果搭建的过程中出现了问题, 我们可以交流交流。现在我假设你已经能基本使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hexo&lt;/code&gt; 了, 接下来就看看如何来管理博客。&lt;/p&gt;
-
-&lt;h2 id=&quot;git&quot;&gt;使用git管理博客&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt;是我管理博客的仓库地址。结构大致是:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;– Blog-Growing   &lt;br /&gt;
-　　|– .git   &lt;br /&gt;
-　　|– .gitignore  &lt;br /&gt;
-　　|– Hexo   &lt;br /&gt;
-　　　　|   ..  &lt;br /&gt;
-　　　　|   ..  &lt;br /&gt;
-　　　　|   整个博客的配置信息&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;你可以把我的的&lt;a href=&quot;https://github.com/leopardpan/Blog-Growing&quot;&gt;Blog-Growing&lt;/a&gt; clone下来, 看看一些基本配置是怎么配置的。需要提醒的是, &lt;code class=&quot;highlighter-rouge&quot;&gt;要把主题下的.git给删除掉&lt;/code&gt; , 当然了你也可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git submodule&lt;/code&gt; 来管理, 具体的管理方法我这里就不做多的介绍了, 想了解的话可以私信我。
-上面的过程基本做完后, 怎么来解决我开篇提的前三个问题了。&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;具体实现:&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;一：家里电脑使用博客&lt;/strong&gt;      &lt;br /&gt;
-　　建立git远端仓库管理博客,并使用家里的电脑把本地博客的配置推送到远端仓库。 &lt;br /&gt;
-&lt;strong&gt;二：公司电脑使用博客&lt;/strong&gt;       &lt;br /&gt;
-　　到了公司只需要执行&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo npm install -g hexo&lt;/code&gt;,然后cd到你的博客目录下,如我cd 到Hexo目录下, 然后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo server&lt;/code&gt; 就可以在本地预览博客了。  &lt;br /&gt;
-&lt;strong&gt;三：使用Git保存&lt;/strong&gt;        &lt;br /&gt;
-　　修改好博客后记得先使用git来提交下, 即使下次把博客的样式修改坏了, 也可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git reset --hard&lt;/code&gt; 来回退。如: 我cd 到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Blog-Growing&lt;/code&gt; 目录下使用git提交。 &lt;br /&gt;
-&lt;strong&gt;四：博客提交&lt;/strong&gt;         &lt;br /&gt;
-　　1、修改好的博客使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo d&lt;/code&gt; 展示到博客页上。 &lt;br /&gt;
-　　2、git push 整个本地博客。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;提示:&lt;/strong&gt; 在这里 &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; 仅仅只是用户做博客的版本管理的, 博客的样式修改、基本部署还是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo&lt;/code&gt; 来操作的。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;让百度能搜索到你的博客&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;为什么要使用百度搜索？&lt;/h3&gt;
-
-&lt;p&gt;　　有人可能会说作为一个开发人员, 你不会用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 啊。 是的, Google是能搜到我们搭建在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github Page&lt;/code&gt; 的博客, 会用&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 也是一个开发人员必备技能之一。但是, 我们生活在天朝, 所以百度还是总有会用到的时候, 或者是你想让更多的天朝人能搜到你。&lt;/p&gt;
-
-&lt;h3 id=&quot;github-page-&quot;&gt;为什么使用百度搜索不到 Github Page 上的博客？&lt;/h3&gt;
-
-&lt;p&gt;有人联系过 Github Support 部门 , 给出大致的意思就是: 百度爬虫爬得太猛烈，已经对很多 Github 用户造成了问题。所以 Github 将禁止百度爬虫的爬取。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;如何让百度能搜索你的博客?&lt;/h3&gt;
-
-&lt;p&gt;　　根据上面说的, 目前发现只是Github Page禁止了百度搜索, 所以让百度能搜索到你的博客还是有一些方法的。例如:
-* 自己搞个VPS,博客部署在VPS上。
-* 博客部署 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上, &lt;code class=&quot;highlighter-rouge&quot;&gt;GitCafe&lt;/code&gt;已经合并到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding&lt;/code&gt; 。
-我使用的是第二种方法, 博客部署在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Coding.net&lt;/code&gt; 上也相对简单些。&lt;/p&gt;
-
-&lt;h4 id=&quot;coding&quot;&gt;在Coding上部署你的博客。&lt;/h4&gt;
-
-&lt;p&gt;　　Coding同样支持Hexo、Jekyll等博客的部署, Coding 跟Github还是挺像的,而且是中文。 同样的在Coding里面建一个项目,项目名字跟你的用户名一样,这里我就不啰嗦了, 说几个需要注意的地方:   &lt;br /&gt;
-&lt;strong&gt;注意一:&lt;/strong&gt;     &lt;br /&gt;
-　　在&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 上部署博客,需要把博客推送到&lt;code class=&quot;highlighter-rouge&quot;&gt;coding-pages &lt;/code&gt; 分支上, 分支名字是固定的。  &lt;br /&gt;
-&lt;strong&gt;注意二:&lt;/strong&gt;   &lt;br /&gt;
-　　&lt;code class=&quot;highlighter-rouge&quot;&gt;Coding Page&lt;/code&gt; 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。&lt;/p&gt;
-
-&lt;p&gt;更详细的请看&lt;a href=&quot;https://coding.net/help/doc/pages/index.html&quot;&gt;Coding Pages 官网介绍&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/06/HEXO_Advanced/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;参考文章:
-&lt;a href=&quot;http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/&quot;&gt;解决 Github Pages 禁止百度爬虫的方法与可行性分析&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 12 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/06/HEXO_Advanced/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
-        
-        <category>博客</category>
         
         
       </item>
