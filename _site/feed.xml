@@ -5,9 +5,749 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 25 Nov 2016 16:04:40 +0800</pubDate>
-    <lastBuildDate>Fri, 25 Nov 2016 16:04:40 +0800</lastBuildDate>
+    <pubDate>Fri, 04 Nov 2016 19:17:20 +0800</pubDate>
+    <lastBuildDate>Fri, 04 Nov 2016 19:17:20 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>TensorFlow 在 iOS 平台上的使用(一)</title>
+        <description>&lt;p&gt;　　距离上次使用 TensorFlow 在iOS平台上做的小 Demo，已经过了四个月了，今天忽然想再看看,发现 Demo 已经不见了，我只能从头在编一次，这次发现编译 iOS 库，简单多了。&lt;/p&gt;
+
+&lt;p&gt;　　tensorflow &lt;a href=&quot;https://github.com/tensorflow/tensorflow/archive/master.zip&quot;&gt;下载地址&lt;/a&gt;，tensorflow 最近提交的时间：2016-11-03，commit：&lt;code class=&quot;highlighter-rouge&quot;&gt;7b7c02de56e013482b5fe5ab05e576dc98fe5742&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;p&gt;　　下载完成后打开文件，找到目录 &lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow-master/tensorflow/contrib/ios_examples&lt;/code&gt; 你会发现目录下有三个项目和一个 README.md 。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;benchmark 、 camera 、 simple 、README.md
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;如果你发现项目无法运行，请看这里&lt;/h3&gt;
+
+&lt;p&gt;　　对于任何项目我们首先打开的应该是 README.md ，里面一般情况都会有介绍如何使用这个项目，tensorflow 也不会例外。README 开头就说了，这个目录里有如何在 iOS 平台上使用 tensorflow 的例子，但是需要注意几点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;你的 Xcode 版本必须是 7.3 或更高版本，并且有安装 command-line 工具 。&lt;/li&gt;
+  &lt;li&gt;项目(Examples) 里必须包含一个静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; 。&lt;/li&gt;
+  &lt;li&gt;下载 &lt;a href=&quot;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&quot;&gt;Inception v1&lt;/a&gt;，解压后将 label 和 graph 放在 simple 和 camera 的项目中。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;camera-&quot;&gt;camera 项目的使用&lt;/h3&gt;
+
+&lt;p&gt;　　camera 项目在 tensorflow-master/tensorflow/contrib/ios_examples 目录下，如果你是直接打开 camera 项目，编译你会发现报错缺少 imagenet_comp_graph_label_strings.txt 和 tensorflow_inception_graph.pb 两个文件，这两个文件上面已经说到了下载 &lt;a href=&quot;https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&quot;&gt;Inception v1&lt;/a&gt; 解压得到。现在还差 静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; ，这个需要我们自己编译。&lt;/p&gt;
+
+&lt;h4 id=&quot;libtensorflow-corea&quot;&gt;编译静态库：libtensorflow-core.a&lt;/h4&gt;
+
+&lt;p&gt;进入目录：tensorflow-master/tensorflow/contrib/makefile，你可以看到一大堆 .sh 结尾的文件，找到 build_all_ios.sh ，Mac 上可以直接在 termina（终端）上运行命令编译&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sh build_all_ios.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个编译的过程是很漫长的，一般在一个小时左右。也有可能你在编译的过程中会遇到问题，这次我只遇到一个问题：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;configure.ac:30: error: required file &#39;build-aux/ltmain.sh&#39; not found
+configure.ac:24: installing &#39;build-aux/missing&#39;
+Makefile.am: installing &#39;build-aux/depcomp&#39;
+parallel-tests: installing &#39;build-aux/test-driver&#39;
+autoreconf: automake failed with exit status: 1
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;解决方法是：先卸载 libtool 在重新安装，&lt;code class=&quot;highlighter-rouge&quot;&gt;brew uninstall libtool&lt;/code&gt; &amp;amp;&amp;amp; &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install libtool&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你还遇到了其它问题，可以看看我之前的一片文章 &lt;a href=&quot;http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/&quot;&gt;iOS开发迎来机器学习的春天—TensorFlow&lt;/a&gt; ，或者是直接去 tensorflow 的 &lt;a href=&quot;https://github.com/tensorflow/tensorflow/issues&quot;&gt;Issues&lt;/a&gt; 里面找。&lt;/p&gt;
+
+&lt;p&gt;一个小时后。。。　如果编译没出问题，你可以在目录　&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow-master/tensorflow/contrib/makefile／gen/lib&lt;/code&gt; 下找到一个静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; ，把这个静态库拷贝到 camera 项目中，然后编译运行。&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 03 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/11/TensorFlowOniOSUse1/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/11/TensorFlowOniOSUse1/</guid>
+        
+        <category>机器学习</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Xcode 8 使用笔记</title>
+        <description>&lt;p&gt;最近使用 Xcode8遇到了一些问题，想记下来，发现简书上有位同学写了一篇很详细的教程 &lt;a href=&quot;http://www.jianshu.com/p/c1904fd8db06&quot;&gt;原文链接&lt;/a&gt;，比较懒惰的我就在他的基础上加了些我自己的一些笔记。&lt;/p&gt;
+
+&lt;h3 id=&quot;interface-builder&quot;&gt;Interface Builder&lt;/h3&gt;
+
+&lt;p&gt;随着 14 年的 iPhone6 和 6P 出来之后，iPhone 的屏幕尺寸也越来越多，屏幕适配是一个需要解决的问题，以后不一定苹果又出什么尺寸的 iPhone 呢。&lt;/p&gt;
+
+&lt;p&gt;在 iPhone6 和 6P 发布的同一年，苹果推出的 Xcode6 中在原有的 Auto layout的基础上，添加了Size Classes新特性，通过这个新特性可以使用一个XIB或者SB文件，适配不同的屏幕以及iPhone和iPad两种设备。&lt;/p&gt;
+
+&lt;p&gt;在 Xcode8 中，苹果推出了更加强大的可视化编辑工具预览功能，可以在不运行App的情况下，预览当前XIB或SB在不同屏幕尺寸下的显示。(这个功能我记得之前Xcode就有，只是隐藏的比较深，苹果现在给拿到外面了)&lt;/p&gt;
+
+&lt;p&gt;选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5寸一系列屏幕尺寸的选项。直接点击不同屏幕尺寸，以及横竖屏选项，切换不同的屏幕显示。在iPad上还可以选择是否分屏，功能非常强大。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image1.png&quot; height=&quot;200&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在右边有一个 Vary for Traits 选项，点击这个选项就可以同时显示所有可选的屏幕样式，功能和上面图片都一样，只是显示上看起来比较多。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image2.png&quot; height=&quot;160&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有一点，新创建的 XIB 控件尺寸，不再是之前 600*600 的方块了，而是默认是6s的长方形 XIB 文件，看起来舒服多了。&lt;/p&gt;
+
+&lt;h3 id=&quot;targetgeneral-&quot;&gt;Target中General 的变化&lt;/h3&gt;
+
+&lt;p&gt;在 Xcode8 之前，都需要自己设置证书和描述文件。如果设置出现错误的情况下，还可以通过点击 Fix issue 来修复这个错误。但这有个问题就在于，Fix issue 选项并不是那么好用，有的时候设置是正确的这里也提示需要 Fix issue。&lt;/p&gt;
+
+&lt;p&gt;可能苹果也意识到这个问题的存在，在Xcode8中可以通过Automatically manage signing选项，让苹果为我们管理证书和配置文件，设置也都是由苹果来完成的。在Xcode8中新建项目，这个选项默认是被勾选的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image3.png&quot; height=&quot;350&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上面图中可以看到，苹果帮我们自动管理了证书和配置文件。而且在之前的项目中，如果想要设置安装后显示在手机上的App名字，还需要自己到Info.plist文件中，修改Display Name字段，而现在直接在General中就可以做修改，这个修改和Info.plist是同步的。&lt;/p&gt;
+
+&lt;p&gt;但是，如果我想自己管理证书和描述文件呢？只需要去掉Automatically manage signing选项。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image4.png&quot; height=&quot;350&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果自己到Build Settings中手动设置证书和描述文件，可以发现Provisioning Profile选项已经被标明为Deprecated，也就是苹果并不推荐手动设置。&lt;/p&gt;
+
+&lt;h3 id=&quot;xcode-&quot;&gt;Xcode 插件&lt;/h3&gt;
+
+&lt;p&gt;升级 Xcode8 之后会发现，在 Xcode8 中所有第三方插件都失效了，并且连之前菜单栏的插件选项也不存在了。在之前很多 iOS 开发者，都是通过 &lt;a href=&quot;http://alcatraz.io/&quot;&gt;Alcatraz&lt;/a&gt; 来管理插件的，现在 Alcatraz 也是不可用的。但是X code8 自身也对编译器进行了升级，将一些比较好的插件功能加入到 Xcode 中，例如单行高亮显示等。&lt;/p&gt;
+
+&lt;p&gt;在 Xcode8 中支持了开发插件工程，并且为我们提供了一个插件模板，开发的插件可以上传到App Store 下载。苹果这么做有一个原因在于，之前 Xcode和插件是运行在同一个进程的，所以插件的崩溃也会导致Xcode崩溃。苹果现在将插件作为一个单独的应用程序，分开进程运行，不会对Xcode带来其他影响。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image5.png&quot; height=&quot;350&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;runtime-issues&quot;&gt;Runtime Issues&lt;/h3&gt;
+
+&lt;p&gt;在开发过程中，因为语法或明显的代码错误(例如Retain Cycle)，编译器可以发现并报黄色或红色警告。但是一些因为代码逻辑导致的错误，编译器并没有办法找到。例如下面的这句代码，因为代码逻辑的问题导致两个数组相互引用，都不能释放。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image6.png&quot; height=&quot;180&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这时候可以通过 Xcode8 提供的 Runtime Issues 新特性，查找到运行过程中出现的问题，并通过 Graph 的方式将问题可视化的展现给开发者。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image7.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;debug-memory-graph&quot;&gt;Debug Memory Graph&lt;/h3&gt;
+
+&lt;p&gt;在Xcode6中出现了Debug View Hierarchy新特性，可以通过其调试当前App的视图层级，查找UI相关的bug非常方便。在Xcode8中苹果为开发者提供了Debug Memory Graph特性，通过这个新特性，可以直接选择一个对象，查看与其相关的内存关系。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image8.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Debug Memory Graph 和 Runtime Issues 可以配合使用，通过 Debug Memory Graph 分析内存关系完成后，点击 Runtime Issues 可以看到已经发现的内存问题。&lt;/p&gt;
+
+&lt;h3 id=&quot;swift-3&quot;&gt;Swift 3&lt;/h3&gt;
+
+&lt;p&gt;Xcode8 带来了新版本的 Swift3，新版本的Swift变化较大，如果旧版的Swift项目在Xcode8上编译可能会失败。对此，苹果为开发者提供了Swift迁移工具，听说不太好用(我没用过这个工具)。&lt;/p&gt;
+
+&lt;p&gt;如果不想立刻就迁移到Swift3，可以在Builder Settings中进行设置，选择Use Legacy Swift Language Version设置为YES，就可以继续使用旧版本的Swift2.3。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image9.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;其他更新&lt;/h3&gt;
+
+&lt;p&gt;Xcode 新版字体，SF Mono Regular 字体。更新 Xcode 之后我比较喜欢这种字体，看起来代码非常工整。
+被编辑的行高亮显示。之前Xcode有个插件就是这个功能，Xcode8把高亮功能集成进来了，使用起来很方便。
+最新版的API文档，展示样式发生了很大的改变。
+更方便的生成文档(就是喵神写的VVDocumenter)，在Xcode8中可以将光标放在方法上面，通过option + command + /快捷键生成文档注释。&lt;/p&gt;
+
+&lt;h3 id=&quot;xcode8xibstoreboard&quot;&gt;Xcode8适配,XIB和Storeboard适配&lt;/h3&gt;
+
+&lt;p&gt;在 Xcode8 之前，创建一个 XIB 或 SB 文件，都是一个 600*600 的方块 XIB 文件。在 Xcode8 之后，创建的 XIB 文件默认是6s尺寸的大小。&lt;/p&gt;
+
+&lt;p&gt;但是 Xcode8 打开之前旧项目的 XIB或SB 文件时，会弹出下面的弹框， 这时候一般直接选择Choose Device即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image10.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是这样有个问题，如果Xcode8打开过这个XIB文件，并选择Choose Device之后。其他的Xcode8以下版本的编译器，将无法再打开这个文件，会报以下错误：&lt;/p&gt;
+
+&lt;p&gt;The document “ViewController.xib” requires Xcode 8.0 or later. This version does not support documents saved in the Xcode 8 format. Open this document with Xcode 8.0 or later.
+有两种方法解决这个问题：&lt;/p&gt;
+
+&lt;p&gt;你同事也升级Xcode8，比较推荐这种方式，应该迎接改变。
+右击XIB或SB文件 -&amp;gt; Open as -&amp;gt; Source Code，删除xml文件中下面一行字段。&lt;/p&gt;
+&lt;capability name=&quot;documents saved in the Xcode 8 format&quot; mintoolsversion=&quot;8.0&quot; /&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;编译错误&lt;/h3&gt;
+
+&lt;p&gt;升级Xcode之后，Xcode8对之前的一些修饰符和语句不兼容，会导致一些编译错误。这种错误导致的原因很多，这里大致列几条，各位还是根据自身遇到的情况做修改吧。&lt;/p&gt;
+
+&lt;p&gt;之前一些泛型相关的修饰符，nullable之类的有的会报错。
+CAAnimation及其子类，设置代理属性后，必须在@interface()遵守代理，否则报错，等等。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;权限适配&lt;/h3&gt;
+
+&lt;p&gt;这应该算iOS10系统适配的范畴，最近这两个都在弄，所以就直接和Xcode8适配一起写出来了。&lt;/p&gt;
+
+&lt;p&gt;在iOS10之后需要在Info.plist中，添加新的字段获取权限，否则在iOS10上运行会导致崩溃。下面是一些常用的字段，如果有缺少的麻烦各位评论区补充一下。&lt;/p&gt;
+
+&lt;p&gt;Key	权限
+Privacy - Camera Usage Description	相机
+Privacy - Microphone Usage Description	麦克风
+Privacy - Photo Library Usage Description	相册
+Privacy - Contacts Usage Description	通讯录
+Privacy - Bluetooth Peripheral Usage Description	蓝牙
+Privacy - Location When In Use Usage Description	定位
+Privacy - Location Always Usage Description	后台定位
+Privacy - Calendars Usage Description	日历&lt;/p&gt;
+
+&lt;p&gt;参考资料：&lt;a href=&quot;https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html&quot;&gt;developer.apple&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;推送通知&lt;/h3&gt;
+
+&lt;p&gt;苹果的推送在之前iOS8和iOS9的时候就发生过大的更新，推送功能越来越强大。在iOS10之后苹果推出了UserNotifications框架，可以通过这个框架更好的控制推送通知，可以更新、修改锁屏页面的推送消息，可以添加图片等功能。&lt;/p&gt;
+
+&lt;p&gt;但是在用Xcode8打包后，并且不对代码进行修改的情况下，会发现打包后苹果发来了一封邮件。这封邮件大概意思是如果需要使用推送通知，需要对代码做修改，否则将不能使用推送通知。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image11.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是因为在Xcode8之后，如果需要使用Push Notifications的功能，需要勾选Capabilities -&amp;gt; Push Notifications为YES，否则进行远程推送就会有问题，并且会收到苹果发来的这封邮件。&lt;/p&gt;
+
+&lt;h3 id=&quot;log&quot;&gt;删除系统log&lt;/h3&gt;
+
+&lt;p&gt;升级Xcode8之后，在调试和运行过程中，发现控制台打印了很多不认识的log，这些log是系统打印的，和开发者没关系。但是这么多log看着比较乱，怎么屏蔽掉呢？&lt;/p&gt;
+
+&lt;p&gt;subsystem: com.apple.UIKit, category: HIDEventFiltered, enable_level: 0, persist_level: 0, default_ttl: 0, info_ttl: 0, debug_ttl: 0, generate_symptoms: 0, enable_oversize: 1, privacy_setting: 2, enable_private_data: 0
+在Target -&amp;gt; Edit Scheme -&amp;gt; Run -&amp;gt; Arguments中，添加OS_ACTIVITY_MODE字段，并设置为Disable即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image12.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;顺便提一下，这两天在设置log选项的时候，发现可以通过在Arguments中设置参数，打印出App加载的时长，包括整体加载时长，动态库加载时长等。&lt;/p&gt;
+
+&lt;p&gt;在Environment Variables中添加DYLD_PRINT_STATISTICS字段，并设置为YES，在控制台就会打印加载时长。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Xcode8/image13.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;awakefromnib&quot;&gt;awakeFromNib报警告&lt;/h3&gt;
+
+&lt;p&gt;老项目在Xcode8中，有些重写awakeFromNib方法的地方，会报下面的错误。这是因为没有调用super的方法导致的，还好我平时都是调用super的，我代码目前还没出问题。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Method possibly missing a [super awakeFromNib] call
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 25 Oct 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/10/Xcode8/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/10/Xcode8/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Jekyll搭建个人博客</title>
+        <description>&lt;p&gt;　之前写了一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程获得了很好评，尤其是在&lt;a href=&quot;http://www.jianshu.com/p/465830080ea9&quot;&gt;简书&lt;/a&gt;上目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。&lt;/p&gt;
+
+&lt;p&gt;　如果你看过我的文章会发现我现在的博客样式跟之前是有很大的区别的，之前我也是使用 HEXO 搭建的博客，后来发现使用 HEXO 在多台电脑上发布博客，操作起来并不是那么方便，果断就转到了 Jekyll 上，接下来我会讲如何使用 Jekyll 搭建博客，&lt;a href=&quot;http://baixin.io/#blog&quot;&gt;博客模板效果&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
+
+&lt;p&gt;　Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown （或者 Textile） 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll 也可以运行在 GitHub Page 上，也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是完全免费的&lt;/p&gt;
+
+&lt;p&gt;　使用 Jekyll 搭建博客之前要确认下本机环境，Git 环境（用于部署到远端）、&lt;a href=&quot;http://www.ruby-lang.org/en/downloads/&quot;&gt;Ruby&lt;/a&gt; 环境（Jekyll 是基于 Ruby 开发的）、包管理器 &lt;a href=&quot;http://rubygems.org/pages/download&quot;&gt;RubyGems&lt;/a&gt;              &lt;br /&gt;
+　　如果你是 Mac 用户，你就需要安装 Xcode 和 Command-Line Tools了。下载方式 Preferences → Downloads → Components。&lt;/p&gt;
+
+&lt;p&gt;　　Jekyll 是一个免费的简单静态网页生成工具，可以配合第三方服务例如： Disqus（评论）、多说(评论) 以及分享 等等扩展功能，Jekyll 可以直接部署在 Github（国外） 或 Coding（国内） 上，可以绑定自己的域名。&lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll中文文档&lt;/a&gt;、&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll英文文档&lt;/a&gt;、&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题列表&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll-&quot;&gt;Jekyll 环境配置&lt;/h3&gt;
+
+&lt;p&gt;安装 jekyll&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install jekyll     
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;创建博客&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll new myBlog    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;进入博客目录&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd myBlog  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;启动本地服务&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在浏览器里输入： &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt;，就可以看到你的博客效果了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/jekyll/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;so easy !&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;目录结构&lt;/h3&gt;
+&lt;p&gt;　
+　Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 你用你最喜欢的标记语言来写文章，可以是 Markdown，也可以是 Textile,或者就是简单的 HTML, 然后 Jekyll 就会帮你套入一个或一系列的布局中。在整个过程中你可以设置URL路径, 你的文本在布局中的显示样式等等。这些都可以通过纯文本编辑来实现，最终生成的静态页面就是你的成品了。&lt;/p&gt;
+
+&lt;p&gt;一个基本的 Jekyll 网站的目录结构一般是像这样的：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── _config.yml
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   ├── post.html
+|   └── page.html
+├── _posts
+|   └── 2016-10-08-welcome-to-jekyll.markdown
+├── _sass
+|   ├── _base.scss
+|   ├── _layout.scss
+|   └── _syntax-highlighting.scss
+├── about.md
+├── css
+|   └── main.scss
+├── feed.xml
+└── index.html
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这些目录结构以及具体的作用可以参考 &lt;a href=&quot;http://jekyll.com.cn/docs/structure/&quot;&gt;官网文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;进入 _config.yml 里面，修改成你想看到的信息，重新 jekyll server ，刷新浏览器就可以看到你刚刚修改的信息了。&lt;/p&gt;
+
+&lt;p&gt;到此，博客初步搭建算是完成了，&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;博客部署到远端&lt;/h3&gt;
+
+&lt;p&gt;　我这里讲的是部署到 Github Page 创建一个 github 账号，然后创建一个跟你账户名一样的仓库，如我的 github 账户名叫 &lt;a href=&quot;https://github.com/leopardpan&quot;&gt;leopardpan&lt;/a&gt;，我的 github 仓库名就叫 &lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io&quot;&gt;leopardpan.github.io&lt;/a&gt;，创建好了之后，把刚才建立的 myBlog 项目 push 到 username.github.io仓库里去（username指的是你的github用户名），检查你远端仓库已经跟你本地 myBlog 同步了，然后你在浏览器里输入 username.github.io ，就可以访问你的博客了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;编写文章&lt;/h3&gt;
+
+&lt;p&gt;　　所有的文章都是 _posts 目录下面，文章格式为 mardown 格式，文章文件名可以是 .mardown 或者 .md。&lt;/p&gt;
+
+&lt;p&gt;　　编写一篇新文章很简单，你可以直接从 _posts/ 目录下复制一份出来 &lt;code class=&quot;highlighter-rouge&quot;&gt;2016-10-16-welcome-to-jekyll副本.markdown&lt;/code&gt; ，修改名字为 2016-10-16-article1.markdown ，注意：文章名的格式前面必须为 2016-10-16- ，日期可以修改，但必须为 年-月-日- 格式，后面的 article1 是整个文章的连接 URL，如果文章名为中文，那么文章的连接URL就会变成这样的：http://baixin.io/2015/08/%E6%90%AD%E5/ ， 所以建议文章名最好是英文的或者阿拉伯数字。 双击 2016-10-16-article1.markdown 打开&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+---
+layout: post
+title:  &quot;Welcome to Jekyll!&quot;
+date:   2016-10-16 11:29:08 +0800
+categories: jekyll update
+---
+
+正文...
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;title: 显示的文章名， 如：title: 我的第一篇文章                  &lt;br /&gt;
+date:  显示的文章发布日期，如：date: 2016-10-16                        &lt;br /&gt;
+categories: tag标签的分类，如：categories: 随笔&lt;/p&gt;
+
+&lt;p&gt;注意：文章头部格式必须为上面的，…. 就是文章的正文内容。&lt;/p&gt;
+
+&lt;p&gt;我写文章使用的是 Sublime Text2 编辑器，如果你对 markdown 语法不熟悉的话，可以看看&lt;a href=&quot;https://www.zybuluo.com/&quot;&gt;作业部落的教程&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;使用我的博客模板&lt;/h3&gt;
+
+&lt;p&gt;虽然博客部署完成了，你会发现博客太简单不是你想要的，如果你喜欢我的模板的话，可以使用我的模板。&lt;/p&gt;
+
+&lt;p&gt;首先你要获取的我博客，&lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io.git&quot;&gt;Github项目地址&lt;/a&gt;，你可以直接&lt;a href=&quot;https://github.com/leopardpan/leopardpan.github.io/archive/master.zip&quot;&gt;点击下载博客&lt;/a&gt;，进去leopardpan.github.io/ 目录下， 使用命令部署本地服务&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll server   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;jekyll&quot;&gt;如果你本机没配置过任何jekyll的环境，可能会报错&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require&#39;: cannot load such file -- bundler (LoadError)
+	from /Users/xxxxxxxx/.rvm/rubies/ruby-2.2.2/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/lib/jekyll/plugin_manager.rb:34:in `require_from_bundler&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/gems/jekyll-3.3.0/exe/jekyll:9:in `&amp;lt;top (required)&amp;gt;&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `load&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/jekyll:23:in `&amp;lt;main&amp;gt;&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `eval&#39;
+	from /Users/xxxxxxxx/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `&amp;lt;main&amp;gt;&#39;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;原因： 没有安装 bundler ，执行安装 bundler 命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+$ gem install bundler
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;提示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fetching: bundler-1.13.5.gem (100%)
+Successfully installed bundler-1.13.5
+Parsing documentation for bundler-1.13.5
+Installing ri documentation for bundler-1.13.5
+Done installing documentation for bundler after 5 seconds
+1 gem installed
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再次执行 $ jekyll server  ，提示&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+Could not find proper version of jekyll (3.1.1) in any of the sources
+Run `bundle install` to install missing gems.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;跟着提示运行命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bundle install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个时候你可能会发现 bundle install 运行卡主不动了。&lt;/p&gt;
+
+&lt;p&gt;如果很长时间都没任何提示的话，你可以尝试修改 gem 的 source&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem sources --remove https://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+
+http://ruby.taobao.org
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再次执行命令 $ bundle install，发现开始有动静了&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fetching gem metadata from https://rubygems.org/...........
+Fetching version metadata from https://rubygems.org/..
+Fetching dependency metadata from https://rubygems.org/.
+。。。
+Installing jekyll-watch 1.3.1
+Installing jekyll 3.1.1
+Bundle complete! 3 Gemfile dependencies, 17 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;bundler安装完成，后再次启动本地服务&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll server
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;继续报错&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /Users/tendcloud-Caroline/Desktop/leopardpan.github.io/_config.yml
+  Dependency Error: Yikes! It looks like you don&#39;t have jekyll-sitemap or one of its dependencies installed. In order to use Jekyll as currently configured, you&#39;ll need to install this gem. The full error message from Ruby is: &#39;cannot load such file -- jekyll-sitemap&#39; If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/! 
+jekyll 3.1.1 | Error:  jekyll-sitemap
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;表示 当前的 jekyll 版本是 3.1.1 ，无法使用 jekyll-sitemap&lt;/p&gt;
+
+&lt;p&gt;解决方法有两个&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1、打开当前目录下的 _config.yml 文件，把 gems: [jekyll-paginate,jekyll-sitemap] 换成 gems: [jekyll-paginate] ，也就是去掉jekyll-sitemap。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、升级 jekyll 版本，我当前的是 jekyll 3.1.2 。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;修改完成后保存配置，再次执行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll server
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;提示&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+            Source: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github
+       Destination: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.901 seconds.
+ Auto-regeneration: enabled for &#39;/Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github&#39;
+Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpan.github.io-github/_config.yml
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;表示本地服务部署成功。&lt;/p&gt;
+
+&lt;p&gt;在浏览器输入 &lt;a href=&quot;127.0.0.1:4000&quot;&gt;127.0.0.1:4000&lt;/a&gt; ， 就可以看到&lt;a href=&quot;http://baixin.io&quot;&gt;baixin.io&lt;/a&gt;博客效果了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;修改成你自己的博客&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;如果你想使用我的模板请把 _posts/ 目录下的文章都去掉。&lt;/li&gt;
+    &lt;li&gt;修改 _config.yml 文件里面的内容为你自己的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;然后使用 git push 到你自己的仓库里面去，检查你远端仓库，在浏览器输入 username.github.io 就会发现，你有一个漂亮的主题模板了。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;【 如果想修改博客样式却不知道怎么修改，可以直接在评论里给我提问 】&lt;/h4&gt;
+
+&lt;h3 id=&quot;jekyll-1&quot;&gt;为什么要是用 Jekyll&lt;/h3&gt;
+
+&lt;p&gt;使用了 Jekyll 你会发现如果你想使用多台电脑发博客都很方便，只要把远端 github 仓库里的博客 clone 下来，写文章后再提交就可以了，Hexo 由于远端提交的是静态网页，所有无法直接写 Markdown 的文章。如果你想看 Hexo 搭建博客，可以看看我的另一篇&lt;a href=&quot;http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&quot;&gt;HEXO搭建个人博客&lt;/a&gt;的教程。&lt;/p&gt;
+
+&lt;p&gt;如果你在搭建博客遇到问题，可以在&lt;a href=&quot;http://baixin.io/2016/06/jekyll_tutorials1/&quot;&gt;原文博客&lt;/a&gt;的评论里给我提问。&lt;/p&gt;
+
+&lt;p&gt;后面会继续介绍，在我的博客基础上，如何修改成你自己喜欢的 Style，欢迎继续关注我博客的更新。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 14 Oct 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/10/jekyll_tutorials1/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/10/jekyll_tutorials1/</guid>
+        
+        <category>博客</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iOS设备左下角出现Appicon</title>
+        <description>&lt;p&gt;最近发现我设备锁屏后，按Home屏幕变亮的时候，左下角出现一个灰色的Appicon （应用图标），关于这个应用图标的出现做了一些调研，下面是应用图标出现的几种情况。&lt;/p&gt;
+
+&lt;p&gt;图一 iOS 系统自带的 App icon , 图二 第三方 App icon , 图三 通过 iBeacon 信号激活的 demo icon&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/icon/image01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;app-icon&quot;&gt;结论：有三种情况导致设备的左下角出现灰色的 App icon&lt;/h2&gt;
+
+&lt;h3 id=&quot;appstoreapp-&quot;&gt;1、AppStore根据地点对App 推荐&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;简介&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;iOS 8会基于你的位置在锁屏界面上展示一个app快捷打开方式。比如你正在星巴克附近，那iOS 8会在锁屏界面上展示星巴克应用的icon，方便你快速打开。一些用户也表示会在锁屏界面收到app推荐，比如你在Costco和Apple Store附近，即便你之前没有安装过这些应用。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;apphandoff&quot;&gt;2、App实现了handoff功能&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html&quot;&gt;handoff简介&lt;/a&gt;：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;OS X 10.10 Yosemite&lt;/code&gt; 新增了一个酷炫的功能 “Hand Off”，打开这个功能之后，用户可以在 Mac 上对 iPad 和 iPhone 进行操作，比如能够编写 iPhone 上未完成的邮件，并且可以在Mac上打开 iPhone 的热点等等， Mac 的 Hand Off 功能只能识别 Mac 周围的 iPhone 手机。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;handoff有几个要求：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1 两台设备都要登录同一个 iCloud 账号。&lt;/li&gt;
+      &lt;li&gt;2 两台设备上的app有相同的 TeamID 。&lt;/li&gt;
+      &lt;li&gt;3 锁屏（或dock）设备上的app支持的 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSUserActivityTypes&lt;/code&gt; 包含活动设备上的app当前的UserActivityType。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;appibeaconappibeacon&quot;&gt;3、App内有iBeacon信号接收功能，App被iBeacon信号唤醒&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.apple.com/ibeacon/&quot;&gt;iBeacon简介&lt;/a&gt;&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;是苹果公司2013年9月发布的移动设备用OS（iOS7）上配备的新功能。工作原理类似之前的蓝牙技术，由 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 发射信号，iOS设备定位接受，反馈信号。根据这项简单的定位技术可以做出许多的相应技术应用,如：&lt;code class=&quot;highlighter-rouge&quot;&gt;室内定位&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;商品推荐&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;微信摇一摇&lt;/code&gt; 等。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;App icon出现的原因&lt;/strong&gt;：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 具备后台定位的能力，只要用户把蓝牙(4.0或以后)开启 和 允许 App 访问位置信息。在有被 App 检测的 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 出现时，如果设备是锁屏状态，设备的左下角就会出现该 App 的 icon 。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/09/iOSLowerLeftAppicon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;参考链接:  &lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020&quot;&gt;Make app appear as iOS 8 Suggested App at lockscreen&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890&quot;&gt;Can I get my iOS app to appear on the lower left corner of the lock screen?&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://www.zhihu.com/question/26653964&quot;&gt;为什么 iOS 8 锁屏界面的左下角经常会出现某个应用的小图标？&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://www.v2ex.com/t/142320&quot;&gt;关于 IOS8 锁屏左下方出现的 APP ICON&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/09/iOSLowerLeftAppicon/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/09/iOSLowerLeftAppicon/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Python自动化测试iOS项目</title>
+        <description>&lt;p&gt;作为一个开发人员，为了保证自己的代码的健壮，写单元测试是必不可少的环节，然而最痛快的是每天去手动跑一遍所有的case。那么什么能帮我们解决这些繁琐的操作呢，大家应该会想到自动化测试脚本了，是的，我们可以借助脚本来完成全自动化测试，下面是我列的每天脚本自动执行流程：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;1、&lt;code class=&quot;highlighter-rouge&quot;&gt;pull&lt;/code&gt; git仓库里面的最新代码到本地。&lt;/li&gt;
+    &lt;li&gt;2、然后打包成&lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt;。&lt;/li&gt;
+    &lt;li&gt;3、安装到模拟器上。&lt;/li&gt;
+    &lt;li&gt;4、运行App，执行单元测试，生成测试数据并保存到本地。&lt;/li&gt;
+    &lt;li&gt;5、脚本读取测试数据，邮件发送给相关人员。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当这些全自动化后，可以大大减少开发人员的维护成本，即使每次项目里面有新增模块后，增加测试case就行了，下面会介绍自动测试这5步具体怎么去执行，整个脚本是使用Python写的，代码很少功能也很简单，但这已经可以帮我们完成基本的自动化测试了，这就是脚本的强大之处，选择Pyhton纯属个人喜好，最近也在学习Python，当然了最终使用什么语言看你自己。&lt;/p&gt;
+
+&lt;h3 id=&quot;pythonshell&quot;&gt;python执行shell命令完成测试&lt;/h3&gt;
+
+&lt;p&gt;首先确认本机上安装了&lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; 。  &lt;br /&gt;
+脚本判断本地是否存在项目，不存在则使用命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone ...&lt;/code&gt; ，存在则使用命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull ...&lt;/code&gt; 。     &lt;br /&gt;
+这些在Linux的命令都可以使用脚本来完成的，python的 &lt;code class=&quot;highlighter-rouge&quot;&gt;os.popen()&lt;/code&gt; 方法 就是可以在Linux上执行shell命令。   &lt;br /&gt;
+&lt;strong&gt;例如：&lt;/strong&gt;  把下面这段代码添加到一个 test.py 的文件里，然后在终端上执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;python test.py&lt;/code&gt; 命令你就会看到，你的当前目录下正在下载我的博客了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+
+os.popen(&#39;git clone https://github.com/leopardpan/leopardpan.github.io.git&#39;)   
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;git pull 。。。 更新代码也是一样的。&lt;/p&gt;
+
+&lt;p&gt;接下来的打包、安装、运行都是使用python执行shell命令&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;把iOS项目打包成App，下面的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Demo&lt;/code&gt; 是项目的名字&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcodebuild -project Demo.xcodeproj -target Demo -configuration Debug -sdk iphonesimulator’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这行脚本运行完成后，你就会发现同会生成一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; 的文件夹。&lt;br /&gt;
+Debug参数表示现在是Debug模式，如果Xcode里面改成Release了，这里需要改成Release。&lt;br /&gt;
+xcodebuild 命令是 Xcode Command Line Tools 的一部分。通过调用这个命令，可以完成 iOS 工程的编译，打包和签名过程。可以使用 xcodebuild –help 来看看具体有哪些功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;打开iOS模拟器，这里运行的是&lt;code class=&quot;highlighter-rouge&quot;&gt;iPhone 6 Plus&lt;/code&gt; 你也可以换成其它型号的模拟器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun instruments -w “iPhone 6 Plus”’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;把刚才打包生成的App安装到模拟器上&lt;/strong&gt;    &lt;br /&gt;
+在安装之前要先卸载App,不然你运行的永远是最初安装的那个，后来安装的不会覆盖之前的，卸载App&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun simctl uninstall booted com.test.Demo’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bundle Identifier&lt;/code&gt;，我的是 com.test.Demo，然后再安装App&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun simctl install booted build/Debug-iphonesimulator/Demo.app ‘)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是.app的路径，我打包的时候的是Debug，所以这个的文件夹名称是Debug-iphonesimulator。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;在模拟器里运行App&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;os.popen(‘xcrun simctl launch booted com.test.Demo’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;booted 后面接的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bundle Identifier&lt;/code&gt;，我的是 com.test.Demo。&lt;/p&gt;
+
+&lt;p&gt;到目前为止，你就会发现你的项目已经运行起来了，你可以在项目是Debug模式下一启动就执行单元测试，然后把对应的测试数据保存到本地为data.json。然后在使用python脚本读取测试文件的数据，最终使用邮件发送给相关人员，pyhton读取数据很简单，一行代码就行&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;data = open(‘data.json’).read()&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;data里面就是json字符串，为了脚本操作简单，我在存储的时候直接把json格式的转成了字符串类型。&lt;/p&gt;
+
+&lt;h3 id=&quot;python&quot;&gt;python发送邮件&lt;/h3&gt;
+
+&lt;p&gt;我使用的是SMTP进行邮件发送的，SMTP是发送邮件的协议，Python内置对SMTP的支持，可以发送纯文本邮件、HTML邮件以及带附件的邮件。&lt;/p&gt;
+
+&lt;p&gt;Python对SMTP支持有smtplib和email两个模块，email负责构造邮件，smtplib负责发送邮件，具体代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from email import encoders
+from email.header import Header
+from email.mime.text import MIMEText
+from email.utils import parseaddr, formataddr
+import smtplib
+
+def format_addr(self,s):
+    name, addr = parseaddr(s)
+    return formataddr(( \
+        Header(name, &#39;utf-8&#39;).encode(), \
+        addr.encode(&#39;utf-8&#39;) if isinstance(addr, unicode) else addr))
+
+def send_mail(self, mail, message, title):
+	from_addr = &#39;leopardpan@163.com&#39;
+	password = &#39;&#39;
+	to_addr = mail
+	smtp_server = &#39;smtp.163.com&#39;
+
+	msg = MIMEText(message, &#39;plain&#39;, &#39;utf-8&#39;)
+	msg[&#39;From&#39;] = self.format_addr(u&#39;自动化测试邮件 &amp;lt;%s&amp;gt;&#39; % from_addr)
+	msg[&#39;To&#39;] = self.format_addr(u&#39;管理员 &amp;lt;%s&amp;gt;&#39; % to_addr)
+	msg[&#39;Subject&#39;] = Header(title, &#39;utf-8&#39;).encode()
+
+	server = smtplib.SMTP(smtp_server, 25)
+	server.set_debuglevel(1)
+	server.login(from_addr, password)
+	server.sendmail(from_addr, [to_addr], msg.as_string())
+	server.quit()
+
+send_mail(&#39;leopardpan@icloud.com&#39;,&#39;正文&#39;,&#39;标题&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;from_addr是发送方的邮箱地址，password是开通SMTP时输入的密码   &lt;br /&gt;
+smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要写成smtp_server = ‘smtp.gmail.com’ 了。&lt;/p&gt;
+
+&lt;p&gt;方法 send_mail(self, mail, message, title): 有四个参数，第一个不用传，第二个参数是收信人的邮箱，第三个是邮件的正文，第四个是邮件的标题，方法调用格式： &lt;code class=&quot;highlighter-rouge&quot;&gt;send_mail(&#39;leopardpan@icloud.com&#39;,&#39;正文&#39;,&#39;标题&#39;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;注意：发送方的邮箱必须要开通SMTP功能才行，否则会报错&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;SMTPSenderRefused: (550, ‘User has no permission’, ‘leopardpan@163.com’)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;163的SMTP开通，需要你登录网易邮箱，然后点击顶部的设置就会出现&lt;code class=&quot;highlighter-rouge&quot;&gt;POP3/SMTP/IMAP&lt;/code&gt;，点击之后，勾选选择开启，这个时候需要你输入密码，记住这个密码就是上面代码中的&lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt;，如果你都完成的话，你把上面的代码拷贝出现，把邮箱修改成你自己的，使用 pyhton 运行一下吧。&lt;/p&gt;
+
+&lt;p&gt;上面的几个流程结合起来就可以实现一个简单的自动化测试了，如果你有什么建议和意见欢迎讨论。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/08/PythonTestAutomationiOS/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;参考链接：
+&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000&quot;&gt;SMTP发送邮件&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/08/PythonTestAutomationiOS/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/08/PythonTestAutomationiOS/</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
     
       <item>
         <title>老司机带你剖析无码统计</title>
@@ -498,540 +1238,6 @@ error: Xcode 7.3.0 or later is required.
         <guid isPermaLink="true">http://baixin.io/2016/06/HEXO_Advanced/</guid>
         
         <category>博客</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>开发常用工具</title>
-        <description>&lt;p&gt;个人开发常用工具的收集&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;cmd Markdown&lt;/a&gt; 作业部落出版的Markdown编辑器&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/rest-client/rest-client&quot;&gt;RESTClient&lt;/a&gt; 一个开源的客户端HTTP调试工具。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/getlantern/lantern&quot;&gt;lantern&lt;/a&gt; 蓝灯,一款开源的翻墙工具。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles&lt;/a&gt; 青花瓷, 一款HTTP/HTTPS的抓包工具。
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/&quot;&gt;Charles 从入门到精通&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.sublimetext.com&quot;&gt;Sublime&lt;/a&gt; 一款强大的IDE,支持Python、JS、JSON格式化等等…更重要的是&lt;code class=&quot;highlighter-rouge&quot;&gt;Sublime&lt;/code&gt;支持的插件很多。
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.xuanfengge.com/practical-collection-of-sublime-plug-in.html&quot;&gt;实用的sublime插件集合&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 02 Jun 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/06/Develop_Tool/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/06/Develop_Tool/</guid>
-        
-        <category>工具</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>我们日常生活中的 iBeacon</title>
-        <description>&lt;p&gt;　　随着低功耗蓝牙的推出，iBeacon 的使用是越来越广泛了，如：微信的附近摇一摇功能，又或者是当你进入大型商场，一些店铺给你推送通知，VR 场景识别等等，这些表示 iBeacon 已经与我们的生活精密相连了。&lt;/p&gt;
-
-&lt;h4 id=&quot;section&quot;&gt;简介：&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;概念：&lt;/strong&gt; iBeacon 是 iOS7 后苹果出的一项新技术，支持蓝牙4.0(或以上)的 iOS 设备，工作方式是低功耗蓝牙（Bluetooth Low Energy），向周围发送自己特有的ID，一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;iBeacon&lt;/code&gt; 硬件设备在不做任何处理的情况下一般可使用两三年左右。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;iBeacon 的形状多种多样，大致如下图。
-&lt;img src=&quot;/images/posts/iBeacon/iBeacon.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;ibeacon&quot;&gt;目前哪些地方有 iBeacon：&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;1、微信摇一摇：使用微信的人应该都知道微信有一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;周边摇一摇&lt;/code&gt; 功能， 使用的就是 iBeacon 技术。 很多餐馆都部有 iBeacon 的点，如果你想验证直接监测微信的 iBeaconUUID：FDA50693-A4E2-4FB1-AFCF-C6EB07647825。&lt;/li&gt;
-  &lt;li&gt;2、走进某个商场时，忽然手机里推出一个通知，也是使用 iBeacon 技术。&lt;/li&gt;
-  &lt;li&gt;3、帝都的地跌站大部分也有微信 UUID 的 iBeacon 发射器，具体是用来做什么的还不是慢清楚。&lt;/li&gt;
-  &lt;li&gt;4、iBeacon 还可实现地理围栏、室内定位等功能。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;ibeacon-&quot;&gt;iBeacon 技术&lt;/h4&gt;
-&lt;p&gt;　　Apple的 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.frame&lt;/code&gt; 里把iBeacon封装成了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;CLBeacon&lt;/code&gt; 大致有下面几个属性组成：&lt;code class=&quot;highlighter-rouge&quot;&gt;Major&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;Minor&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;proximity&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;rssi&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; 。&lt;/p&gt;
-
-&lt;h4 id=&quot;ibeacopn&quot;&gt;开发者如何使用 iBeacopn?:&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;1、用户需要添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreLocation.framework&lt;/code&gt; ，App 才具备定位的功能。&lt;/li&gt;
-  &lt;li&gt;2、App 开发者需要开启定位功能需要配置：在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;info.plist&lt;/code&gt; 里面添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLocationAlwaysUsageDescription&lt;/code&gt;(允许后台访问位置信息) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;requestWhenInUseAuthorization&lt;/code&gt;(允许使用时访问位置信息) 字段。（iOS7后该添加了该字段应用才会弹出 `是否允许应用访问用户的位置信息）。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;创建和注册一个beacon区域&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)registerBeaconRegionWithUUID:(NSUUID *)proximityUUID andIdentifier:(NSString *)identifier
-{
-    CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:proximityUUID identifier:identifier];
-    
-    [manager startMonitoringForRegion:beaconRegion];
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当接受到 iBeacon 信号时回调 ，beacons 里面装了信号的对象，可能同时出现多个信号。 &lt;br /&gt;
-```
-- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
-{&lt;/p&gt;
-
-&lt;p&gt;}
-```&lt;/p&gt;
-
-&lt;p&gt;Note: &lt;a href=&quot;https://developer.apple.com/library/prerelease/content/samplecode/AirLocate/Introduction/Intro.html&quot;&gt;苹果iBeacon官方代码例子&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h4 id=&quot;ibeacon--1&quot;&gt;iBeacon 硬件设备条件：&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;用户设备 iOS7 或更新操作系统。&lt;/li&gt;
-  &lt;li&gt;用户蓝牙设备4.0或更新。&lt;/li&gt;
-  &lt;li&gt;用户蓝牙设备必须开启。&lt;/li&gt;
-  &lt;li&gt;用户设备定位服务必须开启，允许应用访问位置信息。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;ibeacon--2&quot;&gt;iBeacon 能唤醒应用&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;前提：App 具备上面使用 iBeacon 的功能，并且允许后台访问位置信息。&lt;/li&gt;
-  &lt;li&gt;现象：App 能被 iBeacon 信号唤醒，即使 App 已经被用户手动杀死掉了，App 也能被 iBeacon 技术唤醒，并且能执行一系列操作。&lt;/li&gt;
-  &lt;li&gt;影响：导致 App 用户在并没有使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 的情况下, &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 有了长达几个小时的后台使用时长。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/04/iBeacon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 06 Apr 2016 19:25:06 +0800</pubDate>
-        <link>http://baixin.io/2016/04/iBeacon/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/iBeacon/</guid>
-        
-        <category>技术</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>CocoaPods使用心得</title>
-        <description>&lt;h3 id=&quot;section&quot;&gt;简介：&lt;/h3&gt;
-&lt;p&gt;　本章介绍什么是 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; ,如何使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; , 以及 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; 的原理,和使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;CocoaPods&lt;/code&gt; 时经常出现的一些问题。&lt;/p&gt;
-
-&lt;p&gt;　Cocoapods 是 OS X 和 iOS 下的一个第三方库管理工具。我们能使用CocoaPods添加被称作 “Pods”的依赖库,并轻松管理它们的版本,CocoaPods会帮我们配置好这些三方库的路径及开发环境,极大的提升了开发者的工作效率。&lt;/p&gt;
-
-&lt;h3 id=&quot;cocoapods&quot;&gt;安装CocoaPods　&lt;/h3&gt;
-
-&lt;p&gt;　Mac下自带ruby,使用ruby的gem命令安装,ruby的软件源被墙了,把官方的ruby源替换成国内的淘宝源。&lt;/p&gt;
-
-&lt;h3 id=&quot;gem&quot;&gt;更换Gem源&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources --remove https://rubygems.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources -a https://ruby.taobao.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem sources -l
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;1.移除掉原有的源（服务器在国外，速度较慢）。&lt;/li&gt;
-  &lt;li&gt;2.等1有反应之后再敲2命令（替换成淘宝上的ruby镜像https）。&lt;/li&gt;
-  &lt;li&gt;3.验证是否成功。成功如下：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; CURRENT SOURCES &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt;
-
-http://ruby.taobao.org/
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;gem-1&quot;&gt;更新Gem源&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-sudo gem update --system
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;cocoapods-1&quot;&gt;安装cocoapods&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install cocoapods
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pod setup
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;pod setup 在执行时会比较慢，因为Cocoapods 要将它的信息下载到 ~/.cocoapods目录下, 耐心等待…&lt;/p&gt;
-
-&lt;h4 id=&quot;cocoapods-2&quot;&gt;提升cocoapods的安装速度&lt;/h4&gt;
-
-&lt;p&gt;所有的项目的 Podspec 文件都托管在https://github.com/CocoaPods/Specs。第一次执行 pod setup 时，CocoaPods 会将这些podspec索引文件更新到本地的 ~/.cocoapods/目录下，这个索引文件比较大，有 80M 左右。
-作者akinliu 在 gitcafe 和 oschina 上建立了 CocoaPods 索引库的镜像(在国内),我们可以使用CocoaPods国内的镜像索引，操作时会快多了,如gitcafe：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-pod repo remove master
-pod repo add master https://gitcafe.com/akuandev/Specs.git
-pod repo update
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;cocoapods-3&quot;&gt;使用cocoapods&lt;/h3&gt;
-
-&lt;p&gt;cocoapods安装完成后，使用 pod search 命令来验证一下&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-pod search AFNetworking
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;终端将会有如下结果：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;AFNetworking &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-A delightful iOS and OS X networking framework.
-pod &lt;span class=&quot;s1&quot;&gt;&#39;AFNetworking&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.0.4&#39;&lt;/span&gt;
-- Homepage: https://github.com/AFNetworking/AFNetworking
-- Source:   https://github.com/AFNetworking/AFNetworking.git
-- Versions: 3.0.4, 3.0.3, 3.0.2, 3.0.1, 3.0.0, 3.0.0-beta.3, 3.0.0-beta.2,
-3.0.0-beta.1, 2.6.3, 2.6.2, 2.6.1, 2.6.0, 2.5.4, 2.5.3, 2.5.2, 2.5.1, 2.5.0,
-2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.0, 2.0.3,
-2.0.2, 2.0.1, 2.0.0, 2.0.0-RC3, 2.0.0-RC2, 2.0.0-RC1, 1.3.4, 1.3.3, 1.3.2,
-1.3.1, 1.3.0, 1.2.1, 1.2.0, 1.1.0, 1.0.1, 1.0, 1.0RC3, 1.0RC2, 1.0RC1,
-0.10.1, 0.10.0, 0.9.2, 0.9.1, 0.9.0, 0.7.0, 0.5.1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master repo]
-- Subspecs:
-- AFNetworking/Serialization &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/Security &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/Reachability &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/NSURLSession &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-- AFNetworking/UIKit &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.0.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;AFNetworking+AutoRetry &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.0.5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Auto Retries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;AFNetworking requests
-pod &lt;span class=&quot;s1&quot;&gt;&#39;AFNetworking+AutoRetry&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 0.0.5&#39;&lt;/span&gt;
-- Homepage: https://github.com/shaioz/AFNetworking-AutoRetry
-- Source:   https://github.com/shaioz/AFNetworking-AutoRetry.git
-- Versions: 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master repo]
-
-.........太多了，省略
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;pod search 是CocoaPods的一个搜索命令,我们可以用来搜索任何托管在CocoaPods上的三方库。&lt;/p&gt;
-
-&lt;p&gt;使用CocoaPods时需要新建一个 Podfile 的文件,cd 到 我的Demo项目里，Demo目录下有三个文件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-Demo 、  Demo.xcodeproj  、 DemoTests
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;新建 Podfile&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-touch Podfile
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;vim 编辑 Podfile&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim Podfile
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;由于是新建的 Podfile 里面应该是空白的。然后我们在里面添加依赖库，格式如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-platform :ios
-pod &lt;span class=&quot;s1&quot;&gt;&#39;Reachability&#39;&lt;/span&gt;,  &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.0.0&#39;&lt;/span&gt;
-pod &lt;span class=&quot;s1&quot;&gt;&#39;ASIHTTPRequest&#39;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;‘~&amp;gt; 3.0.0’ 是 Reachability 的版本号, 设定了版本号CocoaPods就会下载对应的版本,ASIHTTPRequest没指定版本号,CocoaPods就会下载最新版本的ASIHTTPRequest。
-退出编辑，执行 pod install 下载三方库。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-pod install
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;完成后我Demo项目下的文件多了几个:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Demo 、  Demo.xcodeproj  、 DemoTests （之前的三个）
-
-Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这个时候我们打开Demo项目是点击 Demo.xcworkspace 文件了，到此CocoaPods的基本使用已经讲完了，接下来的CocoaPods的原理，和让我们自己的三方库也支持CocoaPods。&lt;/p&gt;
-
-&lt;p&gt;待续…&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://blog.jobbole.com/53365/&quot;&gt;深入理解 CocoaPods&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/04/CocoaPod_Use/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/04/CocoaPod_Use/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/04/CocoaPod_Use/</guid>
-        
-        <category>iOS</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>iOS动态更新</title>
-        <description>&lt;ul&gt;
-  &lt;li&gt;1、控件到 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 的层级关系:&lt;/li&gt;
-  &lt;li&gt;2、分析控件的详细路径:&lt;/li&gt;
-  &lt;li&gt;3、动态修改控件:&lt;/li&gt;
-  &lt;li&gt;4、工具篇:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;视图的层级关系&lt;/h3&gt;
-
-&lt;p&gt;每个 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; , 至少有一个根 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; , 通常情况下我们只用一个 。&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 有一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; , 这就是我们所谓的根视图 , 我们所有的控制器都是放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; 里面的。&lt;/p&gt;
-
-&lt;p&gt;如果在项目里有了这么一个路径 , 我们可以做什么呢？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;在当项目很复杂 , 可以其它地方可以直接修改这个控件的状态&lt;/li&gt;
-  &lt;li&gt;当某个控件命名存在却又没有显示出来 , 可以通过路径来辅助查找&lt;/li&gt;
-  &lt;li&gt;由服务器下发一些配置 , 使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Runtime&lt;/code&gt; 去动态的修改已上线的项目&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下面将介绍如何使用代码来找出这些视图(控件)的路径&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;分析控件的详细路径&lt;/h3&gt;
-
-&lt;h4 id=&quot;window-&quot;&gt;1、找出根 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; :&lt;/h4&gt;
-
-&lt;p&gt;每一个视图、控件 , 他们最终的根都是main函数返回的 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; , 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;[UIApplication sharedApplication]&lt;/code&gt; 可以得到 。 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;windows&lt;/code&gt; 属性是一个数组 , 这里面装的是这个应用的所有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; , 我们通常用的是第一个也就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;application.windows[0]&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;section-2&quot;&gt;2、遍历视图 :&lt;/h4&gt;
-
-&lt;p&gt;得到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 对象一切都好办了 。 然后拿到 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; , 在获取 &lt;code class=&quot;highlighter-rouge&quot;&gt;rootViewController&lt;/code&gt; 里面所有的 &lt;code class=&quot;highlighter-rouge&quot;&gt;childViewControllers&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt; 里的 &lt;code class=&quot;highlighter-rouge&quot;&gt;subviews&lt;/code&gt; , 一直递归下去就可以得到当前屏幕里所有视图对象了 , 同时可以通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;runtime&lt;/code&gt; 把它们的 &lt;code class=&quot;highlighter-rouge&quot;&gt;property&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;delegate&lt;/code&gt; 都获取出来。&lt;/p&gt;
-
-&lt;p&gt;结合 &lt;code class=&quot;highlighter-rouge&quot;&gt;Reveal&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; 自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Captuer View Hiearachy&lt;/code&gt; , 我们可以推测一下这两个的的实现原理了 :&lt;/p&gt;
-
-&lt;p&gt;1、根据应用得到根视图  &lt;br /&gt;
-2、递归获取里面的所有控件 &lt;br /&gt;
-3、按照他们的层级关系一层一层的画出来&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;动态修改控件&lt;/h3&gt;
-
-&lt;p&gt;1、把上面获取到的所有控件的详细信息上传到服务器 。 &lt;br /&gt;
-2、根据业务需求由服务器给我们下发对应的配置列表，以 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 为例 : 配置列表里必须要有 :&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;1)、&lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的全路径 : 如 &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWindow&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWindow&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UILayoutContainerView&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UITabBar&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; —&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UIButton&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;2)、&lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的唯一标识 : 如 &lt;code class=&quot;highlighter-rouge&quot;&gt;tag&lt;/code&gt; 值或自己实现的一套算法生成的唯一标识 , 目的是防止与 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 同一层次的视图搞混 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;3)、 根据路径及唯一标识来匹配 &lt;code class=&quot;highlighter-rouge&quot;&gt;App&lt;/code&gt; 里的控件 , 匹配和上面的查找原理是相通的。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;4)、 匹配成功代表  &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 确实存在 , 根据业务需求做后续操作 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;提示: 匹配策略尽可能的多 , 防止意外情况某一两个标识生成失败或者生成相同 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;3、修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的状态。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;1)、 如某个按钮点了会 &lt;code class=&quot;highlighter-rouge&quot;&gt;Crash&lt;/code&gt; 或暂时不需要被点击 , 但是又要展示出来 , 可以直接修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;enabled&lt;/code&gt; 属性 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;2)、 如某业务暂时关闭 , 可以直接修改入口 &lt;code class=&quot;highlighter-rouge&quot;&gt;按钮&lt;/code&gt; frame为0 , 前提是要自动布局已做好 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;3)、 如给购买 &lt;code class=&quot;highlighter-rouge&quot;&gt;按钮&lt;/code&gt; 添加监听事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;addTarget: action: forControlEvents:&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt; 也可以通过上面 &lt;code class=&quot;highlighter-rouge&quot;&gt;遍历视图&lt;/code&gt; 获取到 , &lt;code class=&quot;highlighter-rouge&quot;&gt;action&lt;/code&gt; 可以由服务器下发 , 也可以一开始就写死 , 等有需求的时候直接传不同的参数就行了 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;4、 绑定查找控件时 , 这个界面必须要已经初始化完成了才行 , 假如界面还没生成肯定是查找不到这个控件的 。 这里给大家提供两种思路 :&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;1、使用Runtime &lt;code class=&quot;highlighter-rouge&quot;&gt;Method Swizzing&lt;/code&gt; ,  直接把修改控件的方法与 &lt;code class=&quot;highlighter-rouge&quot;&gt;didMoveToSuperview&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;didMoveToWindow&lt;/code&gt; 动态绑定 , 等这个控件加载出来之后再去修改 , 查找路径正确的话肯定就能找到了 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;2、在具体的类里面 , 等控件的初始化方法调用完后 , 再去执行动态修改 , 如在&lt;code class=&quot;highlighter-rouge&quot;&gt;viewDidLoad&lt;/code&gt; 里面初始化控件 , 在 &lt;code class=&quot;highlighter-rouge&quot;&gt;viewWillAppear:&lt;/code&gt; 里面动态修改 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;建议使用第一种适用范围更强 。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;上架后的 &lt;code class=&quot;highlighter-rouge&quot;&gt;应用&lt;/code&gt; 可能会遇到的一些突发状况 , 未测出的&lt;code class=&quot;highlighter-rouge&quot;&gt;Crash&lt;/code&gt;、临时改点小需求 , 等等 , 我们总不能每次因为一点小改动就重新提交一次 &lt;code class=&quot;highlighter-rouge&quot;&gt;App Store&lt;/code&gt; , 先不说 &lt;code class=&quot;highlighter-rouge&quot;&gt;App Store&lt;/code&gt; 的审核时间 , 频繁的让用户去更新应用 , 用户也会烦的 。使用这篇文章所讲的来实现动态更新是再合适不过了 。&lt;/p&gt;
-
-&lt;p&gt;首先上面讲的 &lt;code class=&quot;highlighter-rouge&quot;&gt;动态更新&lt;/code&gt; 是完全脱离出来的一个模块 , 跟业务逻辑没有任何关系 , 只需要部署一次就行了 , 等开发下一个项目也可以直接拿过去使用 。这里的动态更新适用于局部的视图、控件的修改 , 如果你有其它需求可以考虑 &lt;a href=&quot;https://github.com/bang590/JSPatch&quot;&gt;JSPatch&lt;/a&gt; , 下发脚本也是一个不错的选择 。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;工具篇&lt;/h3&gt;
-&lt;p&gt;使用一些UI调试的辅助工具 , 使我们查看视图在项目中得层次结构更为方便 。      &lt;br /&gt;
-常用的UI调试的工具：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Captuer View Hiearachy&lt;/li&gt;
-  &lt;li&gt;Reveal&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Xcode自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Captuer View Hiearachy&lt;/code&gt; 实现步骤:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1、打开Xcode , 运行项目 , 选择最顶部的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;2、&lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;View Debugging&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Show View Frames&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;3、&lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;View Debugging&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Captuer View Hiearachy&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Xcode里面就变成了三维的视图了 , Xcode左侧展示出来的是层级关系的树状图 。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/01/iOS_OTA/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Reveal的功能相对来说更强大 , 适用于UI调试视图查找 。使用方法请看 &lt;a href=&quot;http://support.revealapp.com/kb/getting-started/reveal&quot;&gt;Reveal集成指南&lt;/a&gt; 。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 09 Jan 2016 19:15:06 +0800</pubDate>
-        <link>http://baixin.io/2016/01/iOS_OTA/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/01/iOS_OTA/</guid>
-        
-        <category>iOS</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>iOS 9 变化笔记</title>
-        <description>&lt;p&gt;这里将介绍下我们日常开发一些从iOS8过度到iOS9给我们带来的一些变化，及解决方法。&lt;a href=&quot;http://baixin.io/2015/09/iOS9_Note/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;app-transport-security&quot;&gt;App Transport Security&lt;/h3&gt;
-
-&lt;p&gt;iOS9和OS X El Capitan的一个新特性，App Transport Security 的目地是提高Apple 操作系统的安全性以及在此操作系统上运行的任何应用的安全性。ATS是苹果针对与 NSURL这一层做的封装，iOS9后ATS默认是开启的，即网络传输需要使用HTTPS。如果想在iOS9后继续使用HTTP的话，有两条路可以走：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;在Info.plist中添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSAppTransportSecurity&lt;/code&gt;类型Dictionary，在&lt;code class=&quot;highlighter-rouge&quot;&gt;NSAppTransportSecurity&lt;/code&gt;下添加&lt;code class=&quot;highlighter-rouge&quot;&gt;NSAllowsArbitraryLoads&lt;/code&gt;，Boolean 为 YES。&lt;/li&gt;
-    &lt;li&gt;直接使用CFNetwork做网络请求，ASIHTTPRequest就是基于CFNetwotk做的封装，如果有需求的同学可以看看ASI里面的源码，如果某个时间段你又想要使用HTTPS的话，ASI对SSL/TSL的证书验证有点问题，证书验证还得自己封装一下才行。刚才我说道，ATS是苹果针对与NSURL这一层做的封装，所以我们使用CFNetwork或者更底层做网络请求的话是不受ATS限制的。&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;discoveryd-dns&quot;&gt;移除了discoveryd DNS解析服务&lt;/h3&gt;
-
-&lt;p&gt;iPhone升级到iOS8后WiFi有时候会有问题，特别是Mac升级到OS X Yosemite后，时而电脑休眠唤醒唬就连不上WiFi，有时候还突然掉线，经常要手动去关闭WiFi在重新连接，这是因为苹果到了OS X Yosemite系统后，把之前的mDNSResponder换成了discoveryd DNS。iOS9和OS X Yosemite10.4后mDNSResponder又回来了。&lt;/p&gt;
-
-&lt;p&gt;mDNSResponder： 苹果以前一直使用控制DNS和Bonjour服务的一种进程。
-discoveryd：OS X Yosemite后苹果新出的一种进程。&lt;/p&gt;
-
-&lt;h3 id=&quot;app-thinning&quot;&gt;App Thinning&lt;/h3&gt;
-&lt;p&gt;App Thinning是一个关于节省iOS设备存储空间的功能，它可以让iOS设备在安装、更新及运行App等场景中仅下载所需的资源，减少App的占用空间，从而节省设备的存储空间。&lt;/p&gt;
-
-&lt;h4 id=&quot;app-thinning-1&quot;&gt;App Thinning主要有三个机制：&lt;/h4&gt;
-
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Slicing： 开发者把App安装包上传到AppStore后，Apple服务会自动对安装包切割为不同的应用变体(App variant)， 当用户下载安装包时，系统会根据设备型号下载安装对应的单个应用变体。&lt;/li&gt;
-    &lt;li&gt;On-Demand Resources： ORD(随需资源)是指开发者对资源添加标签上传后，系统会根据App运行的情况，动态下载并加载所需资源，而在存储空间不足时，自动删除这类资源。&lt;/li&gt;
-    &lt;li&gt;Bitcode：开启Bitcode编译后，可以使得开发者上传App时只需上传Intermediate Representation(中间件)，而非最终的可执行二进制文件。 在用户下载App之前，AppStore会自动编译中间件，产生设备所需的执行文件供用户下载安装。&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;其中，Bitcode的机制可以支持动态的进行App Slicing，而对于Apple未来进行硬件升级的措施，此机制可以保证在开发者不重新发布版本的情况下而兼容新的设备。Xcode7默认是开始了Bitcode，如果不想使用可以手动关闭Bitcode：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;选择项目——&amp;gt;点击Target——&amp;gt;点击Build Setttings——&amp;gt;搜索栏里搜bitcode——&amp;gt;把Enable Bitcode对应的Yes改成No。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;启用Bitcode编译机制，需要注意以下几点：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;如果应用开启Bitcode，那么其集成的其他第三方库也需要是Bitcode编译的包才能真正进行Bitcode编译&lt;/li&gt;
-  &lt;li&gt;开启Bitcode编译后，编译产生的.app体积会变大(中间代码，不是用户下载的包)，且.dSYM文件不能用来崩溃日志的符号化（用户下载的包是Apple服务重新编译产生的，有产生新的符号文件），使用dSYM来收集Crash日志的同学得注意了。&lt;/li&gt;
-  &lt;li&gt;通过Archive方式上传AppStore的包，可以在Xcode的Organizer工具中下载对应安装包的新的符号文件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;后台定位&lt;/h3&gt;
-
-&lt;p&gt;iOS9后苹果为了对保障用户的地理位置的隐私对App请求后台定位有了权限设置，则需要多加一些代码。如果不适配iOS9，就不能偷偷在后台定位，如果没有后台定位的权限也是可以在后台定位的，只是会出现蓝条。&lt;/p&gt;
-
-&lt;p&gt;开启后台定位功能：&lt;code class=&quot;highlighter-rouge&quot;&gt;locationManager.allowsBackgroundLocationUpdates = YES;&lt;/code&gt;
-locationManager是CLLocationManager的对象，用来管理整个定位的。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;重点：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;配置info.plist，添加一个Required background modes，Array类型的，然后在Required background modes里面Item 0对应的Value设置为App registers for location updates，这样就解决了iOS9后台定位出现蓝条的问题了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;ui-testing&quot;&gt;UI Testing&lt;/h3&gt;
-&lt;p&gt;Xcode7中苹果引入了一种新的方式在应用中进行测试——UI Testting，UI Testting允许我们找到UI元素与之交互，还能检查属性和状态。UI Testting已经完全集成进了Xcode7的测试报告，可以和单元测试一起执行。使用起来跟之前Xcode5出来的XCTest差不多，Xcode bots提供对此的支持，而且command line支持当UI测试失败时会立即发出通知。&lt;/p&gt;
-
-&lt;p&gt;可以参考Github上的Demo，步骤：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;在DemoTests.m里创建一个test开头的方法&lt;/li&gt;
-  &lt;li&gt;在setUp()里启动应用 &lt;code class=&quot;highlighter-rouge&quot;&gt;XCUIApplication().launch()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;新建一个方法test开头的，在里面获取应用&lt;code class=&quot;highlighter-rouge&quot;&gt;let app = XCUIApplication()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;的到&lt;code class=&quot;highlighter-rouge&quot;&gt;let app = XCUIApplication()&lt;/code&gt;，a&lt;code class=&quot;highlighter-rouge&quot;&gt;pp.buttons[“View Detail”].tap()?&lt;/code&gt;。buttons是当前这个界面的所有按钮的集合，[]里面写按钮的名字，tap()就是执行这个按钮所对应的方法，可以是网络请求、界面跳转等等。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;url-scheme&quot;&gt;URL scheme&lt;/h3&gt;
-
-&lt;p&gt;在iOS9中，如果使用URL scheme必须在”Info.plist”中将你要在外部调用的URL scheme列为白名单，否则不能使用。&lt;/p&gt;
-
-&lt;p&gt;配置info.plist，添加一个&lt;code class=&quot;highlighter-rouge&quot;&gt;LSApplicationQueriesSchemes&lt;/code&gt;，Array类型的，然后在&lt;code class=&quot;highlighter-rouge&quot;&gt;LSApplicationQueriesSchemes&lt;/code&gt;的Item里面添加urlscheme就行了，urlscheme是任意一个字符串，就是你自己需要使用的urlscheme，iOS9 URL scheme白名单适配就完成了。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;出现大量的警告&lt;/h3&gt;
-
-&lt;p&gt;Xcode7后运行以前的项目后出现大量的警告如：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: warning: /var/folders/p4/z7zy68r92hd3p5ry5g2v3k_8rlwzzr/C/org.llvm.clang.dalmo/ModuleCache/1TXZDLI9N2EMV/Foundation-3DFYNEBRQSXST.pcm: No such file or directory。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;作为一个有洁癖的我反正是不能忍，出现警告的大致原因跟我上面提到的开启Bitcode，.dSYM文件不能用来符号化有关，Xcode试图去创建dSYM文件，但是你又不需要。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;解决方法&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Build Settings ——&amp;gt;Build Options——&amp;gt;Debug Information Format&lt;/li&gt;
-  &lt;li&gt;Debug下的DWARF with dsYM File改成DWARF&lt;/li&gt;
-  &lt;li&gt;Release下的还是之前默认的DWARF with dsYM File不变&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;参考资料：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/ChenYilong/iOS9AdaptationTips&quot;&gt;iOS9AdaptationTips&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.cocoachina.com/ios/20150821/13140.html&quot;&gt;iOS9学习系列&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/shinobicontrols/iOS9-day-by-day&quot;&gt;iOS9-day-by-day&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 27 Sep 2015 02:15:06 +0800</pubDate>
-        <link>http://baixin.io/2015/09/iOS9_Note/</link>
-        <guid isPermaLink="true">http://baixin.io/2015/09/iOS9_Note/</guid>
-        
-        <category>iOS</category>
         
         
       </item>
