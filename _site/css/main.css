@@ -1054,12 +1054,13 @@ input[type="tel"]:-ms-input-placeholder {
   margin-left: 0px;
   text-align: center;
 }
-@media all and (max-width: 1100px) {
+@media all and (max-width: 1300px) {
   .panel-cover__logo {
     width: 70px; }
 
   .panel-title {
-    font-size: 1em; }
+    font-size: 1em; 
+  }
 
   .panel-subtitle {
     font-size: 0.6em; }
@@ -1068,7 +1069,7 @@ input[type="tel"]:-ms-input-placeholder {
     margin: 0 10px;
     font-size: .9em; }
 }
-@media all and (max-width: 960px) {
+@media all and (max-width: 1100px) {
   .btn-mobile-menu {
     display: block; 
   }
@@ -1165,11 +1166,18 @@ input[type="tel"]:-ms-input-placeholder {
   }
  .panel-title {
     margin-bottom: .1em;
-    font-size: 1.8em; 
   }
 
   .panel-subtitle {
     font-size: .6em; 
+  }
+  .post-list__meta--date {
+    margin-right: .5em;
+    margin-left: 10px;
+    margin-top: 3px;
+    font-size: 0.2em;
+    color: #c7c7c7; 
+    float: left;
   }
 }
 
@@ -1323,59 +1331,6 @@ body {
     height: 120px;
     border-radius: 50%;
 }
-
-@media all and (max-width: 780px) {
-  .ih-item.circle .info {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    border-radius: 50%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-  .ih-item.circle.effect .info h2 {
-    color: #fff;
-    margin: 0 auto;
-    font-size: 15px;
-    padding-top: 35px;
-    height: 20px;
-}
-
-.ih-item.circle.effect .info p {
-    color: #bbb;
-    padding-top: 0px
-    font-style: italic;
-    margin: 0 auto;
-    font-size: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.ih-item.circle.effect {
-    margin: 0 auto;
-    -webkit-perspective: 900px;
-    -moz-perspective: 900px;
-    perspective: 900px;
-}
-
-  .ih-item.circle {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-  }
-
-  .ih-item.circle .img {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-
-  }
-}
-
 .ih-item.circle .img:before {
     position: absolute;
     display: block;
@@ -1402,6 +1357,24 @@ body {
     border-radius: 50%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+@media all and (max-width: 780px) {
+   .ih-item.circle .img {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      /*margin-top: 20px;*/
+      border-radius: 50%;
+  }
+  .ih-item.circle {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+  }
+  .ih-item.circle .info .info-back h2{
+    font-size: 0.9em;
+  }
 }
 /*头像效果-end*/
 

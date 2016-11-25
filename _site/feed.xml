@@ -5,8 +5,8 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 25 Nov 2016 18:53:01 +0800</pubDate>
-    <lastBuildDate>Fri, 25 Nov 2016 18:53:01 +0800</lastBuildDate>
+    <pubDate>Sat, 26 Nov 2016 00:57:37 +0800</pubDate>
+    <lastBuildDate>Sat, 26 Nov 2016 00:57:37 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -15,7 +15,7 @@
 
 &lt;p&gt;　　一直关注 &lt;code class=&quot;highlighter-rouge&quot;&gt;数据科学&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt; 的同学，一定会经常看到或听到关于 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 相关信息。如果你对 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 感兴趣，但却还没有实际动手操作过，你可以从这里得到实践。&lt;/p&gt;
 
-&lt;p&gt;　　在本文中，我将介绍 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; , 帮你了解 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的实际作用，并使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 来解决现实生活中的问题。 读这篇文章前，需要知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的基础知识和一些熟悉编程理念，文章中的代码是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pyhton&lt;/code&gt; 编写的，所以还需要了解一些 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt; 的基本语法，才能更有利对于文章的理解。&lt;/p&gt;
+&lt;p&gt;　　在本文中，我将介绍 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; , 帮你了解 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的实际作用，并使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 来解决现实生活中的问题。 读这篇文章前，需要知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的基础知识和一些熟悉编程理念，文章中的代码是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pyhton&lt;/code&gt; 编写的，所以还需要了解一些 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt; 的基本语法，才能更有利对于文章的理解。&lt;a href=&quot;http://baixin.io/2016/11/neural_networks_using_TensorFlow/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;
 	&lt;img src=&quot;/images/posts/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
@@ -617,7 +617,7 @@ sess.close()
         <title>Markdown工具集</title>
         <description>&lt;h3 id=&quot;markdown&quot;&gt;什么是 Markdown&lt;/h3&gt;
 
-&lt;p&gt;　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，&lt;strong&gt;粗体&lt;/strong&gt; 或者 &lt;em&gt;斜体&lt;/em&gt; 某些文字，更棒的是，它还可以.&lt;/p&gt;
+&lt;p&gt;　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，&lt;strong&gt;粗体&lt;/strong&gt; 或者 &lt;em&gt;斜体&lt;/em&gt; 某些文字，更棒的是，它还可以.&lt;a href=&quot;http://baixin.io/2016/11/markdownTool/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;　　很多产品的文档也是用markdown编写的，并且以“README.MD”的文件名保存在软件的目录下面。             &lt;br /&gt;
 　　&lt;/p&gt;
@@ -759,6 +759,8 @@ Type &lt;span class=&quot;s2&quot;&gt;&quot;help&quot;&lt;/span&gt;, &lt;span cl
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/11/macTips/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Wed, 16 Nov 2016 00:00:00 +0800</pubDate>
         <link>http://baixin.io/2016/11/macTips/</link>
@@ -820,6 +822,8 @@ autoreconf: automake failed with exit status: 1
 &lt;p&gt;如果你还遇到了其它问题，可以看看我之前的一片文章 &lt;a href=&quot;http://baixin.io/2016/07/iOSMachineLearning_TensorFlow/&quot;&gt;iOS开发迎来机器学习的春天—TensorFlow&lt;/a&gt; ，或者是直接去 tensorflow 的 &lt;a href=&quot;https://github.com/tensorflow/tensorflow/issues&quot;&gt;Issues&lt;/a&gt; 里面找。&lt;/p&gt;
 
 &lt;p&gt;一个小时后。。。　如果编译没出问题，你可以在目录　&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow-master/tensorflow/contrib/makefile／gen/lib&lt;/code&gt; 下找到一个静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; ，把这个静态库拷贝到 camera 项目中，然后编译运行。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 03 Nov 2016 00:00:00 +0800</pubDate>
