@@ -891,11 +891,7 @@ img::-moz-selection {
 
   padding-left: 5px;
   padding-right: 0px;
-  /*padding-top: 2px;*/
-  /*padding-bottom: 0px;*/
-  /*background-size: 100% 100%;*/
   float: left;
-  /*font-size: 0.7em;*/
 }
 .post-list__meta--tags-right {
   
@@ -908,7 +904,6 @@ img::-moz-selection {
   padding-right: 8px;
   padding-top: 2px;
   padding-bottom: 2px;
-  
   background-color: rgba(187, 146, 111, 1);
   border-radius: 0 5px 5px 0;
   font-size: 0.7em;
