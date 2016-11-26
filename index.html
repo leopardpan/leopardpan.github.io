@@ -9,15 +9,15 @@ layout: default
     <li>
       <h2 class="post-list__post-title post-title"><a href="{{ post.url }}" title="访问 {{ post.title }}">{{ post.title }}</a></h2>
       <p class="excerpt">{{ post.content | strip_html | strip_newlines | truncate: 250 }}&hellip;</p>
-      <div class="post-list__meta">
-        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">{{ post.date | date: "%F"}}</time> 
+      <div class="post-list__meta">        
+        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">
+      <img src="/images/calendar.png" width="20px"/> 
+
+          {{ post.date | date: "%F"}}</time> 
         <div class = "tag-img-icon">
           <img src="/images/tag-icon.svg" width="20px" /> 
         </div>
         <a href="/tags">
-          <div class = "post-list-icon-mate">
-            <span class="post-list__meta--tags" style="background-image: url('/images/tag-bg-left.png') "></span>
-          </div>
           <div class = "post-list-icon-mate">
             <span class="post-list__meta--tags-right">{{ post.tags }}</span>
           </div>

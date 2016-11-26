@@ -436,13 +436,16 @@ img::-moz-selection {
     padding: 60px 0; }
 
   .post-meta {
-    margin: 0 0 .4em 0;
-    color: #c7c7c7; }
+    margin: 0;
+    color: #c7c7c7; 
+  }
 
-  .post-meta__date {
-    margin-right: .5em; }
+  .post-meta__date span {
+    margin: 0px;
+    /*margin-right: .5em; */
+  }
 
-  .post-meta__tags {
+/*  .post-meta__tags {
     margin-left: .2em; 
     background-color: #efefef;
     border-width: 1px;
@@ -450,9 +453,10 @@ img::-moz-selection {
     color: #333;
     font-size: 2.0em;
   }
-
-  .post-meta__author {
-    margin-left: 1.5em; }
+*/
+ /* .post-meta__author {
+    margin-left: 1.5em; 
+  }
 
   .post-meta__avatar {
     display: inline-block;
@@ -460,7 +464,8 @@ img::-moz-selection {
     height: 22px;
     margin: 0 .3em -.4em 0;
     border: none;
-    box-shadow: none; }
+    box-shadow: none; 
+  }*/
 
   .post img {
     max-width: 100%;
@@ -900,14 +905,14 @@ img::-moz-selection {
   margin-top: 2px;
   margin-left: 0px;
 
-  padding-left: 2px;
-  padding-right: 8px;
+  /*padding-left: 6px;*/
+  padding-right: 6px;
   padding-top: 2px;
   padding-bottom: 2px;
-  background-color: rgba(187, 146, 111, 1);
-  border-radius: 0 5px 5px 0;
+  color: rgba(187, 146, 111, 1);
+  border-radius: 5px ;
   font-size: 0.7em;
-  color: #fff;
+  /*color: #fff;*/
 }
 
 .post-list-icon-mate {
