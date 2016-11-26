@@ -1171,15 +1171,7 @@ input[type="tel"]:-ms-input-placeholder {
   .panel-subtitle {
     font-size: .6em; 
   }
-  .post-list__meta--date {
-    margin-right: .5em;
-    margin-left: 10px;
-    margin-top: 3px;
-    font-size: 0.2em;
-    color: #c7c7c7; 
-    float: left;
-  }
-}
+ }
 
 
 /*头像效果-start*/
