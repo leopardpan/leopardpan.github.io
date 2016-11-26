@@ -879,7 +879,6 @@ img::-moz-selection {
   margin-right: .5em;
   margin-left: 10px;
   margin-top: 3px;
-  font-size: 0.2em;
   color: #c7c7c7; 
   float: left;
 
@@ -887,7 +886,6 @@ img::-moz-selection {
 
 .post-list__meta--tags {
   
-  /*font-size: .5em;*/
   height: 19px;
   width: 10px;
   margin-top: 4px;
@@ -897,22 +895,12 @@ img::-moz-selection {
   padding-left: 5px;
   padding-right: 0px;
   float: left;
+  color: #8A97A1;
+  
 }
 .post-list__meta--tags-right {
-  
-  height: 20px;
-  /*width: 15px;*/
-  margin-top: 2px;
-  margin-left: 0px;
-
-  /*padding-left: 6px;*/
-  padding-right: 6px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  color: rgba(187, 146, 111, 1);
-  border-radius: 5px ;
+  color: #8A97A1;
   font-size: 0.7em;
-  /*color: #fff;*/
 }
 
 .post-list-icon-mate {
