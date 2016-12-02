@@ -342,6 +342,7 @@ img::-moz-selection {
   .excerpt {
     border-left: 3px solid #458B74; 
     margin: 0;
+    margin-right: 10px;
     font-size: .9em;
     background-color: #FFF;
     text-indent: 10px;
