@@ -5,9 +5,68 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Dec 2016 13:20:34 +0800</pubDate>
-    <lastBuildDate>Fri, 02 Dec 2016 13:20:34 +0800</lastBuildDate>
+    <pubDate>Fri, 02 Dec 2016 13:39:05 +0800</pubDate>
+    <lastBuildDate>Fri, 02 Dec 2016 13:39:05 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>iOS开发过程中的小问题记录</title>
+        <description>&lt;h3 id=&quot;nskeyedarchiver-&quot;&gt;NSKeyedArchiver 自定义对象写文件&lt;/h3&gt;
+
+&lt;p&gt;如果存储的对象类名有变动，则需要设置clasName, 方法为：“setClassName:forClass:”      &lt;br /&gt;
+使用 NSKeyedArchiver 进行数据持久化时, 系统会默认使用类名去建表，如果类名变了，那么使用新的类名肯定是从本地获取不到表的，代码执行崩溃。   &lt;br /&gt;
+所以需要在 NSKeyedArchiver 或者 NSKeyedUnarchiver 时使用 “setClassName:forClass:” 指定类名。&lt;/p&gt;
+
+&lt;h3 id=&quot;generate-debug-symbols&quot;&gt;断点配置：【Generate Debug Symbols】&lt;/h3&gt;
+
+&lt;p&gt;描述: 用来控制断点是否生效,关闭此功能，打包 &lt;code class=&quot;highlighter-rouge&quot;&gt;.ipa&lt;/code&gt; 时，包体积会小很多。  &lt;br /&gt;
+配置路径:【project/TARGETS/Build Settings/Apple LLVM7.1 - Code Genneration/Generate Debug Symbols】&lt;/p&gt;
+
+&lt;h3 id=&quot;all-exception&quot;&gt;捕获全局异常：【All Exception】&lt;/h3&gt;
+
+&lt;p&gt;描述: 用来捕捉整个项目在 Xcode 里执行时的异常。例如：try/catch 时 catch住的异常,【All Exception】可以直接定位到具体位置。   &lt;br /&gt;
+配置路径: 异常捕捉(commod+7)/Xcode左下角点击+/Add Exception Breakpoint/完成(回车键)&lt;/p&gt;
+
+&lt;h3 id=&quot;ui&quot;&gt;UI相关&lt;/h3&gt;
+
+&lt;p&gt;1、设置状态栏颜色：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+info.plist 添加 View controller-based status bar appearance - NO     
+代码里写 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; 再次运行后状态栏就会变成白色。    
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2、左滑返回手势失效了怎么办：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+设置 navigationItem.leftBarButtonItem 之后，左滑返回手势就会失效。设置一下 UIGestureRecognizerDelegate 代理即可：
+
+self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3、让 TableView的 下拉 和 上拉 显示不一样的背景颜色：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+给 TableView 上加一个 View，View 的 Frema：
+CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height + 2)，
+给变View的背景颜色就可以了。
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 02 Dec 2016 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2016/12/iOS_Dev_Note/</link>
+        <guid isPermaLink="true">http://baixin.io/2016/12/iOS_Dev_Note/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
     
       <item>
         <title>使用 TensorFlow 实现神经网络</title>
@@ -758,6 +817,37 @@ Type &lt;span class=&quot;s2&quot;&gt;&quot;help&quot;&lt;/span&gt;, &lt;span cl
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;h3 id=&quot;sshkey&quot;&gt;生成SSHKey过程&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+1.查看是否已经有了ssh密钥：`cd ~/.ssh` ，如果没有密钥则不会有此文件夹，有则备份删除。    
+2.生存密钥：ssh-keygen -t rsa -C “test@gmail.com”。   按3个回车，密码为空。       
+
+Your identification has been saved in /home/tekkub/.ssh/id_rsa.
+Your public key has been saved in /home/tekkub/.ssh/id_rsa.pub.
+The key fingerprint is:
+………………    
+最后得到了两个文件：id_rsa和id_rsa.pub  
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;svn-versions-a&quot;&gt;使用版本控制器 SVN (versions) 添加.a库&lt;/h3&gt;
+
+&lt;p&gt;Xcode 自带的 svn 和 Versions 以及一些其它工具都不能上传”.a”文件&lt;/p&gt;
+
+&lt;p&gt;下面是在 Mac 上如何把 .a 添加到 SVN 里面的&lt;/p&gt;
+
+&lt;p&gt;1、打开终端，输入cd，空格，然后将需要上传的 .a 文件所在的文件夹（不是.a文件） 拖拽到终端（此办法无需输入繁琐的路径，快捷方便） 回车&lt;/p&gt;
+
+&lt;p&gt;2、之后再输入如下命令：&lt;code class=&quot;highlighter-rouge&quot;&gt;svn add libGoogleAnalytics.a&lt;/code&gt; ，回车&lt;/p&gt;
+
+&lt;p&gt;之后会出现：A (bin) libGoogleAnalytics.a&lt;/p&gt;
+
+&lt;p&gt;表示添加成功，打开 Versions 就可以看到，刚才添加的 .a 文件，此时就可以手动上传了。&lt;/p&gt;
+
+&lt;p&gt;另外，请注意路径的正确性。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/11/macTips/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
@@ -1611,96 +1701,6 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
         <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
         
         <category>技术</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Git教程</title>
-        <description>&lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
-
-&lt;p&gt;　　Git是做项目的版本管理，你也可以称它们为版本管理工具。假如现在你有一个文件夹，里面可以是项目，也可以是你的个人笔记(如我这个博客)，或者是你的简历、毕业设计等等，都可以使用git来管理。&lt;/p&gt;
-
-&lt;p&gt;　　目前常用的版本控制器有Git和SVN，即使这两个你没有全用过，至少也会听过，我这里以Git为例，个人比较喜欢Git，你也可以看看这篇文章：&lt;a href=&quot;http://www.worldhello.net/2012/04/12/why-git-is-better-than-svn.html&quot;&gt;为什么Git比SVN好&lt;/a&gt;。我使用的是Mac，Mac上没自带Git环境，但是作为iOS开发者，我安装Xcode的时候，Xcode里是有自带Git的，所以我不需要考虑怎么去安装Git了。&lt;/p&gt;
-
-&lt;h3 id=&quot;git&quot;&gt;安装Git&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;在Mac OS X上安装Git&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;提供两种方法参考：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;1、通过homebrew安装Git，具体方法请参考&lt;a href=&quot;http://brew.sh/&quot;&gt;homebrew的文档&lt;/a&gt;    &lt;br /&gt;
-2、直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;在Windows上安装Git&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;从&lt;a href=&quot;https://git-for-windows.github.io&quot;&gt;https://git-for-windows.github.io&lt;/a&gt; 下载，然后按默认选项安装即可，安装完成后，在开始菜单里找到“Git”-&amp;gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;git-1&quot;&gt;配置Git&lt;/h3&gt;
-
-&lt;p&gt;安装完成后，还需要最后一步设置，在命令行输入：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;$ git config –global user.name “Your Name”&lt;/li&gt;
-    &lt;li&gt;$ git config –global user.email “email@example.com”&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;“Your Name”： 是每次提交时所显示的用户名，因为Git是分布式版本控制系统，当我们push到远端时，就需要区分每个提交记录具体是谁提交的，这个”Your Name”就是最好的区分。&lt;/p&gt;
-
-&lt;p&gt;“email@example.com”： 是你远端仓库的email&lt;/p&gt;
-
-&lt;p&gt;–global：用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然我们也可以对某个仓库指定不同的用户名和Email地址。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;开始使用-建立仓库：&lt;/h3&gt;
-
-&lt;p&gt;你在目标文件夹下使命令：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;git init  （创建.git文件）&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;就会创建一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;.git&lt;/code&gt; 隐藏文件，相当于已经建立了一个本地仓库。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;添加到暂存区：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;git add .   （全部添加到暂存区）&lt;/li&gt;
-    &lt;li&gt;git commit -m ‘ first commit’  （提交暂存区的记录到本地仓库）&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;其它&lt;/h3&gt;
-
-&lt;p&gt;git branc 查看时如出现&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;(HEAD detached at analytics_v2)&lt;/li&gt;
-    &lt;li&gt;dev&lt;/li&gt;
-    &lt;li&gt;master&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;代表现在已经进入一个临时的HEAD，可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -b temp&lt;/code&gt; 创建一个 temp branch，这样临时HEAD上修改的东西就不会被丢掉了。
-然后切换到 dev 分支上，在使用 git branch merge temp，就可以把 temp 分支上的代码合并到 dev 上了。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/GitTutorial/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 13 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/GitTutorial/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/GitTutorial/</guid>
-        
-        <category>工具</category>
         
         
       </item>

@@ -170,6 +170,27 @@
   <ol class="post-list">
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/12/iOS_Dev_Note/" title="访问 iOS开发过程中的小问题记录">iOS开发过程中的小问题记录</a></h2>
+      <p class="excerpt">NSKeyedArchiver 自定义对象写文件如果存储的对象类名有变动，则需要设置clasName, 方法为：“setClassName:forClass:”      使用 NSKeyedArchiver 进行数据持久化时, 系统会默认使用类名去建表，如果类名变了，那么使用新的类名肯定是从本地获取不到表的，代码执行崩溃。   所以需要在 NSKeyedArchiver 或者 NSKeyedUnarchiver 时使用 “setClassName:forClass:” 指定类名。断点配置...&hellip;</p>
+      <div class="post-list__meta">        
+        <time datetime="2016-12-02 00:00:00 +0800" class="post-list__meta--date date">
+          <img src="/images/calendar.png" width="20px" /> 
+          2016-12-02</time> 
+        <div class = "tag-img-icon">
+          <img src="/images/tag-icon.svg" width="20px" /> 
+        </div>
+        <a href="/tags">
+          <div class = "post-list-icon-mate">
+            <span class="post-list__meta--tags-right">iOS</span>
+          </div>
+          <div class = "post-list-small-mate">
+          <a class="btn-border-small" href=/2016/12/iOS_Dev_Note/>阅读全文 » </a>
+          </div>
+      </div>
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2016/11/neural_networks_using_TensorFlow/" title="访问 使用 TensorFlow 实现神经网络">使用 TensorFlow 实现神经网络</a></h2>
       <p class="excerpt">介绍　　一直关注 数据科学 、 机器学习 的同学，一定会经常看到或听到关于 深度学习 和 神经网络 相关信息。如果你对 深度学习 感兴趣，但却还没有实际动手操作过，你可以从这里得到实践。　　在本文中，我将介绍 TensorFlow , 帮你了解 神经网络 的实际作用，并使用 TensorFlow 来解决现实生活中的问题。 读这篇文章前，需要知道 神经网络 的基础知识和一些熟悉编程理念，文章中的代码是使用 Pyhton 编写的，所以还需要了解一些 Python 的基本语法，才能更有利对于文章...&hellip;</p>
       <div class="post-list__meta">        
