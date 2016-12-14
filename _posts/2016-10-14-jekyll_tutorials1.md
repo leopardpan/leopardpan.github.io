@@ -278,6 +278,13 @@ Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpa
 后面会继续介绍，在我的博客基础上，如何修改成你自己喜欢的 Style，欢迎继续关注我博客的更新。
 
 
+### Q&A 
+
+> 问题：最近很多朋友使用我的模板报警告：The CNAME `baixin.io` is already taken 
+> 解决：把CNAME里面的baixin.io修改成你自己的域名，如果你暂时没有域名，CNAME里面就什么都不用谢。（之前没人反馈过这个问题，应该是github page最近才最的限制。）
+
+
+
 
 
 

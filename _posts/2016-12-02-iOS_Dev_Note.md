@@ -1,6 +1,6 @@
 ---
 layout: post
-title: iOS开发过程中的小问题记录
+title: iOS开发中的小问题记录
 date: 2016-12-02 
 tag: iOS
 ---
