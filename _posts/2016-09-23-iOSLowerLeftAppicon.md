@@ -31,10 +31,14 @@ tags: iOS
 * **App icon出现的原因**：
 	* `iBeacon` 具备后台定位的能力，只要用户把蓝牙(4.0或以后)开启 和 允许 App 访问位置信息。在有被 App 检测的 `iBeacon` 出现时，如果设备是锁屏状态，设备的左下角就会出现该 App 的 icon 。
 
-[点击阅读原文](http://baixin.io/2016/09/iOSLowerLeftAppicon/)     
+
 
 参考链接:    
 [Make app appear as iOS 8 Suggested App at lockscreen](http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020)    
 [Can I get my iOS app to appear on the lower left corner of the lock screen?](http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890)  
 [为什么 iOS 8 锁屏界面的左下角经常会出现某个应用的小图标？](https://www.zhihu.com/question/26653964)    
 [关于 IOS8 锁屏左下方出现的 APP ICON](https://www.v2ex.com/t/142320) 
+
+<br>
+
+转载请注明：[潘柏信的博客](http://baixin) » [点击阅读原文](http://baixin.io/2016/09/iOSLowerLeftAppicon/)     

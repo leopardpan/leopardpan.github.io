@@ -168,7 +168,9 @@ Demo.xcworkspace 、Podfile 、Podfile.lock 、Pods
 
 [深入理解 CocoaPods](http://blog.jobbole.com/53365/)    
 
-[点击阅读原文](http://baixin.io/2016/04/CocoaPod_Use/)     
+<br>
+
+转载请注明：[潘柏信的博客](http://baixin) » [点击阅读原文](http://baixin.io/2016/04/CocoaPod_Use/)     
 
 
 

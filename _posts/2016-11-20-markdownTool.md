@@ -8,7 +8,7 @@ tags: 工具
 
 ### 什么是 Markdown
 
-　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，**粗体** 或者 *斜体* 某些文字，更棒的是，它还可以.[点击阅读原文](http://baixin.io/2016/11/markdownTool/)               
+　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，**粗体** 或者 *斜体* 某些文字.
 
 　　很多产品的文档也是用markdown编写的，并且以“README.MD”的文件名保存在软件的目录下面。               
 　　
@@ -73,5 +73,8 @@ css 的大部分语法同样可以在 markdown 上使用，但不同的渲染器
 
 
 [DeerResume](https://github.com/geekcompany/DeerResume?utm_source=mindstore.io) 程序员专用 MarkDown 简历制作在线工具。                
-    
+
+<br>
+
+转载请注明：[潘柏信的博客](http://baixin) » [Markdown工具集](http://baixin.io/2016/11/markdownTool/)                   
 

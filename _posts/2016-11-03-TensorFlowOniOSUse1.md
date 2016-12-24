@@ -54,7 +54,8 @@ autoreconf: automake failed with exit status: 1
 
 一个小时后。。。　如果编译没出问题，你可以在目录　`tensorflow-master/tensorflow/contrib/makefile／gen/lib` 下找到一个静态库：`libtensorflow-core.a` ，把这个静态库拷贝到 camera 项目中，然后编译运行。
 
-[点击阅读原文]()     
+<br>
+转载请注明：[潘柏信的博客](http://baixin) » [点击阅读原文]()     
 
 
 

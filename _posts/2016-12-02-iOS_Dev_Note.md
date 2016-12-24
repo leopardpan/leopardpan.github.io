@@ -57,6 +57,7 @@ CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.v
 ```
 
 
-
+<br>
+转载请注明：[潘柏信的博客](http://baixin) » [iOS开发中的小问题记录](http://baixin.io/2016/12/iOS_Dev_Note/)  
 
 

@@ -71,9 +71,11 @@ HEXO接近是最近有一些朋友提出的问题，然后我做了总结，如�
 **注意二:**     
 　　`Coding Page` 不支持自定义CNAME, 你需要点击到Page模块,然后添加一个域名来绑定。   
 
-更详细的请看[Coding Pages 官网介绍](https://coding.net/help/doc/pages/index.html).
-
-[点击阅读原文](http://baixin.io/2016/06/HEXO_Advanced/)     
+更详细的请看[Coding Pages 官网介绍](https://coding.net/help/doc/pages/index.html).     
 
 参考文章:
 [解决 Github Pages 禁止百度爬虫的方法与可行性分析](http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/)
+
+<br>
+
+转载请注明：[潘柏信的博客](http://baixin) » [点击阅读原文](http://baixin.io/2016/06/HEXO_Advanced/)

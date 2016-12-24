@@ -9,7 +9,8 @@ tags: 机器学习
 
 　　一直关注 `数据科学` 、 `机器学习` 的同学，一定会经常看到或听到关于 `深度学习` 和 `神经网络` 相关信息。如果你对 `深度学习` 感兴趣，但却还没有实际动手操作过，你可以从这里得到实践。 
 
-　　在本文中，我将介绍 `TensorFlow` , 帮你了解 `神经网络` 的实际作用，并使用 `TensorFlow` 来解决现实生活中的问题。 读这篇文章前，需要知道 `神经网络` 的基础知识和一些熟悉编程理念，文章中的代码是使用 `Pyhton` 编写的，所以还需要了解一些 `Python` 的基本语法，才能更有利对于文章的理解。[点击阅读原文](http://baixin.io/2016/11/neural_networks_using_TensorFlow/)                             
+　　在本文中，我将介绍 `TensorFlow` , 帮你了解 `神经网络` 的实际作用，并使用 `TensorFlow` 来解决现实生活中的问题。 读这篇文章前，需要知道 `神经网络` 的基础知识和一些熟悉编程理念，文章中的代码是使用 `Pyhton` 编写的，所以还需要了解一些 `Python` 的基本语法，才能更有利对于文章的理解。                  
+                           
 
 <div align="center">
 	<img src="/images/posts/tfimg/logo.jpg" height="300" width="500">  
@@ -516,11 +517,13 @@ sample_submission.to_csv(os.path.join(sub_dir, 'sub01.csv'), index=False)
 * Rajat Monga（TensorFlow技术负责人） [“TensorFlow为大家”](https://youtu.be/wmw8Bbb_eIE)  的视频
 * [一个专用资源的策划列表](https://github.com/jtoy/awesome-tensorflow/#github-projects)  
 
-
 ### 关于原文
 
 感谢原文作者 [Faizan Shaikh](https://www.analyticsvidhya.com/blog/author/jalfaizy/) 的分享，
 这篇文章是在 [An Introduction to Implementing Neural Networks using TensorFlow](https://www.analyticsvidhya.com/blog/2016/10/an-introduction-to-implementing-neural-networks-using-tensorflow/) 的基础上做的翻译和局部调整，如果发现翻译中有不对或者歧义的的地方欢迎在下面评论里提问，我会加以修正 。
 
 
+
+<br>
+转载请注明：[潘柏信的博客](http://baixin) » [使用 TensorFlow 实现神经网络](http://baixin.io/2016/11/neural_networks_using_TensorFlow/)  
 
