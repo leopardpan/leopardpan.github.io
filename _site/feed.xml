@@ -5,9 +5,49 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Dec 2016 18:02:59 +0800</pubDate>
-    <lastBuildDate>Fri, 16 Dec 2016 18:02:59 +0800</lastBuildDate>
+    <pubDate>Mon, 02 Jan 2017 22:53:18 +0800</pubDate>
+    <lastBuildDate>Mon, 02 Jan 2017 22:53:18 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Wifi 定位原理及 iOS Wifi 列表获取</title>
+        <description>&lt;p&gt;　　对于大家来说，Wifi 应该是一个很熟悉的词了，我们每天都可能在使用 Wifi 热点。Wifi 除了能给我们提供热点之外同时还有定位的作用， 现在移动设备的对用户的隐私保护是越来越严格了，就如定位功能，必须要经过设备用户的授权才能使用 Location 给这台设备定位。这些严格的隐私政策对用户起到到保护作用，但对开发人员却是一种阻碍，在产品强需求的情况下用户是会授权的，如地图类应用，但是另外一些没有对定位强需求的产品，用户可能就不会给你授权了，如果你的产品能得到设备的位置信息就可以给产品加分，就需要从不同的维度来解决问题。Location 是一个（由用户授权控制），Wifi 定位也是一种（由设备周围是否有Wifi而控制），把这些都综合在一起就可以加大对位置获取成功率，Location 获取位置信息就不再介绍了(网上搜下一大堆) ，接下来这篇文章主要讲的就是 Wifi 定位的原理。&lt;/p&gt;
+
+&lt;h3 id=&quot;wifi-&quot;&gt;Wifi 定位原理&lt;/h3&gt;
+
+&lt;p&gt;　　当我们打开手机扫面 Wifi 的时候，其实就可以定位到这台手机的位置信息了。每个 Wifi 路由开启后，都会不停的往四周发射信号，我们把 Wifi 路由想象成太阳以某种频度不停的往周围发射电磁波，电磁波会因距离的削弱，同时也会因为物体阻挡而削弱。例子就是我们在离 Wifi 路由器同样远的位置，有些地方信号强度高有些地方信号强度低。路由同时也叫 Wifi 热点（或者 Wifi AP：Access Point）。每一个 Wifi 路由器都会有一个 BSSID，很多人都管这个 BSSID 叫 MAC 地址（其实 BSSID 并不是 MAC 地址），BSSID 设定了一般就不会在变也不会重复，也就意味着是全球唯一的，这是路由制造的规则，既然有规则那么就会有不遵守规则的人，文章结尾会介绍不遵守规则的人是如何害人害己的。&lt;/p&gt;
+
+&lt;p&gt;　　刚才提到的 BSSID，在 Wifi 路由器的发射中是可以检测到的，同时 Wifi 路由信号还伴随着，SSID(路由器的名称：如XX的Wifi)、signalStrength（手机接收到Wifi的信号强度）及其它信息。看到这里你应该知道如何使用Wifi定位的了，条件：唯一不变的BSSID 和 手机到路由器的信号强度。思路：Wifi 信号是有范围的，我们假设这个范围就是10米为半径的一个圆(实际情况根据Wifi路由厂商和路由器周围环境而定)，我们去采集一些Wifi热点回来，某家水果店的 Wifi、某家餐馆的 Wifi 等等，我们自己去采集的我们肯定知道他们的具体位置，及刚才提到的 Wifi 中的信息：BSSID、SSID、signalStrength，再把他们存入数据库，采集的人可以很多：专业采集人员、出租车司机、快递员等等，他们经常穿梭于大街小巷，其实我们每个人都是Wifi数据库的采集人员，我们的手机厂商每天都在默默的采集着我们的位置信息，iPhone手机系统设置里就可以看到你今天去哪了，你的Wifi连接过哪些设备也是知道的。时间越久Wifi数据库信息越丰富，最终会发现每个BSSID会对应多个SSID和signalStrength，因为SSID是可以修改的，signalStrength是由于在这个Wifi热点的周围不同位置采集的，所以信号强度也不同。采集的信号强度越多，给BSSID也就是这个Wifi热点的定位就越精准。&lt;/p&gt;
+
+&lt;p&gt;　　现在如果我去一个陌生的地方，我打开手机扫描周围的 Wifi 刚好扫描到了一个或几个，我把这个 Wifi 信息（BSSID）传给服务器，服务器通过这个 BSSID 去数据库查找，就能直接匹配到对应的位置，返回给我。如果匹配不到则表示这里没人来采集过 Wifi 信息，或者是这个 Wifi 热点是最近布置的，采集人员还没来得及采集。服务器可以把这些未采集到的先分类后期统一规划。&lt;/p&gt;
+
+&lt;p&gt;　　Wifi 定位原理讲完了，是需要服务端来配合的，也就表示必须要有网络环境才行，其实也可能移动端(手机、Pad等)独立完成，不过对技术和设备硬件要求会高很多，全球的 Wifi 热点是一个很庞大的数据量，需要经过高精度的无损压缩后放在内存很大的手机里才行，或许多年以后可以实现吧(即使技术上能实现了，对于产品来说收益是什么呢？😆哈哈，我就随便说说)&lt;/p&gt;
+
+&lt;h3 id=&quot;ios--wifi-&quot;&gt;iOS 申请获取 Wifi 列表权限&lt;/h3&gt;
+
+&lt;p&gt;　　知道了原理有啥用呢，能实现么？说出来和做出来是两个维度的事情。好吧现在就遇到问题了，移动设备如今主要是 Andorid 和 iOS, Android 上可以直接扫描 Wifi 列表获取相关信息，网上找找, 所以说会原理不一定会技术实现，我也就只能讲讲 iOS 的技术实现了。
+　　iOS 上获取 Wifi 列表其实也有很大限制，在 iOS 9 以前是不能获取Wifi列表的，只能获取当前连接的 Wifi 信息，也就表示只有连接了 Wifi 才能定位，刚才文章说到的场景是，我在一个陌生的原理，拿出手机扫描 Wifi ，也就是我并没连接那里的 Wifi（我不知道密码我怎么连啊）。老天怜悯，Apple 在 iOS 9 以后，提供了获取Wifi列表的API，但是获取Wifi列表是有门槛的，首先你得有个开发者账号(这个账号做开发的都有)，其次就是你要去给苹果发邮件申请，告诉他你为什么要申请这个获取Wifi列表的权限，用途是什么，你公司是干嘛的，你的应用是什么，下面直接上流程。&lt;/p&gt;
+
+&lt;h3 id=&quot;ios--wifi--1&quot;&gt;iOS 获取 Wifi 列表代码实现&lt;/h3&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;注意事项&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;未完待续….&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2017/01/iOS_Wifilist/&quot;&gt;Wifi 定位原理及 iOS Wifi 列表获取&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 02 Jan 2017 00:00:00 +0800</pubDate>
+        <link>http://baixin.io/2017/01/iOS_Wifilist/</link>
+        <guid isPermaLink="true">http://baixin.io/2017/01/iOS_Wifilist/</guid>
+        
+        <category>iOS</category>
+        
+        
+      </item>
     
       <item>
         <title>iOS开发中的小问题记录</title>
@@ -58,6 +98,9 @@ CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.v
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;
+转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2016/12/iOS_Dev_Note/&quot;&gt;iOS开发中的小问题记录&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Fri, 02 Dec 2016 00:00:00 +0800</pubDate>
         <link>http://baixin.io/2016/12/iOS_Dev_Note/</link>
@@ -74,7 +117,7 @@ CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.v
 
 &lt;p&gt;　　一直关注 &lt;code class=&quot;highlighter-rouge&quot;&gt;数据科学&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt; 的同学，一定会经常看到或听到关于 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 相关信息。如果你对 &lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt; 感兴趣，但却还没有实际动手操作过，你可以从这里得到实践。&lt;/p&gt;
 
-&lt;p&gt;　　在本文中，我将介绍 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; , 帮你了解 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的实际作用，并使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 来解决现实生活中的问题。 读这篇文章前，需要知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的基础知识和一些熟悉编程理念，文章中的代码是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pyhton&lt;/code&gt; 编写的，所以还需要了解一些 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt; 的基本语法，才能更有利对于文章的理解。&lt;a href=&quot;http://baixin.io/2016/11/neural_networks_using_TensorFlow/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;　　在本文中，我将介绍 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; , 帮你了解 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的实际作用，并使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; 来解决现实生活中的问题。 读这篇文章前，需要知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt; 的基础知识和一些熟悉编程理念，文章中的代码是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pyhton&lt;/code&gt; 编写的，所以还需要了解一些 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt; 的基本语法，才能更有利对于文章的理解。&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;
 	&lt;img src=&quot;/images/posts/tfimg/logo.jpg&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;  
@@ -662,6 +705,9 @@ sess.close()
 &lt;p&gt;感谢原文作者 &lt;a href=&quot;https://www.analyticsvidhya.com/blog/author/jalfaizy/&quot;&gt;Faizan Shaikh&lt;/a&gt; 的分享，
 这篇文章是在 &lt;a href=&quot;https://www.analyticsvidhya.com/blog/2016/10/an-introduction-to-implementing-neural-networks-using-tensorflow/&quot;&gt;An Introduction to Implementing Neural Networks using TensorFlow&lt;/a&gt; 的基础上做的翻译和局部调整，如果发现翻译中有不对或者歧义的的地方欢迎在下面评论里提问，我会加以修正 。&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;
+转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2016/11/neural_networks_using_TensorFlow/&quot;&gt;使用 TensorFlow 实现神经网络&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Sun, 20 Nov 2016 00:00:00 +0800</pubDate>
         <link>http://baixin.io/2016/11/neural_networks_using_TensorFlow/</link>
@@ -676,7 +722,7 @@ sess.close()
         <title>Markdown工具集</title>
         <description>&lt;h3 id=&quot;markdown&quot;&gt;什么是 Markdown&lt;/h3&gt;
 
-&lt;p&gt;　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，&lt;strong&gt;粗体&lt;/strong&gt; 或者 &lt;em&gt;斜体&lt;/em&gt; 某些文字，更棒的是，它还可以.&lt;a href=&quot;http://baixin.io/2016/11/markdownTool/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;　　Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：如您正在阅读的这篇文章。它使用简单的符号标记不同的标题，分割不同的段落，&lt;strong&gt;粗体&lt;/strong&gt; 或者 &lt;em&gt;斜体&lt;/em&gt; 某些文字.&lt;/p&gt;
 
 &lt;p&gt;　　很多产品的文档也是用markdown编写的，并且以“README.MD”的文件名保存在软件的目录下面。             &lt;br /&gt;
 　　&lt;/p&gt;
@@ -736,6 +782,10 @@ H6 :###### Header 6    &lt;br /&gt;
 &lt;p&gt;&lt;a href=&quot;http://classeur.io/?utm_source=mindstore.io&quot;&gt;Classeur&lt;/a&gt; 实用简洁的 Markdown 写作工具，快速上手。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/geekcompany/DeerResume?utm_source=mindstore.io&quot;&gt;DeerResume&lt;/a&gt; 程序员专用 MarkDown 简历制作在线工具。&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2016/11/markdownTool/&quot;&gt;Markdown工具集&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 20 Nov 2016 00:00:00 +0800</pubDate>
@@ -849,7 +899,7 @@ The key fingerprint is:
 
 &lt;p&gt;另外，请注意路径的正确性。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/11/macTips/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2016/11/macTips/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 16 Nov 2016 00:00:00 +0800</pubDate>
@@ -913,7 +963,8 @@ autoreconf: automake failed with exit status: 1
 
 &lt;p&gt;一个小时后。。。　如果编译没出问题，你可以在目录　&lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow-master/tensorflow/contrib/makefile／gen/lib&lt;/code&gt; 下找到一个静态库：&lt;code class=&quot;highlighter-rouge&quot;&gt;libtensorflow-core.a&lt;/code&gt; ，把这个静态库拷贝到 camera 项目中，然后编译运行。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 03 Nov 2016 00:00:00 +0800</pubDate>
@@ -1430,13 +1481,15 @@ Configuration file: /Users/baixinpan/Desktop/OpenSource/Mine/Page-Blog/leopardpa
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/09/iOSLowerLeftAppicon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;参考链接:  &lt;br /&gt;
 &lt;a href=&quot;http://stackoverflow.com/questions/26082414/make-app-appear-as-ios-8-suggested-app-at-lockscreen/26676020#26676020&quot;&gt;Make app appear as iOS 8 Suggested App at lockscreen&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;http://stackoverflow.com/questions/25897219/can-i-get-my-ios-app-to-appear-on-the-lower-left-corner-of-the-lock-screen/25898890#25898890&quot;&gt;Can I get my iOS app to appear on the lower left corner of the lock screen?&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;https://www.zhihu.com/question/26653964&quot;&gt;为什么 iOS 8 锁屏界面的左下角经常会出现某个应用的小图标？&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;https://www.v2ex.com/t/142320&quot;&gt;关于 IOS8 锁屏左下方出现的 APP ICON&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2016/09/iOSLowerLeftAppicon/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 23 Sep 2016 00:00:00 +0800</pubDate>
         <link>http://baixin.io/2016/09/iOSLowerLeftAppicon/</link>
@@ -1595,10 +1648,12 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
 
 &lt;p&gt;上面的几个流程结合起来就可以实现一个简单的自动化测试了，如果你有什么建议和意见欢迎讨论。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/08/PythonTestAutomationiOS/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;参考链接：
 &lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832745198026a685614e7462fb57dbf733cc9f3ad000&quot;&gt;SMTP发送邮件&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2016/08/PythonTestAutomationiOS/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 04 Aug 2016 00:00:00 +0800</pubDate>
@@ -1606,108 +1661,6 @@ smtp_server是smtp的服务，如果你的from_addr是gamil.com，那么就要�
         <guid isPermaLink="true">http://baixin.io/2016/08/PythonTestAutomationiOS/</guid>
         
         <category>python</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>老司机带你剖析无码统计</title>
-        <description>&lt;p&gt;　　无需开发介入，也可以统计移动App上按钮的点击次数，简称 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; ，只要是跟App开发相关的同学，相信都对埋点统计有些了解，特别是针对开发人员来说，做代码埋点统计基本上是看不到直接收益也是开发人员最不愿做的一件事，这篇文章讲的就是如何让开发人员摆脱代码埋点的痛苦。&lt;/p&gt;
-
-&lt;p&gt;　　文章主要分为：使用场景、实现原理、适用范围、使用详情四个模块，不管你是产品，还是开发人员又或者是运营人员都适合读这篇文章。&lt;/p&gt;
-
-&lt;p&gt;　　在App开发过程中我们应该都有过类似的需求：想统计某些按钮的点击次数。例如，我们开发了一个注册模块，注册流程有些复杂，整个注册功能开发完成后，我们想知道到底有没有用户使用注册功能，而又有多少用户使用？&lt;/p&gt;
-
-&lt;p&gt;有什么方式能知道呢？&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;后台看注册系统?    &lt;br /&gt;
-　有些麻烦，需要后台去数据库里查看，还要做成数据可视化的才方便看。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;查看注册按钮的点击情况?   &lt;br /&gt;
-　这是最直观的。 主看看两块就行，注册按钮的点击次数 和 提交注册按钮的点击次数，如果发现注册按钮被点击多次（如1W次），而提交注册的点击次数却只有几次，这就可以反映出，很多用户看到的我们的注册流程太复杂，然后选择放弃注册了。同样的道理，我们通过同样的方式可以验证我们其它的功能模块是否有用户经常使用，从而来重新规划我们的设计需求。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;　　一整个功能模块的完成涉及到 产品、UI设计、开发、测试 等几个部分，资源和人力的消耗还是挺大的，所以我们在开发过程是否继续维护这些功能模块，还是开发新功能是要经过慎重衡量，而衡量这些最有说服力的依据就是用户的使用数据，这些数据来源是刚才说的 按钮的点击次数，页面的停留时长 等等。&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;使用场景&lt;/h3&gt;
-
-&lt;p&gt;　　分析用户App的使用情况当然是直接用数据说话，那么想知道某些按钮的点击次数，就一定需要App的开发人员去具体的按钮点击方法里面埋点才行，有的公司有自己的一套完整的统计埋点系统，有的公司是使用第三方统计，最终都是可以看到按钮的点击次数的，不管怎么样想知道按钮的点击必须要App的开发人员亲自去写代码埋点才行，而这篇文章主要讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;无码统计&lt;/code&gt; 按钮点击次数。也就是不需要开发介入，我们就能知道按钮的点击了，开发人员只要负责他的业务开发就行，下面是一张 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统埋点&lt;/code&gt; 统计和 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动分析&lt;/code&gt; 统计，灵动是TalkingData的SDK无码统计的一个功能。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/codeless/image01.png&quot; height=&quot;300&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;先大致讲下左边 &lt;code class=&quot;highlighter-rouge&quot;&gt;传统&lt;/code&gt; 埋点统计流程&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;首先需要制定埋点需求、设计埋点方案，需求有了后就去找开发沟通，埋点需求的讨论，双方确认需求通过后，然后准备需求文档，开发再根据文档来写具体的埋点代码。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;代码写完后，App打包给测试人员，测试人员进行测试，同时还要对埋点参数的数据安全审核，参数是否有包含公司敏感信息。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;测试通过后就需要上线了，这个过程一般是开发人员去完成的。iOS需要提交到AppStore上，以前大家都知道，一个审核周期就是一两周，还有随时被拒的可能，现在虽然周期变短了，但审核也还是挺严格的（走快捷通道的除外）。Android需要在各个渠道上重新发布，也是很麻烦的。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;如果前面几部都顺利完成了的话，接下来就等待用户更新了，如果埋点统计功能跟其它新功能一起上线的话，我们更新就有理由了，如果仅仅这一版仅仅只是埋点统计功能，那么让用户更新App的理由又是一件头疼的事情了，不管怎么样经常让用户更新App多少会对用户用些影响的。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;最终的结果应该是部分用户更新了App，那么我们能统计到按钮点击的用户了就只是更新了App的这一部分用户了，而且他们更新的时间是不一样的，最终我们终于可以看需求上的埋点统计了。&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;再看看右边 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 统计流程&lt;/p&gt;
-
-&lt;p&gt;同样需要制定需求，但是需求方可以直接根据自己的需求去使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 了，使用了灵动就可以直接看按钮的点击率了，这个过程不需要开发介入，也不需要用户去更新App。&lt;/p&gt;
-
-&lt;p&gt;　　从这张图可以看出，不需要开发人员介入，可以开发成功，提高开发效率，而且埋点也很灵活，需求人员（可以是产品，也可以是运营）可以直接使用灵动，也不需要用户更新，那么数据反馈会比传统埋点快很多，使用了就可以立即生效，需求方的观察周期也缩短了，能更灵活的做出决策。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;实现原理&lt;/h3&gt;
-
-&lt;p&gt;　　上面大致介绍了下 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 能给我们解决什么问题，这里讲的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;灵动&lt;/code&gt; 是通过什么样的技术手段实现，这里可能对于开发人员来说更喜欢，大家先看一张灵动使用时的一个交互&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/codeless/image02.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;　　这张图分成两部分看，先看上面，一个用户在操作Client和PC，Client和PC通讯是通过一个Wss的服务器建立的长连接，这是灵动调试时的一个交互。       &lt;br /&gt;
-　　也就是说，用户使用灵动分析时，需要一个安装自己App的移动设备，这个App必须要集成TalkingData的统计分析SDK才行，SDK初始化时的AppID是在TalkingData创建应用时分配的。另一端用户要打开TalkingData的灵动网页，在App启动的时候摇一摇手机，然后就可以建立一个wss的长连接了。用户就可以直接在网页上给按钮添加监听事件了，添加完成后，在手机上点击该按钮，网页上就会提示被点击，调试完成后点击全部生效，配置数据就会保存到下面https的服务器。       &lt;br /&gt;
-　　我们的所有用户在启动App的时候，都可以从https服务器里获取到这套配置，客户端根据这套配置找到具体的按钮，监听点击事件，当按钮被点击后，就可以统计到了。&lt;/p&gt;
-
-&lt;p&gt;接下来再看看灵动调试过程中数据是具体怎么进行数据交互的。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/codeless/image03.png&quot; height=&quot;300&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;　　可以看到App客户端和Web端交互主要分为四部分：&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt; 、&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;设备信息&lt;/code&gt; 主要是用来确认设备是调试者的设备，因为其它的终端用户也可能会误触发调试，&lt;code class=&quot;highlighter-rouge&quot;&gt;App基本结构&lt;/code&gt;是用来在Web上展示移动App的，然后在Web上绑定了控件，就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;控件绑定配置&lt;/code&gt;发送给客户端，客户端根据配置监听绑定，当终端用户点击控件后，客户端就会把&lt;code class=&quot;highlighter-rouge&quot;&gt;按钮点击信息&lt;/code&gt;传给Web端，Web显示控件被点击。&lt;/p&gt;
-
-&lt;p&gt;　　再回头看看实现原理的第一张图片，调试完成数据就会从WSS的长连接服务器存储到HTTPS的服务器，此后其它终端用户只要在再次启动App就能获取到埋点配置了，SDK根据埋点配置去找到具体的控件(按钮)，监听点击，当用户点击控件时就可以调用自定义埋点的方法，之后的数据处理就跟自定义埋点是一样的原理了。   &lt;br /&gt;
-　　可能有同学会有疑问，所有的App每次启动的时候都会去获取埋点配置，是不是会很耗流量？ 答案是不会的，服务器在没有埋点配置的时候每次将获取不到信息，那么将不会有什么流量消耗。如果服务器有配置了，App才会有些流量消耗的，而且这些配置信息是经过压缩的，所以流量消耗也不大，App获取到了配置之后就会做本地缓存，服务器配置不变的情况下再次获取配置也不会有流量的消耗，只有在下一次运营人员修改了新的控件绑定时才会消耗一些流量。 所以整个无码统计对终端用户的流量的影响是很小的。    &lt;br /&gt;
-　　你也可以参考这套逻辑试试自己也部署这么一套无码统计，之后就不用再担心运营给的埋点统计需求了，让他们自己去用无码统计吧。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://baixin.io/2016/07/Codeless/&quot;&gt;点击阅读原文&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 15 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://baixin.io/2016/07/Codeless/</link>
-        <guid isPermaLink="true">http://baixin.io/2016/07/Codeless/</guid>
-        
-        <category>技术</category>
         
         
       </item>
