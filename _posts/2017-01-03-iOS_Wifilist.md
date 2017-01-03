@@ -107,7 +107,7 @@ kNEHotspotHelperCommandTypeFilterScanList： 表示扫描到 Wifi 列表信息�
 
 * 打开手机系统设置 -> WLAN -> 系统 Wifi 列表加载出来时，上面代码部分才会回调，才能获取到 Wifi 列表。
 
-![](/images/posts/Wifilist/WLAN.png)
+<img src="/images/posts/Wifilist/WLAN.png" height="400" width="200">  
 
 这个时候你就能看到控制台源源不断的Log。
 
@@ -120,7 +120,7 @@ kNEHotspotHelperCommandTypeFilterScanList： 表示扫描到 Wifi 列表信息�
 
 下面付一张来自 [TalkingData 对iOS操作系统的统计报表](https://www.talkingdata.com/index/#/device/os/zh_CN)，时间：2017-01-03
 
-![](/images/posts/Wifilist/systemVersion.png)
+<img src="/images/posts/Wifilist/systemVersion.png" height="280" width="600">  
 
 ### Q&A
 
