@@ -101,6 +101,19 @@ We added a new template containing the Network Extension entitlements to your te
 ```
 kNEHotspotHelperCommandTypeFilterScanList： 表示扫描到 Wifi 列表信息。
 
+NEHotspotNetwork 里有如下信息：
+
+>* SSID：Wifi 名称 
+>* BSSID：站点的 MAC 地址
+>* signalStrength： Wifi信号强度，该值在0.0-1.0之间     
+>* secure：网络是否安全 (不需要密码的 Wifi，该值为 false)
+>* autoJoined： 设备是否自动连接该 Wifi，目前测试自动连接以前连过的 Wifi 的也为 false 。
+>* justJoined：网络是否刚刚加入
+>* chosenHelper：HotspotHelper是否为网络的所选助手
+
+[官方文档连接](https://developer.apple.com/reference/networkextension/nehotspotnetwork)
+
+
 ### 6、获取Wifi列表回调
 
 当你把上面的代码写完，并成功运行项目后，发现并没有Wifi列表的回调。因为你还没刷新Wifi列表，你需要：
@@ -127,6 +140,9 @@ kNEHotspotHelperCommandTypeFilterScanList： 表示扫描到 Wifi 列表信息�
 在操作过程或者文章有问题的话欢迎在 [原文](http://baixin.io/2017/01/iOS_Wifilist/) 里提问或指正。
 
 >* 使用 Demo 我就不提供了，你如果没有申请 NetworkExtension 权限，提供了 Demo 你也无法使用。
+
+参考资源：
+[NEHotspotHelper NetworkExtension API iOS9.0](http://stackoverflow.com/questions/31704292/nehotspothelper-networkextension-api-ios9-0)
 
 <br>
 转载请注明：[潘柏信的博客](http://baixin) » [Wifi 定位原理及 iOS Wifi 列表获取](http://baixin.io/2017/01/iOS_Wifilist/)  
