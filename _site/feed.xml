@@ -5,36 +5,37 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://baixin.io/</link>
     <atom:link href="http://baixin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Jan 2017 14:55:23 +0800</pubDate>
-    <lastBuildDate>Tue, 03 Jan 2017 14:55:23 +0800</lastBuildDate>
+    <pubDate>Tue, 03 Jan 2017 15:42:12 +0800</pubDate>
+    <lastBuildDate>Tue, 03 Jan 2017 15:42:12 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
         <title>Wifi 定位原理及 iOS Wifi 列表获取</title>
-        <description>&lt;p&gt;　　对于大家来说，Wifi 应该是一个很熟悉的词了，我们每天都可能在使用 Wifi 热点。Wifi 除了能给我们提供热点之外同时还有定位的作用， 现在移动设备的对用户的隐私保护是越来越严格了，就如定位功能，必须要经过设备用户的授权才能使用 Location 给这台设备定位。这些严格的隐私政策对用户起到到保护作用，但对开发人员却是一种阻碍，在产品强需求的情况下用户是会授权的，如地图类应用，但是另外一些没有对定位强需求的产品，用户可能就不会给你授权了，如果你的产品能得到设备的位置信息就可以给产品加分，就需要从不同的维度来解决问题。Location 是一个（由用户授权控制），Wifi 定位也是一种（由设备周围是否有Wifi而控制），把这些都综合在一起就可以加大对位置获取成功率，Location 获取位置信息就不再介绍了(网上搜下一大堆) ，接下来这篇文章主要讲的就是 Wifi 定位的原理。&lt;/p&gt;
+        <description>&lt;p&gt;　　对于大家来说，Wifi 应该是一个很熟悉的词了，我们每天都可能在使用 Wifi 热点。Wifi 除了能给我们提供热点之外同时还有定位的作用， 现在移动设备的对用户的隐私保护是越来越严格了，就如定位功能，必须要经过设备用户的授权才能使用 Location 给这台设备定位。这些严格的隐私政策对用户起到到保护作用，但对开发人员却是一种阻碍，在产品强需求的情况下用户是会授权的，如地图类应用，但是另外一些没有对定位强需求的产品，用户可能就不会给你授权了，这是我们可以考虑下 Wifi 定位了。&lt;/p&gt;
 
 &lt;h3 id=&quot;wifi-&quot;&gt;Wifi 定位原理&lt;/h3&gt;
 
-&lt;p&gt;　　当我们打开手机扫面 Wifi 的时候，其实就可以定位到这台手机的位置信息了。每个 Wifi 路由开启后，都会不停的往四周发射信号，我们把 Wifi 路由想象成太阳以某种频度不停的往周围发射电磁波，电磁波会因距离的削弱，同时也会因为物体阻挡而削弱。例子就是我们在离 Wifi 路由器同样远的位置，有些地方信号强度高有些地方信号强度低。路由同时也叫 Wifi 热点（或者 Wifi AP：Access Point）。每一个 Wifi 路由器都会有一个 BSSID，很多人都管这个 BSSID 叫 MAC 地址（其实 BSSID 并不是 MAC 地址），BSSID 设定了一般就不会在变也不会重复，也就意味着是全球唯一的，这是路由制造的规则，既然有规则那么就会有不遵守规则的人，文章结尾会介绍不遵守规则的人是如何害人害己的。&lt;/p&gt;
+&lt;p&gt;　　当我们使用手机扫面 Wifi 的时候，其实就可以定位到这台手机的位置信息了。每个 Wifi 路由开启后，都会不停的往四周发射信号，我们把 Wifi 路由想象成太阳以某种频度不停的往周围发射电磁波，电磁波会因距离的削弱，同时也会因为物体阻挡而削弱。例子就是我们在离 Wifi 路由器同样远的位置，有些地方信号强度高有些地方信号强度低。路由同时也叫 Wifi 热点（或者 Wifi AP：Access Point）。每一个 Wifi 路由器都会有一个 BSSID，很多人都管这个 BSSID 叫 MAC 地址（其实 BSSID 并不是 MAC 地址），BSSID 设定了一般就不会在变也不会重复，也就意味着是全球唯一的，这是路由制造的规则，既然有规则那么就会有不遵守规则的人，文章结尾会介绍不遵守规则的人是如何害人害己的。&lt;/p&gt;
 
 &lt;p&gt;　　刚才提到的 BSSID，在 Wifi 路由器的发射中是可以检测到的，同时 Wifi 路由信号还伴随着，SSID(路由器的名称：如XX的Wifi)、signalStrength（手机接收到Wifi的信号强度）及其它信息。看到这里你应该知道如何使用Wifi定位的了，条件：唯一不变的BSSID 和 手机到路由器的信号强度。思路：Wifi 信号是有范围的，我们假设这个范围就是10米为半径的一个圆(实际情况根据Wifi路由厂商和路由器周围环境而定)，我们去采集一些Wifi热点回来，某家水果店的 Wifi、某家餐馆的 Wifi 等等，我们自己去采集的我们肯定知道他们的具体位置，及刚才提到的 Wifi 中的信息：BSSID、SSID、signalStrength，再把他们存入数据库，采集的人可以很多：专业采集人员、出租车司机、快递员等等，他们经常穿梭于大街小巷，其实我们每个人都是Wifi数据库的采集人员，我们的手机厂商每天都在默默的采集着我们的位置信息，iPhone手机系统设置里就可以看到你今天去哪了，你的Wifi连接过哪些设备也是知道的。时间越久Wifi数据库信息越丰富，最终会发现每个BSSID会对应多个SSID和signalStrength，因为SSID是可以修改的，signalStrength是由于在这个Wifi热点的周围不同位置采集的，所以信号强度也不同。采集的信号强度越多，给BSSID也就是这个Wifi热点的定位就越精准。&lt;/p&gt;
 
 &lt;p&gt;　　现在如果我去一个陌生的地方，我打开手机扫描周围的 Wifi 刚好扫描到了一个或几个，我把这个 Wifi 信息（BSSID）传给服务器，服务器通过这个 BSSID 去数据库查找，就能直接匹配到对应的位置，返回给我。如果匹配不到则表示这里没人来采集过 Wifi 信息，或者是这个 Wifi 热点是最近布置的，采集人员还没来得及采集。服务器可以把这些未采集到的先分类后期统一规划。&lt;/p&gt;
 
-&lt;p&gt;　　Wifi 定位原理讲完了，是需要服务端来配合的，也就表示必须要有网络环境才行，其实也可能移动端(手机、Pad等)独立完成，不过对技术和设备硬件要求会高很多，全球的 Wifi 热点是一个很庞大的数据量，需要经过高精度的无损压缩后放在内存很大的手机里才行，或许多年以后可以实现吧(即使技术上能实现了，对于产品来说收益是什么呢？😆哈哈，我就随便说说)&lt;/p&gt;
+&lt;p&gt;　　Wifi 定位整体功能是需要服务端来配合的，也就表示必须要有网络环境才行。其实移动端(手机、Pad等)也可以独立完成，不过对技术和设备硬件要求会高很多，全球的 Wifi 热点是一个很庞大的数据量，需要经过高精度的无损压缩后放在内存很大的手机里才行，或许多年以后可以实现吧(即使技术上能实现了，对于产品和研发来说收益、风险、和工作量又是一场PK)&lt;/p&gt;
 
 &lt;h3 id=&quot;ios--wifi-&quot;&gt;iOS 申请获取 Wifi 列表权限&lt;/h3&gt;
 
-&lt;p&gt;　　知道了原理有啥用呢，能实现么？说出来和做出来是两个维度的事情。好吧现在就遇到问题了，移动设备如今主要是 Andorid 和 iOS, Android 上可以直接扫描 Wifi 列表获取相关信息，网上找找, 所以说会原理不一定会技术实现，我也就只能讲讲 iOS 的技术实现了。              &lt;br /&gt;
+&lt;p&gt;　　知道了原理有啥用呢，能实现么？好吧现在就遇到问题了，移动设备如今主要是 Andorid 和 iOS, Android 上可以直接扫描 Wifi 列表获取相关信息，自己去网上找找, 所以说会原理不一定会技术实现，我也就只能讲讲 iOS 的技术实现了。              &lt;br /&gt;
 　　iOS 上获取 Wifi 列表其实也有很大限制，在 iOS 9 以前是不能获取Wifi列表的，只能获取当前连接的 Wifi 信息，也就表示只有连接了 Wifi 才能定位，刚才文章说到的场景是，我在一个陌生的原理，拿出手机扫描 Wifi ，也就是我并没连接那里的 Wifi（我不知道密码我怎么连啊）。Apple 在 iOS 9 以后，提供了获取Wifi列表的API，但是获取Wifi列表是有门槛的，主要步骤有：&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;ul&gt;
     &lt;li&gt;1、向 Apple 申请开发 Network Extension 权限&lt;/li&gt;
-    &lt;li&gt;2、申请包含 Network Extension 的描述文件（证书）&lt;/li&gt;
-    &lt;li&gt;3、Xcode Info.plist 里 Required background modes 添加 一个 network-authentication(item)&lt;/li&gt;
-    &lt;li&gt;4、Demo.entitlements（Demo是项目名称） 里添加 Key-Value: com.apple.developer.networking.HotspotHelper -&amp;gt; YES&lt;/li&gt;
-    &lt;li&gt;5、代码 [NEHotspotHelper registerWithOptions:nil queue:queue handler: ^(NEHotspotHelperCommand * cmd) {} ，  回调里的 cmd.networkList 就是 Wifi 列表（每次系统 Wifi 列表有变化的时候就会回调。）。&lt;/li&gt;
+    &lt;li&gt;2、申请包含 Network Extension 的描述文件&lt;/li&gt;
+    &lt;li&gt;3、配置 Info.plist&lt;/li&gt;
+    &lt;li&gt;4、配置 entitlements&lt;/li&gt;
+    &lt;li&gt;5、iOS 获取 Wifi 列表代码实现&lt;/li&gt;
+    &lt;li&gt;6、获取Wifi列表回调&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -77,11 +78,15 @@ We added a new template containing the Network Extension entitlements to your te
 
 &lt;p&gt;选择包含 Network Extension 的描述文件，后点击下载，下载完成双击描述文件。&lt;/p&gt;
 
-&lt;h3 id=&quot;xcode-infoplist--required-background-modes---network-authenticationitem&quot;&gt;3、Xcode Info.plist 里 Required background modes 添加 一个 network-authentication(item)&lt;/h3&gt;
+&lt;h3 id=&quot;infoplist&quot;&gt;3、配置 Info.plist&lt;/h3&gt;
+
+&lt;p&gt;Xcode Info.plist 里 Required background modes 添加 一个 network-authentication(item)&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/Wifilist/infoplist.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;demoentitlementsdemo--key-value-comappledevelopernetworkinghotspothelper---yes&quot;&gt;4、Demo.entitlements（Demo是项目名称） 里添加 Key-Value: com.apple.developer.networking.HotspotHelper -&amp;gt; YES&lt;/h3&gt;
+&lt;h3 id=&quot;entitlements&quot;&gt;4、配置 entitlements&lt;/h3&gt;
+
+&lt;p&gt;Demo.entitlements（Demo是项目名称） 里添加 Key-Value: com.apple.developer.networking.HotspotHelper -&amp;gt; YES&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/Wifilist/entitlement.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -96,19 +101,36 @@ We added a new template containing the Network Extension entitlements to your te
 &lt;p&gt;代码实现&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)getWifiList {
+
 	if (![[[UIDevice currentDevice] systemVersion] floatValue] &amp;gt;= 9.0) {return;}
-    dispatch_queue_t queue = dispatch_queue_create(&quot;com.leopardpan.HotspotHelper&quot;, 0);
-    [NEHotspotHelper registerWithOptions:nil queue:queue handler: ^(NEHotspotHelperCommand * cmd) {
-        if(cmd.commandType == kNEHotspotHelperCommandTypeFilterScanList) {
-            for (NEHotspotNetwork* network  in cmd.networkList) {
-                NSLog(@&quot;network.SSID = %@&quot;,network.SSID);
-            }
-        }
-    }];
+	dispatch_queue_t queue = dispatch_queue_create(&quot;com.leopardpan.HotspotHelper&quot;, 0);
+	[NEHotspotHelper registerWithOptions:nil queue:queue handler: ^(NEHotspotHelperCommand * cmd) {
+		if(cmd.commandType == kNEHotspotHelperCommandTypeFilterScanList) {
+			for (NEHotspotNetwork* network  in cmd.networkList) {
+				NSLog(@&quot;network.SSID = %@&quot;,network.SSID);
+			}
+		}
+	}];
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;kNEHotspotHelperCommandTypeFilterScanList： 表示扫描到 Wifi 列表信息。&lt;/p&gt;
+
+&lt;p&gt;NEHotspotNetwork 里有如下信息：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;SSID：Wifi 名称&lt;/li&gt;
+    &lt;li&gt;BSSID：站点的 MAC 地址&lt;/li&gt;
+    &lt;li&gt;signalStrength： Wifi信号强度，该值在0.0-1.0之间&lt;/li&gt;
+    &lt;li&gt;secure：网络是否安全 (不需要密码的 Wifi，该值为 false)&lt;/li&gt;
+    &lt;li&gt;autoJoined： 设备是否自动连接该 Wifi，目前测试自动连接以前连过的 Wifi 的也为 false 。&lt;/li&gt;
+    &lt;li&gt;justJoined：网络是否刚刚加入&lt;/li&gt;
+    &lt;li&gt;chosenHelper：HotspotHelper是否为网络的所选助手&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/reference/networkextension/nehotspotnetwork&quot;&gt;官方文档连接&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;wifi&quot;&gt;6、获取Wifi列表回调&lt;/h3&gt;
 
@@ -118,7 +140,7 @@ We added a new template containing the Network Extension entitlements to your te
   &lt;li&gt;打开手机系统设置 -&amp;gt; WLAN -&amp;gt; 系统 Wifi 列表加载出来时，上面代码部分才会回调，才能获取到 Wifi 列表。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/Wifilist/WLAN.png&quot; height=&quot;400&quot; width=&quot;200&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/Wifilist/WLAN.png&quot; height=&quot;360&quot; width=&quot;200&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这个时候你就能看到控制台源源不断的Log。&lt;/p&gt;
 
@@ -143,6 +165,10 @@ We added a new template containing the Network Extension entitlements to your te
     &lt;li&gt;使用 Demo 我就不提供了，你如果没有申请 NetworkExtension 权限，提供了 Demo 你也无法使用。&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;参考资源：&lt;a href=&quot;http://stackoverflow.com/questions/31704292/nehotspothelper-networkextension-api-ios9-0&quot;&gt;NEHotspotHelper NetworkExtension API iOS9.0&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 转载请注明：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2017/01/iOS_Wifilist/&quot;&gt;Wifi 定位原理及 iOS Wifi 列表获取&lt;/a&gt;&lt;/p&gt;
