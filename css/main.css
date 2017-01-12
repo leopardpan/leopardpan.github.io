@@ -391,10 +391,10 @@ img::-moz-selection {
 
   .content-wrapper__inner {
     /*margin: 0 10%;*/
-    /*margin-right: 60px;*/
-    /*padding: 50px 0; */
-    margin: 0 auto; 
-    width: 1100px;
+    margin-right: 60px;
+    padding: 50px 0; 
+    /*margin: 0 auto; */
+    /*width: 700px;*/
   }
 
   .footer {
