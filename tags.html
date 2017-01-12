@@ -6,9 +6,20 @@ group: navigation
 ---
 {% include JB/setup %}
 
-{% assign tags_list = site.tags %} {% include JB/tags_list %}
-{% for tag in site.tags %}
-{{ tag[0] }}
+<ul class="tag_box inline">
+  {% assign tags_list = site.tags %}  
+  {% include JB/tags_list %}
+</ul>
 
-{% assign pages_list = tag[1] %} {% include JB/pages_list %}
+<div class = "card">
+{% for tag in site.tags %} 
+
+  <h3 id="{{ tag[0] }}-ref">{{ tag[0] }}</h3>
+  <ul>
+    {% assign pages_list = tag[1] %}  
+    {% include JB/pages_list %}
+  </ul>
+
+
 {% endfor %}
+</div>
