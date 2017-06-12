@@ -11,7 +11,8 @@ url: "http://baixin.io"
 # Comment
 comment:
     # disqus: leopard
-    duoshuo: leopard 
+    # duoshuo: leopard 
+    # cloudTie: leopard
 
 # Social
 social:
