@@ -1,24 +1,30 @@
 <section class="post-comments">
 
+  {% if site.comment.uyan %}
+    <div id="uyan_frame"></div>
+    var uyan_shortname = '{{ site.comment.uyan }}';
 
-<!--     <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="+uyan_shortname></script>
+
+  {% elsif site.comment.disqus %}
+    <div id="disqus_thread"></div>
     <script>
-    var cloudTieConfig = {
-      url: document.location.href, 
-      sourceId: "",
-      productKey: "aa395cf7778f458492060f3f53301b7c",
-      target: "cloud-tie-wrapper"
+    
+    var disqus_config = function () {
+        this.page.url = "{{ page.url | prepend: site.baseurl | prepend: site.url }}";
+        this.page.identifier = "{{ page.url }}";
     };
-    var yunManualLoad = true;
-    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+    var disqus_shortname = '{{ site.comment.disqus }}';
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
-
- -->
-  
-  <!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2143225"></script>
-<!-- UY END -->
+    <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
+    
+  {% endif %}
 
 </section>
