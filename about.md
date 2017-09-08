@@ -49,8 +49,5 @@ title: 关于我
 <p> 
 
 
-<!-- {% include comments.html %} -->
-<!-- 有言评论在.md文件里使用有点问题，暂时把uid写死 -->
+{% include comments.html %}
 
- <div id="uyan_frame"></div>
- <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2143225"></script>
