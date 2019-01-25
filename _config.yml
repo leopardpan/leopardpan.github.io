@@ -10,7 +10,8 @@ url: "http://baixin.io"
 
 # Comment
 comment:
-    disqus: leopard
+    # disqus: leopard
+    gitment: xxx
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
