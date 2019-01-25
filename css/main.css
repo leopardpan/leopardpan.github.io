@@ -319,6 +319,13 @@ img::-moz-selection {
     float:left;
   }
 }
+
+.footer-social-icon {
+  width: 30px;
+  height: 30px;
+  background-size: 15px;
+}
+
 /*pager end----------------*/
 
   .date,
@@ -341,7 +348,7 @@ img::-moz-selection {
   }
 
   .excerpt {
-    border-left: 3px solid #458B74; 
+    border-left: 3px solid #12B2F8; 
     margin: 0;
     margin-right: 10px;
     font-size: .9em;
@@ -644,7 +651,7 @@ img::-moz-selection {
     font-size: 1.0em;
     height: 30px;
     margin-left: 20px; 
-    color: #458B74;
+    color: #1289F8;
   }
 
   .btn-secondary {
@@ -741,7 +748,7 @@ img::-moz-selection {
 
   .navigation__item_social {
     display: inline-block;
-    margin-right: 20px;
+    /*margin-right: 20px;*/
     width: 50px;
   }
   .navigation__item_social a {

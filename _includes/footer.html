@@ -4,63 +4,81 @@
         <nav class="cover-navigation navigation--social">
           <ul class="navigation">
 
-          {% if site.social.weibo %}
-          <!-- Weibo -->
-          <li class="navigation__item_social">
-            <a href="http://weibo.com/{{site.social.weibo}}" title="@{{site.social.weibo}} 的微博" target="_blank">
-              <i class='social fa fa-weibo fa-2x'></i>
-              <span class="label">Weibo</span>
-            </a>
-          </li>
-          {% endif %}
-
           {% if site.social.github %}
           <!-- Github -->
           <li class="navigation__item_social">
             <a href="https://github.com/{{site.social.github}}" title="@{{site.social.github}} 的 Github" target="_blank">
-              <i class='social fa fa-github fa-2x'></i>
-              <span class="label">Github</span>
+              <div class="footer-social-icon" style="background:url(/images/github.png);"></div>
             </a>
           </li>
           {% endif %}
+
+          {% if site.social.zhihu %}
+          <!-- Zhihu -->
+          <li class="navigation__item_social">
+            <a href="https://www.zhihu.com/people/{{site.social.zhihu}}" title="@{{site.social.zhihu}}" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/zhihu.png);"></div>
+            </a>
+          </li>
+
+          {% endif %}
+
+          {% if site.social.juejin %}
+          <!-- Zhihu -->
+          <li class="navigation__item_social">
+            <a href="https://juejin.im/user/{{site.social.juejin}}" title="@{{site.social.juejin}}" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/juejin.png);"></div>
+            </a>
+          </li>
+
+          {% endif %}
+
+          {% if site.social.jianshu %}
+          <!-- Zhihu -->
+          <li class="navigation__item_social">
+            <a href="https://www.jianshu.com/u/{{site.social.jianshu}}" title="@{{site.social.jianshu}}" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/jianshu.png);"></div>
+            </a>
+          </li>
+
+          {% endif %}
+
+          {% if site.social.weibo %}
+          <!-- Weibo -->
+          <li class="navigation__item_social">
+            <a href="http://weibo.com/{{site.social.weibo}}" title="@{{site.social.weibo}} 的微博" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/weibo.png);"></div>
+            </a>
+          </li>
+          {% endif %}
+
           
           {% if site.social.twitter %}
           <!-- Twitter -->
           <li class="navigation__item_social">
             <a href="http://twitter.com/{{site.social.twitter}}" title="@{{site.social.twitter}}" target="_blank">
-              <i class='social fa fa-twitter fa-2x'></i>
-              <span class="label">Twitter</span>
+              <div class="footer-social-icon" style="background:url(/images/twitter.png);"></div>
             </a>
           </li>
           {% endif %}
 
-          {% if site.social.gplus %}
-          <!-- Google Plus -->
-          <li class="navigation__item_social">
-            <a href="https://plus.google.com/{{site.social.gplus}}" rel="author" title="Google+" target="_blank">
-              <i class='social fa fa-google-plus-square fa-2x'></i>
-              <span class="label">Google Plus</span>
-            </a>
-          </li>
-          {% endif %}
-
-          <!-- RSS -->
-          <li class="navigation__item_social">
-            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
-              <i class='social fa fa-rss fa-2x'></i>
-              <span class="label">RSS</span>
-            </a>
-          </li>
 
           {% if site.social.mail %}
           <!-- Email -->
           <li class="navigation__item_social">
             <a href="mailto:{{site.social.mail}}" title="Contact me">
-              <i class='social fa fa-envelope fa-2x'></i>
-              <span class="label">Email</span>
+              <div class="footer-social-icon" style="background:url(/images/email.png);"></div>
             </a>
           </li>
           {% endif %}
+          
+          <!-- RSS -->
+          <li class="navigation__item_social">
+            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/rss.png);"></div>
+              <span class="label">RSS</span>
+            </a>
+          </li>
 
           </ul>
         </nav>

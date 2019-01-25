@@ -17,18 +17,22 @@ comment:
 social:
     weibo: 5366874726 
     github: leopardpan
+    # zhihu: panpanleopard
+    # juejin: xxx
+    jianshu: 2ada30d8d0f7
     # twitter: 
     mail: leopardpan@icloud.com
+
 
 # 百度统计 
 # 使用博客模板请去掉或者更换 id 
 baidu:
-    id: 8ba1c6be0953b6f9c2ba38e57f615421  
+    id: xxxx  
 
 # Google Analytics
 # 使用博客模板请去掉或者更换 id
 ga:
-    id: UA-84134159-3   
+    id: xxxx  
     host: auto  
 
 
