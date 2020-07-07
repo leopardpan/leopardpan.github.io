@@ -143,7 +143,7 @@ NEHotspotNetwork 里有如下信息：
 
 ### Q&A
 
-在操作过程或者文章有问题的话欢迎在 [原文](http://baixin.io/2017/01/iOS_Wifilist/) 里提问或指正。
+在操作过程或者文章有问题的话欢迎在 [原文](http://leopardpan.cn/2017/01/iOS_Wifilist/) 里提问或指正。
 
 >* 使用 Demo 我就不提供了，你如果没有申请 NetworkExtension 权限，提供了 Demo 你也无法使用。
 
@@ -152,6 +152,6 @@ NEHotspotNetwork 里有如下信息：
 参考资源：[NEHotspotHelper NetworkExtension API iOS9.0](http://stackoverflow.com/questions/31704292/nehotspothelper-networkextension-api-ios9-0)
 
 <br>
-转载请注明：[潘柏信的博客](http://baixin) » [Wifi 定位原理及 iOS Wifi 列表获取](http://baixin.io/2017/01/iOS_Wifilist/)  
+转载请注明：[潘柏信的博客](https://leopardpan.cn) » [Wifi 定位原理及 iOS Wifi 列表获取](http://leopardpan.cn/2017/01/iOS_Wifilist/)  
 
 

@@ -24,22 +24,6 @@
     </script>
     <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
     
-
-  {% elsif site.comment.gitment %}
-    <div id="gitmentContainer"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    <script>
-    var gitment = new Gitment({
-        owner: 'leopardpan',
-        repo: 'https://github.com/leopardpan/leopardpan.github.io',
-        oauth: {
-            client_id: 'e6985f41e0e58342914c',
-            client_secret: '5a3d118560cb291bcde05eda2f8e854f95b53db0',
-        },
-    });
-    gitment.render('gitmentContainer');
-    </script>
   {% endif %}
 
 </section>

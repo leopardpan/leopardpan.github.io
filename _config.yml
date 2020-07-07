@@ -6,12 +6,11 @@ description: 欢迎来到我的个人站~
 avatarTitle: leopardpan
 # 头像里面的描述
 avatarDesc: iOS / 机器学习
-url: "http://baixin.io"
+url: "https://leopardpan.cn"
 
 # Comment
 comment:
     disqus: leopard
-    # gitment: xxx // 需要修改 comments.html中的client_id和client_secret
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
@@ -28,12 +27,12 @@ social:
 # 百度统计 
 # 使用博客模板请去掉或者更换 id 
 baidu:
-    id: xxxx  
+    id: 8ba1c6be0953b6f9c2ba38e57f615421  
 
 # Google Analytics
 # 使用博客模板请去掉或者更换 id
 ga:
-    id: xxxx  
+    id: UA-84134159-3  
     host: auto  
 
 
