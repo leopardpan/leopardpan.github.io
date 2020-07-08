@@ -1,8 +1,15 @@
 # leopard
 
-[leopard](https://leopardpan.cn) 是一个简洁的博客模板，响应式主题，适配了电脑、手机各种屏幕，看效果直接点击 [博客链接](https://leopardpan.cn) （部署在国内，访问更快）或者 (Demo)[http://leopardpan.github.io/] （部署在github page）
+[leopard](https://leopardpan.cn) 是一个简洁的博客模板，响应式主题， 适配了电脑、手机各种屏幕，看效果直接点击下面链接
+ 
+ * [博客链接](https://leopardpan.cn) （部署在国内，访问更快）         
+ * [Demo链接](http://leopardpan.github.io/) （部署在github page）         
 
 如果你喜欢请 Star ，你的 Star 是我持续更新的动力, 谢谢 😄.
+ 
+### 使用博客模板遇到问题看这里
+
+遇到解决不了的问题 [需要技术支持联系我](https://leopardpan.cn/support/)
 
 
 ### 环境要求
@@ -49,11 +56,6 @@ Jekyll 需要依赖：Ruby、bundler
 根据上面【提示】修改过后，在你的github里创建一个username.github.io的仓库，username指的值你的github的用户名。      
 创建完成后，把我的这个模板使用git push到你的username.github.io仓库下就行了。
 搭建博客如果遇到问题可以看看我教程[Jekyll搭建个人博客](https://leopardpan.cn/2016/10/jekyll_tutorials1/)。
-
-
-### 使用博客模板遇到问题看这里
-
-遇到解决不了的问题 [需要技术支持联系我](https://leopardpan.cn/support/)
 
 ### 效果预览
 
