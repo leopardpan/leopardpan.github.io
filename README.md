@@ -65,10 +65,10 @@
 
 
 <summary>微信二维码</summary>
-<img width="600" src="https://leopardpan.github.io/payimg/weipayimg.jpg" alt="sponsor">
+<img width="600" src="https://leopardpan.github.io/images/payimg/weipayimg.jpg" alt="wechat">
 
 <summary>支付宝二维码</summary>
-<img width="600" src="https://leopardpan.github.io/payimg/alipayimg.jpg" alt="sponsor">
+<img width="600" src="https://leopardpan.github.io/images/payimg/weipayimg.jpg" alt="alipay">
 
 
 
