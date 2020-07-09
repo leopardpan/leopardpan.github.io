@@ -6,7 +6,7 @@
 
 如果你喜欢请 Star ，你的 Star 是我持续更新的动力, 谢谢 😄.
  
-### 使用博客模板遇到问题看这里
+### 你在搭建个人博客遇到任何问题都可以找我
 
 遇到解决不了的问题 [需要技术支持联系我](https://leopardpan.cn/support/)
 
@@ -56,6 +56,23 @@
 创建完成后，把我的这个模板使用git push到你的username.github.io仓库下就行了。
 搭建博客如果遇到问题可以看看我教程[Jekyll搭建个人博客](https://leopardpan.cn/2016/10/jekyll_tutorials1/)。
 
+
+### 赞助
+
+你可以通过下方二维码赞助本项目，资金将用于服务器开销以及今后的公共服务
+
+感谢所有赞助过本项目的朋友，你们都为本项目贡献了自己的一份力量
+
+
+<summary>微信二维码</summary>
+<img width="600" src="https://leopardpan.github.io/payimg/readme/weipayimg.jpg" alt="sponsor">
+
+
+<summary>支付宝二维码</summary>
+<img width="600" src="https://leopardpan.github.io/payimg/readme/alipayimg.jpg" alt="sponsor">
+
+
+
 ### 效果预览
 
 #### 头像效果
@@ -88,7 +105,7 @@
 
 #### 手机端效果
 
-<img width="200" src="https://leopardpan.github.io/images/readme/img5.png" alt="wechat">
+<img width="300" src="https://leopardpan.github.io/images/readme/img5.png" alt="wechat">
 
 #### 感谢   
 
