@@ -66,13 +66,13 @@
 <details>
 
 <summary>微信二维码</summary>
-<img width="600" src="https://leopardpan.github.io/images/payimg/weipayimg.jpg" alt="wechat">
+<img width="300" src="https://leopardpan.github.io/images/payimg/weipayimg.jpg" alt="wechat">
 </details>
 
 <details>
 
 <summary>支付宝二维码</summary>
-<img width="600" src="https://leopardpan.github.io/images/payimg/alipayim.jpg" alt="alipay">
+<img width="300" src="https://leopardpan.github.io/images/payimg/alipayim.jpg" alt="alipay">
 </details>
 
 
