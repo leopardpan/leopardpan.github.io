@@ -63,13 +63,17 @@
 
 感谢所有赞助过本项目的朋友，你们都为本项目贡献了自己的一份力量
 
+<details>
 
 <summary>微信二维码</summary>
 <img width="600" src="https://leopardpan.github.io/images/payimg/weipayimg.jpg" alt="wechat">
+</details>
+
+<details>
 
 <summary>支付宝二维码</summary>
-<img width="600" src="https://leopardpan.github.io/images/payimg/weipayimg.jpg" alt="alipay">
-
+<img width="600" src="https://leopardpan.github.io/images/payimg/alipayim.jpg" alt="alipay">
+</details>
 
 
 ### 效果预览
