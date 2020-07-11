@@ -1,0 +1,10 @@
+
+.post h2 {
+  font-size: 1.5em; 
+  font-weight: bold;
+  /*background:#B9D3EE;*/
+  /*text-align: center;*/
+  padding-left: 20px;
+  margin-bottom: 20px;
+  border-left: 3px solid #1874CD; 
+}

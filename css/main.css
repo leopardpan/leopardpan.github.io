@@ -891,6 +891,10 @@ img::-moz-selection {
   float: left;
 }
 
+.post-list__meta image{
+  padding-top: 10px;
+}
+
 .post-list__meta--date {
   margin-right: .5em;
   margin-left: 10px;
