@@ -18,10 +18,15 @@ layout: default
     </div>
   </header>
 
+  {% if site.enableToc %}
+    <h2 class="post-title">目录</h2>
+    {% include toc.html html=content %}
+  {% endif %}
+
   <section class="post">
     {{ content }}
-
   </section>
+
 </article>
 
 {% include new-old.html %}

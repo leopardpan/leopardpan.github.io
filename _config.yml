@@ -8,6 +8,9 @@ avatarTitle: leopardpan
 avatarDesc: iOS / 机器学习
 url: "https://leopardpan.cn"
 
+# 博客是否自动生成目录，false为不生成
+enableToc: true
+
 # Comment
 comment:
     disqus: leopard

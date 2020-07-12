@@ -30,7 +30,7 @@ tag: iOS
 >* 5、iOS 获取 Wifi 列表代码实现
 >* 6、获取Wifi列表回调
 
-### 1、向 Apple 申请开发 Network Extension 权限
+#### 1、向 Apple 申请开发 Network Extension 权限
 
 　　首先要先写封邮件给 [networkextension@apple.com](mailto:networkextension@apple.com) ，问苹果要开发 Network Extension 的权限。     
 苹果收到邮件后会自动回复邮件，在 [https://developer.apple.com/contact/network-extension/](https://developer.apple.com/contact/network-extension/) 里面填写申请表格，内容包括：     
@@ -63,25 +63,25 @@ We added a new template containing the Network Extension entitlements to your te
 。。。。
 ```
 
-### 2、申请包含 Network Extension 的描述文件
+#### 2、申请包含 Network Extension 的描述文件
 
 ![](/images/posts/Wifilist/PastedGraphic.png)
 
 选择包含 Network Extension 的描述文件，后点击下载，下载完成双击描述文件。
 
-### 3、配置 Info.plist 
+#### 3、配置 Info.plist 
 
 Xcode Info.plist 里 Required background modes 添加 一个 network-authentication(item)
 
 ![](/images/posts/Wifilist/infoplist.png)
 
-### 4、配置 entitlements
+#### 4、配置 entitlements
 
 Demo.entitlements（Demo是项目名称） 里添加 Key-Value: com.apple.developer.networking.HotspotHelper -> YES
 
 ![](/images/posts/Wifilist/entitlement.png)
 
-### 5、iOS 获取 Wifi 列表代码实现
+#### 5、iOS 获取 Wifi 列表代码实现
 
 导入头文件
 
@@ -120,7 +120,7 @@ NEHotspotNetwork 里有如下信息：
 [官方文档连接](https://developer.apple.com/reference/networkextension/nehotspotnetwork)
 
 
-### 6、获取Wifi列表回调
+#### 6、获取Wifi列表回调
 
 当你把上面的代码写完，并成功运行项目后，发现并没有Wifi列表的回调。因为你还没刷新Wifi列表，你需要：
 
