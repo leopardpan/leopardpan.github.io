@@ -138,10 +138,13 @@ h3 {
 h4 {
   font-size: 1.2em; 
   padding: 6px 15px;
+  font-weight: bold;
 }
 
 h5 {
-  font-size: 1em; }
+  font-size: 1em; 
+  font-weight: bold;
+}
 
 p {
   margin-bottom: 10px;
