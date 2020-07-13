@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll搭建个人博客
 date: 2016-10-14 
-tags: 博客   
+tags: jekyll   
 ---
 
 　之前写了一篇[HEXO搭建个人博客](http://leopardpan.cn/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/)的教程获得了很好评，尤其是在[简书](http://www.jianshu.com/p/465830080ea9)上目前已经累积了10W+的阅读量了，也有好心的读者主动给我打赏，在此感谢。

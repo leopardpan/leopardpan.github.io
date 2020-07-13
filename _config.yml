@@ -13,7 +13,8 @@ enableToc: true
 
 # Comment
 comment:
-    disqus: leopard
+    livere: MTAyMC81MDk5NC8yNzQ3Ng  # https://www.livere.com
+    # disqus: leopard
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
