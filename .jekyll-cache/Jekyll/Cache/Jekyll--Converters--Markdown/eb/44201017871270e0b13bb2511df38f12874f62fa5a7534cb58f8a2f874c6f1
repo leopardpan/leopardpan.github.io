@@ -1,0 +1,54 @@
+I"�<h1 id="新建repository">新建Repository</h1>
+<p>进入个人github主页，创建一个Repository。
+  <img src="photo/creat_a_new_repository.png" alt="creat_a_new_repository.png" />
+  切记，博客Repository的名字一定是***.github.io(个人github名+.github.io)，这样才能直接通过<a href="spigzhu.github.io">***.github.io</a>的域名访问个人博客</p>
+<h1 id="开启github-pages">开启Github Pages</h1>
+<p>进入Repository设置界面，进行博客Repository设定，包括选择博客主题。
+  <img src="photo/set_github_pages.png" alt="set_github_pages.png" /></p>
+<h1 id="安装-配置jekyll">安装 &amp;配置Jekyll</h1>
+<p>jekyll官网文档<a href="https://jekyllrb.com/docs/">Jekyll安装文档</a>有各种操作系统的安装教程，直接指示操作即可。</p>
+<h2 id="安装jekyll之前需要先安装ruby">安装Jekyll之前需要先安装Ruby</h2>
+<p>Ruby是一种简单快捷的面向对象的脚本语言，而RubyGems是Ruby的一个包管理器，我们需要用这个来安装Jekyl。
+如果是unix系统的话，安装比较简单。我这里用到的是ubantu系统，安装教程如下：<a href="https://jekyllrb.com/docs/installation/ubuntu/">ubuntu系统安装Ruby</a>。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install ruby-full build-essential zlib1g-dev
+echo '# Install Ruby Gems to ~/gems' &gt;&gt; ~/.bashrc
+echo 'export GEM_HOME="$HOME/gems"' &gt;&gt; ~/.bashrc
+echo 'export PATH="$HOME/gems/bin:$PATH"' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre></div></div>
+<h2 id="安装jekyll">安装Jekyll</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install jekyll bundler
+</code></pre></div></div>
+<h1 id="通过jekyll管理自己的博客网站">通过jekyll管理自己的博客网站</h1>
+<p>参考jekyll官网教程：<a href="https://jekyllrb.com/docs/#instructions">jekyll管理博客文件</a></p>
+<h2 id="创建个人博客文件目录">创建个人博客文件目录</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new myblog
+</code></pre></div></div>
+<h2 id="进入博客文件目录">进入博客文件目录</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd myblog
+</code></pre></div></div>
+<h2 id="在本地服务器上运行个人博客网站">在本地服务器上运行个人博客网站</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll serve
+</code></pre></div></div>
+<p>jekyll处于运行状态时，会生成一个Server address：<a href="http:/127.0.0.1:4000/">http:/127.0.0.1:4000/</a>，打开这个链接就可以看到jekyll的页面。Jekyll刚安装好后，只有一篇名为“Welcome to Jekyll!”的博文。</p>
+<h2 id="创建新博文">创建新博文</h2>
+<p>在myblog/_posts目录下新建一个markdown文件，在markdown文件前面添加以下front matter:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: post
+title:  "Welcome to Jekyll!"
+date:   2021-01-03 20:28:08 +0800
+categories: jekyll update
+---
+</code></pre></div></div>
+<p>front matter中layout为post表示这是一篇博文，title date categories分别表示标题/时间/类别。</p>
+<h1 id="将jekyll创建的博文发布到个人博客上">将jekyll创建的博文发布到个人博客上</h1>
+<ul>
+  <li>将刚才创建的github博客repo拷贝到本地</li>
+  <li>在myblogm目录的_config.yml文件把baseurl改成repo的名字</li>
+  <li>修改为config需要执行‘bundle exec jekyll serve’，build jekyll网站。</li>
+  <li>把myblogw目录下所有文件拷贝到repo目录下</li>
+  <li>把repo刚才添加的所有文件都push到github上</li>
+</ul>
+
+<p>支持，通过Jekyll+github搭建个人博客就大功告成啦～</p>
+:ET
