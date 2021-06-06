@@ -1,12 +1,12 @@
 # Basic
-title: 潘柏信
+title: Spigzhu
 subtitle: 个人站
 description: 欢迎来到我的个人站~
 # 头像里面的标题
-avatarTitle: leopardpan
+avatarTitle: Zz
 # 头像里面的描述
-avatarDesc: iOS / 机器学习
-url: "https://leopardpan.cn"
+avatarDesc: Zz
+url: "https://spigzhu.github.io"
 
 # 博客是否自动生成目录，false为不生成
 enableToc: true
@@ -14,31 +14,24 @@ enableToc: true
 # Comment
 comment:
     # livere: MTAyMC81MDk5NC8yNzQ3Ng  # https://www.livere.com
-    disqus: leopard
+    # disqus: leopard
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
 social:
-    weibo: 5366874726 
-    github: leopardpan
-    # zhihu: panpanleopard
+    # weibo: 5366874726 
+    github: spigzhu
+    # zhihu: spigzhu
     # juejin: xxx
-    jianshu: 2ada30d8d0f7
+    # jianshu: 2ada30d8d0f7
     # twitter: 
-    mail: leopardpan@icloud.com
+    mail: spigzhu@outlook.com
 
 
 # 百度统计 
 # 使用博客模板请去掉或者更换 id 
-baidu:
-    id: 8ba1c6be0953b6f9c2ba38e57f615421  
-
-# Google Analytics
-# 使用博客模板请去掉或者更换 id
-ga:
-    id: UA-84134159-3  
-    host: auto  
-
+#baidu:
+#    id: 8ba1c6be0953b6f9c2ba38e57f615421  
 
 # 《----------------- 上面的信息修改成你自己的 ---------------------------》
 #

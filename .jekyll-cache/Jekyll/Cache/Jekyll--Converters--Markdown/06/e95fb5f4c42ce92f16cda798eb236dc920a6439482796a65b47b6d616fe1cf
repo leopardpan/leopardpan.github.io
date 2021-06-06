@@ -1,0 +1,61 @@
+I"`<p>在此之前我有写过一篇<a href="http://leopardpan.cn/2016/10/jekyll_tutorials1/">如何使用我博客模板的文章</a> 请先看这篇基础集成，这篇文章主要讲的是如何使用和修改我的博客主题，文章内容含以下几点：</p>
+
+<h2 id="博客特性">博客特性</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />适配电脑、手机、平板等各屏幕</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />响应式设计</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />个性化头像</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />每篇文章自动添加打赏功能</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持Disqus、livere评论系统</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持站点总数访问统计，每篇文章访问统计</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持文章自动生成目录</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持标签分类</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持代码高亮</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持文章H1、H2、H3、H4标题样式多样化</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持多种三方社交icon展示，能从博客直接跳转到自己的三方社交主页</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />支持三方社交分享(facebook、twitter)</li>
+</ul>
+
+<h2 id="博客主要模块介绍">博客主要模块介绍</h2>
+
+<h3 id="_configyml">_config.yml</h3>
+
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code> 是博客的配置文件，整个站点的信息都在这修改，想要把我的模板改成你自己的也需要修改<code class="language-plaintext highlighter-rouge">_config.yml</code></p>
+
+<p><strong>重要字段说明</strong></p>
+
+<ul>
+  <li>enableToc: 是否开启文章自动生成目录，设置为false文章不会自动生成目录</li>
+  <li>comment/livere: livere评论系统，支持微信、qq、微博、豆瓣、twitter等登录后可以直接评论</li>
+  <li>comment/disqus: disqus评论系统，支持facebook、twitter等登录后可以直接评论</li>
+  <li>social/weibo、github、zhihu、jianshu等: 个人站底部展示的微博等三方社交按钮，点击后直接跳转到个人微博或其他社交主页</li>
+  <li>baidu/id: 百度统计，用来统计你个人站点的用户访问情况</li>
+  <li>ga/id: google统计，用来统计你个人站点的用户访问情况</li>
+</ul>
+
+<p>_config.yml 文件除以上字段还有一些可以自行修改，例如title之类的字段</p>
+
+<h3 id="_posts">_posts</h3>
+
+<p><code class="language-plaintext highlighter-rouge">_posts</code> 目录是用来存放文章的目录，写新文章，直接放在这个目录即可</p>
+
+<p>使用博客模板时，请把博客自带的文章给去掉，如果想使用博客自带的文章请 <code class="language-plaintext highlighter-rouge">注明出处</code>。</p>
+
+<h3 id="自定义页面">自定义页面</h3>
+
+<p>about.md、support.md 等为自定义页面，如果你想添加自动以页面可以直接复制about.md 文件修改文件名和里面的内容即可。</p>
+
+<p>如果需要在导航显示你新增的页面，直接在<code class="language-plaintext highlighter-rouge">_config.yml</code> 文件的nav字段中添加你新页面配置即可</p>
+
+<h3 id="修改说明">修改说明</h3>
+
+<p>如果要修改博客模板信息建议只修改<code class="language-plaintext highlighter-rouge">_config.yml</code> 文件内容和 <code class="language-plaintext highlighter-rouge">_posts</code> 里面的文章信息。因为博客模板一直在更新迭代，改动多了以免你后期更新博客模板的时候不方便。</p>
+
+<p>如果你想改动模板的样式又想继续更新迭代博客模板，你可以提交在github上提交<code class="language-plaintext highlighter-rouge">pull request</code> 或者直接给我发邮件建议改成什么样，如果你的提议确实可以，我会采纳的，并且非常感谢你的建议。</p>
+
+<p>博客迭代信息请看<a href="https://leopardpan.cn/2020/07/ReleaseNode/">ReleaseNode</a></p>
+
+<p>遇到解决不了的问题可以找 <a href="https://leopardpan.cn/support/">技术支持</a></p>
+
+:ET
