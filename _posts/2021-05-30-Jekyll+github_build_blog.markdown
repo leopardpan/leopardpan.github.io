@@ -6,11 +6,11 @@ tag: jekyll
 ---
 # 新建Repository
   进入个人github主页，创建一个Repository。
-  ![creat_a_new_repository.png](photo/creat_a_new_repository.png)
+  ![creat_a_new_repository.png](/images/posts/2021-05-30-Jekyll+github_build_blog/creat_a_new_repository.png)
   切记，博客Repository的名字一定是***.github.io(个人github名+.github.io)，这样才能直接通过[***.github.io](spigzhu.github.io)的域名访问个人博客
 # 开启Github Pages
   进入Repository设置界面，进行博客Repository设定，包括选择博客主题。
-  ![set_github_pages.png](photo/set_github_pages.png)
+  ![set_github_pages.png](/images/posts/2021-05-30-Jekyll+github_build_blog/set_github_pages.png)
 # 安装 &配置Jekyll
 jekyll官网文档[Jekyll安装文档](https://jekyllrb.com/docs/)有各种操作系统的安装教程，直接指示操作即可。
 ## 安装Jekyll之前需要先安装Ruby

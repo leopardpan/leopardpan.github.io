@@ -13,17 +13,17 @@ enableToc: true
 
 # Comment
 comment:
-    # livere: MTAyMC81MDk5NC8yNzQ3Ng  # https://www.livere.com
-    # disqus: leopard
-    # uyan: 2143225  # 有言id,登录有言官网申请
+    # livere: # https://www.livere.com
+    # disqus: 
+    # uyan: # 有言id,登录有言官网申请
 
 # Social
 social:
-    # weibo: 5366874726 
+    # weibo: 
     github: spigzhu
     # zhihu: spigzhu
     # juejin: xxx
-    # jianshu: 2ada30d8d0f7
+    # jianshu: 
     # twitter: 
     mail: spigzhu@outlook.com
 
@@ -31,13 +31,13 @@ social:
 # 百度统计 
 # 使用博客模板请去掉或者更换 id 
 #baidu:
-#    id: 8ba1c6be0953b6f9c2ba38e57f615421  
+#    id: 
 
 # 《----------------- 上面的信息修改成你自己的 ---------------------------》
 #
 #
 #  _post/ 下的文章更换成你自己的文章
-#  帮忙star一下，感谢~😆 地址： https://github.com/leopardpan/leopardpan.github.io
+#  帮忙star一下，感谢~😆 地址：
 #
 #
 # 《--------------- 下面的信息可以自行选择是否修改 ------------------------》
