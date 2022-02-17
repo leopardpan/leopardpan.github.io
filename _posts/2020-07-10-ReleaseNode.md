@@ -11,7 +11,7 @@ tags: jekyll
 
 感觉之前更新迭代的有点乱，很多用户在使用的时候也没法确定是否要更新新版的博客，再次我专门用一篇文章来记录博客更新迭代的记录，如果你已经在使用我的博客模板的，你可以看看更新记录后确认下是否要更新。
 
-博客的全功能介绍请看[博客功能介绍](https://leopardpan.cn/2020/07/blog_info/)
+博客的全功能介绍请看[博客功能介绍](http://leopardpan.cn/2020/07/blog_info/)
 
 ## 1.0.0
 
@@ -25,7 +25,7 @@ tags: jekyll
 * 2017-3-19 增加打赏公共
 * 2017-9-8 多说评论系统停服，切换到disqus评论（多说上的评论全没了😭）
 * 2019-1-25 增加博客底部社交链接
-* 2020-7-8 博客域名从 [http://baixin.io](http://baixin.io) 迁移到 [https://leopardpan.cn](https://leopardpan.cn) （baixin.io没法备案之前的统计也全没了😭）.
+* 2020-7-8 博客域名从 [http://baixin.io](http://baixin.io) 迁移到 [http://leopardpan.cn](http://leopardpan.cn) （baixin.io没法备案之前的统计也全没了😭）.
 * 2020-7-13 增加文章自动生成目录功能, 增加livere评论系统
 
 ## 博客更新手册
