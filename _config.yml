@@ -3,10 +3,10 @@ title: 陈同学
 subtitle: 个人站
 description: 欢迎来到我的个人站~
 # 头像里面的标题
-avatarTitle: leopardpan
+avatarTitle: nothing can stop me
 # 头像里面的描述
-avatarDesc: iOS / 机器学习
-url: "http://leopardpan.cn"
+avatarDesc: 物理海洋学在读 / 机器学习
+url: "https://chanjeunlam.github.io/chan-hugo-junlin.github.io"
 
 # 博客是否自动生成目录，false为不生成
 enableToc: true
