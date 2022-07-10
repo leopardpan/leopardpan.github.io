@@ -6,7 +6,7 @@ description: 欢迎来到我的个人站~
 avatarTitle: nothing can stop me
 # 头像里面的描述
 avatarDesc: 物理海洋学在读 
-url: "https://chanjeunlam.github.io/chan-hugo-junlin.io/"
+url: "https://chanjeunlam.github.io/"
 
 # 博客是否自动生成目录，false为不生成
 enableToc: true
