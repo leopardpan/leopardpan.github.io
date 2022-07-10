@@ -1,4 +1,4 @@
-I"$(<h1 id="标题表示方法">标题表示方法</h1>
+I"X(<h1 id="标题表示方法">标题表示方法</h1>
 
 <p>最多可以使用六级标题</p>
 
@@ -288,14 +288,14 @@
   <li>小括号内可以使用URL地址或者本地文件的相对路径</li>
   <li>可以空一格之后添加”“表示图片的属性，鼠标放上来就可以使用了</li>
   <li>和超链接的区别在于多了一个感叹号
-<img src="https://upload.wikimedia.org/wikipedia/zh/thumb/1/16/Zhejiang_University_Logo.svg/1200px-Zhejiang_University_Logo.svg.png" alt="浙大logo" title="浙大logo" /></li>
+<img src="https://upload.wikimedia.org/wikipedia/zh/thumb/1/16/Zhejiang_University_Logo.svg/1200px-Zhejiang_University_Logo.svg.png" alt="浙大logo" title="浙大logo" height="40%" width="40%" /></li>
 </ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>图片格式：比起超链接多了一个感叹号，
 * 小括号内可以使用URL地址或者本地文件的相对路径
 * 可以空一格之后添加""表示图片的属性，鼠标放上来就可以使用了
 * 和超链接的区别在于多了一个感叹号
-![浙大logo](https://upload.wikimedia.org/wikipedia/zh/thumb/1/16/Zhejiang_University_Logo.svg/1200px-Zhejiang_University_Logo.svg.png "浙大logo")
+![浙大logo](https://upload.wikimedia.org/wikipedia/zh/thumb/1/16/Zhejiang_University_Logo.svg/1200px-Zhejiang_University_Logo.svg.png "浙大logo"){:height="40%" width="40%"}
 </code></pre></div></div>
 
 <p>嵌入视频</p>
