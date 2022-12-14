@@ -208,11 +208,50 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
 ```
 
 
-注意事项：
+#### 注意事项：
 1. 发布时间：有一个凌晨，我文章写好了，也push上去了，也没发现错误，但是左等右等都不见个人主页更新这篇文章。后来才知道，github page应该托管的服务器在美国，用的是美国东部时间可能，也就是说你在今天发布的内容，至少要到中午才能看到。
    
+2. 如何支持数学公式：<br>
+   在_layouts/post.html中，在head标签中加入以下代码：
+
+```
+    <!-- 数学公式 -->
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+   <script type="text/x-mathjax-config">
+       MathJax.Hub.Config({
+         tex2jax: {
+           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+           inlineMath: [['$','$']],
+           displayMath: [ ['$$','$$'], ['\[','\]'] ]
+         }
+       });
+   </script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+```
+
+然后在_config.yml中加入以下代码：
+
+```
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    disable: true
+```
+
+
+
+
 #### 写完之后如何发布
+
 写完所有代码并且在本地查看了效果之后，就可以把本地项目所做的更改push到github上了。在本地项目的根目录下，打开git bash，输入以下命令：
+
 ```
 git add .
 git commit -m "提交信息"

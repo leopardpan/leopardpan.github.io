@@ -75,3 +75,13 @@ gems: [jekyll-paginate,jekyll-sitemap]
 plugins: [jekyll-paginate]
 paginate: 20
 paginate_path: "page/:num/"
+
+# fomula
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    disable: true
