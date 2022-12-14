@@ -1,0 +1,5 @@
+I"<h1 id="00">00</h1>
+<p>如何将ipynb文件转为markdown文件？</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter nbconvert <span class="nt">--to</span> markdown note.ipynb
+</code></pre></div></div>
+:ET
