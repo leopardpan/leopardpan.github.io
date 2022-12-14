@@ -221,7 +221,7 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
        MathJax.Hub.Config({
          tex2jax: {
            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-           inlineMath: [['$','$']],
+           inlineMath: [['$','$'], ['\\(','\\)']],
            displayMath: [ ['$$','$$'], ['\[','\]'] ]
          }
        });
