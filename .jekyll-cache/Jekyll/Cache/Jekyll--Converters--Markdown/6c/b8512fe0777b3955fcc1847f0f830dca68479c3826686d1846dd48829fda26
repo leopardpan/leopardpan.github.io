@@ -1,4 +1,4 @@
-I"�<h3 id="数据介绍">数据介绍</h3>
+I"�<h3 id="数据介绍">数据介绍</h3>
 
 <p>哥白尼海洋服务（Copernicus Marine Service）提供免费开放的海洋数据和服务，助力海洋政策实施，支持蓝色增长和科学创新。</p>
 
@@ -53,8 +53,8 @@
 
 <p>其中，如果我们想要下载东经100°到东经150°，北纬20°到40°，时间跨度是2022年2月份的海表面东西方向的地转速度，只需要在配置好MOTU服务的基础上，在命令行输入以下指令即可把把数据下载到指定文件夹（OUTPUT_DIRECTORY）：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m motuclient --motu https://my.cmems-du.eu/motu-web/Motu --service-id SEALEVEL_GLO_PHY_L4_MY_008_047-TDS --product-id cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.25deg_P1D --longitude-min 100 --longitude-max 150 --latitude-min 20 --latitude-max 40 --date-min "2022-02-01 00:00:00" --date-max "2022-02-28 23:59:59" --variable ugos --out-dir &lt;OUTPUT_DIRECTORY&gt; --out-name &lt;OUTPUT_FILENAME&gt; --user &lt;USERNAME&gt; --pwd &lt;PASSWORD&gt;
-</code></pre></div></div>
+<pre><code>python -m motuclient --motu https://my.cmems-du.eu/motu-web/Motu --service-id SEALEVEL_GLO_PHY_L4_MY_008_047-TDS --product-id cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.25deg_P1D --longitude-min 100 --longitude-max 150 --latitude-min 20 --latitude-max 40 --date-min "2022-02-01 00:00:00" --date-max "2022-02-28 23:59:59" --variable ugos --out-dir &lt;OUTPUT_DIRECTORY&gt; --out-name &lt;OUTPUT_FILENAME&gt; --user &lt;USERNAME&gt; --pwd &lt;PASSWORD&gt;
+</code></pre>
 
 <p><img src="/images/posts/2022-08-09-海表面高度数据下载/code.jpg" alt="code" /></p>
 
@@ -73,13 +73,13 @@
       </li>
     </ul>
 
-    <p><code class="language-plaintext highlighter-rouge">--proxy-server &lt;PROXY_SERVER_URL&gt;:&lt;PROXY_PORT_NUMBER&gt;</code></p>
+    <p><code>--proxy-server &lt;PROXY_SERVER_URL&gt;:&lt;PROXY_PORT_NUMBER&gt;</code></p>
 
     <ul>
       <li>If your proxy-server requires authentication, add the following options:</li>
     </ul>
 
-    <p><code class="language-plaintext highlighter-rouge">--proxy-user &lt;PROXY_USERNAME&gt; --proxy-pwd &lt;PROXY_PASSWORD&gt;</code></p>
+    <p><code>--proxy-user &lt;PROXY_USERNAME&gt; --proxy-pwd &lt;PROXY_PASSWORD&gt;</code></p>
   </li>
   <li>
     <p>什么是MOTU Client以及需要的python环境要求？</p>

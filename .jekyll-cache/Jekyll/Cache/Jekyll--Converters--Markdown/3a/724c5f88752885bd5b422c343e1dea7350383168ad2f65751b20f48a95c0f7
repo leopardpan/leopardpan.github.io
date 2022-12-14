@@ -1,4 +1,4 @@
-I"�0<h3 id="简介">简介</h3>
+I"x.<h3 id="简介">简介</h3>
 
 <p>一般来说，个人主页是自己的一张名片，有些人用来记录自己的生活，有些人用来分享技术、总结自己踩过的坑，有些人用来展示实验室和研究生招生等等。其实很多类似博客园之类的都可以写文章，没有必要自己弄自己的网站。</p>
 
@@ -77,11 +77,11 @@
 
 <h4 id="jekyll-环境配置">Jekyll 环境配置</h4>
 <p>安装 jekyll</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install jekyll
-</code></pre></div></div>
+<pre><code>gem install jekyll
+</code></pre>
 <p>启动本地服务</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll serve
-</code></pre></div></div>
+<pre><code>jekyll serve
+</code></pre>
 <p>在浏览器中打开 http://127.0.0.1:4000，就可以看到本地的网页了。</p>
 
 <h4 id="写完之后你的项目文件夹应该是怎么样的呢">写完之后你的项目文件夹应该是怎么样的呢？</h4>
@@ -90,7 +90,7 @@
 
 <p>一个基本的 Jekyll 网站的目录结构一般是像这样的：这是我写完博客之后的文件夹列表(有删减)</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>│  .gitignore
+<pre><code>│  .gitignore
 │  404.html
 │  about.md
 │  archive.html
@@ -208,7 +208,7 @@
     └─tags
             index.html
             
-</code></pre></div></div>
+</code></pre>
 
 <h4 id="注意事项">注意事项：</h4>
 <ol>
@@ -221,7 +221,7 @@
   </li>
 </ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;!-- 数学公式 --&gt;
+<pre><code>    &lt;!-- 数学公式 --&gt;
    &lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt;&lt;/script&gt;
    &lt;script type="text/x-mathjax-config"&gt;
        MathJax.Hub.Config({
@@ -236,11 +236,11 @@
    &lt;script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"&gt;&lt;/script&gt;
    &lt;script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"&gt;&lt;/script&gt;
 
-</code></pre></div></div>
+</code></pre>
 
 <p>然后在_config.yml中加入以下代码：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>markdown: kramdown
+<pre><code>markdown: kramdown
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
@@ -248,17 +248,17 @@ kramdown:
   hard_wrap: false
   syntax_highlighter_opts:
     disable: true
-</code></pre></div></div>
+</code></pre>
 
 <h4 id="写完之后如何发布">写完之后如何发布</h4>
 
 <p>写完所有代码并且在本地查看了效果之后，就可以把本地项目所做的更改push到github上了。在本地项目的根目录下，打开git bash，输入以下命令：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add .
+<pre><code>git add .
 git commit -m "提交信息"
 git push -u origin master
 
-</code></pre></div></div>
+</code></pre>
 
 <h3 id="待解决功能">待解决功能</h3>
 
