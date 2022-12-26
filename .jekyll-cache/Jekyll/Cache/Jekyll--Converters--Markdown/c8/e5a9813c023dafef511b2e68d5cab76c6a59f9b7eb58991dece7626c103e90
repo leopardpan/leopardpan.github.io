@@ -1,0 +1,81 @@
+I"<<h2 id="1-pytest简介">1. pytest简介</h2>
+<p><strong>Pytest</strong> 是一个比较成熟且功能完备的 Python 测试框架。其提供完善的在线文档，并有着大量的第三方插件和内置帮助，适用于许多小型或大型项目。Pytest 灵活易学，打印调试和测试执行期间可以捕获标准输出，适合简单的单元测试到复杂的功能测试。还可以执行 nose, unittest 和 doctest 风格的测试用例，甚至 Django 和 trial。支持良好的集成实践， 支持扩展的 xUnit 风格 setup，支持非 python 测试。支持生成测试覆盖率报告，支持 PEP8 兼容的编码风格。</p>
+
+<h2 id="2-pytest安装">2. pytest安装</h2>
+<pre><code class="language-python">pip install pytest
+</code></pre>
+
+<h2 id="3-pytest基本使用">3. pytest基本使用</h2>
+<h3 id="31-pytest命令行参数">3.1 pytest命令行参数</h3>
+<pre><code class="language-python">py.test [options] [file_or_dir] [file_or_dir] [...]
+</code></pre>
+<h4 id="311-常用参数">3.1.1 常用参数</h4>
+<pre><code class="language-python">py.test -h,--help # 查看命令行和配置文件帮助
+pytest --markers # 查看所有的标记标记
+</code></pre>
+
+<pre><code class="language-shell">-l,--showlocals #在traceback中显示本地变量
+-q,--quiet #减少输出
+--collect-only：只收集测试用例，不执行测试用例
+-v,--verbose #详细输出
+# 调试输出
+-x：遇到用例失败后，停止执行后面的用例
+--maxfail=num：最多允许num个测试用例失败，后面的用例不再执行
+--pdb：当测试用例失败时，进入调试模式
+--tb=style：指定traceback的输出风格
+    - long：完整的traceback信息
+    - short：只显示每个失败用例的第一行信息
+    - no：不显示traceback信息
+    - native：使用C语言的格式化1输出traceback信息
+-m MARKEXPR：只运行标记了指定标记的用例
+</code></pre>
+
+<h3 id="32-执行选择用例">3.2 执行选择用例</h3>
+
+<pre><code class="language-python"># 执行单个模块中的全部用例
+pytest test_module.py
+# 执行单个类中的全部用例
+pytest test_module.py::TestClass
+# 执行单个方法
+pytest test_module.py::TestClass::test_method
+# 执行指定module中的某个测试函数
+pytest test_module.py::test_func
+
+# 执行指定路径下的全部用例
+pytest test_dir/
+# 执行字符串匹配的用例
+pytest -k "string_expression"
+# 执行标记为smoke的用例
+pytest -m smoke
+# 执行标记为smoke且用例名中包含add的用例
+pytest -k "add and smoke"
+# 执行标记为smoke或用例名中包含add的用例
+pytest -k "add or smoke"
+# 导入模块，使用其文件系统中的路径来查找和执行用例，执行pkg包中的全部用例
+pytest --pyargs pkg # pyargs参数,pkg是包名
+</code></pre>
+<h3 id="33-断言">3.3 断言</h3>
+
+<p>通常情况下使用 <strong>assert</strong> 语句就能对大多数测试进行断言。对于异常断言，可以使用上下文管理器 <strong>pytest.raises</strong>：</p>
+
+<pre><code class="language-python"># 断言异常,可以使用上下文管理器**pytest.raises**
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0 # 在这里抛出异常，断言成功
+# 还可以使用pytest.raises的context manager的value属性来获取异常信息
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError) as excinfo: #excinfo是异常信息
+        1 / 0
+    assert 'division by zero' in str(excinfo.value)
+# 捕捉异常信息还包括
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError,message=" integer division or modulo by zero"):
+        1 / 0
+# 对于警告断言，可以使用pytest.warns（上下文管理器）：
+with pytest.warns(UserWarning,match='must be 0 or None'):
+    warnings.warn("my warning", UserWarning) #UserWarning是警告类型,match是匹配的字符串
+    
+
+</code></pre>
+
+:ET
