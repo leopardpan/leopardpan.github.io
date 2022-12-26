@@ -1,0 +1,177 @@
+I"N<h2 id="1-pytest简介">1. pytest简介</h2>
+<p><strong>Pytest</strong> 是一个比较成熟且功能完备的 Python 测试框架。其提供完善的在线文档，并有着大量的第三方插件和内置帮助，适用于许多小型或大型项目。Pytest 灵活易学，打印调试和测试执行期间可以捕获标准输出，适合简单的单元测试到复杂的功能测试。还可以执行 nose, unittest 和 doctest 风格的测试用例，甚至 Django 和 trial。支持良好的集成实践， 支持扩展的 xUnit 风格 setup，支持非 python 测试。支持生成测试覆盖率报告，支持 PEP8 兼容的编码风格。</p>
+
+<h2 id="2-pytest安装">2. pytest安装</h2>
+<pre><code class="language-python">pip install pytest
+</code></pre>
+
+<h2 id="3-pytest基本使用">3. pytest基本使用</h2>
+<h3 id="31-pytest命令行参数">3.1 pytest命令行参数</h3>
+<pre><code class="language-python">py.test [options] [file_or_dir] [file_or_dir] [...]
+</code></pre>
+<h4 id="311-常用参数">3.1.1 常用参数</h4>
+<pre><code class="language-python">py.test -h,--help # 查看命令行和配置文件帮助
+pytest --markers # 查看所有的标记标记
+</code></pre>
+
+<pre><code class="language-shell">-l,--showlocals #在traceback中显示本地变量
+-q,--quiet #减少输出
+--collect-only：只收集测试用例，不执行测试用例
+-v,--verbose #详细输出
+# 调试输出
+-x：遇到用例失败后，停止执行后面的用例
+--maxfail=num：最多允许num个测试用例失败，后面的用例不再执行
+--pdb：当测试用例失败时，进入调试模式
+--tb=style：指定traceback的输出风格
+    - long：完整的traceback信息
+    - short：只显示每个失败用例的第一行信息
+    - no：不显示traceback信息
+    - native：使用C语言的格式化1输出traceback信息
+-m MARKEXPR：只运行标记了指定标记的用例
+</code></pre>
+
+<h3 id="32-执行选择用例">3.2 执行选择用例</h3>
+
+<pre><code class="language-python"># 执行单个模块中的全部用例
+pytest test_module.py
+# 执行单个类中的全部用例
+pytest test_module.py::TestClass
+# 执行单个方法
+pytest test_module.py::TestClass::test_method
+# 执行指定module中的某个测试函数
+pytest test_module.py::test_func
+
+# 执行指定路径下的全部用例
+pytest test_dir/
+# 执行字符串匹配的用例
+pytest -k "string_expression"
+# 执行标记为smoke的用例
+pytest -m smoke
+# 执行标记为smoke且用例名中包含add的用例
+pytest -k "add and smoke"
+# 执行标记为smoke或用例名中包含add的用例
+pytest -k "add or smoke"
+# 导入模块，使用其文件系统中的路径来查找和执行用例，执行pkg包中的全部用例
+pytest --pyargs pkg # pyargs参数,pkg是包名
+</code></pre>
+<h3 id="33-断言">3.3 断言</h3>
+
+<p>通常情况下使用 <strong>assert</strong> 语句就能对大多数测试进行断言。对于异常断言，可以使用上下文管理器 <strong>pytest.raises</strong>：</p>
+
+<pre><code class="language-python"># 断言异常,可以使用上下文管理器**pytest.raises**
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0 # 在这里抛出异常，断言成功
+# 还可以使用pytest.raises的context manager的value属性来获取异常信息
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError) as excinfo: #excinfo是异常信息
+        1 / 0
+    assert 'division by zero' in str(excinfo.value)
+# 捕捉异常信息还包括
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError,message=" integer division or modulo by zero"):
+        1 / 0
+# 对于警告断言，可以使用pytest.warns（上下文管理器）：
+# UserWarning是警告类型,match是匹配的字符串
+with pytest.warns(UserWarning,match='must be 0 or None'):
+    warnings.warn("my warning", UserWarning) 
+with pytest.warns(RuntimeWarning):
+    warnings.warn("my warning", RuntimeWarning) 
+</code></pre>
+<p>对于自定义的assert比较断言，还可以通过在<strong>conftest.py</strong>中定义<strong>pytest_assertrepr_compare</strong>函数来实现：</p>
+
+<pre><code class="language-python">
+# content of test_foocompare.py
+class Foo:
+    def __init__(self, val):
+         self.val = val
+
+    def __eq__(self, other):
+        return self.val == other.val
+
+def test():
+    assert 1 == 1
+
+def test_compare():
+    f1 = Foo(1)
+    f2 = Foo(2)
+    f3 = Foo(1)
+    assert f1 == f3
+    assert f1 == f2
+
+
+# content of conftest.py
+def pytest_assertrepr_compare(op, left, right):
+    from test_foocompare import Foo
+    if isinstance(left, Foo) and isinstance(right, Foo) and op == "==":
+        return ['Comparing Foo instances:', 'vals: %s != %s' % (left.val, right.val)]
+</code></pre>
+
+<p>如果需要手动设置断言失败的信息，可以使用<strong>pytest.fail</strong>函数：</p>
+
+<pre><code class="language-python">def test_fail():
+    pytest.fail("manual fail")
+
+def test_sys_version():
+    # skip test if not running on Python 3.x
+    if sys.version_info &lt; (3, 0):
+        pytest.fail("requires python3")
+</code></pre>
+
+<h3 id="34-跳过用例">3.4 跳过用例</h3>
+
+<pre><code class="language-python"># 跳过用例
+@pytest.mark.skip(reason="no way of currently testing this")
+def test_function():
+    pass
+# 跳过用例，如果条件为真
+@pytest.mark.skipif(sys.version_info &lt; (3, 0), reason="requires python3")
+def test_function():
+    pass
+# 跳过用例，如果条件为假
+@pytest.mark.skipif(sys.version_info &gt;= (3, 0), reason="requires python3")
+def test_function():
+    pass
+</code></pre>
+
+<p>使用 <strong>pytest.skip</strong> 和 <strong>pytest.xfail</strong> 能够实现跳过测试的功能，skip 表示直接跳过测试，而 xfail 则表示存在预期的失败，但两者的效果差不多：</p>
+
+<pre><code class="language-python">def test_skip_and_xfail():
+    if sys.version_info[0] &lt; 3:
+        pytest.skip("requires python3") 
+    else:
+        pytest.xfail("xfail on python3") 
+</code></pre>
+
+<p><strong>pytest.importorskip</strong> 函数可以用来跳过测试，如果导入模块失败：</p>
+
+<pre><code class="language-python"># 跳过用例，如果导入模块失败
+def test_importorskip():
+    pytest.importorskip("this_module_does_not_exist")
+# 要求导入的模块的版本号大于等于指定的版本号
+def test_importorskip():
+    pytest.importorskip("this_module_does_not_exist", minversion="1.0")
+</code></pre>
+<p>断言近似相等时，可以使用<strong>pytest.approx</strong>函数：</p>
+
+<pre><code class="language-python">def test_approx():
+    assert 0.1 + 0.2 == pytest.approx(0.3)
+def test_approx2():
+    assert 2.2==pytest.approx(2.3,rel=0.1) # rel是相对误差
+</code></pre>
+
+<h3 id="35-conftestpy">3.5 conftest.py</h3>
+<p>从广义理解，<strong>conftest.py</strong>是一个配置文件，可以用来配置pytest的运行环境，从狭义理解，<strong>conftest.py</strong>是一个pytest的插件，可以用来定义pytest的fixture、hook函数、命令行参数等。<strong>conftest.py</strong>文件可以放在测试用例所在的目录下，也可以放在测试用例所在目录的上一级目录下，如果放在上一级目录下，那么该目录下的所有子目录都会加载该<strong>conftest.py</strong>文件。</p>
+
+<p><strong>conftest.py</strong>文件功能如下：</p>
+<ul>
+  <li>定义fixture，用于给测试用例提供静态的测试数据，其可以被所有的测试用于访问，除非指定了范围。</li>
+  <li><strong>加载插件</strong>，用于导入外部插件或者模块：
+    <pre><code class="language-python">  import pytest
+  pytest_plugins = "myapp.testsupport.myplugin"
+</code></pre>
+  </li>
+  <li>定义</li>
+</ul>
+
+:ET
