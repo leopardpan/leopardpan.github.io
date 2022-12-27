@@ -1,4 +1,4 @@
-I"N<h2 id="1-pytest简介">1. pytest简介</h2>
+I"f)<h2 id="1-pytest简介">1. pytest简介</h2>
 <p><strong>Pytest</strong> 是一个比较成熟且功能完备的 Python 测试框架。其提供完善的在线文档，并有着大量的第三方插件和内置帮助，适用于许多小型或大型项目。Pytest 灵活易学，打印调试和测试执行期间可以捕获标准输出，适合简单的单元测试到复杂的功能测试。还可以执行 nose, unittest 和 doctest 风格的测试用例，甚至 Django 和 trial。支持良好的集成实践， 支持扩展的 xUnit 风格 setup，支持非 python 测试。支持生成测试覆盖率报告，支持 PEP8 兼容的编码风格。</p>
 
 <h2 id="2-pytest安装">2. pytest安装</h2>
@@ -171,7 +171,75 @@ def test_approx2():
   pytest_plugins = "myapp.testsupport.myplugin"
 </code></pre>
   </li>
-  <li>定义</li>
+  <li>定义钩子：用于定义pytest的钩子函数，比如<strong>pytest_runtest_setup</strong>、<strong>pytest_configure</strong>、<strong>pytest_runtest_teardown</strong>等。</li>
 </ul>
+
+<pre><code class="language-python"># content of conftest.py
+import pytest
+
+def pytest_addoption(parser):
+    parser.addoption("--full", action="store_ture",
+        help="run full test")
+
+# content of test.py
+@pytest.mark.skipif(not pytest.config.getoption("--runslow"))
+def test_func_slow_1():
+    """当在命令行执行 --runslow 参数时才执行该测试"""
+    print 'skip slow'
+</code></pre>
+
+<h3 id="36-fixture">3.6 Fixture</h3>
+<p><strong>Fixture</strong> 是 pytest 特有的功能，它用 pytest.fixture 标识，定义在函数前面。在编写测试函数的时候，可以将此函数名称做为传入参数，pytest 将会以依赖注入方式，将该函数的返回值作为测试函数的传入参数。</p>
+
+<pre><code class="language-python">@pytest.fixture
+def login():
+    print("登录操作")
+    username
+    return username
+def test_soso(login):
+    print(f"搜索{login}")
+def test_cart(login):
+    print(f"添加购物车{login}")
+</code></pre>
+
+<p><strong>fixture 的作用域</strong> fixture 的作用域默认是函数级别的，也就是说，每个测试用例都会执行一次 fixture 函数。如果想要在多个测试用例中使用 fixture 函数的返回值，可以将 fixture 的作用域设置为模块级别.</p>
+
+<ul>
+  <li>function：默认值，每个测试用例都会执行一次 fixture 函数；</li>
+  <li>module: 每个模块加载前执行一次；</li>
+  <li>session：每个会话加载前执行一次；</li>
+</ul>
+
+<h3 id="37-markers">3.7 Markers</h3>
+
+<p><strong>marker</strong> 是 pytest 特有的功能，它用于给测试用例打标签，可以用于过滤测试用例，也可以用于给测试用例分类。</p>
+
+<pre><code class="language-python"># 跳过测试
+@pytest.mark.skip(reason="no way of currently testing this")
+# 满足某个条件时跳过测试
+@pytest.mark.skipif(sys.version_info &lt; (3, 3), reason="requires python3.3+")
+# 期望测试失败
+@pytest.mark.xfail(condition, reason, run=True, raises=None, strict=False)
+# 参数化测试函数，给测试用例传入参数，供运行时填充到测试中
+@pytest.mark.parametrize(argnames, argvalues, indirect=False, ids=None, scope=None)
+# 执行某一类测试用例
+pytest -m smoke
+# 测试顺序
+@pytest.mark.run(order=1)
+# 让测试尽早地被执行
+@pytest.mark.tryfirst
+# 让测试尽晚地被执行
+@pytest.mark.trylast
+
+</code></pre>
+
+<h3 id="38-生成测试报告">3.8 生成测试报告</h3>
+
+<h3 id="39-第三方插件">3.9 第三方插件</h3>
+
+<p>pytest-randomly: 测试顺序随机
+pytest-xdist: 分布式测试
+pytest-cov: 生成测试覆盖率报告
+pytest-pep8: 检测代码是否符合 PEP8 规范</p>
 
 :ET
