@@ -1,4 +1,4 @@
-I"f)<h2 id="1-pytest简介">1. pytest简介</h2>
+I"@-<h2 id="1-pytest简介">1. pytest简介</h2>
 <p><strong>Pytest</strong> 是一个比较成熟且功能完备的 Python 测试框架。其提供完善的在线文档，并有着大量的第三方插件和内置帮助，适用于许多小型或大型项目。Pytest 灵活易学，打印调试和测试执行期间可以捕获标准输出，适合简单的单元测试到复杂的功能测试。还可以执行 nose, unittest 和 doctest 风格的测试用例，甚至 Django 和 trial。支持良好的集成实践， 支持扩展的 xUnit 风格 setup，支持非 python 测试。支持生成测试覆盖率报告，支持 PEP8 兼容的编码风格。</p>
 
 <h2 id="2-pytest安装">2. pytest安装</h2>
@@ -238,8 +238,42 @@ pytest -m smoke
 <h3 id="39-第三方插件">3.9 第三方插件</h3>
 
 <p>pytest-randomly: 测试顺序随机
+<br />
+pytest-ordering: 测试顺序控制
+<br />
 pytest-xdist: 分布式测试
+<br />
 pytest-cov: 生成测试覆盖率报告
-pytest-pep8: 检测代码是否符合 PEP8 规范</p>
+<br />
+pytest-rerunfailures: 失败重试
+<br />
+pytest-timeout: 超时测试，允许在命令行指定超时时间，或者直接在测试代码中标注超时时间。
+<br />
+pytest-repeat: 重复测试(可以使用–count参数指定重复次数)
+<br />
+pytest-instafail: 测试失败时立即停止，查看错误的详细信息。
+<br />
+pytest-sugar: 优化测试报告,显示色彩和进度条
+<br />
+pytest-html: 为测试生成HTML报告</p>
+<pre><code class="language-shell">pytest --html=report.html
+</code></pre>
+<p><br /></p>
+
+<p><strong>静态分析用的插件</strong></p>
+
+<p>pytest-pycodestyle:</p>
+
+<p><br />
+pytest-pep8: 检测代码是否符合 PEP8 规范
+<br />
+pytest-flakes: 检测代码风格</p>
+
+<p><br /></p>
+
+<p>Web开发用的插件：
+Web项目有特定的测试逻辑，pytest也不能让测试变简单，但是有几个插件可以帮忙。
+pytest-django: 用于测试 Django 项目；
+pytest-selenium:借助浏览器完成自动化测试；</p>
 
 :ET
