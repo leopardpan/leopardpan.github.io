@@ -3,7 +3,7 @@ layout: post
 title: "如何使用GitHub Page搭建自己的个人网页"
 date: 2022-10-26 
 description: "介绍自己在搭建个人网站时候进行的尝试"
-tag: 个人网站 Jekyll GithubPage
+tag: 个人网站
 ---   
 ### 简介
 
