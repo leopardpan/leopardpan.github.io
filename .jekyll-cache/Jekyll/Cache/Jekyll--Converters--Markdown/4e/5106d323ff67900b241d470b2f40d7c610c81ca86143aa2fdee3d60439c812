@@ -1,7 +1,0 @@
-I"><p>软件测试的一个目的是验证你的猜想-猜想软件的内部逻辑，包括第三方的模块、代码包。甚至Python的内建的数据结构是如何运行的。Tasks项目使用名为Task的数据结构，它是用namedtuple工厂函数生成的。Task用于在UI层和API层之间传递信息。</p>
-<pre><code class="language-python">from collections import namedtuple
-Task = namedtuple('Task', ['summary', 'owner', 'done', 'id'])
-# 使用_new_.defaults_创建一个默认的Task实例
-Task.__new__.__defaults__ = (None, None, False, None)
-</code></pre>
-:ET

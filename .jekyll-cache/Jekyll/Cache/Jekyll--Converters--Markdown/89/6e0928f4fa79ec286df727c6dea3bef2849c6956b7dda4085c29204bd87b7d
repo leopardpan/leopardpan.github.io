@@ -1,4 +1,4 @@
-I"`�<h1 id="02-概率论与信息论">02 概率论与信息论</h1>
+I"T�<h1 id="02-概率论与信息论">02 概率论与信息论</h1>
 
 <h3 id="211-概论与随机变量">2.1.1 概论与随机变量</h3>
 <p>频率学派概率（frequency probability):概率和事件发生的频率相关。频率是指事件发生的次数与事件总次数的比值。频率学派概率的缺点是，它只能用于离散事件，而不能用于连续事件。因为连续事件的发生次数是无穷的，而事件总次数是有限的，所以它们的比值是无穷小的，这样就无法用频率来表示概率了。因此，频率学派概率只能用于离散事件，而不能用于连续事件。
@@ -360,8 +360,7 @@ plot_distribution(r,axes)
 
 <p>Beta分布式二项分布的共轭先验分布.</p>
 
-<p>Dirichlet分布是一个多维的概率分布，它是一组(多元）独立的 $\operatorname{Beta}$ 分布的共轭先验分布。在贝叶斯推断（Bayesian inference）中，狄利克雷分布作为多项分布的共轭先验得到应用 [3]  ，在机器学习（machine learning）中被用于构建狄利克雷混合模型（Dirichlet mixture model）
-是一类在 实数域 以正单纯形（standard simplex）为 支撑集 （support）的高维 连续概率分布 ，是Beta分布在高维情形的推广。</p>
+<p>Dirichlet分布是一个多维的概率分布，它是一组(多元）独立的 $\operatorname{Beta}$ 分布的共轭先验分布。在贝叶斯推断（Bayesian inference）中，狄利克雷分布作为多项分布的共轭先验得到应用，在机器学习（machine learning）中被用于构建狄利克雷混合模型（Dirichlet mixture model）是一类在实数域以正单纯形（standard simplex）为 支撑集（support）的高维连续概率分布，是Beta分布在高维情形的推广。</p>
 
 <p>reference: <br />
 <a href="https://zhuanlan.zhihu.com/p/37976562">理解Gamma分布、Beta分布与Dirichlet分布
