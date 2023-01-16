@@ -1,0 +1,28 @@
+I"b
+<ul>
+  <li><a href="#接口用例编写">接口用例编写</a></li>
+  <li><a href="#安装项目依赖">安装项目依赖</a></li>
+  <li><a href="#requests">Requests</a>
+    <ul>
+      <li><a href="#安装">安装</a></li>
+      <li><a href="#使用">使用</a></li>
+      <li><a href="#请求返回介绍">请求返回介绍</a></li>
+      <li><a href="#requests用例编写">Requests用例编写</a>
+        <ul>
+          <li><a href="#编写登录脚本">编写登录脚本</a></li>
+          <li><a href="#编写个人信息获取脚本">编写个人信息获取脚本</a></li>
+          <li><a href="#编写商品列表脚本">编写商品列表脚本</a></li>
+          <li><a href="#添加到购物车">添加到购物车</a></li>
+          <li><a href="#保存订单">保存订单</a></li>
+        </ul>
+      </li>
+      <li><a href="#requests的封装">Requests的封装</a>
+        <ul>
+          <li><a href="#封装requests_get方法">封装requests_get方法</a></li>
+          <li><a href="#requests_post方法封装">requests_post方法封装</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET
