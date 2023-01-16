@@ -1,9 +1,0 @@
-I"k<h1 id="接口用例编写">接口用例编写</h1>
-<p>实际情况下，每个模块的测试用例写的越详细越好，要根据接口文档进行编写。
-| 用例ID| 模块| 接口地址| 请求方式| 请求参数   | 预期结果  | 备注 |
-|:—–|:—–|:—–|:—–|:—–|:—–|:—–|
-| login_1 |登录| http://211/103.136.242:8064/authorizations/ | POST | 1 | 无效数提示 | 1 | 
-| cate_1| 商品列表数据 | http://211/103.136.242:8064/categories/115/skus | GET  | {“page”:”1”,”page_size”:”10”,”ordering”:”create_time”} |  | 1|
-| cart_1| 购物车| http://211/103.136.242:8064/cart/  | POST | {“sku_id”:”3”,”count”:1,”selected”:”true”}  | 添加成功  | 1|
-| order_1| 订单| http://211/103.136.242:8064/orders/  | POST | {“address”:”1”,”pay_method”:”1”  }  | 创建成功  | 1|</p>
-:ET

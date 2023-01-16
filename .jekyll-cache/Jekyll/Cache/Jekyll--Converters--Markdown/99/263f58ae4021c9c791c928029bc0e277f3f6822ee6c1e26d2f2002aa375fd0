@@ -1,0 +1,322 @@
+I"4<p>主要包括Yaml文件的语法规则，安装方法，Yaml的编写规则，读取方法，Yaml的封装，以及如何在config文件夹下面简历config.yaml配置文件以实现测试用例和测试数据分离。</p>
+
+<h2 id="配置文件">配置文件</h2>
+<h2 id="yaml-介绍">Yaml 介绍</h2>
+<p>Yaml 是一种所有编程语言可用的友好的数据序列化标准。语法和其他高阶语言类似，并且可以简单表达字
+典、列表和其他基本数据类型的形态。例如，我们登录接口地址，就可以写在配置文件中，方便后续调用。</p>
+
+<p>语法规则如下：</p>
+<ol>
+  <li>大小写敏感。</li>
+  <li>使用缩进表示层级关系。</li>
+  <li>使用空格键缩进，而非Tab键缩进</li>
+  <li>缩进的空格数目不重要，只要相同层级的元素左侧对齐即可。</li>
+  <li>文件中的字符串不需要使用引号标注，但若字符串包含有特殊字符则需用引号标注；</li>
+  <li>注释标识为#，注释只能单独占一行。</li>
+</ol>
+
+<h2 id="yaml的安装">Yaml的安装</h2>
+<pre><code class="language-bash">pip install pyyaml -i https://mirror.aliyun.com/pypi/simple/
+</code></pre>
+
+<h2 id="yaml的编写">Yaml的编写</h2>
+<p>字典格式:键值对的形式，每个键值对占据一行，记得要在：后面加一个空格</p>
+<pre><code class="language-yaml">name: "test_yml"
+result: "success"
+</code></pre>
+<p>列表格式:用-表示列表，后面跟着空格。</p>
+<pre><code class="language-yaml">- "a"
+- "b"
+- "c"
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">{'name': 'test_yml', 'result': 'success'}
+['a', 'b', 'c']
+</code></pre>
+<p>字典嵌套字典： 下一级的内容要缩进一格再写</p>
+<pre><code class="language-yaml">person1:
+ name: xiaoming
+ age: 18
+person2:
+ name: xiaohong
+ age: 20
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">{'person1': {'name': 'xiaoming', 'age': 18}, 'person2': {'name': 'xiaohong', 'age': 20}}
+</code></pre>
+<p>字典嵌套列表：下一级的内容要缩进一格再写</p>
+<pre><code class="language-yaml">person1:
+ - xiaoming
+ - 18
+person2:
+ - xiaohong
+ - 20
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">{'person1': ['xiaoming', 18], 'person2': ['xiaohong', 20]}
+</code></pre>
+<p>列表嵌套列表：</p>
+<pre><code class="language-yaml">-
+ - a
+ - b
+ - c
+- 
+ - 1
+ - 2
+ - 3
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">[['a', 'b', 'c'], [1, 2, 3]]
+</code></pre>
+<p>列表嵌套字典：</p>
+<pre><code class="language-yaml">-
+ name: xiaoming
+ age: 18
+-
+ name: xiaohong
+ age: 20
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">[{'name': 'xiaoming', 'age': 18}, {'name': 'xiaohong', 'age': 20}]
+</code></pre>
+
+<h2 id="yaml的读取">Yaml的读取</h2>
+<p>读取单个文件：</p>
+<pre><code class="language-python">import yaml
+with open("./data.yaml", "r", encoding="utf-8") as f: # 获取文件对象，f是文件句柄,encoding="utf-8"是指定编码格式,防止出现中文乱码
+    # load方法将yaml文件转换成字典或列表
+    data = yaml.load(f, Loader=yaml.FullLoader)
+    # safe_load和load方法一样，但是不支持python的所有数据类型
+    print(data)
+</code></pre>
+<p>读取多个文件：这个主要用在比如所多个测试用例的数据都放在一个文件下。</p>
+<pre><code class="language-python">import yaml 
+with open("./data.yaml", "r", encoding="utf-8") as f:
+    # load_all方法将yaml文件转换成生成器对象,每次读取一个文档,每个文档是一个字典或列表.
+    data = yaml.load_all(f, Loader=yaml.FullLoader) # Loader=yaml.FullLoader是指定加载器,防止出现警告
+    for i in data:
+        print(i)
+</code></pre>
+<p>对应的yaml文件如下：</p>
+<pre><code class="language-yaml">---
+"username1": "test123"
+"password": "123456"
+---
+"username1": "test456"
+"password": "123456"
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-command">{'username1': 'test123', 'password': '123456'}
+{'username1': 'test456', 'password': '123456'}
+</code></pre>
+
+<h2 id="配置文件-yaml封装">配置文件-Yaml封装</h2>
+<p>yaml封装 → 配置文件conf.yaml → 基本目录配置 → 配置文件读取及使用
+在utils文件夹下面新建一个YamlUtil.py文件，用来封装yaml文件的读取操作。</p>
+<pre><code class="language-python">import yaml
+import os
+# set up the class to read the yaml file
+class YamlReader:
+    def __init__(self, yamlf):
+        # 判断文件是否存在
+        if os.path.exists(yamlf):
+            self.yamlf = yamlf
+        else:
+            raise FileNotFoundError("文件不存在！")
+        self._data = None # 定义一个私有属性，用来存储读取的数据
+    # @property装饰器的作用是把一个方法变成属性调用
+    @property
+    def data(self):
+        # read data from yaml file
+        # 判断是否已经读取过数据，如果已经读取过数据，此时self._data为字典，不为None，就不需要再次读取数据。
+        if not self._data:
+            with open(self.yamlf, 'rb') as f: # rb是以二进制读取
+                self._data = yaml.safe_load(f)
+        return self._data # 返回读取的数据
+</code></pre>
+<p>测试一下这个util文件是否可以正常读取yaml文件,在t_yaml文件夹下面新建一个yaml_demo.py文件，用来测试YamlUtil.py文件是否可以正常读取yaml文件。</p>
+<pre><code class="language-python">from utils.YamlUtil import YamlReader
+yaml_path = "./data.yml"
+data = YamlReader(yaml_path).data
+print(data)
+</code></pre>
+<p>yaml文件内容如下：</p>
+<pre><code class="language-yaml">name: "test_yml"
+result: "success"
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">{'name': 'test_yml', 'result': 'success'}
+</code></pre>
+
+<p>以上封装的YamlUtil.py文件只能读取单个yaml文件，如果要读取多个yaml文件，需要在YamlUtil.py文件中添加一个方法，用来读取多个yaml文件。
+以上的YamlUtil.py模块在读取下列多个yaml文件时候的报错信息如下：
+yaml文件内容：</p>
+<pre><code class="language-yaml">---
+"username1": "test123"
+"password": "123456"
+---
+"username1": "test456"
+"password": "123456"
+</code></pre>
+<p>报错信息如下：</p>
+<pre><code class="language-commandline">raise ComposerError("expected a single document in the stream",
+yaml.composer.ComposerError: expected a single document in the stream
+  in "./data.yaml", line *, column 1
+</code></pre>
+
+<p>在YamlUtil.py文件中添加一个方法，用来读取多个yaml文件:</p>
+<pre><code class="language-python">import yaml
+import os
+# set up the class to read the yaml file
+class YamlReader:
+    def __init__(self, yamlf):
+        # 判断文件是否存在
+        if os.path.exists(yamlf):
+            self.yamlf = yamlf
+        else:
+            raise FileNotFoundError("文件不存在！")
+        self._data = None # 定义一个私有属性，用来存储读取的数据
+        self._data_all = None # 定义一个私有属性，用来存储读取的数据
+    # @property装饰器的作用是把一个方法变成属性调用
+    @property
+    def data(self):
+        # read data from yaml file
+        # 判断是否已经读取过数据，如果已经读取过数据，此时self._data为字典，不为None，就不需要再次读取数据。
+        if not self._data:
+            with open(self.yamlf, 'rb') as f: # rb是以二进制读取
+                self._data = yaml.safe_load(f)
+        return self._data # 返回读取的数据
+    # 读取多个yaml文件
+    def data_all(self):
+        # read data from yaml file
+        # 判断是否已经读取过数据，如果已经读取过数据，此时self._data为字典，不为None，就不需要再次读取数据。
+        if not self._data_all:
+            with open(self.yamlf, 'rb') as f: # rb是以二进制读取
+                self._data_all = list(yaml.safe_load_all(f)) # list()函数将yaml.safe_load_all(f)转换为列表
+        return self._data_all # 返回读取的数据
+</code></pre>
+<p>yaml文件内容：</p>
+<pre><code class="language-yaml">---
+"username1": "test123"
+"password": "123456"
+---
+"username1": "test456"
+"password": "123456"
+</code></pre>
+<p>yaml_demo.py文件内容：</p>
+<pre><code class="language-python">from utils.YamlUtil import YamlReader
+yaml_path = "./data.yaml"
+data = YamlReader(yaml_path).data_all()
+print(data)
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-commandline">[{'username1': 'test123', 'password': '123456'}, {'username1': 'test456', 'password': '123456'}]
+</code></pre>
+<h2 id="yaml配置文件设置">Yaml配置文件设置</h2>
+<p>在config文件下面，新建一个yaml文件，命名为config.yaml，文件内容如下：</p>
+<pre><code class="language-yaml"># 测试环境
+BASE:
+  test:
+    url: "http://211.103.136.242:8064"
+</code></pre>
+<p>在config文件下面，新建一个py文件，命名为config.py，用来读取配置文件config.yaml中的内容，文件内容如下：
+首先是，获取当前目录</p>
+<pre><code class="language-python"># 1. 获取当前基本目录
+import os
+current = os.path.abspath(__file__)# __file__表示当前文件,这步操作是获取当前文件的绝对路径
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W/config/config.py 
+tmp_dir = os.path.dirname(current)# 获取当前文件的父目录
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W/config
+# 获取config目录的父路径
+base_dir = os.path.dirname(tmp_dir) 
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W
+# 定义config目录的路径
+_config_dir = os.path.join(base_dir, "config") # _开头的变量表示私有变量
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W/config
+# 或者也可以这样写：
+# _config_dir = base_dir + os.sep + "config"
+# 定义config.yaml文件的路径
+_config_yaml = os.path.join(_config_dir, "config.yaml")
+
+def get_config_path():
+    return _config_dir
+def get_config_file():
+    return _config_yaml
+</code></pre>
+
+<p>然后是，读取配置文件config.yaml中的内容</p>
+<pre><code class="language-python">from utils.YamlUtil import YamlReader
+# 1. 获取当前基本目录
+import os
+current = os.path.abspath(__file__)# __file__表示当前文件,这步操作是获取当前文件的绝对路径
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W/config/config.py 
+tmp_dir = os.path.dirname(current)# 获取当前文件的父目录
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W/config
+# 获取config目录的父路径
+base_dir = os.path.dirname(tmp_dir) 
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W
+# 定义config目录的路径
+_config_dir = os.path.join(base_dir, "config") # _开头的变量表示私有变量
+# /home/hugo/PycharmProjects/InterAutoTest_W/venv/bin/python /home/hugo/PycharmProjects/InterAutoTest_W/config
+# 或者也可以这样写：
+# _config_dir = base_dir + os.sep + "config"
+# 定义config.yaml文件的路径
+_config_yaml = os.path.join(_config_dir, "config.yaml")
+
+def get_config_path():
+    return _config_dir
+def get_config_file():
+    return _config_yaml
+class ConfigYaml:
+    # 初始化yaml读取配置文件
+    def __init__(self):
+        self.config = YamlReader(get_config_file()).data # self.表示当前类的实例
+    # 获取url
+    def get_conf_url(self):
+        return self.config['BASE']['test']['url']
+if __name__ == '__main__':
+    conf_read = ConfigYaml()
+    print(conf_read.get_conf_url())
+</code></pre>
+<p>这一步做完之后，回到测试用例文件test_mall.py，调用config.py文件中的内容
+例如，原来的登录测试代码如下：</p>
+<pre><code class="language-python">from utils.RequestsUtils import requests_get, requests_post
+
+def login():
+# define the testing data
+
+    url = "http://211.103.136.242:8064/autuorizations/"
+    data ={"username":"python","password":"12345678"}
+    # # sent the POST request
+    # response = requests.post(url=url,json=data)
+    # # print the response
+    # print(response.json())
+
+    # 使用utils封装的方法
+    response = requests_post(url=url,json=data,headers=None)
+    # print the response
+    print(response)
+</code></pre>
+
+<p>后来的代码如下：</p>
+<pre><code class="language-python">from utils.RequestsUtils import requests_get, requests_post
+from config.config import ConfigYaml
+
+# 定义测试的url
+conf_y = ConfigYaml()
+url_path = conf_y.get_conf_url()
+## define login in function
+
+def login():
+    # define the testing data
+
+    url = url_path +"/autuorizations/"
+    # url = "http://211.103.136.242:8064/autuorizations/"
+    data = {"username": "python", "password": "12345678"}
+
+    # 使用utils封装的方法
+    response = requests_post(url=url, json=data, headers=None)
+    # print the response
+    print(response)
+</code></pre>
+:ET
