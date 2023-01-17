@@ -1,5 +1,0 @@
-I"�<h1 id="00-写在前面">00 写在前面</h1>
-<p>如何将ipynb文件转为markdown文件？</p>
-<pre><code class="language-shell">jupyter nbconvert --to markdown note.ipynb
-</code></pre>
-:ET

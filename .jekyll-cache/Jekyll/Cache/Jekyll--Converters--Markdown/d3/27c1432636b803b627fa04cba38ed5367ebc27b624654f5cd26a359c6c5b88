@@ -1,5 +1,0 @@
-I"�<h2 id="1安装pycharm">1.安装Pycharm</h2>
-<p>Pycharm现在也以snap软件包的形式提供，可以使用命令行的方式进行安装</p>
-<pre><code class="language-bash">sudo snap install pycharm-community --classic
-</code></pre>
-:ET
