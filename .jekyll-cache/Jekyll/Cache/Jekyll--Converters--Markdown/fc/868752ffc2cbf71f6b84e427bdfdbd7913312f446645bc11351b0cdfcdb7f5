@@ -1,15 +1,6 @@
----
-layout: post
-title: "bash脚本测试Ubuntu服务器的性能并输出报告"
-date: 2023-01-17
-description: "bash脚本测试Ubuntu服务器的性能并输出报告"
-tag: Linux
----  
+I"�<p>bash脚本测试Ubuntu服务器的性能并输出报告</p>
 
-bash脚本测试Ubuntu服务器的性能并输出报告
-
-```bash
-
+<pre><code class="language-bash">
 #!/bin/bash
 
 # This script is used to test server performance and output report
@@ -53,11 +44,10 @@ echo "----------------"
 echo "Total: $disk_total"
 echo "Used: $disk_used"
 echo ""
-```
+</code></pre>
 
-结果如下：
-```console
-root@hugo-virtual-machine:/opt# sh service.sh 
+<p>结果如下：</p>
+<pre><code class="language-console">root@hugo-virtual-machine:/opt# sh service.sh 
 System Information
 -----------------
 Hostname: hugo-virtual-machine
@@ -78,4 +68,5 @@ Disk Information
 ----------------
 Total: 23G
 Used: 12G
-```
+</code></pre>
+:ET
