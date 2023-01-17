@@ -1,0 +1,11 @@
+I"�<h2 id="软件测试是什么">软件测试是什么</h2>
+<p>软件测试的一个目的是验证你的猜想-猜想软件的内部逻辑，包括第三方的模块、代码包。甚至Python的内建的数据结构是如何运行的。Tasks项目使用名为Task的数据结构，它是用namedtuple工厂函数生成的。Task用于在UI层和API层之间传递信息。</p>
+<pre><code class="language-python">from collections import namedtuple
+Task = namedtuple('Task', ['summary', 'owner', 'done', 'id'])
+# 使用_new_.defaults_创建一个默认的Task实例
+Task.__new__.__defaults__ = (None, None, False, None)
+</code></pre>
+<p>运行pytest时可以指定目录和文件。如果不指定，会搜索当前目录以及其子目录中以test_开头或者已_test结尾的文件。pytest会自动搜索这些文件中的测试用例。<br />
+rootdir: D:\pytest\Tasks\tests, 
+inifile: pytest.ini &amp; tox.ini &amp; setup.cfg</p>
+:ET

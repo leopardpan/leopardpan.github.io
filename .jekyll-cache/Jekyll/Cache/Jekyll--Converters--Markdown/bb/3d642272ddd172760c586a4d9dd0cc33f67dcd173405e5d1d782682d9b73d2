@@ -1,0 +1,209 @@
+I"�<p>主要包括requests库的安装，接口用例编写，requests库的使用，requests库的返回值介绍，requests库的用例编写以及Requests的封装等等。</p>
+
+<h1 id="接口用例编写">接口用例编写</h1>
+<p>实际情况下，每个模块的测试用例写的越详细越好，要根据接口文档进行编写。</p>
+
+<p><img src="/images/posts/2023-01-16-接口自动化测试之requests/接口用例编写例子.jpg" alt="png" /></p>
+
+<h1 id="安装项目依赖">安装项目依赖</h1>
+<p>下载requirements.txt中所需的package:</p>
+<pre><code class="language-commandline">pip install -r requirements.txt
+</code></pre>
+<p>列出已经安装的包裹</p>
+<pre><code class="language-commandline">pip list
+</code></pre>
+
+<p>pip install临时添加镜像源：</p>
+<pre><code class="language-commandline">pip install pytest -i https://pypi.tuna.tsinghua.edu.cn/simple 
+</code></pre>
+<p>国内镜像源包括：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">镜像源</th>
+      <th style="text-align: left">地址</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">清华</td>
+      <td style="text-align: left">https://pypi.tuna.tsinghua.edu.cn/simple</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">阿里</td>
+      <td style="text-align: left">http://mirrors.aliyun.com/pypi/simple/</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">豆瓣</td>
+      <td style="text-align: left">http://pypi.douban.com/simple/</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">百度</td>
+      <td style="text-align: left">https://mirror.baidu.com/pypi/simple</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="requests">Requests</h1>
+<p>Requests是一个Python HTTP库，用于发送HTTP请求。它比urllib更加方便，但是它不支持验证、cookies或者其它复杂的HTTP客户端功能。Requests是一个Apache2 Licensed开源项目，由Kenneth Reitz创建和维护。</p>
+<h2 id="安装">安装</h2>
+<pre><code class="language-commandline">pip install requests
+</code></pre>
+<h2 id="使用">使用</h2>
+<pre><code class="language-python">import requests
+r = requests.get('https://api.github.com/events')
+print(r.text)
+</code></pre>
+<h2 id="请求返回介绍">请求返回介绍</h2>
+<pre><code>r.status_code #响应状态
+r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩
+r.headers #以字典对象存储服务器响应头，若键不存在则返回None
+r.json() #Requests中内置的JSON
+r.url # 获取url
+r.encoding # 编码格式
+r.cookies # 获取cookie
+r.raw #返回原始响应体
+r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行
+r.raise_for_status() #失败请求(非200响应)抛出异常
+</code></pre>
+<h2 id="requests用例编写">Requests用例编写</h2>
+
+<h3 id="编写登录脚本">编写登录脚本</h3>
+<pre><code class="language-python">import requests
+def login():
+    url = "http://172.17.0.139:5004/authorizations/"
+    data = {"username":"python",
+    "password":"12345678"}
+    r= requests.post(url,json=data)
+    print(r.text)
+</code></pre>
+<h3 id="编写个人信息获取脚本">编写个人信息获取脚本</h3>
+
+<pre><code class="language-python">import requests
+def info():
+    url = "http://172.17.0.139:5004/user/"
+    token = "***"
+    headers = {
+                "Authorization": "JWT"+token
+            }
+    r = requests.get(url,headers=headers)
+    print(r.text)
+</code></pre>
+
+<h3 id="编写商品列表脚本">编写商品列表脚本</h3>
+<pre><code class="language-python">import requests
+def goods_list():
+    url = "http://172.17.0.139:5004/categories/115/skus"
+    data = {
+            # "categroy_id":"115",
+            "page":"1",
+            "page_size": "10",
+            "ordering": "create_time",#'create_time', 'price', 'sales'
+            }
+    r = requests.get(url, json=data)
+    print(r.text)
+    print(r.json)
+</code></pre>
+<h3 id="添加到购物车">添加到购物车</h3>
+<pre><code class="language-python">import requests
+def cart():
+    url = "http://172.17.0.139:5004/cart/"
+    data = {
+            "sku_id": "3",
+            "count": "1",
+            "selected": "true",
+            }
+    token = "***"
+    headers = {
+                "Authorization": "JWT"+token
+            }
+    r = requests.post(url, json=data,headers=headers)
+    print(r.text)
+</code></pre>
+<h3 id="保存订单">保存订单</h3>
+<pre><code class="language-python">import requests
+def order():
+    url = "http://172.17.0.139:5004/cart/"
+    token = "***"
+    headers = {
+                "Authorization": "JWT"+token
+                }
+    r = requests.get(url,headers=headers)
+    print(r.text)
+</code></pre>
+
+<h2 id="requests的封装">Requests的封装</h2>
+<h3 id="封装requests_get方法">封装requests_get方法</h3>
+<pre><code class="language-python">#1、创建封装get方法
+def requests_get(url,headers):
+    #2、发送requests get请求
+    r = requests.get(url,headers = headers)
+    #3、获取结果相应内容
+    code = r.status_code
+    try:
+    body = r.json()
+    except Exception as e:
+    body = r.text
+    #4、内容存到字典
+    res = dict()
+    res["code"] = code
+    res["body"] = body
+    #5、字典返回
+    return res
+</code></pre>
+<h3 id="requests_post方法封装">requests_post方法封装</h3>
+<pre><code class="language-python">#1、创建post方法
+def requests_post(url,json=None,headers=None):
+    #2、发送post请求
+    r= requests.post(url,json=json,headers=headers)
+    #3、获取结果内容
+    code = r.status_code
+    try:
+        body = r.json()
+    except Exception as e:
+        body = r.text
+    #4、内容存到字典
+    res = dict()
+    res["code"] = code
+    res["body"] = body
+    #5、字典返回
+    return res
+</code></pre>
+
+<p>可以发现,requests_get和requests_post方法的区别就是请求方式不同,其他都是一样的,所以我们可以把这两个方法合并成一个方法,这样就可以减少代码量,提高代码的复用性.</p>
+<pre><code class="language-python"># 重构
+# 1、创建类
+class Requests:
+# 2、定义公共方法
+# 2.1 增加方法的参数，根据参数来验证请求方式是get还是post
+# 2.2 重复的内容，复制进来即可
+# 后续参数还可以加入data、cookies等
+  def requests_api(self,url,json=None,headers=None,method="get"):
+    # 3、判断请求方式
+    if method == "get":
+      r = requests.get(url,headers=headers)
+    elif method == "post":
+      r = requests.post(url,json=json,headers=headers)
+    # 4、获取结果内容
+    code = r.status_code
+    try:
+      body = r.json()
+    except Exception as e:
+      body = r.text
+    # 5、内容存到字典
+    res = dict()
+    res["code"] = code
+    res["body"] = body
+    # 6、字典返回
+    return res
+### 重构get/post方法
+  def get(self,**kwargs):
+    # 调用公共方法
+    return self.requests_api(url,method="get",**kwargs)
+  def post(self,**kwargs):
+    # 调用公共方法
+    return self.requests_api(url,method="post",**kwargs)
+</code></pre>
+
+:ET
