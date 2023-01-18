@@ -1,0 +1,18 @@
+I"B
+<ul>
+  <li><a href="#引用传递与值传递">引用传递与值传递</a></li>
+  <li><a href="#函数作用域">函数作用域</a>
+    <ul>
+      <li><a href="#python局部变量">Python局部变量</a></li>
+      <li><a href="#python全局变量">Python全局变量</a></li>
+    </ul>
+  </li>
+  <li><a href="#查看变量作用域">查看变量作用域</a>
+    <ul>
+      <li><a href="#globals函数">globals()函数</a></li>
+      <li><a href="#locals函数">locals()函数</a></li>
+      <li><a href="#varobject函数">var(object)函数</a></li>
+    </ul>
+  </li>
+</ul>
+:ET
