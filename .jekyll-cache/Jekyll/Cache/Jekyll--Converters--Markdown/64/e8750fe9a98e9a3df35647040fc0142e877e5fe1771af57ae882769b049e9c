@@ -1,0 +1,56 @@
+I"}<h2 id="高效的函数">高效的函数</h2>
+
+<h3 id="函数是-python-的头等对象">函数是 Python 的头等对象</h3>
+
+<p>Python 程序中的所有数据都是由对象或对象之间的关系来表示的。①字符串、列表和模块等都是对象。Python 中的函数也不例外，同样是对象。</p>
+
+<p>由于 yell 函数是 Python 中的一个对象，因此像任何其他对象一样，也可以将其分配给另一
+个变量：</p>
+
+<pre><code class="language-python">def yell(text):
+    return text.upper()+"!"
+bark = yell # 这一行没有调用函数，而是获取 yell 引用的函数对象，再创建一个指向该对象的名称 bark。
+# 现在调用 bark 就可以执行相同的底层函数对象
+bark('hello') # 'HELLO!'
+</code></pre>
+
+<p>此时，删除 yell 的引用，不会影响 bark 的引用：</p>
+
+<pre><code class="language-python">del yell
+yell('hello') # NameError: name 'yell' is not defined
+bark('hello') # 'HELLO!'
+</code></pre>
+
+<p>Python在创建函数时为每个函数附加了一个用于调试的字符串标识符，使用函数的 <strong>name</strong> 属性可以访问该标识符：</p>
+
+<pre><code class="language-python">bark.__name__ # 'yell'
+</code></pre>
+
+<p>虽然函数的__name__仍然是 yell，但已经无法用这个名称在代码中访问函数对象。名称标识符仅仅用来辅助调试，指向函数的<strong>变量</strong>和函数本身实际上是彼此独立的。</p>
+
+<h3 id="函数可以传递给其他函数">函数可以传递给其他函数</h3>
+
+<p>由于函数是对象，因此可以将其作为参数传递给其他函数。将函数对象作为参数传递给其他函数的功能非常强大，可以用来将程序中的行为抽象出来并传递出去。</p>
+
+<p>能接受其他函数作为参数的函数被称为<strong>高阶函数</strong>。高阶函数是函数式编程风格中必不可少的一部分。</p>
+
+<h2 id="函数式编程">函数式编程</h2>
+
+<p>函数式编程通过在函数中定义表达式和对表达式求值完成计算。它尽量避免由于状态变化和使用可变对象引入复杂性，让程序变得简洁明了。</p>
+
+<p>编程范式并没有统一的划分标准。其中两个范式：函数式编程和命令式编程。</p>
+
+<p>在命令式语言（比如 Python）中，计算的状态是通过不同命名空间中变量的值反映的。变量的值决定计算的当前状态，一条语句通过增加或改变（甚至是删除）变量来改变当前状态。“命令式”语言的每一条语句都是一个通过某种方式改变状态的命令。</p>
+
+<p>有两种方法可以返回一系列值，而不是生成器表达式。</p>
+
+<ul>
+  <li>编写显式 for 循环：for x in some_iter: yield x</li>
+  <li>使用 yield from 语句：yield from some_iter</li>
+</ul>
+
+<h2 id="来源">来源</h2>
+<p>《Python函数式编程第2版》
+《深入理解Python特性》</p>
+
+:ET
