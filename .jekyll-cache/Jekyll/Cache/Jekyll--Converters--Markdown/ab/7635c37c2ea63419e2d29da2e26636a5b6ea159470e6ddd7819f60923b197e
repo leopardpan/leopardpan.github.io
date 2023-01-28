@@ -1,0 +1,253 @@
+I"�$<p>主要包括日志文件介绍以及快速使用，文件封装，日志配置文件重构，日志工具类应用等等内容。</p>
+
+<h1 id="日志文件">日志文件</h1>
+<h2 id="简介">简介</h2>
+<p>logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级/日志保存路径等</p>
+<h2 id="基本使用">基本使用</h2>
+<p>在testcase文件夹下面，新建t_log文件夹，创建log_demo.py文件，这个文件夹用来存储日志有关的测试用例。</p>
+<pre><code class="language-python"># 1. 导入logging
+import logging
+# 2. set the basic information
+logging.basicConfig(level = logging.INFO,format='%(asctime)s-%(levelname)s-%(message)s') 
+# format: 时间-日志等级-日志信息 %括号里面的内容可以自定义
+# level: INFO表示，只有INFO级别的日志才会被输出，如INFO，WARNING，ERROR，CRITICAL
+# 如果是DEBUG级别的日志，就不会被输出
+#3、定义日志名称getlogger
+logger = logging.getLogger("log_demo")
+#4、info,debug
+logger.info("info") # 只有INFO级别的日志才会被输出
+logger.debug("debug") # 不会被输出
+logger.warning("warning") # WARNING级别的日志会被输出
+</code></pre>
+
+<pre><code>执行这段代码，结果如下：
+```console
+2023-01-17 09:28:54,466-INFO-info
+2023-01-17 09:28:54,466-WARNING-warning
+</code></pre>
+
+<h3 id="日志输出到控制台文件指定文件">日志输出到控制台，文件，指定文件</h3>
+<ol>
+  <li>设置logger名称</li>
+  <li>设置logger级别</li>
+  <li>创建handler，用于输出控制台或者写入日志文件</li>
+  <li>设置日志级别</li>
+  <li>定义handler的输出格式</li>
+  <li>给logger添加handler</li>
+</ol>
+
+<p>在testcase文件夹下面的t_log文件夹下面，创建log_file_demo.py文件,输出到控制台.</p>
+
+<pre><code class="language-python"># 输出到控制台
+import logging
+# 1. 设置logger名称
+logger = logging.getLogger("log_file_demo")
+# 2. 设置logger级别,这里设置为INFO，只有INFO级别的日志才会被输出
+logger.setLevel(logging.INFO)
+# 3. 创建handler，用于输出控制台或者写入日志文件
+fh_stream = logging.StreamHandler() # StreamHandler表示输出到控制台
+# 4. 设置日志级别
+fh_stream.setLevel(logging.INFO) 
+# 5. 定义handler的输出格式，这里设置为时间-日志等级-日志信息
+formatter =  logging.Formatter('%(asctime)s %(name)s %(levelname)s')
+fh_stream.setFormatter(formatter)
+# 6. 给logger添加handler，这里添加的是fh_stream,也就是输出到控制台,如果想输出到文件，可以添加fh_file
+logger.addHandler(fh_stream)
+#7、运行输出
+logger.info("this is a info")
+logger.debug("this is a debug")
+logger.warning("this is a warning")
+</code></pre>
+
+<p>在控制台查看输出结果：</p>
+<pre><code class="language-console">2023-01-17 10:04:31,711 log_file_demo INFO
+2023-01-17 10:04:31,711 log_file_demo WARNING
+</code></pre>
+
+<p>输出到文件：</p>
+<pre><code class="language-python">#输出到文件
+import logging
+#1、设置logger名称
+logger = logging.getLogger("log_file_demo")
+#2、设置log级别
+logger.setLevel(logging.INFO)
+#3、创建handler
+#写入文件
+fh_file = logging.FileHandler("./test.log")
+#4、设置日志级别
+fh_file.setLevel(logging.WARNING)
+#5、定义输出格式
+formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s ')
+fh_file.setFormatter(formatter)
+#6、添加handler
+logger.addHandler(fh_file)
+#7、运行输出
+logger.info("this is a info")
+logger.debug("this is a debug")
+logger.warning("this is a warning")
+</code></pre>
+
+<p>结果会输出到同文件目录下的test.log文件中，内容如下：</p>
+<pre><code class="language-console">2023-01-17 10:07:10,826 log_file_demo WARNING this is a warning 
+</code></pre>
+<p>为啥这里只有warning级别的日志被输出到文件中呢？
+虽然日志级别设置为INFO，但是在添加handler的时候，设置了日志级别为WARNING，所以只有WARNING级别的日志会被输出到文件中。</p>
+
+<h4 id="format格式说明">Format格式说明</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">格式</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">%(name)s</td>
+      <td style="text-align: left">Logger的名字</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%(levelno)s</td>
+      <td style="text-align: left">数字形式的日志级别</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%(levelname)s</td>
+      <td style="text-align: left">文本形式的日志级别</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%(pathname)s</td>
+      <td style="text-align: left">调用日志输出函数的模块的完整路径名，可能没有</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%(filename)s</td>
+      <td style="text-align: left">调用日志输出函数的模块的文件名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%(asctime)s</td>
+      <td style="text-align: left">字符串形式的当前时间。默认格式是“2003-07-08 16:49:45,896”。逗号后面的是毫秒</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%(message)s</td>
+      <td style="text-align: left">用户输出的消息</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="日志文件的封装">日志文件的封装</h2>
+
+<ol>
+  <li>封装Log工具类
+在utils文件夹下面创建LogUtil.py文件，封装Log工具类，代码如下：</li>
+</ol>
+
+<pre><code class="language-python"># 创建类
+import logging
+# 定义日志级别关系映射
+# 定义之后，就可以用log_l[self.log_level]去更新原来的self.log_level
+log_l = {
+    "debug":logging.DEBUG,
+     "info":logging.INFO,
+     "warning":logging.WARNING,
+     "error":logging.ERROR
+}
+class Logger:
+# 定义参数
+## 输出文件名称，Loggername,日志级别
+    def __init__(self,log_file,log_name,log_level):
+        self.log_file = log_file
+        self.log_name = log_name
+        self.log_level = log_level
+        # 编写输出控制台或者文件，利用之前写好的log_file_demo.py
+       #1、设置logger名称
+        self.logger = logging.getLogger(self.log_name)
+        #2、设置log级别
+        self.logger.setLevel(log_l[self.log_level])
+        # 首先判断handler是否存在     创建handler
+        if not self.logger.handlers:
+
+         formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s ')
+         # 输出到控制台
+         fh_stream = logging.StreamHandler()
+         fh_stream.setLevel(log_l[self.log_level])
+         fh_stream.setFormatter(formatter)
+     
+         #写入文件
+         fh_file = logging.FileHandler(self.log_file)
+         fh_file.setLevel(log_l[self.log_level])
+         fh_file.setFormatter(formatter)
+         #6、添加handler
+         self.logger.addHandler(fh_file)
+         self.logger.addHandler(fh_stream)
+
+</code></pre>
+<ol>
+  <li>重构配置文件</li>
+</ol>
+
+<p>根据我们封装的LogUtil.py文件，重构配置文件，需要的配置信息包括: log_file,log_lovel</p>
+
+<p>log_name作为参数传入，不写在配置文件中。</p>
+
+<p>打开config文件夹下面的conf.yml文件，修改配置信息，添加如下信息代码如下：</p>
+<pre><code class="language-yaml">BASE:
+  # log
+  log_level: "debug"
+  log_extension: ".log"
+</code></pre>
+
+<p>然后修改config.py文件，添加如下代码(第一步，定义logs文件路径；第二步，获取该Log文件路径；第三步，根据该路经获取日志级别和文件扩展名：</p>
+<pre><code class="language-python"># 定义logs文件路径
+_log_path = base_dir + os.sep + "logs" #下划线开头的变量，表示私有变量
+# 获取该Log文件路径
+def get_log_path():
+    """
+    获取log文件路径
+    """
+    return _log_path
+# 根据该路经获取日志级别和文件扩展名
+def get_conf_log(self):
+    return self.config["BASE"]["log_level"]
+# 获取文件扩展名
+def get_config_log_extension(self):
+    return self.config["BASE"]["log_extension"]
+</code></pre>
+
+<p>测试以下，在config.py文件的if <strong>name</strong> == ‘<strong>main</strong>‘:中执行代码：</p>
+<pre><code class="language-python">if __name__ == '__main__':
+    conf_read = ConfigYaml()
+    # print(conf_read.get_conf_url())
+    print(conf_read.get_conf_log())
+    print(conf_read.get_config_log_extension())
+</code></pre>
+<ol>
+  <li>日志工具应用</li>
+</ol>
+
+<p>在LogUtil.py文件中，首先初始化参数数据，然后对外提供方法，初始化log工具类，提供其他类使用。</p>
+
+<pre><code class="language-python">from config import config
+from config.config import ConfigYaml
+import datetime
+import os
+
+# 初始化参数数据
+# 日志文件路径
+log_path = config.get_log_path()
+# 获取当前时间
+current_time = datetime.datetime.now().strftime("%Y-%m-%d")
+# 获取扩展名
+log_extension = ConfigYaml.get_config_log_extension()
+logfile = os.path.join(log_path+current_time+log_extension)
+# 日志文件级别
+loglevel = ConfigYaml.get_conf_log()
+
+# 2. 对外方法，初始化log工具类，提供其他类使用
+def my_log():
+    return Logger(log_file=logfile,log_name=log_name,log_level=loglevel).logger
+
+if __name__ == "__main__":
+    my_log().debug("this is a bug")
+
+</code></pre>
+:ET
