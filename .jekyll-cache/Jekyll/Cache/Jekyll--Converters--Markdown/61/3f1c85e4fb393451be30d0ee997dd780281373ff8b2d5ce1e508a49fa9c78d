@@ -1,0 +1,346 @@
+I"�,<p>主要包括pytest安装；pytest创建简单的测试用例；pytest基础使用如函数级别的方法和类级别的方法；pytest常见插件如pytest-html将测试结果以html的形式展示出来，pytest-rerunfailures可以进行测试代码的失败重试；pytest的数据参数化，可以实习同样的测试用例函数对多个输入的测试数据的测试；最后是根据pytest运行原则以及pytest.ini指定测试的文件夹，测试函数等对之前的接口模块函数进行重构，进行自动化测试。</p>
+
+<h2 id="pytest安装">pytest安装</h2>
+
+<p>在requirements.txt中添加pytest</p>
+<pre><code>pytest~=4.5.0
+</code></pre>
+
+<p>在项目根目录下执行</p>
+<pre><code class="language-bash">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
+
+<h2 id="pytest使用">pytest使用</h2>
+
+<h3 id="创建简单的测试用例">创建简单的测试用例</h3>
+
+<p>在testcase文件夹下面创建文件夹t_pytest，然后在t_pytest文件夹下创建pytest_demo.py文件，内容如下：</p>
+
+<pre><code class="language-python">
+import pytest
+
+#1、创建简单测试方法
+"""
+1、创建普通方法
+2、使用pytest断言的方法
+"""
+#普通方法
+def func(x):
+    return x+1
+
+#断言的方法
+def test_a():
+    print("---test_a----")
+    assert func(3) == 5  #断言失败
+
+def test_b():
+    print("---test_b----")
+    assert 1 #断言
+
+
+#2、pytest运行
+"""
+1、Pycharm代码直接执行
+2、命令行执行
+"""
+
+#代码直接执行
+if __name__ == "__main__":
+    pytest.main(["pytest_demo.py"])
+</code></pre>
+
+<p>在Pycharm中直接运行pytest_demo.py文件，还可以增加一些参数：</p>
+<pre><code class="language-python">#代码直接执行
+import pytest
+if __name__ == "__main__":
+    pytest.main(["-s","pytest_demo.py"]) # -s参数可以打印print的内容
+</code></pre>
+<p>在命令行中执行代码，操作如下：</p>
+<pre><code class="language-bash"># 进入到项目根目录下
+cd testcase/t_pytest
+# 执行代码
+python pytest_demo.py
+</code></pre>
+<p>测试结果一个通过，一个失败</p>
+
+<pre><code class="language-console">============================= test session starts ==============================
+collecting ... collected 2 items
+
+pytest_demo.py::test_a FAILED                                            [ 50%]---test_a----
+
+testcase/t_pytest/pytest_demo.py:13 (test_a)
+4 != 5
+
+预期:5
+实际:4
+&lt;点击以查看差异&gt;
+
+def test_a():
+        print("---test_a----")
+&gt;       assert func(3) == 5  #断言失败
+E       assert 4 == 5
+E        +  where 4 = func(3)
+
+pytest_demo.py:16: AssertionError
+
+
+
+
+pytest_demo.py::test_b PASSED                                            [100%]---test_b----
+
+
+========================= 1 failed, 1 passed in 0.04s ==========================
+
+进程已结束,退出代码1
+</code></pre>
+
+<h2 id="pytest的基础使用">pytest的基础使用</h2>
+
+<h3 id="函数级别的方法">函数级别的方法</h3>
+
+<p>运行于测试方法的始末，运行一次测试函数会运行一次 setup 和 teardown。</p>
+
+<p>在t_pytest文件夹下创建pytest_func.py文件，内容如下：</p>
+
+<pre><code class="language-python">
+import pytest
+"""
+1、定义类
+2、创建测试方法test开头
+3、创建setup,teardown
+4、运行查看结果
+
+"""
+
+#1、定义类
+class TestFunc:
+    #3、创建setup,teardown
+    def setup(self):
+        print("---setup----")
+
+    def teardown(self):
+        print("---teardown---")
+
+    #2、创建测试方法test开头
+    def test_a(self):
+        print("test_a")
+
+    def test_b(self):
+        print("test_b")
+
+#4、运行查看结果
+if __name__ =="__main__":
+    pytest.main(["-s","pytest_func.py"])
+</code></pre>
+
+<p>返回控制台结果如下：</p>
+
+<pre><code class="language-console">Testing started at 上午10:37 ...
+Launching pytest with arguments /home/hugo/PycharmProjects/InterAutoTest_W/testcase/t_pytest/pytest_func.py --no-header --no-summary -q in /home/hugo/PycharmProjects/InterAutoTest_W/testcase/t_pytest
+
+============================= test session starts ==============================
+collecting ... collected 2 items
+
+pytest_func.py::TestFunc::test_a 
+pytest_func.py::TestFunc::test_b 
+
+======================== 2 passed, 4 warnings in 0.01s =========================
+
+进程已结束,退出代码0
+---setup----
+PASSED                                  [ 50%]test_a
+---teardown---
+---setup----
+PASSED                                  [100%]test_b
+---teardown---
+</code></pre>
+
+<p>我们发现，这里在运行每个测试方法之前都会运行setup方法，运行完每个测试方法之后都会运行teardown方法。</p>
+
+<h3 id="类级别方法">类级别方法</h3>
+
+<p>运行于测试类的始末，在一个测试内只运行一次 setup_class 和 teardown_class，不关心测试类内有多少个测试函数。</p>
+
+<p>在t_pytest文件夹下创建pytest_class.py文件，内容如下：</p>
+
+<pre><code class="language-python">
+import pytest
+"""
+1、定义类
+2、创建测试方法test开头
+3、创建setup_class,teardown_class
+4、运行查看结果
+
+"""
+
+#1定义类
+class TestClass:
+    #3、创建setup_class,teardown_class
+    def setup_class(self):
+        print("---setup_class---")
+
+    def teardown_class(self):
+        print("---teardown_class---")
+
+    #2、创建测试方法test开头
+    def test_a(self):
+        print("test_a")
+
+    def test_b(self):
+        print("test_b")
+
+#4、运行查看结果
+if __name__ =="__main__":
+    pytest.main(["-s","pytest_class.py"])
+</code></pre>
+
+<p>返回信息如下：</p>
+
+<pre><code class="language-console">============================= test session starts ==============================
+collecting ... collected 2 items
+
+pytest_class.py::TestClass::test_a ---setup_class---
+PASSED                                [ 50%]test_a
+
+pytest_class.py::TestClass::test_b PASSED                                [100%]test_b
+---teardown_class---
+
+
+============================== 2 passed in 0.01s ===============================
+
+进程已结束,退出代码0
+</code></pre>
+
+<p>我们发现，无论执行多少个测试方法，setup_class和teardown_class方法只会执行一次。</p>
+
+<h2 id="pytest常用插件">pytest常用插件</h2>
+
+<h3 id="pytest-html">pytest-html</h3>
+
+<p>测试报告插件，可以将测试结果以html的形式展示出来。</p>
+
+<p>安装pytest-html插件，在requirements.txt文件中添加pytest-html，然后在终端中运行pip install -r requirements.txt安装插件。</p>
+
+<p>使用,在配置文件pytest.ini中的命令行参数中增加 –html=用户路径/report.html</p>
+
+<pre><code class="language-console">[pytest]
+addopts = -s --html=../../report/report.html
+</code></pre>
+
+<p>执行之前写好的pytest_demo.py文件，查看生成的测试报告。./../report是回到根目录下，创建一个report文件夹，report.html是生成的测试报告。</p>
+
+<h3 id="失败重试">失败重试</h3>
+
+<p>自动化测试脚本可能会使用到网络，如果网络不好可能最终会使脚本不通过。像这种情况可能并不是脚本本身的问题，仅仅是因为网络忽快忽慢，那么我们可以使用失败重试的插件，当失败后尝试再次运行。一般情况最终成功可以视为成功，但最好进行进行排查时候是脚本问题。</p>
+
+<p>安装方法：在requirements.txt文件中添加pytest-rerunfailures，然后在终端中运行pip install -r requirements.txt安装插件。</p>
+
+<p>使用方法：在配置文件pytest.ini中的命令行参数中增加 –reruns=3,表示失败之后重试3次。重试时，如果脚本通过，那么后续不再重试。</p>
+
+<pre><code class="language-console">[pytest]
+addopts =-s --html=../../report/report.html --reruns 3
+</code></pre>
+
+<p>也可以加reruns-delay参数，表示失败之后重试的间隔时间。</p>
+
+<pre><code class="language-console">[pytest]
+addopts =-s --html=../../report/report.html --reruns 3 --reruns-delay 2
+</code></pre>
+
+<p>除了在pytest.ini中配置，也可以添加mark标记，在测试用例中添加@mark.flaky(reruns=3,reruns_delay=2)，可以只对某个测试用例进行失败重试。
+@mark是装饰器，flaky表示标记。</p>
+
+<h2 id="数据参数化">数据参数化</h2>
+
+<p>应用场景</p>
+
+<p>登录功能都是输入用户名，输入密码，点击登录。但登录的用户名和密码如果想测试多个值是没有办法用普通的操作实现的。数据参数化可以帮我实现这样的效果。</p>
+
+<p>方法名
+pytest.mark.parametrize(argnames,argvalues,indirect=False,ids=None,scope=None)</p>
+
+<p>argnames：参数名</p>
+
+<p>argvalues：参数对应值，类型必须为可迭代类型，一般使用list</p>
+
+<p>indirect：是否对参数值进行间接调用，如果为True，那么参数值必须是函数名，否则报错;</p>
+
+<p>ids：参数值对应的id，如果不指定，那么默认使用参数值，如果指定，那么参数值必须和ids的长度一致，否则报错;</p>
+
+<p>scope：参数值的作用域，可以是function、class、module、session，如果不指定，那么默认为function.</p>
+
+<p>以下是传入单个参数的例子：</p>
+
+<pre><code class="language-python">import pytest
+
+"""
+1、创建类和测试方法
+2、创建数据
+3、创建参数化
+4、运行
+"""
+#1、创建类和测试方法
+class TestDemo:
+    # 2、创建测试数据
+    data_list = ["xiaoming","xiaohong"]
+
+    # 3、参数化
+    @pytest.mark.parametrize("name",data_list)
+    
+    # 1、创建类和测试方法
+    def test_a(self,name):
+        print("test_a")
+        print(name)
+        assert 1
+
+if __name__ == "__main__":
+    pytest.main(["pytest_one.py"])
+</code></pre>
+
+<p>以下是多个参数的例子：多个参数是以元祖的方式传入的，元祖中的每个元素对应一个参数。@pytest.mark.parametrize（（‘param1’,’param2’）,[(value1[0],value1[1]),(value2[0],value2[1])]）</p>
+
+<pre><code class="language-python">import pytest
+
+"""
+1、创建类和测试方法
+2、创建数据
+3、创建参数化
+4、运行
+"""
+#1、创建类和测试方法
+class TestDemo:
+    #2、创建测试数据
+    data_list = [("xiaoming","123456"),("xiaohong","456789")]
+
+    #3、参数化
+    @pytest.mark.parametrize(("name","password"),data_list)
+    def test_a(self,name,password):
+        print("test_a")
+        print(name,password)
+        assert 1
+
+if __name__ == "__main__":
+    pytest.main(["pytest_two.py"])
+</code></pre>
+
+<h2 id="利用pytest来进行接口自动化测试">利用pytest来进行接口自动化测试</h2>
+
+<p>pytest运行原则：在不指定运行目录，运行文件，运行函数等参数的默认情况下，pytest会执行当前目录下所有以test为前缀(test<em>.py)或者以_test结尾(</em>_test.py)的文件中以test开头的测试方法。</p>
+
+<p>因此，我们需要根据默认运行原则，调整py文件命名，函数命名（比如所之前的login():改成test_login():，也就算重构我们之前的五个接口模块。 然后，pytest.main()运行，或者命令行直接pytest运行。</p>
+
+<p>另外，我们还可以通过pytest.ini文件来配置运行参数，比如指定运行文件，运行函数等。</p>
+
+<p>pytest.ini文件内容如下：</p>
+
+<pre><code class="language-python">[pytest]
+# 指定运行路径
+testpaths = ./testcase
+# 指定执行目录下的文件
+python_files = test_*.py
+# 指定执行测试类
+python_classes = Test*
+# 指定执行测试方法
+python_functions = test_*
+</code></pre>
+:ET
