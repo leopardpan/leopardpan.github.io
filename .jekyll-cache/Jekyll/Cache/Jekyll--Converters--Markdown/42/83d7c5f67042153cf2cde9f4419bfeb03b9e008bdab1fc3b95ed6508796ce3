@@ -1,0 +1,328 @@
+I"�0<h1 id="数据驱动的自动化测试">数据驱动的自动化测试</h1>
+
+<h2 id="什么是数据驱动">什么是数据驱动</h2>
+
+<p>数据驱动是指将测试数据与测试代码分离，将测试数据存储在一个独立的文件中，然后在测试代码中读取测试数据，最后将测试数据作为参数传递给测试代码。这样做的好处是，测试数据和测试代码分离，测试数据可以独立于测试代码进行修改，测试代码可以独立于测试数据进行修改，测试数据可以被多个测试用例共享，测试数据可以被多个测试框架共享。</p>
+
+<h2 id="yaml数据驱动">yaml数据驱动</h2>
+
+<p>yaml是一种数据序列化格式，可以用来存储数据，也可以用来存储配置信息。yaml的语法比较简单，可以用来存储简单的数据结构，比如列表、字典、字符串、数字等。</p>
+
+<p>首先，在data文件夹下面创建所需要用到的测试数据文件，比如testlogin.yaml，然后在login_data.yaml文件中存储测试数据，比如：</p>
+
+<pre><code class="language-yaml">
+#登录测试用例
+# ---用来分割不同的测试用例
+---
+#测试用例名称
+"case_name": "登录成功用例"
+#url地址
+"url": "/authorizations/"
+#data
+"data":
+  username: "python"
+  password: "12345678"
+#期望结果
+"expect": '"user_id": 1, "username": "python"'
+---
+#测试用例名称
+"case_name": "登录失败用例"
+#url地址
+"url": "/authorizations/"
+#data
+"data":
+  username: "test123456"
+  password: "111111"
+#期望结果
+"expect": '"user_id": 1, "username": "python"'
+</code></pre>
+
+<p>在这个测试数据着哦功能，当输入用户名和密码正确时，登录成功，当输入用户名和密码错误时，登录失败。</p>
+
+<p>接下来，在测试代码中读取测试数据，执行测试用例，然后将测试数据作为参数传递给测试代码（也即是参数化），比如：在testcases文件夹下面创建test_login.py文件，然后在test_login.py文件中编写测试代码.</p>
+
+<p>这个测试代码应该包括以下内容：</p>
+<ol>
+  <li>获取测试用例内容,包括获取testlogin.yaml文件的文件路径，使用工具类来读取多个文档内容。
+    <ol>
+      <li>获取testlogin.yaml文件的文件路径：在config文件夹下面的Conf.py文件中添加获取testlogin.yaml文件的文件路径的方法，比如：
+        <pre><code class="language-python">import os
+from utils.YamlUtil import YamlReader
+#1、获取项目基本目录
+#获取当前项目的绝对路径
+current = os.path.abspath(__file__)
+#print(current)
+BASE_DIR = os.path.dirname(os.path.dirname(current))
+#定义data目录的路径
+_data_path = BASE_DIR + os.sep + "data" # _开头的变量表示私有变量
+def get_data_path():
+   return _data_path
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li>参数化执行测试用例，使用pytest.mark.parametrize来实现参数化。</li>
+</ol>
+
+<p>test_login.py文件代码如下：</p>
+
+<pre><code class="language-python">from config import Conf
+import os
+from utils.YamlUtil import YamlReader
+import pytest
+from config.Conf import ConfigYaml
+from utils.RequestsUtil import Request
+#1、获取测试用例内容list
+#获取testlogin.yml文件路径
+test_file = os.path.join(Conf.get_data_path(),"testlogin.yml")
+#print(test_file)
+#使用工具类来读取多个文档内容
+data_list = YamlReader(test_file).data_all()
+print(data_list)
+#2、参数化执行测试用例
+
+@pytest.mark.parametrize("login",data_list)
+def test_yaml(login):
+    #初始化url,data
+    url = ConfigYaml().get_conf_url()+login["url"]
+    print("url %s"%url)
+    data = login["data"]
+    print("data %s"%data)
+    #post请求
+    request = Request()
+    res  = request.post(url,json=data)
+    #打印结果
+    print(res)
+
+if __name__ == "__main__":
+    pytest.main(["-s","Test_login.py"])
+
+</code></pre>
+
+<p>到这里，我们已经完成了测试数据的编写，以及测试代码文档的编写，然后我们编写了使用登录的测试例，通过测试用例参数化去获取这个列表，最后我们还需要对得到的结果进行断言，断言的结果是否和我们期望的结果一致，如果一致，那么就是测试通过，如果不一致，那么就是测试失败。</p>
+
+<h2 id="excel数据驱动开发">Excel数据驱动开发</h2>
+
+<p>在上面的测试用例中，我们使用了yaml文件来存储测试数据，但是yaml文件的可读性不是很好，所以我们可以使用Excel来存储测试数据，然后使用python来读取Excel中的数据，然后再进行参数化。</p>
+
+<p>这一节内容主要包括Excel用例设计，Excel读取以及Excel参数化运行等等。</p>
+
+<h3 id="excel用例设计">Excel用例设计</h3>
+
+<p>EXCEL用例设计非常重要，要充分全面的覆盖到测试用例的各个方面，比如：测试用例编号、测试用例名称、测试用例描述、测试用例前置条件、测试用例步骤、测试用例预期结果、测试用例实际结果、测试用例执行结果等等。</p>
+
+<p><img src="/images/posts/2023-01-29-数据驱动的自动化测试1/Excel用例设计.png" alt="Excel用例设计" /></p>
+
+<h3 id="excel读取">Excel读取</h3>
+
+<p>在testcase文件夹下面创建文件夹t_excel，然后在t_excel文件夹下面创建文件excel_demo.py，然后在excel_demo.py文件中编写代码，代码如下：</p>
+
+<p>在这里要注意xlrd读取excel文件的具体报错。</p>
+
+<p>xlrd==1.2.0,报错信息如下:(在新版python3.10中，更新删除了getiterator方法，所以我们老版本的xlrd库调用getiterator方法时会报错。)</p>
+<pre><code class="language-console">AttributeError: 'ElementTree' object has no attribute 'getiterator'
+</code></pre>
+<p>解决方法：
+通过pip show xlrd命令，找出目录python\Lib\site-packages\xlrd下的xlsx.py文件</p>
+
+<p>修改两个地方的的getiterator()改成iter(),下面的两个地方，这里已经把getiterator()改成iter()了</p>
+
+<pre><code class="language-python">#1、导入包，xlrd
+import xlrd
+#2、创建workbook对象,这里先把excel文件拷贝一份到当前目录下
+book = xlrd.open_workbook("testdata.xlsx")
+#3、sheet对象
+#索引
+#sheet = book.sheet_by_index(0)
+#名称
+sheet = book.sheet_by_name("美多商城接口测试")
+#4、获取行数和列数
+rows = sheet.nrows #行数
+cols = sheet.ncols #列数
+#5、读取每行的内容
+for r in range(rows):
+    r_values = sheet.row_values(r)
+    #print(r_values)
+#6、读取每列的内容
+for c in range(cols):
+    c_values = sheet.col_values(c)
+    #print(c_values)
+#7、读取固定列的内容
+print(sheet.cell(1,1))
+
+</code></pre>
+
+<h3 id="excel参数化运行">Excel参数化运行</h3>
+
+<p>在utils文件夹下面创建ExcelUtil.py文件，然后在ExcelUtil.py文件中编写代码，主要用于参数化，代码如下：</p>
+
+<pre><code class="language-python">import os
+import xlrd
+
+#目的：参数化，pytest 需要返回的数据用list来封装
+#自定义异常
+class SheetTypeError:
+    pass
+#1、验证文件是否存在，存在读取，不存在报错
+class ExcelReader:
+    def __init__(self,excel_file,sheet_by):
+        if os.path.exists(excel_file):
+            self.excel_file = excel_file
+            self.sheet_by = sheet_by
+            self._data=list()
+        else:
+            raise  FileNotFoundError("文件不存在")
+#2、读取sheet方式，名称，索引
+    def data(self):
+        #存在不读取，不存在读取
+        if not self._data:
+            workbook = xlrd.open_workbook(self.excel_file)
+            if type(self.sheet_by) not in [str,int]:
+                raise SheetTypeError("请输入Int or Str")
+            elif type(self.sheet_by) == int:
+                sheet = workbook.sheet_by_index(self.sheet_by)
+            elif type(self.sheet_by) == str:
+                sheet = workbook.sheet_by_name(self.sheet_by)
+    #3、读取sheet内容
+            #返回list，元素:字典
+            #格式[{"a":"a1","b":"b1"},{"a":"a2","b":"b2"}]
+            #1.获取首行的信息
+            title = sheet.row_values(0)
+            #2.遍历测试行，与首行组成dict，放在list
+                #1 循环，过滤首行，从1开始
+            for col in range(1,sheet.nrows):
+                col_value = sheet.row_values(col)
+                #2 与首组成字典，放list
+                self._data.append(dict(zip(title, col_value)))
+
+#4、结果返回
+        return self._data
+
+# head = ["a","b"]
+# value1 = ["a1","b1"]
+# value2 =  ["a2","b2"]
+# data_list= list()
+# #zip
+# data_list.append(dict(zip(head,value1)))
+# data_list.append(dict(zip(head,value2)))
+# #print(dict(zip(head,value1)))
+# #print(dict(zip(head,value2)))
+# print(data_list)
+
+if __name__ == "__main__":
+    reader = ExcelReader("../data/testdata.xlsx","美多商城接口测试")
+    print(reader.data())
+</code></pre>
+
+<p>然后，获取是否运行，参数化，并进行结果断言。</p>
+
+<h4 id="获取是否运行">获取是否运行</h4>
+
+<p>获取是否运行：在common文件夹下面创建ExcelData.py文件，然后在ExcelData.py文件中编写代码，代码如下：</p>
+
+<pre><code class="language-python">from utils.ExcelUtil import ExcelReader
+from common.ExcelConfig import DataConfig
+
+class Data:
+    def __init__(self,testcase_file,sheet_name):
+    #1、使用excel工具类，获取结果list
+        #self.reader = ExcelReader("../data/testdata.xlsx","美多商城接口测试")
+        self.reader = ExcelReader(testcase_file,sheet_name)
+        #print(reader.data())
+    #2、列是否运行内容，y
+    def get_run_data(self):
+        """
+        根据是否运行列==y，获取执行测试用例
+        :return:
+        """
+        run_list = list()
+        for line in self.reader.data():
+            if str(line[DataConfig().is_run]).lower() == "y":
+                #print(line)
+        #3、保存要执行结果，放到新的列表。
+                run_list.append(line)
+        print(run_list)
+        return run_list
+
+    def get_case_list(self):
+        """
+        获取全部测试用例
+        :return:
+        """
+        # run_list=list()
+        # for line in self.reader.data():
+        #         run_list.append(line)
+        run_list = [ line for line in self.reader.data()]
+        return run_list
+
+    def get_case_pre(self,pre):
+        #获取全部测试用例
+        #list判断，执行，获取
+        """
+        根据前置条件：从全部测试用例取到测试用例
+        :param pre:
+        :return:
+        """
+        run_list = self.get_case_list()
+        for line in run_list:
+            if pre in dict(line).values():
+                return line
+        return None
+</code></pre>
+
+<p>其中，我们这个是根据是否运行列==y，获取执行测试用例，还需要创建一个ExcelConfig.py文件，来表示对应的映射关系。代码如下：</p>
+
+<pre><code class="language-python">
+
+#定义类
+class DataConfig:
+#定义列属性
+    #用例ID	模块	接口名称	请求URL	前置条件	请求类型	请求参数类型
+    #请求参数	预期结果	实际结果	备注	是否运行	headers	cookies	status_code	数据库验证
+    #用例ID
+    case_id = "用例ID"
+    case_model = "模块"
+    case_name = "接口名称"
+    url = "请求URL"
+    pre_exec = "前置条件"
+    method = "请求类型"
+    params_type = "请求参数类型"
+    params = "请求参数"
+    expect_result = "预期结果"
+    actual_result = "实际结果"
+    is_run = "是否运行"
+    headers = "headers"
+    cookies = "cookies"
+    code = "status_code"
+    db_verify = "数据库验证"
+
+</code></pre>
+
+<p>我们还需要获取testcase_file,sheet_name，所以我们需要修改config文件夹下面的config.yml，代码如下：</p>
+
+<pre><code class="language-yaml">BASE:
+ test:
+  url: "http://211.103.136.242:8064"
+  case_file: "testdata.xlsx"
+  case_sheet: "美多商城接口测试"
+</code></pre>
+
+<p>改完之后，需要修改Conf.py文件，获取测试用例sheet名称,代码如下：</p>
+
+<pre><code class="language-python">class ConfigYaml:
+    #定义方法获取需要信息
+    def get_excel_file(self):
+        """
+        获取测试用例excel名称
+        :return:
+        """
+        return self.config["BASE"]["test"]["case_file"]
+
+    def get_excel_sheet(self):
+        """
+        获取测试用例sheet名称
+        :return:
+        """
+        return self.config["BASE"]["test"]["case_sheet"]
+</code></pre>
+:ET
