@@ -34,9 +34,11 @@ picgo默认上传的服务器是 `SM.MS`服务器，由于你懂得原因，国�
 
 1. 打开github，创建新的public仓库，仓库名称可以设置为[PicgoBed](https://github.com/ChanJeunlam/PicgoBed)。
 2. 进入个人设置页面，选择开发者设置
+
    ![github_setting](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/github_setting.jpg)
 3. 选择Personal access tokens，选择生成新token，此token是图床上传时验证身份用的；添加描述，将repo选上，Expiration选择no expiration
-   1. ![tokens](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/tokens.jpg)
+
+   ![tokens](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/tokens.jpg)
 4. 将生成的字符串保存，**关闭页面后将再也无法看到这个字符串了**
 
 ## PicGO设置
@@ -49,14 +51,14 @@ GitHub设置完之后，我们需要修改picgo插件的设置，把服务器编
  ![picgosetting](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/picgosetting.jpg)
 
 * `current`设置为GitHub
-* `Branch`是我们仓库的分支，默认为 `main`
+* `Branch`是我们仓库的分支，默认为 `master` 或者 `main`
 * `custom url` 使我们图片上传的连接，有两种方式可以使用
   * 原生方式
-    * 使用GitHub原生连接，格式为 `https://raw.githubusercontent.com/[用户名]/[仓库名]/[分支名]`
+    * 使用GitHub原生连接，格式为 `https://raw.githubusercontent.com/用户名/仓库名/分支名`
     * 我的例子 `https://raw.githubusercontent.com/ChanJeunlam/PicgoBed`
     * 原生方式有一个弊端就是，国内速度比较慢
   * cdn加速方式
-    * 格式为 `https://cdn.jsdelivr.net/gh/[用户名]/[仓库名]@[分支名]`
+    * 格式为 `https://cdn.jsdelivr.net/gh/用户名/仓库名@分支名`
     * 我的例子 `https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed`
     * cdn加速的优点是国内访问速度比较快
 * `path`是我们的图片存储在仓库中的路径，比如我的是 `blogs/pictures/`

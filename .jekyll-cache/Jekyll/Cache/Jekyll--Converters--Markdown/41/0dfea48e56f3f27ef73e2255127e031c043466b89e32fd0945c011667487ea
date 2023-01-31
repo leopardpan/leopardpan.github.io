@@ -1,0 +1,239 @@
+I"*"<p>介绍了Allure的安装，环境配置；Allure命令，配置pytest.ini文件，利用allure工具生成html报告；最后，讲了Allure的应用实例。</p>
+
+<h1 id="allure">Allure</h1>
+
+<h2 id="快速入门">快速入门</h2>
+
+<h3 id="安装">安装</h3>
+
+<ol>
+  <li>安装allure的python插件</li>
+</ol>
+
+<pre><code class="language-bash">pip install allure-pytest -i https://mirrors.aliyun.com/pypi/simple/
+</code></pre>
+<p>或者写入requirements.txt</p>
+
+<pre><code class="language-bash">allure-pytest==2.8.18
+</code></pre>
+
+<pre><code class="language-bash">pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+</code></pre>
+
+<ol>
+  <li>allure工具的安装
+allure的python插件（而且生成的不是html格式的文件）依赖allure工具，所以需要先安装allure工具：</li>
+</ol>
+
+<p>allure需要有jdk环境，所以需要先安装jdk。</p>
+
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install openjdk-8-jdk
+sudo update-alternatives --set java /usr/lib/jvm/java-1.8.0-openjdk-amd64/bin/java  # 设置环境变量
+java -version  # 显示版本信息表示安装成功
+</code></pre>
+
+<p>安装Allure</p>
+
+<p>方法一：</p>
+
+<pre><code class="language-bash">sudo apt-get install allure
+# 查看安装路径
+whereis allure
+# allure: /usr/share/allure
+# 配置软连接或者环境变量
+sudo ln -s /usr/share/allure /usr/bin/allure
+</code></pre>
+
+<p>上述安装方式使用allure – version时候报：allure: command can not found ，需要设置allure的bin放到PATH里边。 若whereis allure找不到allure，换下边方式安装。</p>
+
+<p>方法二：</p>
+
+<pre><code class="language-bash">curl -O https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz # 下载allure，文件会下载到当前目录;curl命令是linux下的下载工具，windows下可以用wget
+sudo tar -zxvf allure-commandline-2.13.8.tgz -C /opt/ # -C指定解压目录,这里解压到/opt/allure-2.13.8;一般来说，/opt目录下的文件都是安装软件的.
+sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure  
+allure --version # 查看版本信息以及是否安装成功
+</code></pre>
+
+<p>配置环境（软连接好像不起作用）：</p>
+
+<pre><code class="language-bash">vi /etc/profile
+# 在PATH后追加以下内容，保存
+export PATH=$PATH:/home/allure-2.13.8/bin
+# 使环境变量生效
+source /etc/profile
+</code></pre>
+<p>最后，配置好环境变量后记得重启下ide（很重要）！！！
+其他下载地址：
+https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/</p>
+
+<p>https://github.com/allure-framework/allure2/releases</p>
+
+<h3 id="使用">使用</h3>
+
+<p>首先要配置pytest.ini文件，告诉pytest使用allure插件;添加allure代码；运行；最后，利用allure工具生成html报告。</p>
+
+<pre><code class="language-ini">addopts = -s --alluredir ./report/result
+
+</code></pre>
+
+<p>添加allure代码，在testcase文件夹下面创建t_allure文件夹，新建test_allure.py文件，添加如下代码：</p>
+
+<pre><code class="language-python">import pytest
+def test_1():
+    print("test 1")
+
+def test_2():
+    print("test 2")
+
+def test_3():
+    print("test 3")
+
+if __name__ == '__main__':
+    pytest.main(["allure_demo.py"])
+</code></pre>
+
+<p>运行代码，可以看到在同级report文件夹下生成了result文件夹，里边有allure相关的文件。</p>
+
+<p>最后，点击terminal，在终端中输入allure generate ./report/result -o ./report/html –clean，生成html报告。</p>
+
+<pre><code class="language-bash"># 进入文件夹
+cd testcase/t_allure/
+ls
+# 生成html报告
+allure generate ./report/result -o ./report/html --clean
+# --clean表示清除之前的报告 -o表示输出的文件夹
+# 打开html报告,可以找到index.html文件，也可以使用allure open命令打开
+allure open ./report/html
+</code></pre>
+
+<h2 id="allure-命令">Allure 命令</h2>
+
+<h3 id="title">Title</h3>
+
+<p>可以自定义用例标题，标题默认为函数名。@allure.title(“用例标题”)</p>
+
+<h3 id="description">Description</h3>
+
+<p>可以添加测试的详细说明，支持Markdown语法。@allure.description(“用例详细描述”)</p>
+
+<h3 id="feature">Feature</h3>
+
+<p>功能，可以理解为模块。@allure.feature(“功能模块”)</p>
+
+<h3 id="story">Story</h3>
+
+<p>Story，可以理解为子模块。@allure.story(“子模块”)</p>
+
+<h3 id="severity">Severity</h3>
+
+<p>定义用例的严重程度，分为blocker、critical、normal、minor、trivial。@allure.severity(allure.severity_level.CRITICAL)</p>
+
+<p>默认为normal。</p>
+
+<p>只运行指定级别的用例：</p>
+
+<pre><code class="language-bash">pytest -s -q --alluredir=./report/result --allure-severities=critical # -s表示打印日志 -q表示简化输出;--allure-severities=critical表示只运行严重级别为critical的用例;
+</code></pre>
+
+<h3 id="alluredynamic">Allure.dynamic</h3>
+
+<p>可以动态添加测试步骤，支持Markdown语法,可以使用函数体内的数据动态生成.</p>
+
+<p>@allure.dynamic.description(“测试步骤”)</p>
+
+<pre><code class="language-python">@pytest.mark.parametrize("case",["case1","case2"])
+def test_4(self,case):
+    print(case)
+    allure.dynamic.title(case)
+</code></pre>
+
+<h2 id="allure应用">Allure应用</h2>
+
+<h3 id="allure测试用例">Allure测试用例</h3>
+
+<p>打开data文件集下面的testcase.xlsx文件，查看测试数据的具体信息，根据这个信息，对allure报告的内容进行如下设置：</p>
+<pre><code class="language-console">sheet名称  feature 一级标签
+模块   story 二级标签
+用例ID+接口名称  title
+请求URL  请求类型 期望结果 实际结果描述
+</code></pre>
+
+<pre><code class="language-python">import allure
+#allure
+#sheet名称  feature 一级标签
+allure.dynamic.feature(sheet_name)
+#模块   story 二级标签
+allure.dynamic.story(case_model)
+#用例ID+接口名称  title
+allure.dynamic.title(case_id+case_name)
+#请求URL  请求类型 期望结果 实际结果描述
+desc = "&lt;font color='red'&gt;请求URL: &lt;/font&gt; {}&lt;Br/&gt;" \
+       "&lt;font color='red'&gt;请求类型: &lt;/font&gt;{}&lt;Br/&gt;" \
+       "&lt;font color='red'&gt;期望结果: &lt;/font&gt;{}&lt;Br/&gt;" \
+       "&lt;font color='red'&gt;实际结果: &lt;/font&gt;{}".format(url,method,expect_result,res)
+allure.dynamic.description(desc)
+</code></pre>
+
+<p>设置完成之后，每次都需要allure generate ./report/result -o ./report/html –clean来手动生成html报告，可以使用Subprocess来实现自动化生成报告。</p>
+
+<p>Subprocess是Python中的一个模块，用于创建新进程，连接到它们的输入/输出/错误管道，并获取它们的返回代码。</p>
+
+<p>方法：</p>
+<ul>
+  <li>Subprocess.call()：父进程等待子进程，返回退出信息（returncode，相当于linux exit code）；0表示正常退出，非0表示异常退出。</li>
+  <li>shell=True：表示使用shell执行命令，否则默认使用cmd执行命令;支持命令以字符串的形式传入，不需要再使用列表的形式传入。</li>
+</ul>
+
+<pre><code class="language-python">import subprocess
+
+
+res = subprocess.call(["ls","-l"])
+print(res) # 0代表正常退出，非0代表异常退出
+
+subprocess.call("ls -l",shell=True) # shell=True，支持命令以字符串的形式传入
+</code></pre>
+
+<p>输出结果：</p>
+
+<pre><code class="language-console">总用量 4
+-rw-rw-r-- 1 hugo hugo   0  1月 30 10:00 __init__.py
+-rw-rw-r-- 1 hugo hugo 138  1月 30 10:06 subprocess_demo.py
+0
+总用量 4
+-rw-rw-r-- 1 hugo hugo   0  1月 30 10:00 __init__.py
+-rw-rw-r-- 1 hugo hugo 138  1月 30 10:06 subprocess_demo.py
+
+总用量 4
+-rw-rw-r-- 1 hugo hugo   0  1月 30 10:00 __init__.py
+-rw-rw-r-- 1 hugo hugo 138  1月 30 10:06 subprocess_demo.py
+0
+总用量 4
+-rw-rw-r-- 1 hugo hugo   0  1月 30 10:00 __init__.py
+-rw-rw-r-- 1 hugo hugo 138  1月 30 10:06 subprocess_demo.py
+
+进程已结束,退出代码0
+</code></pre>
+
+<h3 id="allure项目运行">Allure项目运行</h3>
+
+<p>在common文件夹下面的Base.py文件中，添加如下代码：(运用我们上一节学习的subprocess模块)</p>
+
+<pre><code class="language-python">def allure_report(report_path,report_html):
+    """
+    生成allure 报告
+    :param report_path:
+    :param report_html:
+    :return:
+    """
+    #执行命令 allure generate
+    allure_cmd ="allure generate %s -o %s --clean"%(report_path,report_html)
+    #subprocess.call
+    log.info("报告地址")
+    try:
+        subprocess.call(allure_cmd,shell=True)
+    except:
+        log.error("执行用例失败，请检查一下测试环境相关配置")
+        raise
+</code></pre>
+:ET

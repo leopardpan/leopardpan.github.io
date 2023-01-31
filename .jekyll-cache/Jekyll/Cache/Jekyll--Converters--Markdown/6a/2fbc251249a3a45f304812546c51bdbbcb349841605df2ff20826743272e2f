@@ -1,0 +1,30 @@
+I"�
+<ul>
+  <li><a href="#allure">Allure</a>
+    <ul>
+      <li><a href="#快速入门">快速入门</a>
+        <ul>
+          <li><a href="#安装">安装</a></li>
+          <li><a href="#使用">使用</a></li>
+        </ul>
+      </li>
+      <li><a href="#allure-命令">Allure 命令</a>
+        <ul>
+          <li><a href="#title">Title</a></li>
+          <li><a href="#description">Description</a></li>
+          <li><a href="#feature">Feature</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#severity">Severity</a></li>
+          <li><a href="#alluredynamic">Allure.dynamic</a></li>
+        </ul>
+      </li>
+      <li><a href="#allure应用">Allure应用</a>
+        <ul>
+          <li><a href="#allure测试用例">Allure测试用例</a></li>
+          <li><a href="#allure项目运行">Allure项目运行</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET
