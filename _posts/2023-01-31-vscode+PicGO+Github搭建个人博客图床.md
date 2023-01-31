@@ -3,7 +3,7 @@ layout: post
 title: "Markdowm插件Office Viewer介绍以及vscode+PicGO+Github搭建个人博客图床"
 date: 2023-01-31
 description: "Markdowm插件Office Viewer介绍以及vscode+PicGO+Github搭建个人博客图床"
-tag: 自动化测试
+tag: 个人网站
 ---
 Markdowm插件Office Viewer介绍以及vscode+PicGO+Github搭建个人博客图床
 
