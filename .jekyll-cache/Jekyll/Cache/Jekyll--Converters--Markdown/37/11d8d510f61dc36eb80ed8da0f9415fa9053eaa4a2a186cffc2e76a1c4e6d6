@@ -1,0 +1,62 @@
+I",<p>字符串是指由零个或多个字符组成的有限序列，是编程语言中最常用的数据类型之一。字符串是由单引号或双引号括起来的任意文本，比如’abc’，”xyz”等等。请注意，’‘或”“本身只是一种表示方式，不是字符串的一部分，因此，字符串’abc’只有a，b，c这3个字符。</p>
+
+<p>字符串的格式化是指在字符串中插入变量，格式化字符串的输出方式有很多种，比如通过%操作符，format方法，字符串字面值插值等。</p>
+
+<h1 id="通过操作符格式化">通过%操作符格式化</h1>
+
+<pre><code class="language-python">'Hell %s' % 'world'
+</code></pre>
+
+<p>%s 表示字符串，%d 表示整数，%f 表示浮点数，%x 表示十六进制整数。</p>
+
+<pre><code class="language-python"># 多个%操作符
+'we have bought %d apples, %d oranges and %d pears' % (3, 5, 2)
+</code></pre>
+
+<pre><code class="language-python">'we have %d apples, and the apples come from %s' % (3, 'China')
+</code></pre>
+
+<h1 id="通过format方法格式化">通过format方法格式化</h1>
+
+<pre><code class="language-python">'Hello {0},welcome to {1}.'.format('Jack','China') # 0表示第一个参数,1表示第二个参数
+</code></pre>
+
+<p>你还可以用别名以任意顺序替换变量。这是一个非常强大的功能，不必修改传递给格式函数的参数就可以重新排列显示顺序。</p>
+
+<pre><code class="language-python">'Hey {name}, welcome to {country}.'.format(country='China',name='Jack')
+</code></pre>
+
+<h1 id="字符串字面值插值">字符串字面值插值</h1>
+
+<p>Python 3.6 增加了另一种格式化字符串的方法，称为格式化字符串字面值（formatted string literal）。采用这种方法，可以在字符串常量内使用嵌入的 Python 表达式。</p>
+
+<pre><code class="language-python">a = 3
+b = 5
+f'we have bought {a} apples, {b} oranges and now the total fruit number is {a+b}.'
+</code></pre>
+
+<p>本质上，格式化字符串字面值是 Python 解析器的功能：将 f 字符串转换为一系列字符串常量和表达式，然后合并起来构建最终的字符串。</p>
+
+<p>这种方法的优点是，它不仅更简洁，而且还更快。因为它不需要调用任何函数，而是由解析器在编译时处理。</p>
+
+<p>在函数中使用该格式化语法，如下：</p>
+
+<pre><code class="language-python">def greet(name, question):
+    return f"Hello, {name}! How's it {question}?"
+greeter = greet('Jack', 'going')
+print(greeter)
+</code></pre>
+
+<h1 id="模板字符串">模板字符串</h1>
+
+<p>其他字符串格式化技术所用的语法更复杂，因而可能会给程序带来安全漏洞。因此，Python 3.6 引入了一种新的字符串格式化方法，称为模板字符串（template string）。</p>
+
+<pre><code class="language-python">from string import Template
+t = Template('we have bought $num1 apples, $num2 oranges and now the total fruit number is $total.')
+t.substitute(num1=3,num2=5,total=8)
+</code></pre>
+
+<h1 id="来源">来源</h1>
+
+<p>《深入理解Python特性》P022 - P027</p>
+:ET

@@ -1,0 +1,582 @@
+I"o3<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/美多商城接口自动化测试项目框架代码.png" alt="美多商城接口自动化测试项目框架代码" /></p>
+
+<h2 id="utils">utils</h2>
+
+<h3 id="assertutilpy">AssertUtil.py</h3>
+
+<ul>
+  <li>
+    <p>AssertUtil类（断言封装）</p>
+
+    <ul>
+      <li>assert_code方法</li>
+    </ul>
+  </li>
+</ul>
+
+<p>验证返回状态码</p>
+
+<p>assert int(code) == int(expected_code)</p>
+
+<pre><code>- assert_body方法
+</code></pre>
+
+<p>验证返回结果内容相等</p>
+
+<p>assert body == expected_body</p>
+
+<pre><code>- assert_in_body方法
+</code></pre>
+
+<p>验证返回结果是否包含期望的结果</p>
+
+<p>assert expected_body in body</p>
+
+<h3 id="emailutilpy">EmailUtil.py</h3>
+
+<ul>
+  <li>
+    <p>SendEmail类</p>
+
+    <ul>
+      <li>__init__方法：初始化，当类被实例化之后，会获得smtp地址，用户名，密码，接收邮件者，邮件标题，邮件内容，邮件附件等信息</li>
+      <li>
+        <p>send_mail方法</p>
+
+        <ul>
+          <li>初始化邮件信息</li>
+          <li>判断是否有附件</li>
+          <li>MIMEText读取文件、设置内容类型、设置附件头</li>
+          <li>将内容附加到邮件主体中</li>
+          <li>登录邮件服务器</li>
+          <li>发送邮件</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="excelutilpy">ExcelUtil.py</h3>
+
+<ul>
+  <li>
+    <p>ExcelReader类</p>
+
+    <ul>
+      <li>data方法:读取sheet方式，名称，索引</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="logutilpy">LogUtil.py</h3>
+
+<ul>
+  <li>
+    <p>Logger类</p>
+
+    <ul>
+      <li>输出控制台</li>
+      <li>输出文件</li>
+    </ul>
+  </li>
+  <li>
+    <p>my_log：对外方法，初始log工具类，提供其它类使用</p>
+  </li>
+</ul>
+
+<h3 id="mysqlutilpy">MysqlUtil.py</h3>
+
+<p>大多数情况下，我们接口自动化测试需要对数据库进行验证，比如说，我们在注册接口中，需要验证数据库中是否有新增的数据，这时候我们就需要对数据库进行查询，然后对查询结果进行断言。比如说，我们需要对订单接口进行测试，需要验证数据库中的订单数据是否正确，这时候我们就需要对数据库进行查询，然后对查询结果进行断言。</p>
+
+<ul>
+  <li>
+    <p>Mysql封装类</p>
+
+    <ul>
+      <li>__init__方法：链接数据库，光标对象</li>
+      <li>fetchone方法：单个查询</li>
+      <li>fetchall方法：多个查询</li>
+      <li>exec方法：执行数据库，比如说增删查改</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="requestsutilpy">RequestsUtil.py</h3>
+
+<ul>
+  <li>
+    <p>Request类</p>
+
+    <ul>
+      <li>get方法</li>
+      <li>post方法</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="yamlutilpy">YamlUtil.py</h3>
+
+<ul>
+  <li>
+    <p>YamlReader类</p>
+
+    <ul>
+      <li>data方法：单个文件读取</li>
+      <li>data_all方法：多个文档读取</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="config">config</h2>
+
+<h3 id="confpy">Conf.py</h3>
+
+<ul>
+  <li>
+    <p>获取文件/目录路径方法</p>
+
+    <ul>
+      <li>report路径</li>
+      <li>测试数据data路径</li>
+      <li>db_conf.yml路径</li>
+      <li>
+        <p>config目录的路径</p>
+
+        <ul>
+          <li>conf.yml文件的路径</li>
+        </ul>
+      </li>
+      <li>Log文件路径</li>
+    </ul>
+  </li>
+  <li>
+    <p>ConfigYaml类</p>
+
+    <ul>
+      <li>get_excel_file：获取测试用例excel名称方法</li>
+      <li>get_excel_sheet：获取测试用例sheet名称方法</li>
+      <li>get_conf_url：获取接口地址方法</li>
+      <li>get_conf_log：获取日志级别方法</li>
+      <li>get_conf_log_extension：获取文件扩展名方法</li>
+      <li>get_db_conf_info：根据db_alias获取该名称下的数据库信息方法</li>
+      <li>get_email_info：获取邮件配置相关信息</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="confyml">conf.yml</h3>
+
+<ul>
+  <li>
+    <p>BASE</p>
+
+    <ul>
+      <li>
+        <p>log_level</p>
+
+        <ul>
+          <li>debug：默认</li>
+          <li>info</li>
+          <li>warning</li>
+          <li>error</li>
+        </ul>
+      </li>
+      <li>log_extension</li>
+      <li>
+        <p>test</p>
+
+        <ul>
+          <li>url</li>
+          <li>cae_file</li>
+          <li>case_sheet</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>email</p>
+
+    <ul>
+      <li>smtpserver</li>
+      <li>username</li>
+      <li>password</li>
+      <li>receiver</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="db_confyml">db_conf.yml</h3>
+
+<ul>
+  <li>
+    <p>dh_1</p>
+
+    <ul>
+      <li>dh_host</li>
+      <li>dh_user</li>
+      <li>dh_password</li>
+      <li>dh_name</li>
+      <li>dh_charset</li>
+      <li>dh_port</li>
+    </ul>
+  </li>
+  <li>
+    <p>dh_2</p>
+
+    <ul>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>
+    <p>dh_3</p>
+
+    <ul>
+      <li>…</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="common">common</h2>
+
+<h3 id="basepy">Base.py</h3>
+
+<ul>
+  <li>init_db方法：初始数据化信息，初始化mysql对象</li>
+  <li>assert_db方法：数据库的结果与接口返回的结果验证</li>
+  <li>json_parse方法：格式化字符，转换json</li>
+  <li>res_find方法：查询符合’${(.*)}$‘的所有字符串</li>
+  <li>res_sub方法：替换字符串</li>
+  <li>params_find方法：验证请求中是否有${}$需要结果关联</li>
+  <li>
+    <p>allure_report方法：生成allure 报告</p>
+
+    <ul>
+      <li>#执行命令 allure generate
+allure_cmd =”allure generate %s -o %s –clean”%(report_path,report_html)</li>
+      <li>#subprocess.call
+subprocess.call(allure_cmd,shell=True)</li>
+    </ul>
+  </li>
+  <li>
+    <p>send_mail方法</p>
+
+    <ul>
+      <li>使用ConfigYaml().get_email_info()获得email信息</li>
+      <li>使用SendEmail类的send_mail方法发送邮件</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="excelconfigpy">ExcelConfig.py</h3>
+
+<ul>
+  <li>
+    <p>DataConfig类</p>
+
+    <ul>
+      <li>包括用例ID，模块，接口名称，请求URL，前置条件，请求类型，请求参数类型，请求参数	预期结果，实际结果，备注，是否运行，headers，cookies，status_code，数据库验证等等</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exceldatapy">ExcelData.py</h3>
+
+<ul>
+  <li>
+    <p>Data类</p>
+
+    <ul>
+      <li>get_run_data方法：
+获取全部测试用例</li>
+      <li>get_run_data方法：
+根据是否运行列==y，获取执行测试用例</li>
+      <li>get_case_pre方法：
+根据前置条件：从全部测试用例取到测试用例</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="data">data</h2>
+
+<h3 id="testdataxlsx">testdata.xlsx</h3>
+
+<ul>
+  <li>
+    <p>登录</p>
+
+    <ul>
+      <li>请求方式：POST/authorizations</li>
+      <li>
+        <p>请求参数：1. username 2. password
+返回数据：1. username 2. user_id 3. token(身份认证凭据）</p>
+
+        <ul>
+          <li>
+            <p>空白</p>
+
+            <ul>
+              <li>无效数据。期待为字典类型</li>
+            </ul>
+          </li>
+          <li>
+            <p>{“username”:””,”password”:”12345678”}</p>
+
+            <ul>
+              <li>username’: [‘该字段不能为空。’]</li>
+            </ul>
+          </li>
+          <li>
+            <p>{“username”:””,”password”:””}</p>
+
+            <ul>
+              <li>password’: [‘该字段不能为空。’]</li>
+            </ul>
+          </li>
+          <li>
+            <p>{“username”:”python”,”password”:”12345678”}</p>
+
+            <ul>
+              <li>user_id’: 1, ‘username’: ‘python’</li>
+            </ul>
+          </li>
+          <li>
+            <p>{“username”:”python”,”password”:”test123”}</p>
+
+            <ul>
+              <li>无法使用提供的认证信息登录</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>用户中心个人信息</p>
+
+    <ul>
+      <li>请求方式： GET /user/</li>
+      <li>
+        <p>返回数据：id username mobile email email_active</p>
+
+        <ul>
+          <li>身份认证信息未提供</li>
+          <li>id’: 1, ‘username’: ‘python’, ‘mobile’: ‘17701397029’, ‘email’: ‘952673638@qq.com’</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>获取商品列表数据</p>
+
+    <ul>
+      <li>请求方式： GET <code>/categories/(?P&lt;category_id&gt;\d+)/skus?page=xxx&amp;page_size=xxx&amp;ordering=xxx</code></li>
+      <li>请求参数：categroy_id,page,page_size,ordering</li>
+      <li>返回参数：id name price default_image_url(默认图片） comments</li>
+    </ul>
+  </li>
+  <li>
+    <p>添加到购物车</p>
+
+    <ul>
+      <li>请求方式 ： POST /cart/</li>
+      <li>请求参数：sku_id(商品sku id) count(数量）selected(是否勾选，默认勾选）</li>
+      <li>返回数据：sku_id count selected</li>
+    </ul>
+  </li>
+  <li>
+    <p>保存订单</p>
+
+    <ul>
+      <li>请求方式 ： POST /orders/</li>
+      <li>请求参数：address pay_method</li>
+      <li>返回数据：order_id 订单编号</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="testloginyml">testlogin.yml</h3>
+
+<ul>
+  <li>case_name:测试用例名称</li>
+  <li>“url”: “/authorizations/”</li>
+  <li>
+    <p>data</p>
+
+    <ul>
+      <li>username</li>
+      <li>password</li>
+    </ul>
+  </li>
+  <li>expect: 期望结果</li>
+</ul>
+
+<h2 id="logs">logs</h2>
+
+<h3 id="日志文件名称">日志文件名称</h3>
+
+<p>日志文件名称= logs目录 + 当前时间+扩展名</p>
+
+<h3 id="日志文件内容">日志文件内容</h3>
+
+<p>’%(asctime)s %(name)s %(levelname)s %(message)s ‘</p>
+
+<h2 id="report">report</h2>
+
+<h3 id="reporthtml">report.html</h3>
+
+<h3 id="result">result</h3>
+
+<ul>
+  <li>report.html</li>
+</ul>
+
+<h2 id="run-and-requirement">run and requirement</h2>
+
+<h3 id="pytestini">pytest.ini</h3>
+
+<ul>
+  <li>addopts ：报告生成地址</li>
+  <li>testpaths = testcase # 测试路径：testcase文件夹</li>
+  <li>python_files = test_*.py # testcase文件夹下面test开头的py文件</li>
+  <li>python_classes = Test_* # Test开头的类</li>
+  <li>python_functions = test_* # test开头的函数</li>
+</ul>
+
+<h3 id="requirementstxt">requirements.txt</h3>
+
+<ul>
+  <li>pip install pipreqs # 安装pipreqs</li>
+  <li>pipreqs ./ # 生成requirements.txt</li>
+  <li>pip install -r requirements.txt # 安装项目依赖的包</li>
+</ul>
+
+<h3 id="runpy执行测试用例">run.py执行测试用例</h3>
+
+<ul>
+  <li>report_path
+report_html_path
+pytest.main([“-s”,”–alluredir”,report_path])
+Base.send_mail()</li>
+</ul>
+
+<h2 id="testcase">testcase</h2>
+
+<h3 id="t_log">t_log</h3>
+
+<ul>
+  <li>log_demo.py:设置配置信息;定义日志名称getlogger;设置日志级别</li>
+  <li>log_file_demo.py：设置log级别，handler,日志级别,输出格式，将日志等写入文件</li>
+</ul>
+
+<h3 id="t_allure">t_allure</h3>
+
+<ul>
+  <li>
+    <p>allure_demo.py</p>
+
+    <ul>
+      <li>@allure.feature一级标签</li>
+      <li>@allure.title测试用例标题</li>
+      <li>@allure.description执行测试用例结果的描述</li>
+      <li>@allure.story二级标签</li>
+      <li>allure.dynamic多个输入结果</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="t_pytest">t_pytest</h3>
+
+<ul>
+  <li>pytest_assert.py断言测试</li>
+  <li>
+    <p>pytest_class.py</p>
+
+    <ul>
+      <li>setup_class在类中所有方法执行前执行</li>
+      <li>teardown_class在类中所有方法执行后执行</li>
+    </ul>
+  </li>
+  <li>
+    <p>pytest_demo.py</p>
+
+    <ul>
+      <li>断言的方法</li>
+      <li>@pytest.mark.flaky(reruns=3,reruns_delay=2) #失败重跑3次，每次间隔2秒
+flaky插件表示失败重跑</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="t_excel">t_excel</h3>
+
+<ul>
+  <li>excel_demo.py：获取testdata.xlsx行列信息</li>
+</ul>
+
+<h3 id="t_yml">t_yml</h3>
+
+<ul>
+  <li>
+    <p>yaml_demo.py</p>
+
+    <ul>
+      <li>yaml.safe_load：使用yaml读取文件</li>
+      <li>yaml.safe_load_all： 读取多个文档</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="t_subprocess">t_subprocess</h3>
+
+<ul>
+  <li>
+    <p>subprocess_demo.py</p>
+
+    <ul>
+      <li>shell=True 会调用shell</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="test_loginpy">test_login.py</h3>
+
+<ul>
+  <li>获取测试用例内容list
+“case_name”: “登录成功用例”
+“case_name”: “登录失败用例”</li>
+  <li>参数化执行测试用例</li>
+</ul>
+
+<h3 id="test_excel_casepy">test_excel_case.py</h3>
+
+<ul>
+  <li>
+    <p>TestExcel类</p>
+
+    <ul>
+      <li>run_api方法发送请求API</li>
+      <li>run_pre方法初始化数据</li>
+      <li>
+        <p>test_run方法</p>
+
+        <ul>
+          <li>验证前置条件</li>
+          <li>找到执行用例</li>
+          <li>allure创建执行报告</li>
+          <li>断言验证</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="test_mallpy">test_Mall.py</h3>
+
+<ul>
+  <li>test_login方法：登录测试</li>
+  <li>test_info方法：个人信息</li>
+  <li>goods_list方法：商品列表数据</li>
+  <li>cart方法：添加购物车</li>
+  <li>order方法：保存购物车</li>
+</ul>
+:ET

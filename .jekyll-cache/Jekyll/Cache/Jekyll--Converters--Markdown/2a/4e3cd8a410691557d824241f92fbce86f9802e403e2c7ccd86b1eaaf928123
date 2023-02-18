@@ -1,0 +1,89 @@
+I"�<h1 id="jmeter安装">JMeter安装</h1>
+
+<h2 id="安装java">安装Java</h2>
+
+<p>JMeter是基于Java开发的，所以需要先安装Java环境，包括JDK,JAVA开发工具包和JRE，Java运行环境。JDK是Java开发工具包，包含了Java的开发工具，如：Java编译器、Java文档生成器、Java调试器等。JDK是Java开发的基础，JRE是Java运行的基础，JVM是Java运行的平台。</p>
+
+<p>下载地址：<a href="https://www.oracle.com/cn/java/technologies/downloads/#java16">Java 19 and Java 17 available now
+</a></p>
+
+<p>下载选择Linux x64版本（x64 Compressed Archive），下载完成后，解压到指定目录，如：/usr/local</p>
+
+<pre><code class="language-bash">sudo tar -zxvf jdk-19_linux-x64_bin.tar.gz -C /usr/local # -C 指定解压目录
+</code></pre>
+
+<h3 id="修改环境变量">修改环境变量</h3>
+
+<pre><code class="language-bash">sudo vim /etc/profile
+</code></pre>
+
+<p>在/etc/profile文件末尾添加以下内容：</p>
+
+<pre><code class="language-bash">JAVA_HOME=/usr/local/jdk-19.0.2 # JDK安装目录
+CLASSPATH=.:$JAVA_HOME/lib.tools.jar # 这个变量设置的目的是为了程序能找到相应的被执行的".class"文件
+PATH=$PATH:$JAVA_HOME/bin # BIN是JDK的可执行文件目录
+export JAVA_HOME CLASSPATH PATH
+</code></pre>
+
+<p>重新加载/etc/profile配置文件</p>
+
+<pre><code class="language-bash">source /etc/profile
+</code></pre>
+
+<h3 id="验证java安装">验证Java安装</h3>
+
+<pre><code class="language-bash">java -version #
+</code></pre>
+
+<pre><code class="language-bash">javac -version 
+</code></pre>
+
+<h2 id="安装jmeter">安装JMeter</h2>
+
+<p><a href="https://jmeter.apache.org/download_jmeter.cgi">Apache JMeter 5.5安装地址</a>,选择Binaries中的apache-jmeter-5.5.tgz下载。</p>
+
+<p>如果觉得速度太慢，可以切换到国内的<a href="http://mirrors.aliyun.com/apache/jmeter/binaries/?spm=a2c6h.25603864.0.0.5da369a5TPLRdD">阿里云镜像</a>下载</p>
+
+<p>解压缩</p>
+
+<pre><code class="language-bash">tar -zxvf apache-jmeter-5.5.tgz
+</code></pre>
+
+<h3 id="配置jmeter环境变量">配置JMeter环境变量</h3>
+
+<pre><code class="language-bash">sudo vim /etc/profile
+</code></pre>
+
+<p>在/etc/profile文件末尾添加以下内容：</p>
+
+<pre><code class="language-bash">export JMETER_HOME=/usr/local/apache-jmeter-5.5 # JMeter安装目录
+export PATH=$JMETER_HOME/bin:$PATH
+</code></pre>
+
+<p>重新加载/etc/profile配置文件</p>
+
+<pre><code class="language-bash">source /etc/profile
+</code></pre>
+
+<h3 id="验证jmeter安装">验证JMeter安装</h3>
+
+<pre><code class="language-bash">jmeter -v
+</code></pre>
+
+<p>运行JMeter</p>
+
+<pre><code class="language-bash">jmeter
+</code></pre>
+
+<h1 id="jmeter入门">JMeter入门</h1>
+
+<h2 id="设置">设置</h2>
+
+<p>修改语言为中文，如下图所示，打开options，选择choose Language，选择Chinese(simplified)
+<img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230212140228.png" alt="修改语言为中文" /></p>
+
+<p>防止中文乱码，打开jmeter.properties文件，(位于apache-jmeter-5.5/bin目录下)，修改以下内容：</p>
+
+<pre><code class="language-bash">sampleresult.default.encoding=UTF-8
+</code></pre>
+:ET
