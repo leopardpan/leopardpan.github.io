@@ -1,0 +1,11 @@
+I"z
+<ul>
+  <li><a href="#字符串转换每个类都需要__repr__">字符串转换（每个类都需要__repr__）</a>
+    <ul>
+      <li><a href="#__repr__和__str__的区别">__repr__和__str__的区别</a></li>
+      <li><a href="#为什么每个类都需要__repr__">为什么每个类都需要__repr__</a></li>
+    </ul>
+  </li>
+  <li><a href="#来源">来源</a></li>
+</ul>
+:ET
