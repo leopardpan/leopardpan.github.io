@@ -60,3 +60,11 @@ flatpak search obs
 flatpak install <app id>
 flatpak run <app id>
 ```
+
+### 查看安装结果
+
+```bash
+flatpak list
+```
+
+![已经安装的应用](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230218164328.png)
