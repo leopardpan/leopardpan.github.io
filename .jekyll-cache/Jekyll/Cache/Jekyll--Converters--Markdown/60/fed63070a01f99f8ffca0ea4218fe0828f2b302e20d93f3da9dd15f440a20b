@@ -1,0 +1,25 @@
+I"d
+<ul>
+  <li><a href="#1-问题描述">1. 问题描述</a></li>
+  <li><a href="#2-技术背景">2. 技术背景</a></li>
+  <li><a href="#数据处理流程">数据处理流程</a>
+    <ul>
+      <li><a href="#导入包">导入包</a></li>
+      <li><a href="#定义混淆矩阵可视化函数">定义混淆矩阵可视化函数</a></li>
+      <li><a href="#查看数据">查看数据</a></li>
+      <li><a href="#kurtosis">Kurtosis</a></li>
+      <li><a href="#模型训练">模型训练</a>
+        <ul>
+          <li><a href="#准备模型">准备模型</a></li>
+          <li><a href="#训练模型">训练模型</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#附录">附录</a>
+    <ul>
+      <li><a href="#深度学习iouaccuracyprecisionrecall区别">深度学习：IoU、Accuracy、Precision、Recall区别</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

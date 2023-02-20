@@ -1,0 +1,140 @@
+I"W<p>主要包括使用一维卷积神经网络(1D CNN)对安装在远程风机的高速轴承中的现场传感器采集到的时间序列数据通过短时傅里叶变化之后得到的频谱峰度（Kurtosis Spectogram）进行分类，得到每个样品的类别：中等寿命级（预期寿命大于15天的轴承——状态良好）以及短寿命轴承（预期寿命小于15天的轴承——状态不良）。</p>
+
+<p><a href="https://www.kaggle.com/code/luishpinto/wind-turbine-high-speed-bearing-prognosis">原文链接：Wind Turbine High Speed Bearing Prognosis Kaggle</a></p>
+
+<h1 id="1-问题描述">1. 问题描述</h1>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230220141757.png" alt="轴承寿命预测" /></p>
+
+<p>本文展示了使用振动监测传感器的原始数据来预测轴承的RUL（剩余使用寿命）的新方法，这种方法也可以用于其他类型的机器元件，如齿轮、联轴器等剩余寿命的预测。</p>
+
+<p>本例中使用的数据是由安装在一个远程风力涡轮机的高速轴承上的现场传感器记录的。
+该轴承是齿轮箱的一部分，负责转子和发电机之间的耦合，特别是在高速轴上（发电机一侧）。</p>
+
+<p>该数据可以通过以下方式访问：</p>
+
+<ol>
+  <li><a href="https://github.com/mathworks/WindTurbineHighSpeedBearingPrognosis-Data">WindTurbineHighSpeedBearingPrognosis-Data</a></li>
+</ol>
+
+<p>记录的变量是传感器在30天内测得的加速度（单位：g），每天6秒。</p>
+
+<h1 id="2-技术背景">2. 技术背景</h1>
+
+<p>该方法是基于对50个样本中的每个样本的Kurtosis Spectogram（频谱峰度）的计算，并使用1D-CNN–一维卷积神经网络将每个样本划分为两个RUL等级。中等预期寿命类，代表轴承的预期寿命大于15天（状况良好）。</p>
+
+<ol>
+  <li>中等预期寿命的类别：寿命大于15天（状况良好）。</li>
+  <li>短预期寿命类别，代表轴承的寿命期望值小于15天（状况不佳）。</li>
+</ol>
+
+<p>基于这个假设，寿命最短的15个被标记为短寿命类，而所有剩余的被标记为中寿命类。</p>
+
+<h1 id="数据处理流程">数据处理流程</h1>
+
+<h2 id="导入包">导入包</h2>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+import matplotlib
+matplotlib.rcParams['mathtext.fontset'] = 'stix' 
+matplotlib.rcParams['font.family'] = 'sans-serif'
+matplotlib.rcParams['font.size'] = 10
+
+from scipy.io import loadmat # scipy加载mat文件
+from scipy.signal import stft # scipy的短时傅里叶变换
+from scipy.stats import kurtosis # kurtosis表示峰度，峰度是统计学中的一个概念，用来描述某个分布的峰值的陡峭程度
+
+from mpl_toolkits.mplot3d import Axes3D
+
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
+
+from tensorflow.keras.models import *
+from tensorflow.keras.layers import *
+from tensorflow.keras.utils import *
+</code></pre>
+
+<h2 id="定义混淆矩阵可视化函数">定义混淆矩阵可视化函数</h2>
+
+<pre><code class="language-python">def plotConfusionMatrix(dtrue,dpred,classes,\
+                        cmap = plt.cm.Blues,bsize = 1.0): # 混淆矩阵可视化函数,dtrue表示真实值,dpred表示预测值,classes表示类别,cmap表示颜色,bsize表示图像大小
+  
+    cm = confusion_matrix(dtrue,dpred,normalize = 'true') # 混淆矩阵,normalize = 'true'表示归一化
+  
+    fig,ax = plt.subplots(figsize = (np.shape(classes)[0] * 1.25 * bsize,\
+                                     np.shape(classes)[0] * 1.25 * bsize))
+  
+    im = ax.imshow(cm,interpolation = 'nearest',cmap = cmap) # interpolation = 'nearest'表示插值方式,nearest表示最近邻插值,cm表示混淆矩阵,cmap表示颜色
+  
+    ax.set(xticks = np.arange(cm.shape[1]),\
+           yticks = np.arange(cm.shape[0]),\
+           xticklabels = classes,\
+           yticklabels = classes,\
+           ylabel = 'True Efficiency',\
+           xlabel = 'Predicted Efficiency')
+  
+    plt.setp(ax.get_xticklabels(),rotation = 90,ha = 'right',\
+             rotation_mode = 'anchor') # ha表示水平对齐方式,rotation_mode表示旋转模式，anchor表示锚点;setp表示设置属性
+
+    fmt = '.2f' # 保留两位小数
+
+    thresh = cm.max() / 2.0 
+  
+    for i in range(cm.shape[0]):
+        for j in range(cm.shape[1]):
+            ax.text(j,i,format(cm[i,j],fmt),ha = 'center',va = 'center',\
+                    color = 'white' if cm[i,j] &gt; thresh else 'black') # ha表示水平对齐方式,va表示垂直对齐方式,j表示列,i表示行
+  
+    fig.tight_layout()
+  
+    return ax
+</code></pre>
+
+<h2 id="数据维度">数据维度</h2>
+
+<p>扫描频率为97656HZ，采样的总共时长为6s，所以采样点的个数为</p>
+
+<pre><code class="language-python">fname = !ls './input/data'
+fname = np.asarray(fname)
+
+df = []
+
+for i in fname:
+    df.append(loadmat('./input/data/' + i)['vibration'].flatten())# loadmat表示加载mat文件,flatten表示降维
+    
+df = np.asarray(df) # 转换为数组
+
+df.shape[0]
+
+</code></pre>
+
+<p>输出结果为：</p>
+
+<pre><code class="language-console">50 # 表示样本数量
+</code></pre>
+
+<p>查看采样频率</p>
+
+<pre><code class="language-python">fs = int(df.shape[1] / 6.0) # 采样频率
+t = np.linspace(0.0,6.0,df.shape[1]) # df.shape[1]表示df的第二维度的长度,即采样点数；t表示一个周期内，每个采样点的时间;
+
+print('Scan frequency: {:,d} Hz'.format(fs)) # {:,d}表示以逗号分隔的十进制整数,scan frequency表示扫描频率
+</code></pre>
+
+<p>输出结果为：</p>
+<pre><code class="language-console">Scan frequency: 97,656 Hz
+</code></pre>
+
+<p>下图显示了加速度的测量值（单位：g）–正如可以注意到的那样，加速度的振幅在时域上变化明显。</p>
+
+<pre><code class="language-python">plt.subplots(figsize = (12.0,6.0))
+for i in range(df.shape[0]):
+    plt.plot(t + i * 6.0,df[i],color = 'black',lw = 0.25) 
+
+plt.xlabel('Time (in s): sample = 50 days in total, 6 seconds per day')
+plt.ylabel('Acceleration (in g)')    
+plt.show()
+</code></pre>
+:ET
