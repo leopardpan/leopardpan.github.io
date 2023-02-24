@@ -1,0 +1,199 @@
+I"� <p>libpython3.7m.so.1.0: /usr/local/lib/libpython3.7m.so.1.0</p>
+
+<h1 id="安装-mysql">安装 MySQL</h1>
+
+<pre><code class="language-bash">sudo apt update
+sudo apt install mysql-server
+</code></pre>
+
+<h1 id="查看默认用户名和密码">查看默认用户名和密码</h1>
+
+<p>新版的MySQL安装后，默认用户名不是root，为了方便，一般我们需要修改成我们想要的用户名和密码。进入配置文件：</p>
+
+<pre><code class="language-bash">vim /etc/mysql/debian.cnf 
+</code></pre>
+
+<p>结果如下：</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224080255.png" alt="debian.cnf结果" /></p>
+
+<p>默认的密码为：</p>
+
+<pre><code class="language-console">user     = debian-sys-maint
+password = VDgQcUjzyfPfgxbA
+</code></pre>
+
+<h1 id="登录数据库并修改用户名和密码">登录数据库并修改用户名和密码</h1>
+
+<pre><code class="language-bash">mysql -udebian-sys-maint -p
+</code></pre>
+
+<p>查看mysql中默认数据库：（记得sql结尾要加分号）</p>
+
+<pre><code class="language-sql">show databases;
+</code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224080909.png" alt="show databases results" /></p>
+
+<p>使用数据库mysql:</p>
+
+<pre><code class="language-sql">use mysql;
+</code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224081258.png" alt="use mysql results" /></p>
+
+<p>将root密码设置为空：</p>
+
+<pre><code class="language-sql">update user set authentication_string='' where user='root'; 
+</code></pre>
+
+<p>清空root用户默认的密码：</p>
+
+<pre><code class="language-mysql">select user,authentication_string from user where user='root';
+</code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224082514.png" alt="清空root用户默认的密码" /></p>
+
+<p>为root设置密码：ALTER user</p>
+
+<pre><code class="language-sql">ALTER user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+</code></pre>
+
+<p>查看设置root用户和密码：</p>
+
+<pre><code class="language-sql">select user,authentication_string from user where user='root';
+</code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224083500.png" alt="查看设置root用户和密码" /></p>
+
+<p>退出SQL:</p>
+
+<pre><code class="language-sql">quit;
+</code></pre>
+
+<p>在mysql8.0之后的版本中，password函数已被取消，加密方式不再使用mysql_native_password，换成了caching_sha2_password.</p>
+
+<p>原本的sql语句为：</p>
+
+<pre><code class="language-sql">UPDATE user SET authentication_string=password("密码") WHERE user="root";
+1
+</code></pre>
+
+<p>对应的写法可以改为：</p>
+
+<pre><code class="language-sql">UPDATE user SET authentication_string=SHA1("密码") WHERE user="root";
+</code></pre>
+
+<h1 id="配置mysql远程登陆">配置MySQL远程登陆</h1>
+
+<pre><code class="language-shell">#修改配置文件，注释掉 bind-address = 127.0.0.1
+$ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# 保存退出，然后进入mysql服务，执行授权命令：(输入密码123456)
+$ mysql -uroot -p
+</code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224084410.png" alt="授权命令" /></p>
+
+<p>localhost即本地主机的域名，如同：www.baidu.com ，也是本机ip地址，整个127.* 网段通常被用作loopback网络接口的默认地址，按照惯例通常设置为127.0.0.1。我们当前这个主机上的这个地址，别人不能访问，即使访问，也是访问自己。因为每一台TCP/IP协议栈的设备基本上都有local/127.0.0.1.</p>
+
+<p>进入数据库之后，查看当前主机配置信息为localhost，需要修改为%：(目的是为了让所有主机都能访问)</p>
+
+<pre><code class="language-sql">use mysql;
+select host from user where user='root';
+</code></pre>
+
+<p>将Host设置为通配符%:</p>
+
+<pre><code class="language-sql">update user set host = '%' where user ='root';
+</code></pre>
+
+<p>修改后要刷新一下:</p>
+
+<pre><code class="language-sql">flush privileges;
+</code></pre>
+
+<p>查看是否修改成功:</p>
+
+<pre><code class="language-sql">select host from user where user='root';
+</code></pre>
+
+<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677199916004.png" alt="已经修改成功" /></p>
+
+<p>退出数据库后重启数据库服务：(然后就可以在数据库工具远程MySQL数据库了。)</p>
+
+<pre><code class="language-shell">sudo /etc/init.d/mysql restart #重启mysql服务
+</code></pre>
+
+<h1 id="在远程数据库远程连接mysql数据库了">在远程数据库远程连接MySQL数据库了</h1>
+
+<p>首先是进行测试，无论您如何安装它，MySQL 都应该自动开始运行。要对此进行测试，请检查其状态。</p>
+
+<pre><code class="language-shell">sudo systemctl status mysql
+</code></pre>
+
+<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677200253300.png" alt="MySQL已经自动运行" /></p>
+
+<p>然后，使用 ss 命令检查开放端口：</p>
+
+<pre><code class="language-shell">sudo ss -ltn 
+</code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224085823.png" alt="开放端口如下" /></p>
+
+<p>可以看出，我们的服务器正在侦听端口 3306 和 33060 上的连接。这些是与 HTTP 和 MySQL 相关的端口。</p>
+
+<p>在我们的本地系统上使用ss或者nmap localhost命令时，我们绕过了防火墙。实际上，这些命令显示处于侦听状态的端口，但这并不一定意味着端口对 Internet 开放，因为我们的防火墙可能拒绝连接。</p>
+
+<p>使用以下命令检查 ufw 防火墙的状态。</p>
+
+<pre><code class="language-shell">sudo ufw status verbose
+</code></pre>
+
+<p>可以发现，防火墙状态为不活动。</p>
+
+<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677200490189.png" alt="1677200490189" /></p>
+
+<p>如果防火墙状态为active状态， ufw 拒绝传入连接。由于端口 80 和 3306 尚未添加为例外，因此 HTTP 和 MySQL 无法接收传入连接，尽管ss并nmap报告它们处于侦听状态。</p>
+
+<p>让我们使用以下命令为这些端口添加例外。</p>
+
+<pre><code class="language-shell">sudo ufw allow 80/tcp
+sudo ufw allow 3306/tcp
+</code></pre>
+
+<p><a href="https://www.jianshu.com/p/9c4c499429da">navicat安装破解教程</a></p>
+
+<p>使用ifconfig查看服务器ip地址，然后在navicat中连接数据库。</p>
+
+<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677202388976.png" alt="连接数据库" />
+连接结果如下：</p>
+
+<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677202138195.png" alt="连接结果" /></p>
+
+<p>也可以用VSCode来管理MySql数据库：</p>
+
+<ol>
+  <li>点击左侧扩展插件，然后搜索下MySql；</li>
+  <li>安装过后，我们就需要连接了，直接快捷键，Ctrl+Shift+P，打开窗口；</li>
+  <li>设置如下：
+    <ol>
+      <li><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224093459.png" alt="设置如下" /></li>
+      <li>端口号默认3306</li>
+      <li>连接结果如下：<img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230224093706.png" alt="连接结果如下" /></li>
+    </ol>
+  </li>
+</ol>
+
+<h1 id="参考链接">参考链接</h1>
+
+<p><a href="https://blog.csdn.net/qq_43685040/article/details/108732648">Ubuntu安装MySQL8.0，并用Navicat远程连接_任求其-zzx的博客-CSDN博客</a></p>
+
+<p><a href="https://blog.csdn.net/u014378628/article/details/118406005">Ubuntu 20.04 安装 MySQL 8.0 并且远程连接数据库(包括后续遇到的新坑)_Nymph2333的博客-CSDN博客_executing /lib/systemd/systemd-sysv-install enable</a></p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/506491209">在 Ubuntu 22.04 上安装 Python 3.9（多版本适用） - 知乎 (zhihu.com)</a></p>
+
+<p><a href="https://mirrors.huaweicloud.com/python/3.7.12/">Index of python-local/3.7.12 (huaweicloud.com)</a></p>
+
+<p><a href="https://blog.csdn.net/weixin_42919435/article/details/109523985">在Ubuntu 18.04上安装不同版本的python及选择默认Python_WMLCOLIN的博客-CSDN博客</a></p>
+:ET
