@@ -1,0 +1,71 @@
+I"<h1 id="日志文件备份">日志文件备份</h1>
+
+<p>有时候，为了系统稳定性,除了在/var/log通过回滚机制生成各种日志文件以排查系统故障之外，我们也想把这些关键的日志文件保存到指定文件夹，防止突然断电或者磁盘分区被破坏之后丢失关键的日志信息。</p>
+
+<p>代码如下：（文件名为backup_sysconfig.sh）</p>
+
+<pre><code class="language-shell">#! /bin/bash
+# this script is used to backup the syslog file in /var/log dir everyday
+echo `date`
+cp /var/log/syslog /home/hugo/test_BASH/log
+# adding the user with x permission
+chmod u+x syslog
+# chnage the firname
+today=$(date +%y%m%d)
+echo $today
+mv ./log/syslog ./log/syslog_$today # 同一个文件夹下面就相当于重命名
+</code></pre>
+
+<h2 id="定时调度任务">定时调度任务</h2>
+<p>crontab 的语句是“分 时 日 月 周 命令”.</p>
+
+<p>开启定时调度任务，每天凌晨1点执行一次</p>
+
+<pre><code class="language-shell">crontab -e
+# 0 1 * * * /home/hugo/test_BASH/back_sysconfig.sh
+</code></pre>
+<p>显示<code>crontab: installing new crontab</code>，表示定时任务已经开启。</p>
+
+<p>查看定时任务</p>
+
+<pre><code class="language-shell">crontab -l
+</code></pre>
+
+<p>开启或者关闭定时任务</p>
+
+<pre><code class="language-shell">service crond start
+service crond stop
+</code></pre>
+
+<p>发现报错：<code>Failed to start crond.service: Unit crond.service not found.</code></p>
+
+<p>删除调度任务：</p>
+
+<ul>
+  <li>crontab -r ，删除所有任务调度工作</li>
+  <li>直接编辑 vim /etc/crontab ，文件内容如下：</li>
+</ul>
+
+<pre><code class="language-console"># Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+# You can also override PATH, but by default, newer versions inherit it from the environment
+#PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+</code></pre>
+:ET

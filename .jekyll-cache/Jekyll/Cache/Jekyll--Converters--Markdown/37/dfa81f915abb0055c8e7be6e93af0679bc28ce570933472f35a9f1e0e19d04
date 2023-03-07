@@ -1,4 +1,4 @@
-I"�B<p>主要包括使用一维卷积神经网络(1D CNN)对安装在远程风机的高速轴承中的现场传感器采集到的时间序列数据通过短时傅里叶变化之后得到的频谱峰度（Kurtosis Spectogram）进行分类，得到每个样品的类别：中等寿命级（预期寿命大于15天的轴承——状态良好）以及短寿命轴承（预期寿命小于15天的轴承——状态不良）。</p>
+I"�B<p>主要包括使用一维卷积神经网络(1D CNN)对安装在远程风机的高速轴承中的现场传感器采集到的时间序列数据通过短时傅里叶变化之后得到的频谱峰度（Kurtosis Spectogram）进行分类，得到每个样品的类别：中等寿命级（预期寿命大于15天的轴承——状态良好）以及短寿命轴承（预期寿命小于15天的轴承——状态不良）。</p>
 
 <p><a href="https://www.kaggle.com/code/luishpinto/wind-turbine-high-speed-bearing-prognosis">原文链接：Wind Turbine High Speed Bearing Prognosis Kaggle</a></p>
 
@@ -103,7 +103,7 @@ df = []
 
 for i in fname:
     df.append(loadmat('./input/data/' + i)['vibration'].flatten())# loadmat表示加载mat文件,flatten表示降维
-    
+  
 df = np.asarray(df) # 转换为数组
 
 df.shape[0]
@@ -124,6 +124,7 @@ print('Scan frequency: {:,d} Hz'.format(fs)) # {:,d}表示以逗号分隔的十�
 </code></pre>
 
 <p>输出结果为：</p>
+
 <pre><code class="language-console">Scan frequency: 97,656 Hz
 </code></pre>
 
@@ -134,13 +135,13 @@ for i in range(df.shape[0]):
     plt.plot(t + i * 6.0,df[i],color = 'black',lw = 0.25) 
 
 plt.xlabel('Time (in s): sample = 50 days in total, 6 seconds per day')
-plt.ylabel('Acceleration (in g)')    
+plt.ylabel('Acceleration (in g)')  
 plt.show()
 </code></pre>
 
 <p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230220145445.png" alt="加速度振幅图" /></p>
 
-<p>尽管加速度有明显的变化，记录的数据数量（6 x 97,656 = 
+<p>尽管加速度有明显的变化，记录的数据数量（6 x 97,656 =
 每天585,936个记录；总共29,286,800个）很大，再加上 测量的非同步条件，使得使用传统的神经网络来对轴承状况进行分类是不可行的。</p>
 
 <p>这个问题需要一个不同的方法来将正弦波的时域变量转化为非周期性变量，从而使区分RUL等级成为可能。</p>
@@ -187,6 +188,7 @@ plt.show()
 <h2 id="模型训练">模型训练</h2>
 
 <h3 id="准备模型">准备模型</h3>
+
 <p>Kurtosis被用作1D-CNN的输入(变量x)，而与两个RUL等级相关的标签则通过变量y–中寿命期望值类（y = 0）用于前35个样本，而短寿命预期类（y = 1）用于最后15个样本。
 y被转换为分类格式，以适应神经网络的输出格式。</p>
 
