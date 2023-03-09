@@ -60,4 +60,4 @@ front matter中layout为post表示这是一篇博文，title date categories分�
 * 把myblogw目录下所有文件拷贝到repo目录下
 * 把repo刚才添加的所有文件都push到github上
 
-支持，通过Jekyll+github搭建个人博客就大功告成啦～
+至此，通过Jekyll+github搭建个人博客就大功告成啦～
