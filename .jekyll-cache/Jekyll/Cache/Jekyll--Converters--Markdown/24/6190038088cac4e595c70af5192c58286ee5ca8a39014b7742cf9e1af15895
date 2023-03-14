@@ -1,0 +1,385 @@
+I"ɛ<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">编号</th>
+      <th style="text-align: center"><strong>问题</strong></th>
+      <th style="text-align: center">答案</th>
+      <th style="text-align: center">备注</th>
+      <th style="text-align: center"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>Shell脚本是什么</strong></td>
+      <td style="text-align: center">一个Shell脚本是一个文本文件，包含一个或多个命令。作为系统管理员，我们经常需要使用多个命令来完成一项任务，我们可以添加这些所有命令在一个文本文件(Shell脚本)来完成这些日常工作任务。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center"><strong>如何进行远程文件的拷贝等操作</strong></td>
+      <td style="text-align: center">scp是secure   copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令。linux的scp命令可以      在linux服务器之间复制文件和目录.    <br />  scp命令格式：     <br /> scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-I identity_file] [-l limit]   [-o ssh_option] [-P port] [-S program] [[user@]host1:]file1 […]   [[user@]host2:]file2    <br />  -q 不显示传输进度条。      -r 递归复制整个目录。</td>
+      <td style="text-align: center">举例：      scp -r local_folder remote_username@remote_ip:remote_folder <br />#   指定了用户名，执行后需要输入用户密码；</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center"><strong>如何进行远程文件的拷贝等操作</strong></td>
+      <td style="text-align: center">scp是secure   copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令。linux的scp命令可以      在linux服务器之间复制文件和目录.    <br />  scp命令格式：     <br /> scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-I identity_file] [-l limit]   [-o ssh_option] [-P port] [-S program] [[user@]host1:]file1 […]   [[user@]host2:]file2    <br />  -q 不显示传输进度条。      -r 递归复制整个目录。</td>
+      <td style="text-align: center">举例：      scp -r local_folder remote_username@remote_ip:remote_folder <br />#   指定了用户名，执行后需要输入用户密码；</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center"><strong>如何备份系统快照</strong></td>
+      <td style="text-align: center">rsync借助差异计算以及压缩技术实现最小化数据传输，只有当文件更新时候才进行复制。     <br /> rsync -av username#host:PATH destination</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center"><strong>echo命令是怎么使用的呢</strong></td>
+      <td style="text-align: center">echo   [option] string -e 开启转义      <br />有两种使用方法：      （1） 显示字符串      echo “hello world”   <br />   echo hello world     <br /> （2）显示命令执行结果 使用``反引号或者$      echo <code>data</code>      or      echo $(date)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center"><strong>正则表达式</strong></td>
+      <td style="text-align: center">^   行起始标记      $ 行尾标记      . 匹配任意一个字符    <br />  [] 匹配包含的任意一个字符      [^] 匹配除了[^]之外的任意一个字符    <br />  [-] 匹配指定范围内任意一个字符    <br />  ? 匹配之前的项1次或者0次 colou?r表示color或者colour      <br />+ 匹配之前的项1次或者多次      * 匹配之前的项0次或者多次      ()创建一个用于匹配的子项    <br />  {n}匹配之前的项n次，比如说[0-9]{3}表示匹配任意一个三位数      {n,} 匹配之前的项至少n次      {n,m} 指定之前的项所必须匹配的最小次数和最大次数     <br /> | 交替-匹配（两倍中的任意一项） Oct (1st | 2nd)匹配 Oct 1st或者Oct 2nd    <br />  \ 对上诉特殊字符进行转义 如a.b匹配a.b，但是不能匹配ajb或者a*b等其他内容。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center"><strong>«   $ EOF输入组合用法</strong></td>
+      <td style="text-align: center">«将键盘输入作为命令的输入，到分界符（可自定义）为止;     <br /> EOF: End Of File的缩写，是自定义终止符。可随意设置别名.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center"><strong>多命令是如何执行的呢</strong></td>
+      <td style="text-align: center">;多命令连接，格式是command1;command2    <br />  &amp; 多命令并行或者命令后台执行      $$ 逻辑与，前命令为真时候执行后命令     <br /> || 逻辑或，前命令为假，执行后命令</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">** string like /feature/abc-1245_branch_name, I   wanted to extract abc-1245 from the string and store it into a different   variable      使用awk命令**</td>
+      <td style="text-align: center">awk是一种处理文本文件的语言，可以进行文本分析    <br />  格式如下：      awk [option] ‘pattern{action}’ filename     <br />  主要选项包括：      -F / –field-separator fs 指定输入文件的分隔符，默认为空格或者TAB    <br />  awk -F[<em>/] ‘{print $3}’ «&lt;”$string”      表示使用_或者/作为分割符号：  <br />    print $1 得到空格；      $2 得到 feature; $4得到branch；$5得到name;   <br />   存储在一个变量里面的命令如下：      variable=$(awk -F[</em>/] ‘{print $3}’ «&lt;”$string”)  <br />    echo $variable</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">** string like /feature/abc-1245_branch_name, I   wanted to extract abc-1245 from the string and store it into a different   variable      sed命令**</td>
+      <td style="text-align: center">它主要是对行的内容进行处理，对指定字符数据按照指定的脚本规则进行处理并输出。    <br />  string=”/feature/abc-1245<em>branch_name”     <br /> sed -e ‘s/^.*\///; s/</em>.<em>$//’ «&lt;”$string”      <br /> result=$(sed -e ‘s/^.</em>\///;   s/_.*$//’ «&lt;”$string”)    <br />  echo $result</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">** string like /feature/abc-1245_branch_name, I   wanted to extract abc-1245 from the string and store it into a different   variable      sed命令**</td>
+      <td style="text-align: center">它主要是对行的内容进行处理，对指定字符数据按照指定的脚本规则进行处理并输出。    <br />  string=”/feature/abc-1245<em>branch_name”     <br /> sed -e ‘s/^.*\///; s/</em>.<em>$//’ «&lt;”$string”      <br /> result=$(sed -e ‘s/^.</em>\///;   s/_.*$//’ «&lt;”$string”)    <br />  echo $result</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">** string like /feature/abc-1245_branch_name, I   wanted to extract abc-1245 from the string and store it into a different   variable      grep命令**</td>
+      <td style="text-align: center">grep命令：作用：文本搜索工具，根据用户指定的“模式(过滤条件)”对目标文件逐行进行匹配检查，打印匹配的行。    <br />  grep [option] pattern [file]      <br />主要选项：      -E 使用扩展正则表达式进行匹配，grep -E 可取代egrep      -F 使用固定字符串进行匹配，grep -F可以取代fgrep    <br />  $(echo “feature/ABC-BranchName” | grep -Eo ‘develop|release|((feature|bugfix|hotfix)/ABC-)([0-9]+)’   |tr ‘/’ ‘-‘);</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">** string like /feature/abc-1245_branch_name, I   wanted to extract abc-1245 from the string and store it into a different   variable      其他方法**</td>
+      <td style="text-align: center">string=/feature/abc-1245<em>branch_name  <br />    different_variable=${string%%</em><em>} #得到/feature/abc-1245   <br />   different_variable=${different_variable##</em>/}    <br />  printf ‘%s\n’ “$different_variable”    <br />  解释：      ${variable%%pattern} removes the longest substring matching pattern from   the end of $variable.    <br />  ${variable##pattern} removes the longest substring matching pattern from   the start of $variable.     <br />       方法二：      string=/feature/abc-1245<em>branch_name   <br />   different_variable=$( basename “$string” ‘_branch_name’ )  <br />    printf ‘%s\n’ “$different_variable”       <br /> 这里的basename把字符串当做文件路径名，得到最后一个路径的组成成分（abc-1245_branch_name)；同时，该命令可以移除文件后缀，因此我们课业移除’_branch_name’   ，得到’abc-1245’.         <br />   方法三：      同时使用basename命令和grep命令：   <br />   basename “$string” | awk -F</em> ‘{print $1}’</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center"><strong>输入输出重定向是如何使用的</strong></td>
+      <td style="text-align: center">将命令的输出发送到一个文件中，这个叫做重定向，用法如下：      command &gt; outputfile   <br />   如果不想覆盖原来的文件内容，可以使用»追加数据。    <br />  输入重定向，将文件的内容重定向到命令中      command &lt; inoutfile （命令始终在左边）   <br />   wc &lt; log # 统计log文本的行数、词数和字节数     <br /> 内联输入重定向（inline input redirection),无需使用文件进行重定向，只需要在命令行中指定用于输入重定向的数据就可以了。 <br />     $ command « marker      &gt; string1      &gt; string2      &gt; string3      &gt; marker</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center"><strong>tr命令是如何使用的呢？</strong></td>
+      <td style="text-align: center">tr   [option] source-char-list replace-char-list      <br />用途是转换字符，例如将大写字符转换为小写；删除指定的字符以及将一系列重复出现的字符浓缩成一个。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center"><strong>sort命令是如何使用的呢？</strong></td>
+      <td style="text-align: center">默认情况下，sort命令，以字母序进行文本排序；     <br /> 如果想对数字进行排序，可以使用-n参数；      <br />sort还可以指定列排序：-t参数表示行的分割字符，-k表示第几列。当然，可以进行降序排序，-r参数可以实现。<br />      文件夹大小排序：du一个文件夹下的目录大小后，想以文件大小进行排序，可以先用du   -h列出文件以及大小，再使用管道命令符，对这个输出结果进行排序：      du -h | sort -hr (r表示从大到小排序）   <br />   如果文件过多，可以加上“| more”翻页显示</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center"><strong>在linux下如何查找文件？</strong></td>
+      <td style="text-align: center">locate   filename      方案二：find      find [files-or-directories] [options]      寻找与指定名称模式匹配于或者具有给定属性的文件            -atime n 选定n天前访问的文件      -ctime n 选定n天前改过inode的文件      -ls 产生类似ls冗长形式的列表</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center"><strong>patch工具程序是如何应用的呢？</strong></td>
+      <td style="text-align: center">patch工具程序可利用diff的输出，结合原始文件，以重建另一个文件。（这个通常用在打补丁）      echo Test 1 &gt; test.1      echo Test 2 &gt; test.2      diff test.[12]      diff -c test.[12] &gt; test.dif # 将相异的相关内文，存储到test.dif      path &lt; test.dif #c应用不同之处      cat test.1 显示修补之后的test.1文件,此时该文件内容已经变成了Test 2</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">17</td>
+      <td style="text-align: center"><strong>linux中文件校验和核实是使用什么命令的呢？</strong></td>
+      <td style="text-align: center">校验和(checksum)程序用来从文件中生成校验和密钥，然后利用这个校验和密钥核实文件的完整性。一份文件可以通过网络或任何存储介质分发到不同的地点。出于多种原因，数据有可能在传输过程中丢失了若干位，从而导致文件损坏。我们对原始文件和接收到的文件都进行校验和计算。通过比对两者的校验和，就能够核实接收到的文件是否正确。如果校验和(一个来自源位置的原始文件，另一个来自目的地的接收文件)相等，就意味若我们接收到了正确的文件，否则用户就不得不重新发送文件并再次比对校验和。      最常用的校验技术是md5sum和shalsum。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center"><strong>批量重命名和移动</strong></td>
+      <td style="text-align: center">通过rename命令批量重命名文件，基本语法如下：      rename [-n -v -f] <pcre> <files>      'pcre’是Perl兼容正则表达式，它表示的是要重命名的文件和该怎么做。正则表达式的形式是‘s/old-name/new-name/’。      批量修改文件后缀从.jpeg改为.jpg      rename 's/\.jpeg/\.jpg/' *.jpeg      考虑更复杂的包含子模式的正则表达式。在PCRE中，子模式包含在圆括号中，符后接上数字（比如1，$2）      rename -v 's/img_(\d{4})\.jpeg/dan_$1.jpg/' *.jpeg #   将‘imgNNNN.jpeg’变成‘danNNNN.jpg’。</files></pcre></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">19</td>
+      <td style="text-align: center"><strong>文件粘滞位</strong></td>
+      <td style="text-align: center">粘滞位（Stickybit）最常见的用法在目录上设置粘滞位，如此以来，只有目录内文件的所有者或者root才可以删除或移动该文件。如果不为目录设置粘滞位，任何具有该目录写和执行权限的用户都可以删除和移动其中的文件。在我们系统中，粘滞位一般用于/tmp目录，以防止普通用户删除或移动其他用户的文件。      一个目录具有粘滞位，则在other的X位会表现为 t,或者T.大小写的区别在于，原来x位上有x权限，有了粘滞位则表现为t.否则，表现为T。      加上粘滞位的方法：在root用户下，给当前目录，加上粘滞位（命令：chmod o+t    .）</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center"><strong>环回文件与挂载</strong></td>
+      <td style="text-align: center">环回文件系统就是指那些在文件中而非物理设备中创建的文件系统。比如我们可以创建一个文件，然后把这个文件格式化为我们常见ntfs、exfat或者ext4等文件系统格式，然后把它挂载在一个目录上使用。      1. 创建环回文件系统       dd if=/dev/zero of=first.file bs=1G   count=1            这个命令会创建一个1MB大小的文件。dd命令是克隆输入的内容，并将副本写入到输出；if（input   file）代表输入，stdin、设备文件、普通文件都可以作为输入，这个例子就是用设备文件作为输入；of(output   file)代表输出，stdout、设备文件、普通文件等也可作为输出，这个例子是用first.file这个普通文件作为输出；bs代表以字节为单位的块大小（block   size，BS），count代表被复制的块数。      mkfs.ext4 first.file #格式化这个1GB的文件      file first.file #检查下文件系统            2. 挂载环回文件      mkdir /mnt/loop      mount -o loop file.img /mnt/loop       -o loop 用来挂载环回文件系统。      这实际上是一种快捷的挂载方法，我们无需手动连接任何设备。但是在内部，这个环回文件连接到了一个名为/dev/loop1或loop2的设备上.      还有另外一种方式来进行挂载环回文件系统的,而且更具有广泛性.      losetup /dev/loop1 image.img        #相当于建立一个映射,将环回文件映射到设备文件            mount /dev/loop1 /mnt/img</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">21</td>
+      <td style="text-align: center"><strong>生成ISO文件以及混合ISO</strong></td>
+      <td style="text-align: center">可以使用cat命令      比如说从/dev/cdrom创建一个ISO镜像：(将设备中读出的所有数据写入一个ISO镜像）      cat /dev/cdrom &gt; image.iso      方法二：      dd if=/dev/cdrom of=image.iso      mkisofs命令用于创建ISO文件系统，可以用cdrecord之类的工具将mkisofs的输出文件直接刻录到CD ROM或者DVD   ROM上；我们可以将所需要的文件放到同一个目录中，然后用mkisofs将整个目录的内容写入一个ISO文件：      mkisofs -V “Label” -o image.iso source_dir/</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">22</td>
+      <td style="text-align: center"><strong>cut如何按照列切分文件</strong></td>
+      <td style="text-align: center">f   选择的哪些列 cut -f2,3 student.data       如若要指定字段的定界符，使用-d选项 cut -f2 -d “;” student.data       -c:表示字符,如 -c1-5表示选择从第一到第五个字符      –complement表示取反，比如说cut -f 2 –complement student.data表示取出除了第二列之外的其他列</td>
+      <td style="text-align: center">cat   student.data       NO      Name    Mark      1       lufubo  98      2       cbiao   88</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">23</td>
+      <td style="text-align: center"><strong>如何分割文件和数据</strong></td>
+      <td style="text-align: center">split   -b 10k data # 表示将data文件分割成多个文件，每一个文件大小为10KB</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center"><strong>linux中如何批量生成文件</strong></td>
+      <td style="text-align: center">比如，批量生成名字不同的空白文件：      for name in {1..100}.txt      do      touch $name      done      如果文件已经存在，那么touch命令将会与该文件相关的所有时间戳改成当前时间。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">25</td>
+      <td style="text-align: center"><strong>linux中文件下载命令有哪些</strong></td>
+      <td style="text-align: center">wget   URL # 下载网页或者远程文件      curl URL       curl包括更高级的下载回复特性，能够从特定的文件偏移处继续下载</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">26</td>
+      <td style="text-align: center"><strong>在Linux系统下有哪些工具可以用来执行加密和解密操作呢</strong></td>
+      <td style="text-align: center">crypt <input_file>output_file      如果需要解密文件，可以使用：      gpg      用gpg加密文件：      gpg -c filename      这条命令采用交互方式读取口令，并生成filename.gpg.      解密gpg文件：      gpg filename.gpg      这条命令读取口令，然后对文件进行解密。      Base64      Base54可以用来对编码和解码Basc64字符串。      要将文件编码为Base64格式，可以使用：      base64 filename &gt; outputfile      md5sum与sha1sum都是单向散列算法，均无法逆推出原始数据，通常用于验证数据完整性或者为特定数据生成唯一的密钥。</input_file></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">27</td>
+      <td style="text-align: center"><strong>linux如何克隆硬盘</strong></td>
+      <td style="text-align: center">dd：本机   Linux 磁盘克隆工具      命令格式如下：      dd if=/dev/sdX of=/dev/sdY bs=64K conv=noerror,sync      sdX是源磁盘 sdY是目的地</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">28</td>
+      <td style="text-align: center"><strong>可以在shell脚本中使用哪些类型的变量</strong></td>
+      <td style="text-align: center">在shell脚本，我们可以使用两种类型的变量：      系统定义变量      用户定义变量      系统变量是由系统系统自己创建的。这些变量通常由大写字母组成，可以通过“set”命令查看。      unset”命令用于取消变量或取消变量赋值。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">29</td>
+      <td style="text-align: center"><strong>有关变量的一些操作</strong></td>
+      <td style="text-align: center">普通变量的定义方式：      方法一： 变量名=变量值 变量值必须是一个整体，中间没有特殊字符      方法二：变量名=’变量值’      方法三： 变量名=”变量值”      （数字不加引号、原样输出使用单引号、其他默认加双引号）      全局变量定义方法：      export 变量名=变量值      变量查看和取消      查看：”${变量名}”      取消： unset 变量名</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">30</td>
+      <td style="text-align: center"><strong>shell脚本中“$?”标记的用途是什么</strong></td>
+      <td style="text-align: center">在写一个shell脚本时，如果你想要检查前一命令是否执行成功，在if条件中使用“$?”可以来检查前一命令的结束状态。如果结束状态是0，说明前一个命令执行成功。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">31</td>
+      <td style="text-align: center"><strong>在shell脚本成功执行前，如何中断脚本执行</strong></td>
+      <td style="text-align: center">我们需要使用‘exit’命令来实现以上描述的情境。‘exit’命令被强制输出非0值时，脚本会报错并退出。在Unix环境下的shell脚本中，0值表示成功执行。因此，在脚本终止前执行一个不带引号的‘exit   -1’命令将使脚本中止。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">32</td>
+      <td style="text-align: center"><strong>“#!/bin/bash”的作用</strong></td>
+      <td style="text-align: center">#!/bin/bash是shell脚本的第一行，称为释伴（shebang）行。这里#符号叫做hash，而!   叫做 bang。它的意思是命令通过 /bin/bash 来执行。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">33</td>
+      <td style="text-align: center"><strong>公司要求你创建一个‘dir_xyz’目录，让该组成员都能在该目录下创建或访问文件，但是除了文件创建者之外的其他人不能删除文件，你会怎么做</strong></td>
+      <td style="text-align: center">#   mkdir dir_xyz      # chmod g+wx dir_xyz      # chmod +t dir_xyz        第一行命令创建了一个目录（dir_xyz），上面的第二行命令让组（g）具有‘写’和‘执行’的权限，而上面的最后一行命令——权限位最后的‘+t’是‘粘滞位’，它用来替换‘x’，表明在这个目录中，文件只能被它们的拥有者、目录的拥有者或者是超级用户,root删除。      粘滞位的作用就在于此：当⽬录被设置了粘滞位权限以后，即便⽤户对该⽬录有写⼊权限，也不能删除该⽬录中其他⽤户的⽂件数据，⽽是只有该⽂件的所有者和root⽤户才有权将其删除。设置了粘滞位之后，正好可以保持⼀种动态的平衡：允许各⽤户在⽬录中任意写⼊、删除数据，但是禁⽌随意删除其他⽤户的数据。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">34</td>
+      <td style="text-align: center"><strong>shell   脚本如何获取输入的值</strong></td>
+      <td style="text-align: center">方法一：通过参数      ./script param1            方法二： read命令      read param1      read -p “information:” param1 # -p允许在read命令行中直接指定一个提示</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">35</td>
+      <td style="text-align: center"><strong>linux中expect命令</strong></td>
+      <td style="text-align: center">Expect是建立在tcl基础上的一个工具，Expect   是用来进行自动化控制和测试的工具。主要解决shell脚本中不可交互的问题。对于大规模linux 运维很有帮助      比如说，远程登录服务器进行操作等等。      send 用于向进程发送字符串      expect 从进程接收字符串      spawn spawn命令用来启动新的进程，spawn后的send和expect命令都是和使用spawn打开的进程进行交互。      interact 允许用户交互。      which expect #声明expect脚本      举例子，自动ssh登录demo：      #!/usr/tcl/bin/expect            set timeout 30 #设置超时时间      set host “101.200.241.109” #设置变量      set username “root”   #设置变量      set password “123456”    #设置变量            spawn ssh $username@$host #给ssh运行进程加个壳，用来传递交互指令      expect “<em>password</em>” {send “$password\r”}   #期待上一行命令返回的结果中包含password字符串,*类似redis中keys寻找key,匹配任务数量的任意字符      interact       #没有这一句登录完成后会退出，而不是留在远程终</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center"><strong>sed命令有什么作用</strong></td>
+      <td style="text-align: center">sed命令是行命令编辑工具.   编辑文件是以行为单位的      当我们需要删除文件中的指定行时，sed命令可以用来解决该问题，删除文件头（文件的首行）的正确命令：      sed -i ‘1 d’ file.txt      检查一个文本文件中某一行的长度：      sed -n ‘5 p’ linuxmi.txt | wc -c # 到文本文件‘linuxmi.txt’的第五行的长度</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">37</td>
+      <td style="text-align: center"><strong>awk命令有什么作用</strong></td>
+      <td style="text-align: center">awk   是一个功能强大的文档编辑工具, 不仅能以行为单位进行编辑还能以列为单位进行文件处理      awk [参数] ‘[动作]’ 文件名      常见参数：-F 指定行的分隔符      举例子：      指定分隔符打印内容      awk -F ‘:’ ‘{print $1,$7}’ awk.txt      假如文件中每行第一个元素是FIND，获取第二个元素      awk’{ if ($1 == “FIND”) print$2}’      用 awk 列出 UID 小于 100 的用户用 awk 列出 UID 小于 100 的用户      awk -F: ‘$3&lt;100’ /etc/passwd</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">38</td>
+      <td style="text-align: center"><strong>[   $a == $b ] 和[ $a -eq $b ] 有什么区别</strong></td>
+      <td style="text-align: center">[   $a == $b ] - 用于字符串比较      [ $a -eq $b ] - 用于数字比较</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">39</td>
+      <td style="text-align: center"><strong>如何列出以   ab 或 xy 开头的用户名</strong></td>
+      <td style="text-align: center">“^ab|^xy”   /etc/passwd | cut-d: -f1</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">40</td>
+      <td style="text-align: center"><strong>文件查找命令</strong></td>
+      <td style="text-align: center">whereis   命令只能用于程序名的搜索，而且只搜索二进制文件（参数-b）、man说明文件（参数-m）和源代码文件（参数-s）。如果省略参数，则返回所有信息。whereis   及 locate 都是基于系统内建的数据库进行搜索，因此效率很高，而find则是遍历硬盘查找文件。which 是在 PATH   就是指定的路径中，搜索某个系统命令的位置，并返回第一个搜索结果。</td>
+      <td style="text-align: center">将当前目录下大于100k的文件移动到/tmp路径下：      find ./ -type f -size +100k -exec mv {} /tmp \;      査找最后修改时间是3天前，后缀是<em>. log的文件      find ./ -name ‘</em>.log’ -type f -mtime +3</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">41</td>
+      <td style="text-align: center"><strong>iptables   命令</strong></td>
+      <td style="text-align: center">iptables   ，是一个配置 Linux 内核防火墙的命令行工具。      把来源 IP 为 192.168.1.101 访问本机 80 端口的包直接拒绝：iptables -I INPUT -s 192.168.1.101   -p tcp –dport 80 -j REJECT 。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">42</td>
+      <td style="text-align: center"><strong>备份压缩命令</strong></td>
+      <td style="text-align: center">bzip2   命令      • 创建 *.bz2 压缩文件：bzip2 test.txt 。      • 解压 *.bz2 文件：bzip2 -d test.txt.bz2 。      gzip 命令      • 创建一个 *.gz 的压缩文件：gzip test.txt 。      • 解压 *.gz 文件：gzip -d test.txt.gz 。      tar 命令      • 用来压缩和解压文件。tar 本身不具有压缩功能，只具有打包功能      • -z支持gzip压缩；-v 显示操作过程；-f 指定压缩文件      • -c 建立新的压缩文件；-x 从压缩包中抽取文件</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">43</td>
+      <td style="text-align: center"><strong>将文件/home/yyc/test下中除了1.txt文件以外的所有文件打包压缩到/home/yyc/test下，名字为b.gz</strong></td>
+      <td style="text-align: center">zcfp   /home/yyc/b.gz –exclude=1.txt /home/yyc/test</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">44</td>
+      <td style="text-align: center"><strong>计划每星期天早8点服务器定时发送一封内容为：test的邮件。发信人：user1@ab.com   收 信人：test1@example.com，如何实现</strong></td>
+      <td style="text-align: center">0   8 * * 7 echo “test” I /bin/mail -r user1@ab.com -s test   test1@example.com &amp;&gt;/dev/null</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">45</td>
+      <td style="text-align: center"><strong>cp一个目录中的文件需要什么权限，mv呢？touch呢？rm呢？</strong></td>
+      <td style="text-align: center">cp需要对文件有r，对目标目录有x，mv/touch/rm对文件权限没有要求，要求目标目录有w/x。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">46</td>
+      <td style="text-align: center"><strong>两台Linux服务器开放了987端口的SSH服务，使用user1用户登录1.1.1.1服务器，   将/home/user1/data.tar.gz传至user2的2.2.2.2服务器的/home/user2，并重命名为data2.tar.gz应如何操   作</strong></td>
+      <td style="text-align: center">scp   -P 987 /home/user1/data.tar.gz user2@2.2.2.2:/home/user2/data2.tar.gz</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">47</td>
+      <td style="text-align: center"><strong>清除本机除了当前登陆用户以外的所有用户</strong></td>
+      <td style="text-align: center">kill   $(who -u |grep -v <code>whoami</code>|awk ‘{print $6}’)      who -u　　显示所有当前用户      grep -v　　选取当前登录用户以外的所有用户。      awk　　打印用户进程ID。      sort -u　　会删除相同的行。      最后，可以使用w命令查看目前登录的用户。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">48</td>
+      <td style="text-align: center"><strong>什么是   inode</strong></td>
+      <td style="text-align: center">inode是 重要概念，是理解 Unix/Linux   文件系统和硬盘储存的基础。      理解 inode，要从文件储存说起。      文件储存在硬盘上，硬盘的最小存储单位叫做”扇区”（Sector）。每个扇区储存 512 字节（相当于 0.5KB）。      操作系统读取硬盘的时候，不会一个个扇区地读取，这样效率太低，而是一次性连续读取多个扇区，即一次性读取一个”块”（block）。这种由多个扇区组成的”块”，是文件存取的最小单位。”块”的大小，最常见的是   4KB，即连续八个 sector 组成一个 block。        文件数据都储存在”块”中，显然，我们还必须找到一个地方储存文件的元信息，比如文件的创建者、文件的创建日期、文件的大小等等。这种储存文件元信息的区域就叫做   inode，中文译名为”索引节点”。      每一个文件都有对应的 inode，里面包含了与该文件有关的一些信息。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">49</td>
+      <td style="text-align: center"><strong>RAID   是什么</strong></td>
+      <td style="text-align: center">RAID   全称为独立磁盘冗余阵列(Redundant Array of Independent   Disks)，基本思想就是把多个相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大的硬盘。RAID   通常被用在服务器电脑上，使用完全相同的硬盘组成一个逻辑扇区，因此操作系统只会把它当做一个硬盘。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center"><strong>添加一个新组为   class1 ，然后添加属于这个组的 30 个用户，用户名的形式为 stdxx ，其中 xx 从 01 到 30</strong></td>
+      <td style="text-align: center">#!/bin/bash      groupadd class1      for((i=1;i&lt;31;i++))      do      if [ $i -le 10 ];then                      useradd -g class1   std0$i      else                      useradd -g class1   std$i      fi      done</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">51</td>
+      <td style="text-align: center"><strong>Linux   性能调优都有哪几种方法</strong></td>
+      <td style="text-align: center">1、Disabling   daemons (关闭 daemons)。            2、Shutting down the GUI (关闭 GUI)。            3、Changing kernel parameters (改变内核参数)。            4、Kernel parameters (内核参数)。            5、Tuning the processor subsystem (处理器子系统调优)。            6、Tuning the memory subsystem (内存子系统调优)。            7、Tuning the file system (文件系统子系统调优)。            8、Tuning the network subsystem（网络子系统调优)。</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+:ET
