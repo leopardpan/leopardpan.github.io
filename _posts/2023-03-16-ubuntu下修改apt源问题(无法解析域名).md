@@ -32,7 +32,7 @@ sudo  vim /etc/resolv.conf
 sudo vim /run/systemd/resolve/stub-resolv.conf # 建议改这个
 ```
 
-添加nameserver,如下：
+添加nameserver,如下：(使用阿里巴巴提供的DNS域名解析服务)
 
 ```sh
 # 添加
