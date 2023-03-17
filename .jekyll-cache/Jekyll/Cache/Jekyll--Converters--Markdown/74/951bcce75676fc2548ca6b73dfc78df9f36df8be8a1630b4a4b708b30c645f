@@ -1,4 +1,4 @@
-I"� <p>libpython3.7m.so.1.0: /usr/local/lib/libpython3.7m.so.1.0</p>
+I"� <p>libpython3.7m.so.1.0: /usr/local/lib/libpython3.7m.so.1.0</p>
 
 <h1 id="安装-mysql">安装 MySQL</h1>
 
@@ -118,7 +118,7 @@ select host from user where user='root';
 <pre><code class="language-sql">select host from user where user='root';
 </code></pre>
 
-<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677199916004.png" alt="已经修改成功" /></p>
+<p><img src="/_posts/image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677199916004.png" alt="已经修改成功" /></p>
 
 <p>退出数据库后重启数据库服务：(然后就可以在数据库工具远程MySQL数据库了。)</p>
 
@@ -132,7 +132,7 @@ select host from user where user='root';
 <pre><code class="language-shell">sudo systemctl status mysql
 </code></pre>
 
-<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677200253300.png" alt="MySQL已经自动运行" /></p>
+<p><img src="/_posts/image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677200253300.png" alt="MySQL已经自动运行" /></p>
 
 <p>然后，使用 ss 命令检查开放端口：</p>
 
@@ -152,7 +152,7 @@ select host from user where user='root';
 
 <p>可以发现，防火墙状态为不活动。</p>
 
-<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677200490189.png" alt="1677200490189" /></p>
+<p><img src="/_posts/image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677200490189.png" alt="1677200490189" /></p>
 
 <p>如果防火墙状态为active状态， ufw 拒绝传入连接。由于端口 80 和 3306 尚未添加为例外，因此 HTTP 和 MySQL 无法接收传入连接，尽管ss并nmap报告它们处于侦听状态。</p>
 
@@ -166,10 +166,10 @@ sudo ufw allow 3306/tcp
 
 <p>使用ifconfig查看服务器ip地址，然后在navicat中连接数据库。</p>
 
-<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677202388976.png" alt="连接数据库" />
+<p><img src="/_posts/image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677202388976.png" alt="连接数据库" />
 连接结果如下：</p>
 
-<p><img src="image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677202138195.png" alt="连接结果" /></p>
+<p><img src="/_posts/image/2023-02-21-Ubuntu安装MySQL8.0并远程连接/1677202138195.png" alt="连接结果" /></p>
 
 <p>也可以用VSCode来管理MySql数据库：</p>
 
