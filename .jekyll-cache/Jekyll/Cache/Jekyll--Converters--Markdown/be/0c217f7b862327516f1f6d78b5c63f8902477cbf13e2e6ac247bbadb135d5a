@@ -1,0 +1,23 @@
+I"�<h2 id="谢春花的歌">谢春花的歌</h2>
+
+<p>https://link.jscdn.cn/sharepoint/aHR0cHM6Ly9oa3VzdGNvbm5lY3QtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvamNoZW5mbF9jb25uZWN0X3VzdF9oay9FVThfNm53Y1ZSQkVtc1FCdzY1WDJnNEJmcnhjaXBrSDdKZHZvWWg2R1Z0ekR3P2U9QUh6cWhP.mp3</p>
+
+<h2 id="什么是locust">什么是<a href="https://so.csdn.net/so/search?q=locust&amp;spm=1001.2101.3001.7020">locust</a>？</h2>
+
+<p>locust是一个简单易用的分布式<a href="https://so.csdn.net/so/search?q=%E8%B4%9F%E8%BD%BD%E6%B5%8B%E8%AF%95&amp;spm=1001.2101.3001.7020">负载测试</a>工具，主要用来对网站进行负载压力测试。locust使用python语言开发，测试资源消耗远远小于java语言开发的jmeter。且其支持分布式部署测试，能够轻松模拟百万级用户并发测试。</p>
+
+<h2 id="locust优缺点">locust优缺点</h2>
+
+<p><strong>优点：</strong></p>
+
+<p>1.不同与wrk和jmeter使用线程数提高并发量，locust借助于协程实现对用户的模拟，相同物理资源（机器cpu、内存等）配置下locust能支持的并发用户数相比jmeter可以提升一个数量级
+2.相比wrk对复杂场景测试的捉襟见肘和jmeter需要界面点击录制复杂场景的麻烦，locust只需用户使用python编写用户场景完成测试
+3.不同与jmeter复杂的用户使用界面，locust的界面干净整洁，可以实时显示测试的相关细节（如发送请求数、失败数和当前发送请求速度等）
+4.locust虽然是面向web应用测试的，但是它可以用来测试几乎所有系统。给locust编写一个客户端，可以满足你所有的测试要求</p>
+
+<p><strong>缺点：</strong></p>
+
+<p>1.同wrk一样，locust测试结果输出不如jmeter的测试结果展示类型多</p>
+
+<h2 id="安装">安装</h2>
+:ET
