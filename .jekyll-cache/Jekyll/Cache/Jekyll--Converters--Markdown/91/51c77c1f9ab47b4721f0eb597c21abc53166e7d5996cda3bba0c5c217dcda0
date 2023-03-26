@@ -1,4 +1,4 @@
-I"�;<h1 id="1-基本命令">1. 基本命令</h1>
+I"mB<h1 id="1-基本命令">1. 基本命令</h1>
 
 <p>top</p>
 
@@ -53,8 +53,6 @@ cd /proc/pidnumber
 <p>显示系统中运行进程的状态和资源使用情况，界面更加美观。</p>
 
 <h2 id="atop都是用于查看系统进程信息的命令可以按照不同的方式显示进程信息">atop：都是用于查看系统进程信息的命令，可以按照不同的方式显示进程信息。</h2>
-
-<p>as</p>
 
 <h2 id="vmstat可以监控操作系统的进程状态内存虚拟内存磁盘iocpu的信息">vmstat：可以监控操作系统的进程状态、内存、虚拟内存、磁盘IO、CPU的信息。</h2>
 
@@ -237,6 +235,7 @@ net.ipv4.conf.all.accept_redirects = 0 # 禁止所有接口接收重定向报文
 <h2 id="ulimit用于限制系统资源使用和保护系统安全">ulimit：用于限制系统资源使用和保护系统安全。</h2>
 
 <h2 id="perfsystemtap用于系统性能分析和瓶颈诊断">perf、、systemtap：用于系统性能分析和瓶颈诊断。</h2>
+
 <h2 id="perfsystemtap用于系统性能分析和瓶颈诊断-1">perf、、systemtap：用于系统性能分析和瓶颈诊断。</h2>
 
 <h2 id="initsystemdupstart用于系统进程管理和服务管理">init、systemd、upstart：用于系统进程管理和服务管理。</h2>
@@ -248,6 +247,42 @@ net.ipv4.conf.all.accept_redirects = 0 # 禁止所有接口接收重定向报文
 <h2 id="treefdrg用于文件和目录搜索和查找">tree、fd、rg：用于文件和目录搜索和查找。</h2>
 
 <h1 id="2-综合检测集成方案和工具">2. 综合检测集成方案和工具</h1>
+
+<h2 id="unixbench">Unixbench</h2>
+
+<p>Unixbench是一个类unix系（如Unix， Linux）统下的性能测试工具，被广泛用在linux系统主机的性能的测试，主要提供的测试项目有：系统调用、读写、进程、图形化测试、2D、3D、管道、运算、C库等系统基准性能提供测试数据。</p>
+
+<p>要运行UnixBench测试，请按照以下步骤进行：</p>
+
+<p>打开终端并进入UnixBench的根目录。在大多数情况下，UnixBench的根目录位于/usr/share/UnixBench。您可以使用以下命令进入该目录：</p>
+
+<ol>
+  <li>cd /usr/share/UnixBench
+如果UnixBench安装在其他位置，请相应地更改路径。</li>
+  <li>运行./Run命令。这将会运行所有可用的测试，包括CPU、内存、磁盘、文件系统和网络等方面的测试。测试过程可能需要一些时间，具体时间取决于您的系统性能。</li>
+  <li>等待测试完成后，将生成一个HTML格式的报告。该报告位于UnixBench根目录下的results文件夹中，文件名为UnixBench.html。您可以使用Web浏览器打开该文件，并查看测试的结果和性能数据。</li>
+</ol>
+
+<p>除了运行所有测试之外，您还可以运行单个测试或一组测试。以下是一些示例命令：</p>
+
+<p>运行CPU测试：./Run cpu
+运行内存测试：./Run memory
+运行磁盘测试：./Run disk
+运行文件系统测试：./Run fs
+运行网络测试：./Run network</p>
+
+<h2 id="sysbench工具">Sysbench工具</h2>
+
+<p>内建测试项</p>
+
+<p>fileio：文件I/O测试。
+cpu：CPU性能测试。
+memory：内存速度测试。
+threads：线程子系统性能测试。
+mutex：互斥性能测试。
+oltp：OLTP（在线事务处理）测试。</p>
+
+<h2 id="其他工具">其他工具</h2>
 
 <p>Nagios：一款开源的企业级 IT 基础设施监控软件，可监测服务器、网络设备、应用程序等多种设备和服务状态。</p>
 
@@ -283,27 +318,16 @@ net.ipv4.conf.all.accept_redirects = 0 # 禁止所有接口接收重定向报文
 
 <p>代码如下：（文件名为backup_sysconfig.sh）</p>
 
-<pre><code class="language-shell">
-#! /bin/bash
-
+<pre><code class="language-shell">#! /bin/bash
 # this script is used to backup the syslog file in /var/log dir everyday
-
 echo `date`
-
-cp /var/log/syslog/home/hugo/test_BASH/log
-
+cp /var/log/syslog /home/hugo/test_BASH/log/
 # adding the user with x permission
-
-chmod u+xsyslog
-
+chmod u+x /home/hugo/test_BASH/log/syslog
 # chnage the firname
-
 today=$(date +%y%m%d)
-
 echo $today
-
-mv ./log/syslog./log/syslog_$today # 同一个文件夹下面就相当于重命名
-
+mv /home/hugo/test_BASH/log/syslog /home/hugo/test_BASH/log/syslog_$today
 </code></pre>
 
 <h2 id="定时调度任务">定时调度任务</h2>
@@ -313,7 +337,7 @@ mv ./log/syslog./log/syslog_$today # 同一个文件夹下面就相当于重命�
 <p>开启定时调度任务，每天凌晨1点执行一次</p>
 
 <pre><code class="language-shell">crontab -e
-# 0 1 * * * /home/hugo/test_BASH/back_sysconfig.sh
+# 0 1 * * * /home/hugo/test_BASH/backup_sysconfig.sh
 </code></pre>
 
 <p>显示 <code>crontab: installing new crontab</code>，表示定时任务已经开启。</p>
