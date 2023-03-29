@@ -1,0 +1,96 @@
+I"�<h2 id="代码">代码</h2>
+
+<pre><code class="language-shell"># 添加当前时间信息
+echo "当前时间为$(date)" &gt;&gt; output.txt
+
+# 会输出包含 "model name" 字符串的行，即 CPU 型号的信息
+model_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | cut -d ":" -f 2 | xargs)
+echo "CPU型号信息为$model_name" &gt;&gt; output.txt
+#  查看内核核心数量
+cpucores=$(cat /proc/cpuinfo | grep "cpu cores" | head -n 1 | cut -d ":" -f 2 | xargs)
+echo "内核核心数量为$cpucores" &gt;&gt; output.txt
+# 查看系统 CPU 使用情况
+echo "系统 CPU 使用情况如下：" &gt;&gt; output.txt
+iostat -c | awk '{if(NR==4){print "CPU繁忙度: "$1"%"} }' &gt;&gt; output.txt
+iowait=$(iostat -c | awk '{if(NR==4){print $4} }')
+if [ $(echo "$iowait &gt;=60" | bc -l) -eq 1 ]; 
+then
+    echo "CPU等待输入输出完成时间的百分比为$iowait%,过高，表示硬盘存在I/O瓶颈。" &gt;&gt; output.txt
+else
+    echo "CPU等待输入输出完成时间的百分比为$iowait%,正常。" &gt;&gt; output.txt
+fi
+# 如果%idle值高，表示CPU较空闲
+# 如果%idle值持续低于10，表明CPU处理能力相对较低，系统中最需要解决的资源是CPU。
+idle=$(iostat -c | awk '{if(NR==4){print $6} }')
+if [ $(echo "$idle &gt;= 90" | bc -l) -eq 1 ]; 
+then
+    echo "CPU较空闲，%idle值为$idle" &gt;&gt; output.txt
+elif [ $(echo "$idle &lt; 10" | bc -l) -eq 1 ]; 
+then
+    echo "CPU处理能力相对较低，idle值为$idle%" &gt;&gt; output.txt
+fi
+
+
+# 输出系统总内存
+MemTotal=$(cat /proc/meminfo | grep "MemTotal" | cut -d ":" -f 2 | xargs)
+echo "系统总内存为$MemTotal" &gt;&gt; output.txt
+# 查看系统空闲内存大小
+MemFree=$(cat /proc/meminfo | grep "MemFree" | cut -d ":" -f 2 | xargs)
+echo "系统空闲内存为$MemFree" &gt;&gt; output.txt
+# Cached：分配给文件缓冲区的内存（比如未保存的文件就是写到该缓冲区）
+Cached=$(cat /proc/meminfo | grep "Cached" | head -n 1 | cut -d ":" -f 2 | xargs)
+echo "分配给文件缓冲区的内存（比如未保存的文件就是写到该缓冲区）为$Cached。" &gt;&gt; output.txt
+
+# 查看磁盘信息
+echo "磁盘容量信息如下：" &gt;&gt; output.txt
+df -h | sort -k 4 -hr | grep "文件系统" &gt;&gt; output.txt
+df -h | sort -k 4 -hr | grep -v "文件系统" | grep -v "tmpfs" &gt;&gt; output.txt
+
+# 查看网络
+PingInfo=$(ping -c 5 www.baidu.com | grep "bytes from" | head -n 1 )
+echo "通过ping访问百度得到的信息如下：\n $PingInfo"&gt;&gt; output.txt
+PingStatics=$(ping -c 5 www.baidu.com | grep "1 packets transmitted" | head -n 1 )
+echo "$PingStatics"&gt;&gt; output.txt
+
+rtt=$(ping -c 5 www.baidu.com | grep "rtt" | cut -d "=" -f 2 | head -n 1 )
+rttmin=$(echo $rtt | cut -d "/" -f 1)
+rttavg=$(echo $rtt | cut -d "/" -f 2)
+rttmax=$(echo $rtt | cut -d "/" -f 3)
+rttmdev=$(echo $rtt | cut -d "/" -f 4)
+echo "网络最小时延为$rttmin ms" &gt;&gt; output.txt
+echo "网络平均时延为$rttavg ms" &gt;&gt; output.txt
+echo "网络最大时延为$rttmax ms" &gt;&gt; output.txt
+echo "网络时延平均偏差为$rttmdev" &gt;&gt; output.txt
+
+# perf性能瓶颈分析，查看哪些进程占用CPU较高
+# 安装命令
+# apt-get install linux-tools-$(uname -r) linux-tools-generic -y
+# https://blog.51cto.com/liuzhengwei521/2360430
+#echo "CPU性能瓶颈分析如下：" &gt;&gt; output.txt
+#perf top -b -p $(pidof nginx) &gt;&gt; output.txt
+
+
+# 查看系统负载
+# https://blog.51cto.com/ghostwritten/5344990
+# 对CPU进行压力测试
+#cpu_number=$(grep -c 'processor' /proc/cpuinfo)
+#创建8个stress进程和100个io进程，持续时间600秒，模拟CPU在用户态和内核态总使用率达到100%的场景。
+#stress -c $cpu_number -i 100 --verbose --timeout 600
+
+# 对内存进行压力测试
+# 下面例子，就是创建5个进程，同时去malloc分配内存，并且保持100s后再释放内存：
+# stress --vm 5 --vm-bytes 1G --vm-hang 100 --timeout 100s
+# stress 测试内存的时候，--vm-bytes 1G --vm-hang 100 这里2个参数是关键！！！！
+# --vm-bytes 表示malloc分配多少内存
+# --vm-hang 表示malloc分配的内存多少时间后在free()释放掉
+# --vm 指定进程数量，分配的内存总数为vm*vm-bytes
+# --timeout 持续时间
+
+# 对磁盘进行压力测试，并输出结果到文件
+# stress --hdd 2 --hdd-bytes 3G --timeout 200
+# -hdd forks 产生多个执行write()函数的进程
+# --hdd-bytes bytes 指定写的Bytes数，默认是1GB
+</code></pre>
+
+<h2 id="结果">结果</h2>
+:ET

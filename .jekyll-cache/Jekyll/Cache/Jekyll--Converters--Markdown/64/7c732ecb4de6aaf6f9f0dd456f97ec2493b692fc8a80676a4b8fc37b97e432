@@ -1,0 +1,382 @@
+I"�;<h3 id="对cpu进行压力测试">对CPU进行压力测试</h3>
+
+<h4 id="stresssh">stress.sh</h4>
+
+<pre><code class="language-shell">#对CPU进行压力测试
+cpu_number=$(grep -c 'processor' /proc/cpuinfo)
+#模拟CPU在内核使用率达到100%的场景。
+stress --cpu $cpu_number
+</code></pre>
+<h4 id="输出结果导txt文件中stressresultsh">输出结果导txt文件中（StressResult.sh）</h4>
+
+<pre><code class="language-shell">#!/bin/bash
+# 添加当前时间信息
+echo "当前时间为$(date)" &gt;&gt; stress.txt
+echo "模拟CPU在内核使用率达到100%的场景:" &gt;&gt; stress.txt
+
+./stress.sh &amp; # run stress.sh in the background
+pid=$! # get the PID of the background process
+
+SECONDS=0 # initialize SECONDS variable to 0
+
+while [ $SECONDS -lt 50 ] # check if script has been running for less than 50 seconds
+do
+  echo "Current value of SECONDS: $SECONDS" &gt;&gt; stress.txt
+  uptime &gt;&gt; stress.txt
+  #echo "\n处理器实时统计信息如下" &gt;&gt; stress.txt
+  #-P ALL参数指定该命令应报告所有处理器的统计信息
+  #mpstat -P ALL 5 1 &gt;&gt; stress.txt
+  #echo "\n" &gt;&gt; stress.txt
+  SECONDS=$((SECONDS+2))
+  sleep 2
+done
+
+kill -9 $pid # kill the background process after 50 seconds
+kill $(pgrep stress)
+kill $(pgrep StressResult.sh)
+kill $(pgrep sleep)
+</code></pre>
+
+<h4 id="结果">结果</h4>
+
+<pre><code class="language-console">当前时间为2023年 03月 29日 星期三 14:34:33 CST
+模拟CPU在内核使用率达到100%的场景:
+Current value of SECONDS: 0
+ 14:34:33 up 59 min,  1 user,  load average: 2.49, 2.49, 2.14
+Current value of SECONDS: 2
+ 14:34:35 up 59 min,  1 user,  load average: 2.61, 2.52, 2.15
+Current value of SECONDS: 4
+ 14:34:38 up 59 min,  1 user,  load average: 2.61, 2.52, 2.15
+Current value of SECONDS: 6
+ 14:34:40 up 59 min,  1 user,  load average: 2.61, 2.52, 2.15
+Current value of SECONDS: 8
+ 14:34:42 up 59 min,  1 user,  load average: 2.80, 2.56, 2.16
+Current value of SECONDS: 10
+ 14:34:44 up 59 min,  1 user,  load average: 2.80, 2.56, 2.16
+Current value of SECONDS: 12
+ 14:34:46 up 59 min,  1 user,  load average: 2.98, 2.60, 2.18
+Current value of SECONDS: 14
+ 14:34:48 up 59 min,  1 user,  load average: 2.98, 2.60, 2.18
+Current value of SECONDS: 16
+ 14:34:50 up 59 min,  1 user,  load average: 2.98, 2.60, 2.18
+Current value of SECONDS: 18
+ 14:34:52 up 59 min,  1 user,  load average: 3.06, 2.62, 2.19
+Current value of SECONDS: 20
+ 14:34:54 up 59 min,  1 user,  load average: 3.06, 2.62, 2.19
+Current value of SECONDS: 22
+ 14:34:56 up 59 min,  1 user,  load average: 3.29, 2.68, 2.21
+Current value of SECONDS: 24
+ 14:34:58 up 59 min,  1 user,  load average: 3.29, 2.68, 2.21
+Current value of SECONDS: 26
+ 14:35:00 up 59 min,  1 user,  load average: 3.29, 2.68, 2.21
+Current value of SECONDS: 28
+ 14:35:02 up 59 min,  1 user,  load average: 3.43, 2.72, 2.22
+Current value of SECONDS: 30
+ 14:35:04 up 59 min,  1 user,  load average: 3.43, 2.72, 2.22
+Current value of SECONDS: 32
+ 14:35:06 up 59 min,  1 user,  load average: 3.48, 2.74, 2.23
+Current value of SECONDS: 34
+ 14:35:08 up 59 min,  1 user,  load average: 3.48, 2.74, 2.23
+Current value of SECONDS: 36
+ 14:35:10 up 59 min,  1 user,  load average: 3.52, 2.76, 2.24
+Current value of SECONDS: 38
+ 14:35:12 up  1:00,  1 user,  load average: 3.52, 2.76, 2.24
+Current value of SECONDS: 40
+ 14:35:14 up  1:00,  1 user,  load average: 3.52, 2.76, 2.24
+Current value of SECONDS: 42
+ 14:35:16 up  1:00,  1 user,  load average: 3.72, 2.82, 2.26
+Current value of SECONDS: 44
+ 14:35:18 up  1:00,  1 user,  load average: 3.72, 2.82, 2.26
+Current value of SECONDS: 46
+ 14:35:20 up  1:00,  1 user,  load average: 3.74, 2.84, 2.27
+Current value of SECONDS: 48
+ 14:35:22 up  1:00,  1 user,  load average: 3.74, 2.84, 2.27
+</code></pre>
+
+<h3 id="对内存进行压力测试">对内存进行压力测试</h3>
+
+<h4 id="memorysh">memory.sh</h4>
+
+<pre><code class="language-shell"># 新增4个内存分配进程，每次分配大小730M，分配后不释放，长期保持测试 
+stress --vm 4 --vm-bytes 730M --vm-keep
+</code></pre>
+
+<h4 id="输出结果导txt文件中memoryresultsh">输出结果导txt文件中（memoryResult.sh）</h4>
+
+<pre><code class="language-shell">#!/bin/bash
+# 添加当前时间信息
+echo "当前时间为$(date)" &gt;&gt; memorystress.txt
+echo "# 新增4个内存分配进程，每次分配大小730M，分配后不释放，长期保持测试 " &gt;&gt; memorystress.txt
+
+./memory.sh &amp; # run stress.sh in the background
+pid=$! # get the PID of the background process
+
+SECONDS=0 # initialize SECONDS variable to 0
+
+while [ $SECONDS -lt 50 ] # check if script has been running for less than 50 seconds
+do
+  echo "Current value of SECONDS: $SECONDS" &gt;&gt; memorystress.txt
+  uptime &gt;&gt; memorystress.txt
+  #echo "\n处理器实时统计信息如下" &gt;&gt; stress.txt
+  #-P ALL参数指定该命令应报告所有处理器的统计信息
+  #mpstat -P ALL 5 1 &gt;&gt; stress.txt
+  #echo "\n" &gt;&gt; stress.txt
+  SECONDS=$((SECONDS+2))
+  sleep 2
+done
+
+kill -9 $pid # kill the background process after 50 seconds
+kill $(pgrep stress)
+kill $(pgrep memoryResult.sh)
+kill $(pgrep sleep)
+</code></pre>
+
+<h4 id="执行memoryresultsh">执行memoryResult.sh</h4>
+
+<pre><code class="language-console">[root@localhost ~]# ./memoryResult.sh
+</code></pre>
+
+<h4 id="输出结果">输出结果</h4>
+
+<pre><code class="language-console">当前时间为2023年 03月 29日 星期三 14:32:07 CST
+# 新增4个内存分配进程，每次分配大小730M，分配后不释放，长期保持测试 
+Current value of SECONDS: 0
+ 14:32:07 up 56 min,  1 user,  load average: 2.24, 2.34, 2.02
+Current value of SECONDS: 2
+ 14:32:09 up 56 min,  1 user,  load average: 2.24, 2.34, 2.02
+Current value of SECONDS: 4
+ 14:32:11 up 57 min,  1 user,  load average: 2.46, 2.38, 2.04
+Current value of SECONDS: 6
+ 14:32:13 up 57 min,  1 user,  load average: 2.46, 2.38, 2.04
+Current value of SECONDS: 8
+ 14:32:15 up 57 min,  1 user,  load average: 2.46, 2.38, 2.04
+Current value of SECONDS: 10
+ 14:32:17 up 57 min,  1 user,  load average: 2.83, 2.46, 2.07
+Current value of SECONDS: 12
+ 14:32:19 up 57 min,  1 user,  load average: 2.83, 2.46, 2.07
+Current value of SECONDS: 14
+ 14:32:21 up 57 min,  1 user,  load average: 2.92, 2.48, 2.08
+Current value of SECONDS: 16
+ 14:32:23 up 57 min,  1 user,  load average: 2.92, 2.48, 2.08
+Current value of SECONDS: 18
+ 14:32:25 up 57 min,  1 user,  load average: 3.01, 2.51, 2.09
+Current value of SECONDS: 20
+ 14:32:27 up 57 min,  1 user,  load average: 3.01, 2.51, 2.09
+Current value of SECONDS: 22
+ 14:32:29 up 57 min,  1 user,  load average: 3.01, 2.51, 2.09
+Current value of SECONDS: 24
+ 14:32:31 up 57 min,  1 user,  load average: 3.09, 2.53, 2.10
+Current value of SECONDS: 26
+ 14:32:33 up 57 min,  1 user,  load average: 3.09, 2.53, 2.10
+Current value of SECONDS: 28
+ 14:32:35 up 57 min,  1 user,  load average: 3.16, 2.56, 2.11
+Current value of SECONDS: 30
+ 14:32:37 up 57 min,  1 user,  load average: 3.16, 2.56, 2.11
+Current value of SECONDS: 32
+ 14:32:39 up 57 min,  1 user,  load average: 3.16, 2.56, 2.11
+Current value of SECONDS: 34
+ 14:32:41 up 57 min,  1 user,  load average: 3.23, 2.58, 2.12
+Current value of SECONDS: 36
+ 14:32:43 up 57 min,  1 user,  load average: 3.23, 2.58, 2.12
+Current value of SECONDS: 38
+ 14:32:45 up 57 min,  1 user,  load average: 3.29, 2.61, 2.13
+Current value of SECONDS: 40
+ 14:32:47 up 57 min,  1 user,  load average: 3.29, 2.61, 2.13
+Current value of SECONDS: 42
+ 14:32:49 up 57 min,  1 user,  load average: 3.29, 2.61, 2.13
+Current value of SECONDS: 44
+ 14:32:51 up 57 min,  1 user,  load average: 3.35, 2.63, 2.14
+Current value of SECONDS: 46
+ 14:32:53 up 57 min,  1 user,  load average: 3.35, 2.63, 2.14
+Current value of SECONDS: 48
+ 14:32:55 up 57 min,  1 user,  load average: 3.40, 2.65, 2.15
+</code></pre>
+
+<h3 id="对io进行压力测试">对IO进行压力测试</h3>
+
+<h4 id="iosh">io.sh</h4>
+
+<pre><code class="language-shell"># 新增6个I/O进程，测试100秒
+stress -i 6
+</code></pre>
+
+<h4 id="ioresultsh输出结果到iostresstxt">ioResult.sh(输出结果到iostress.txt)</h4>
+
+<pre><code class="language-shell">#!/bin/bash
+# 添加当前时间信息
+echo "当前时间为$(date)" &gt;&gt; iostress.txt
+echo "模拟新增6个I/O进程的场景:" &gt;&gt; iostress.txt
+
+./io.sh &amp; # run stress.sh in the background
+pid=$! # get the PID of the background process
+
+SECONDS=0 # initialize SECONDS variable to 0
+
+while [ $SECONDS -lt 50 ] # check if script has been running for less than 50 seconds
+do
+  echo "Current value of SECONDS: $SECONDS" &gt;&gt; iostress.txt
+  uptime &gt;&gt; iostress.txt
+  #echo "\n处理器实时统计信息如下" &gt;&gt; stress.txt
+  #-P ALL参数指定该命令应报告所有处理器的统计信息
+  #mpstat -P ALL 5 1 &gt;&gt; stress.txt
+  #echo "\n" &gt;&gt; stress.txt
+  SECONDS=$((SECONDS+2))
+  sleep 2
+done
+
+kill -9 $pid # kill the background process after 50 seconds
+kill $(pgrep stress)
+kill $(pgrep ioResult.sh)
+kill $(pgrep sleep)
+</code></pre>
+
+<h4 id="查看结果">查看结果</h4>
+
+<pre><code class="language-console">当前时间为2023年 03月 29日 星期三 14:30:31 CST
+模拟新增6个I/O进程的场景:
+Current value of SECONDS: 0
+ 14:30:31 up 55 min,  1 user,  load average: 1.69, 1.90, 1.84
+Current value of SECONDS: 2
+ 14:30:33 up 55 min,  1 user,  load average: 1.69, 1.90, 1.84
+Current value of SECONDS: 4
+ 14:30:35 up 55 min,  1 user,  load average: 1.69, 1.90, 1.84
+Current value of SECONDS: 6
+ 14:30:37 up 55 min,  1 user,  load average: 2.04, 1.97, 1.87
+Current value of SECONDS: 8
+ 14:30:39 up 55 min,  1 user,  load average: 2.04, 1.97, 1.87
+Current value of SECONDS: 10
+ 14:30:41 up 55 min,  1 user,  load average: 2.44, 2.05, 1.89
+Current value of SECONDS: 12
+ 14:30:43 up 55 min,  1 user,  load average: 2.44, 2.05, 1.89
+Current value of SECONDS: 14
+ 14:30:45 up 55 min,  1 user,  load average: 2.44, 2.05, 1.89
+Current value of SECONDS: 16
+ 14:30:47 up 55 min,  1 user,  load average: 3.04, 2.19, 1.94
+Current value of SECONDS: 18
+ 14:30:49 up 55 min,  1 user,  load average: 3.04, 2.19, 1.94
+Current value of SECONDS: 20
+ 14:30:51 up 55 min,  1 user,  load average: 3.60, 2.32, 1.98
+Current value of SECONDS: 22
+ 14:30:53 up 55 min,  1 user,  load average: 3.60, 2.32, 1.98
+Current value of SECONDS: 24
+ 14:30:55 up 55 min,  1 user,  load average: 3.60, 2.32, 1.98
+Current value of SECONDS: 26
+ 14:30:57 up 55 min,  1 user,  load average: 3.95, 2.41, 2.01
+Current value of SECONDS: 28
+ 14:30:59 up 55 min,  1 user,  load average: 3.95, 2.41, 2.01
+Current value of SECONDS: 30
+ 14:31:01 up 55 min,  1 user,  load average: 4.20, 2.49, 2.04
+Current value of SECONDS: 32
+ 14:31:03 up 55 min,  1 user,  load average: 4.20, 2.49, 2.04
+Current value of SECONDS: 34
+ 14:31:05 up 55 min,  1 user,  load average: 4.26, 2.53, 2.06
+Current value of SECONDS: 36
+ 14:31:07 up 55 min,  1 user,  load average: 4.26, 2.53, 2.06
+Current value of SECONDS: 38
+ 14:31:09 up 55 min,  1 user,  load average: 4.26, 2.53, 2.06
+Current value of SECONDS: 40
+ 14:31:11 up 56 min,  1 user,  load average: 4.40, 2.59, 2.08
+Current value of SECONDS: 42
+ 14:31:13 up 56 min,  1 user,  load average: 4.40, 2.59, 2.08
+Current value of SECONDS: 44
+ 14:31:15 up 56 min,  1 user,  load average: 4.53, 2.64, 2.10
+Current value of SECONDS: 46
+ 14:31:17 up 56 min,  1 user,  load average: 4.53, 2.64, 2.10
+Current value of SECONDS: 48
+ 14:31:19 up 56 min,  1 user,  load average: 4.53, 2.64, 2.10
+</code></pre>
+
+<h3 id="对磁盘io进行压力测试">对磁盘IO进行压力测试</h3>
+
+<h4 id="hddsh">hdd.sh</h4>
+
+<pre><code class="language-shell"># 开启2个磁盘IO进程，每次写10GB数据到磁盘
+stress --hdd 2 --hdd-bytes 10G --backoff 2000000
+</code></pre>
+
+<h4 id="hddresultsh输出结果到hddstresstxt">hddResult.sh(输出结果到hddstress.txt)</h4>
+
+<pre><code class="language-shell">#!/bin/bash
+# 添加当前时间信息
+echo "当前时间为$(date)" &gt;&gt; hddstress.txt
+echo "模拟开启2个磁盘IO进程，每次写10GB数据到磁盘的场景:" &gt;&gt; hddstress.txt
+
+./hdd.sh &amp; # run stress.sh in the background
+pid=$! # get the PID of the background process
+
+SECONDS=0 # initialize SECONDS variable to 0
+
+while [ $SECONDS -lt 50 ] # check if script has been running for less than 50 seconds
+do
+  echo "Current value of SECONDS: $SECONDS" &gt;&gt; hddstress.txt
+  uptime &gt;&gt; hddstress.txt
+  #echo "\n处理器实时统计信息如下" &gt;&gt; stress.txt
+  #-P ALL参数指定该命令应报告所有处理器的统计信息
+  #mpstat -P ALL 5 1 &gt;&gt; stress.txt
+  #echo "\n" &gt;&gt; stress.txt
+  SECONDS=$((SECONDS+2))
+  sleep 2
+done
+
+kill -9 $pid # kill the background process after 50 seconds
+kill $(pgrep stress)
+kill $(pgrep hddResult.sh)
+kill $(pgrep sleep)
+</code></pre>
+
+<h4 id="查看结果-1">查看结果</h4>
+
+<pre><code class="language-console">当前时间为2023年 03月 29日 星期三 14:33:22 CST
+模拟开启2个磁盘IO进程，每次写10GB数据到磁盘的场景:
+Current value of SECONDS: 0
+ 14:33:22 up 58 min,  1 user,  load average: 2.24, 2.44, 2.09
+Current value of SECONDS: 2
+ 14:33:24 up 58 min,  1 user,  load average: 2.24, 2.44, 2.09
+Current value of SECONDS: 4
+ 14:33:26 up 58 min,  1 user,  load average: 2.22, 2.43, 2.09
+Current value of SECONDS: 6
+ 14:33:28 up 58 min,  1 user,  load average: 2.22, 2.43, 2.09
+Current value of SECONDS: 8
+ 14:33:30 up 58 min,  1 user,  load average: 2.22, 2.43, 2.09
+Current value of SECONDS: 10
+ 14:33:32 up 58 min,  1 user,  load average: 2.28, 2.44, 2.10
+Current value of SECONDS: 12
+ 14:33:34 up 58 min,  1 user,  load average: 2.28, 2.44, 2.10
+Current value of SECONDS: 14
+ 14:33:36 up 58 min,  1 user,  load average: 2.34, 2.45, 2.10
+Current value of SECONDS: 16
+ 14:33:38 up 58 min,  1 user,  load average: 2.34, 2.45, 2.10
+Current value of SECONDS: 18
+ 14:33:40 up 58 min,  1 user,  load average: 2.39, 2.46, 2.11
+Current value of SECONDS: 20
+ 14:33:42 up 58 min,  1 user,  load average: 2.39, 2.46, 2.11
+Current value of SECONDS: 22
+ 14:33:44 up 58 min,  1 user,  load average: 2.39, 2.46, 2.11
+Current value of SECONDS: 24
+ 14:33:46 up 58 min,  1 user,  load average: 2.44, 2.47, 2.11
+Current value of SECONDS: 26
+ 14:33:48 up 58 min,  1 user,  load average: 2.44, 2.47, 2.11
+Current value of SECONDS: 28
+ 14:33:51 up 58 min,  1 user,  load average: 2.49, 2.48, 2.12
+Current value of SECONDS: 30
+ 14:33:53 up 58 min,  1 user,  load average: 2.49, 2.48, 2.12
+Current value of SECONDS: 32
+ 14:33:55 up 58 min,  1 user,  load average: 2.53, 2.49, 2.12
+Current value of SECONDS: 34
+ 14:33:58 up 58 min,  1 user,  load average: 2.53, 2.49, 2.12
+Current value of SECONDS: 36
+ 14:34:01 up 58 min,  1 user,  load average: 2.49, 2.48, 2.12
+Current value of SECONDS: 38
+ 14:34:03 up 58 min,  1 user,  load average: 2.49, 2.48, 2.12
+Current value of SECONDS: 40
+ 14:34:04 up 58 min,  1 user,  load average: 2.49, 2.48, 2.12
+Current value of SECONDS: 42
+ 14:34:09 up 58 min,  1 user,  load average: 2.45, 2.47, 2.12
+Current value of SECONDS: 44
+ 14:34:12 up 59 min,  1 user,  load average: 2.49, 2.48, 2.12
+Current value of SECONDS: 46
+ 14:34:17 up 59 min,  1 user,  load average: 2.93, 2.57, 2.15
+Current value of SECONDS: 48
+ 14:34:19 up 59 min,  1 user,  load average: 2.93, 2.57, 2.15
+</code></pre>
+:ET
