@@ -1,24 +1,17 @@
----
-layout: post
-title: 太湖站2001-2006年水质监测数据分析
-date: 2023-04-04
-description: "太湖站2001-2006年水质监测数据分析"
-tag: Python
----
-## 1. 数据来源
+I"<h2 id="1-数据来源">1. 数据来源</h2>
 
-[和鲸社区-太湖站2001-2006年水质监测数据集](https://www.heywhale.com/mw/dataset/626155316731be0017382112)
+<p><a href="https://www.heywhale.com/mw/dataset/626155316731be0017382112">和鲸社区-太湖站2001-2006年水质监测数据集</a></p>
 
-包括两个文件：
+<p>包括两个文件：</p>
 
-1. 太湖站水质观测站点数据.xlsx
-2. 2001-2006年太湖水体物理及水体化学监测数据.xlsx
+<ol>
+  <li>太湖站水质观测站点数据.xlsx</li>
+  <li>2001-2006年太湖水体物理及水体化学监测数据.xlsx</li>
+</ol>
 
+<h2 id="2-站点分布示意图">2. 站点分布示意图</h2>
 
-## 2. 站点分布示意图
-
-```python
-import pandas as pd
+<pre><code class="language-python">import pandas as pd
 import folium
 import matplotlib.pyplot as plt
 # 1. 读取数据
@@ -52,16 +45,15 @@ map
 
 # Save the map as an HTML file
 map.save('map.html')
-```
+</code></pre>
 
-![20230404192804](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404192804.png)
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404192804.png" alt="20230404192804" /></p>
 
-## 3. 物理性质数据分析
+<h2 id="3-物理性质数据分析">3. 物理性质数据分析</h2>
 
-对水深随着时间变化进行探究。
+<p>对水深随着时间变化进行探究。</p>
 
-```python
-import pandas as pd
+<pre><code class="language-python">import pandas as pd
 import matplotlib.pyplot as plt
 # 读入2001-2006年太湖水体物理及水体化学监测数据.xlsx中的表格2001-2006年太湖水体物理监测数据
 df2 = pd.read_excel(r'.\2001-2006年太湖水体物理及水体化学监测数据.xlsx', sheet_name='2001-2006年太湖水体物理监测数据')
@@ -107,23 +99,21 @@ plt.ylabel('Water Depth (m)')
 # 设置legend的位置在图的外面
 plt.legend(df2['站点'].unique(), loc='center left', bbox_to_anchor=(1, 0.5))
 plt.show()
-```
+</code></pre>
 
-输出结果部分：
+<p>输出结果部分：</p>
 
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193002.png" alt="20230404193002" /></p>
 
-![20230404193002](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193002.png)
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193024.png" alt="20230404193024" /></p>
 
-![20230404193024](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193024.png)
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193054.png" alt="20230404193054" /></p>
 
-![20230404193054](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193054.png)
+<h2 id="4-化学性质数据分析">4. 化学性质数据分析</h2>
 
-## 4. 化学性质数据分析
+<p>对PH值进行探究，使用克里金插值的方法。</p>
 
-对PH值进行探究，使用克里金插值的方法。
-
-```python
-import pandas as pd
+<pre><code class="language-python">import pandas as pd
 # 读入2001-2006年太湖水体物理及水体化学监测数据.xlsx中的表格2001-2006年太湖水体物理监测数据
 df3 = pd.read_excel(r'.\2001-2006年太湖水体物理及水体化学监测数据.xlsx', sheet_name='2001-2006年太湖水体化学监测数据')
 df3 = df3.drop([0])
@@ -201,18 +191,17 @@ plt.title('pH Interpolation')
 plt.xlabel('Longitude')
 plt.ylabel('Latitude')
 plt.show()
-```
+</code></pre>
 
-部分结果输出如下：
+<p>部分结果输出如下：</p>
 
-![1680608067436](/_posts/image/2023-04-04-太湖站2001-2006年水质监测数据分析/1680608067436.png)
+<p><img src="/_posts/image/2023-04-04-太湖站2001-2006年水质监测数据分析/1680608067436.png" alt="1680608067436" /></p>
 
-![1680608067436](image/2023-04-04-太湖站2001-2006年水质监测数据分析/1680608067436.png)
+<p><img src="/image/2023-04-04-太湖站2001-2006年水质监测数据分析/1680608067436.png" alt="1680608067436" /></p>
 
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193505.png" alt="20230404193505" /></p>
 
-![20230404193505](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193505.png)
+<p>克里金插值结果如下：（感觉是错的，不改了）</p>
 
-
-克里金插值结果如下：（感觉是错的，不改了）
-
-![20230404193731](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193731.png)
+<p><img src="https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230404193731.png" alt="20230404193731" /></p>
+:ET
