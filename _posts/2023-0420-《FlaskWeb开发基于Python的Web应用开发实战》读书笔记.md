@@ -1,11 +1,10 @@
 ---
 layout: post
 title:  "FlaskWeb开发基于Python的Web应用开发实战读书笔记"
-date:   2023-04-20
+date: 2023-04-20
 description: "FlaskWeb开发基于Python的Web应用开发实战读书笔记"
 tag: Python
 ---
-
 ## 什么是Flask
 
 Flask是一个基于Python的轻量级Web应用框架，它有两个主要依赖：路由、调试和Web服务器网关接口（Web Server Gateway Interface，WSGI）子系统由Werkzeug提供，模板引擎则由Jinja2提供。
@@ -61,6 +60,7 @@ Ubuntu系统：
 ```bash
 source venv/bin/activate
 ```
+
 Windows系统：
 
 ```bash
@@ -123,11 +123,9 @@ $env:FLASK_ENV="development"
 flask run
 ```
 
-
 在pycharm中可以直接配置configuration来运行。
 
 ![20230420171028](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230420171028.png)
-
 
 hello.py文件中的代码如下：
 
