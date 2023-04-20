@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "《FlaskWeb开发基于Python的Web应用开发实战》读书笔记"
+title:  "FlaskWeb开发基于Python的Web应用开发实战读书笔记"
 date:   2023-04-20
-description: "《FlaskWeb开发基于Python的Web应用开发实战》读书笔记"
+description: "FlaskWeb开发基于Python的Web应用开发实战读书笔记"
 tag: Python
 ---
 
