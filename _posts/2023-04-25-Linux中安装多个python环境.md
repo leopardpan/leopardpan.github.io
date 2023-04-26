@@ -54,11 +54,14 @@ cd Python-3.8.0a4
 配置
 
 ```shell
+./configure --enable-optimizations
 ./configure --prefix=/usr/local/python3.8
 ```
 ./configure这段代码是用来检查系统环境是否满足编译安装Python的要求，如果不满足，会提示你缺少哪些依赖包，需要你自己去安装，安装完成后再次执行./configure，直到没有提示信息，这时候就可以执行make命令了。
 
 --prefix=/usr/local/python3.8这段代码是用来指定Python的安装路径，如果不指定，默认安装在/usr/local/bin目录下。
+
+--enable-optimizations这段代码是用来开启Python的优化编译，这样可以提高Python的运行效率。
 
 编译
 
@@ -93,3 +96,11 @@ make -j 4 && sudo make install
 hugo@hugo-virtual-machine:~/Python-3.8.0a4$ which python3.8
 /usr/local/python3.8/bin/python3.8
 ```
+
+好像在这之前，需要安装编译 Python 所必要的软件包：
+
+```shell
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+sudo apt update
+```
+
