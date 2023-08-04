@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Docker中运行和部署Hugo博客
-date: 2023-07-26
+date: 2023-07-28
 description: "Docker中运行和部署Hugo博客"
 tag: Docker
 ---
@@ -50,7 +50,6 @@ docker exex -it <container id> /bin/bash
 
 ## 运行hugo server
 
-
 现在已经进入了容器内部。
 
 ```bash
@@ -69,4 +68,3 @@ hugo server --theme=/app/myblog/themes/hugo-theme-learn --bind=
 ```
 
 hugo server 命令执行后， hugo server 将运行起来,并且会监听1313端口，我们可以通过浏览器访问本地址发布的博客网站了。
-
