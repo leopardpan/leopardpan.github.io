@@ -1,11 +1,10 @@
 ---
 layout: post
 title: Ubuntu创建pycharm的快捷方式两种方法
-date: 2023-08-09
+date: 2023-08-14
 description: "Ubuntu创建pycharm的快捷方式两种方法"
 tag: Linux
 ---
-
 ## 方法一
 
 1. 打开终端，输入命令：`sudo gedit /usr/share/applications/pycharm.desktop`，创建pycharm.desktop文件
@@ -29,4 +28,3 @@ Categories=Pycharm;
 2. 点击tools;
 3. 点击Create Desktop Entry;
 4. add to favorites;
-
