@@ -100,5 +100,15 @@ camera.position.y = 5;
 ![20230906141053](https://cdn.jsdelivr.net/gh/ChanJeunlam/PicgoBed/blogs/pictures/20230906141053.png)
 
 
+# 添加轨道控制器
+
+为乐使得摄像机位置改变不影响物体在页面上的位置，需要添加一个轨道控制器：
+
+```vue
+import { OrbitControls} from  "three/examples/jsm/controls/OrbitControls"
+
+//5 创建轨道控制器
+
+const controls = new OrbitControls(camera,render.domElement);
 
 
