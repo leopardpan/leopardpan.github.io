@@ -1,0 +1,28 @@
+I"h
+<ul>
+  <li><a href="#args-和-kwargs">*args 和 **kwargs</a>
+    <ul>
+      <li><a href="#使用-args-和-kwargs-来调用函数">使用 *args 和 **kwargs 来调用函数</a></li>
+      <li><a href="#使用顺序">使用顺序</a></li>
+      <li><a href="#什么时候使用它们">什么时候使用它们？</a></li>
+    </ul>
+  </li>
+  <li><a href="#调试debugging">调试（Debugging）</a>
+    <ul>
+      <li><a href="#pdb">pdb</a>
+        <ul>
+          <li><a href="#从命令行运行">从命令行运行</a></li>
+          <li><a href="#从脚本内部运行">从脚本内部运行</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#mapfilter-和-reduce">Map，Filter 和 Reduce</a>
+    <ul>
+      <li><a href="#map">Map</a></li>
+      <li><a href="#filter">Filter</a></li>
+      <li><a href="#reduce">Reduce</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

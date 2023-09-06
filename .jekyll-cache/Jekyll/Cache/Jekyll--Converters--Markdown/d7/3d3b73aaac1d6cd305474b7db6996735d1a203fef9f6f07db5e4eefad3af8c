@@ -1,0 +1,67 @@
+I"�
+<ul>
+  <li><a href="#utils">utils</a>
+    <ul>
+      <li><a href="#assertutilpy">AssertUtil.py</a></li>
+      <li><a href="#emailutilpy">EmailUtil.py</a></li>
+      <li><a href="#excelutilpy">ExcelUtil.py</a></li>
+      <li><a href="#logutilpy">LogUtil.py</a></li>
+      <li><a href="#mysqlutilpy">MysqlUtil.py</a></li>
+      <li><a href="#requestsutilpy">RequestsUtil.py</a></li>
+      <li><a href="#yamlutilpy">YamlUtil.py</a></li>
+    </ul>
+  </li>
+  <li><a href="#config">config</a>
+    <ul>
+      <li><a href="#confpy">Conf.py</a></li>
+      <li><a href="#confyml">conf.yml</a></li>
+      <li><a href="#db_confyml">db_conf.yml</a></li>
+    </ul>
+  </li>
+  <li><a href="#common">common</a>
+    <ul>
+      <li><a href="#basepy">Base.py</a></li>
+      <li><a href="#excelconfigpy">ExcelConfig.py</a></li>
+      <li><a href="#exceldatapy">ExcelData.py</a></li>
+    </ul>
+  </li>
+  <li><a href="#data">data</a>
+    <ul>
+      <li><a href="#testdataxlsx">testdata.xlsx</a></li>
+      <li><a href="#testloginyml">testlogin.yml</a></li>
+    </ul>
+  </li>
+  <li><a href="#logs">logs</a>
+    <ul>
+      <li><a href="#日志文件名称">日志文件名称</a></li>
+      <li><a href="#日志文件内容">日志文件内容</a></li>
+    </ul>
+  </li>
+  <li><a href="#report">report</a>
+    <ul>
+      <li><a href="#reporthtml">report.html</a></li>
+      <li><a href="#result">result</a></li>
+    </ul>
+  </li>
+  <li><a href="#run-and-requirement">run and requirement</a>
+    <ul>
+      <li><a href="#pytestini">pytest.ini</a></li>
+      <li><a href="#requirementstxt">requirements.txt</a></li>
+      <li><a href="#runpy执行测试用例">run.py执行测试用例</a></li>
+    </ul>
+  </li>
+  <li><a href="#testcase">testcase</a>
+    <ul>
+      <li><a href="#t_log">t_log</a></li>
+      <li><a href="#t_allure">t_allure</a></li>
+      <li><a href="#t_pytest">t_pytest</a></li>
+      <li><a href="#t_excel">t_excel</a></li>
+      <li><a href="#t_yml">t_yml</a></li>
+      <li><a href="#t_subprocess">t_subprocess</a></li>
+      <li><a href="#test_loginpy">test_login.py</a></li>
+      <li><a href="#test_excel_casepy">test_excel_case.py</a></li>
+      <li><a href="#test_mallpy">test_Mall.py</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

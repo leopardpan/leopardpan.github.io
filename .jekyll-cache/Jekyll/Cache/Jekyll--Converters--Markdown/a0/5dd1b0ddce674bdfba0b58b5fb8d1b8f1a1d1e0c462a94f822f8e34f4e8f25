@@ -1,0 +1,174 @@
+I"�<p>回顾一下昨天有关引用传递与值传递有关的内容。</p>
+
+<h2 id="引用传递与值传递">引用传递与值传递</h2>
+
+<p>可变对象为引用传递（传址），不可变对象为值传递（传值）。</p>
+
+<p>传值和传址的区别
+传值就是传入一个参数的值，传址就是传入一个参数的地址，也就是内存的地址（相当于指针）。他们的<strong>区别是如果函数里面对传入的参数重新赋值，函数外的全局变量是否相应改变</strong>，用<strong>传值传入的参数是不会改变的，用传址传入就会改变</strong>。</p>
+
+<p>Python函数参数传递方式：传递对象引用（传值和传址的混合方式），如果是数字，字符串，元组（不可变对象）则传值；如果是列表，字典（可变对象）则传址；</p>
+
+<p>举个例子：</p>
+<pre><code class="language-python">a=1
+def f(a):
+    a+=1
+f(a)
+print(a)
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code class="language-console">1
+</code></pre>
+
+<p>这段代码里面，因为a是数字类型，所以是传值的方式，a的值并不会变，输出为1</p>
+
+<pre><code class="language-python">a=[1]
+def f(a):
+    a[0]+=1
+f(a)
+print(a)
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code class="language-console">[2]
+</code></pre>
+
+<p>这段代码里面，因为a的类型是列表，所以是传址的形式，$a[0]$的值会改变，输出为$[2]$.</p>
+
+<p>我们再打印一下a的地址：</p>
+<pre><code class="language-python">def changelist(a):
+    a.append(0)
+    print(id(a))
+    print(a)
+a = [4,5,6]
+
+changelist(a)
+print("-"*60)
+print(id(a))
+print(a)
+</code></pre>
+<p>返回结果为：</p>
+<pre><code class="language-console">2375999356032
+[4, 5, 6, 0]
+------------------------------------------------------------
+2375999356032
+[4, 5, 6, 0]
+</code></pre>
+<p>发现在函数内部和函数外部，a的地址是一样的，说明a是传址的，而且在函数内部改变了a的值，函数外部的a的值也改变了。</p>
+
+<h2 id="函数作用域">函数作用域</h2>
+
+<p>所谓作用域（Scope），就是变量的有效范围，就是变量可以在哪个范围以内使用。有些变量可以在整段代码的任意位置使用，有些变量只能在函数内部使用，有些变量只能在 for 循环内部使用。</p>
+
+<h3 id="python局部变量">Python局部变量</h3>
+
+<p>在函数内部定义的变量，它的作用域也仅限于函数内部，出了函数就不能使用了，我们将这样的变量称为局部变量（Local Variable）。</p>
+
+<p>要知道，当函数被执行时，Python 会为其分配一块临时的存储空间，所有在函数内部定义的变量，都会存储在这块空间中。而在函数执行完毕后，这块临时存储空间随即会被释放并回收，该空间中存储的变量自然也就无法再被使用。</p>
+
+<p>举例子：</p>
+<pre><code class="language-python">def demo():
+    add = "http://c.biancheng.net/python/"
+    print("函数内部 add =",add)
+demo()
+print("函数外部 add =",add)
+</code></pre>
+
+<p>运行结果如下：</p>
+<pre><code class="language-console">函数内部 add = http://c.biancheng.net/python/
+Traceback (most recent call last):
+
+  File "&lt;ipython-input-3-3af67579cb4d&gt;", line 5, in &lt;module&gt;
+    print("函数外部 add =",add)
+
+NameError: name 'add' is not defined
+</code></pre>
+
+<p>可以看到，如果试图在函数外部访问其内部定义的变量，Python 解释器会报 NameError 错误，并提示我们没有定义要访问的变量，这也证实了当函数执行完毕后，其内部定义的变量会被销毁并回收。</p>
+
+<h3 id="python全局变量">Python全局变量</h3>
+
+<p>除了在函数内部定义变量，Python 还允许在所有函数的外部定义变量，这样的变量称为全局变量（Global Variable）。</p>
+
+<p>和局部变量不同，全局变量的默认作用域是整个程序，即全局变量既可以在各个函数的外部使用，也可以在各函数内部使用。</p>
+
+<p>定义全局变量的方式有以下 2 种：</p>
+<ol>
+  <li>在函数体外定义的变量，一定是全局变量，在函数内部也可以使用。
+    <ol>
+      <li></li>
+    </ol>
+  </li>
+  <li>在函数体内定义全局变量。即使用 global 关键字对变量进行修饰后，该变量就会变为全局变量。</li>
+</ol>
+
+<h2 id="查看变量作用域">查看变量作用域</h2>
+
+<h3 id="globals函数">globals()函数</h3>
+<p>globals() 函数为 Python 的内置函数，它可以返回一个包含全局范围内所有变量的字典，该字典中的每个键值对，<strong>键为变量名，值为该变量的值</strong>。</p>
+
+<p>举例子：</p>
+<pre><code class="language-python">#全局变量
+Pyname = "Python教程"
+Pyadd = "http://c.biancheng.net/python/"
+def text():
+    #局部变量
+    Shename = "shell教程"
+    Sheadd= "http://c.biancheng.net/shell/"
+print(globals())
+</code></pre>
+<p>输出结果如下：</p>
+<pre><code class="language-console">{ ...... , 'Pyname': 'Python教程', 'Pyadd': 'http://c.biancheng.net/python/', ......}
+</code></pre>
+<p>这个结果中，我们可以看到，全局变量 Pyname 和 Pyadd 的键值对都被包含在了 globals() 函数返回的字典中。</p>
+
+<h3 id="locals函数">locals()函数</h3>
+
+<p>locals() 函数也是 Python 内置函数之一，通过调用该函数，我们可以得到一个包含<strong>当前作用域</strong>内所有变量的字典。这里所谓的“当前作用域”指的是，在函数内部调用 locals() 函数，会获得包含所有局部变量的字典；而在全局范文内调用 locals() 函数，其功能和 globals() 函数相同。</p>
+
+<pre><code class="language-python">#全局变量
+Pyname = "Python教程"
+Pyadd = "http://c.biancheng.net/python/"
+def text():
+    #局部变量
+    Shename = "shell教程"
+    Sheadd= "http://c.biancheng.net/shell/"
+    print("函数内部的 locals:")
+    print(locals())
+text()
+print("函数外部的 locals:")
+print(locals())
+</code></pre>
+<p>程序执行结果为：</p>
+<pre><code class="language-console">函数内部的 locals:
+{'Sheadd': 'http://c.biancheng.net/shell/', 'Shename': 'shell教程'}
+函数外部的 locals:
+{...... , 'Pyname': 'Python教程', 'Pyadd': 'http://c.biancheng.net/python/', ...... }
+</code></pre>
+<p>当使用 locals() 函数获取所有全局变量时，和 globals() 函数一样，其返回的字典中会默认包含有很多变量，这些都是 Python 主程序内置的，读者暂时不用理会它们。</p>
+
+<h3 id="varobject函数">var(object)函数</h3>
+
+<p>vars() 函数也是 Python 内置函数，其功能是返回一个指定 object 对象范围内所有变量组成的字典。<strong>如果不传入object 参数，vars() 和 locals() 的作用完全相同</strong>。</p>
+
+<pre><code class="language-python">Pyname = "Python教程"
+Pyadd = "http://c.biancheng.net/python/"
+class Demo:
+    name = "Python 教程"
+    add = "http://c.biancheng.net/python/"
+print("有 object：")
+print(vars(Demo))
+print("无 object：")
+print(vars())
+</code></pre>
+<p>程序执行结果为：</p>
+<pre><code class="language-console">有 object：
+{...... , 'name': 'Python 教程', 'add': 'http://c.biancheng.net/python/', ......}
+无 object：
+{...... , 'Pyname': 'Python教程', 'Pyadd': 'http://c.biancheng.net/python/', ...... }
+</code></pre>
+
+:ET

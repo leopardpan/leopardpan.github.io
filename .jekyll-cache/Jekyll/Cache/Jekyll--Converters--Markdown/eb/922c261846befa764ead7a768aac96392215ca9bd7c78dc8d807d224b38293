@@ -1,0 +1,24 @@
+I"2
+<ul>
+  <li><a href="#pytest安装">pytest安装</a></li>
+  <li><a href="#pytest使用">pytest使用</a>
+    <ul>
+      <li><a href="#创建简单的测试用例">创建简单的测试用例</a></li>
+    </ul>
+  </li>
+  <li><a href="#pytest的基础使用">pytest的基础使用</a>
+    <ul>
+      <li><a href="#函数级别的方法">函数级别的方法</a></li>
+      <li><a href="#类级别方法">类级别方法</a></li>
+    </ul>
+  </li>
+  <li><a href="#pytest常用插件">pytest常用插件</a>
+    <ul>
+      <li><a href="#pytest-html">pytest-html</a></li>
+      <li><a href="#失败重试">失败重试</a></li>
+    </ul>
+  </li>
+  <li><a href="#数据参数化">数据参数化</a></li>
+  <li><a href="#利用pytest来进行接口自动化测试">利用pytest来进行接口自动化测试</a></li>
+</ul>
+:ET

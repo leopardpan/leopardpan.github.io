@@ -1,0 +1,74 @@
+I"�<h1 id="下划线双下划线">下划线、双下划线</h1>
+
+<p>单下划线和双下划线在 Python 变量名和方法名中都有各自的含义。有些仅仅是作为约定，用于提示开发人员；而另一些则对 Python 解释器有特殊含义。</p>
+
+<h2 id="前置单下划线_var">前置单下划线：_var</h2>
+
+<p>前置单下划线只有约定含义。它对于程序员而言是一种提示。提示其他程序员，以单下划线开头的变量或方法只在内部使用。<strong>PEP8</strong>中定义了这个约定。</p>
+
+<p>Python 在“私有”和“公共”变量之间并没有很强的区别。</p>
+
+<pre><code class="language-python">class Test:
+    def __init(self):
+        self.foo = 11
+        self._bar = 23
+</code></pre>
+
+<p>如果实例化这个类并尝试访问在__init__构造函数中定义的 foo 和_bar 属性，会发生什么情况？</p>
+
+<pre><code class="language-python">t = Test()
+print(t.foo) # 11
+print(t._bar) # 23
+</code></pre>
+
+<p>可以看到，__bar 前面的单下划线并没有阻止我们“进入”这个类访问变量的值。</p>
+
+<h2 id="后置单下划线var_">后置单下划线：var_</h2>
+
+<p>有时，某个变量最合适的名称已被 Python 语言中的关键字占用。在这种情况下，可以追加一个下划线来绕过命名冲突。</p>
+
+<p>这是PEP8中的约定。</p>
+
+<h2 id="前置双下划线__var">前置双下划线：__var</h2>
+
+<p>双下划线前缀会让 Python 解释器重写属性名称，以避免子类中的命名冲突。</p>
+
+<p>这也称为名称改写（name mangling），即解释器会更改变量的名称，以便在稍后扩展这个类时避免命名冲突。</p>
+
+<pre><code class="language-python">class Test:
+    def __init__(self):
+        self.__baz = 23
+t = Test()
+print(t.__baz) # AttributeError: 'Test' object has no attribute '__baz'
+dir(t) # ['_Test__baz']
+print(t._Test__baz) # 23
+class Test2(Test):
+    def __init__(self):
+        super().__init__()# super() 函数是用于调用父类(超类)的一个方法.
+        self.__baz = 42
+t2 = Test2()
+print(t2._baz) 
+dir(t2) 
+print(t2._Test__baz) # 23
+print(t2._Test2__baz) # 42
+
+</code></pre>
+
+<h2 id="前后双下划线var">前后双下划线：<strong>var</strong></h2>
+
+<p>如果名字前后都使用双下划线，则不会发生名称改写;前后由双下划线包围的变量不受 Python 解释器的影响。</p>
+
+<p>同时具有前后双下划线的名称在 Python 中有特殊用途。比如说，__init__这样的对象构造函数；用来让对象可调用的__call__函数。</p>
+
+<p>这些双下划线方法通常被称为魔法方法（magic methods），因为它们的名字都是以双下划线开头和结尾的。</p>
+
+<h2 id="单下划线_">单下划线：_</h2>
+
+<p>单下划线是一个有效的变量名，用作临时或无意义变量的名称。</p>
+
+<p>在 Python 交互式解释器中，单下划线是最后一个表达式的值。</p>
+
+<h1 id="来源">来源</h1>
+
+<p>《深入理解Python特性》P015 - P022</p>
+:ET

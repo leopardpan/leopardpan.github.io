@@ -1,0 +1,10 @@
+I"�
+<ul>
+  <li><a href="#bdd接口测试是什么">BDD接口测试是什么？</a></li>
+  <li><a href="#定义-feature-文件的格式可以展开说明一下吗">定义 Feature 文件的格式可以展开说明一下吗</a></li>
+  <li><a href="#step-definitions中的whenparsersparsei-make-a-request-to--with-the-following-data我看不太懂">Step Definitions中的@when(parsers.parse(‘I make a request to “” with the following data’))我看不太懂</a></li>
+  <li><a href="#我看不太懂thenparsersparsethe-response-status-code-should-be-def-check_status_codemake_request-status_code-assert-make_requeststatus_code--status_code">我看不太懂@then(parsers.parse(‘the response status code should be’)) def check_status_code(make_request, status_code): assert make_request.status_code == status_code</a></li>
+  <li><a href="#bdd接口自动化测试怎么管理很多的测试数据呢">BDD接口自动化测试怎么管理很多的测试数据呢</a></li>
+  <li><a href="#可以更加具体说一下这个步骤吗还是不懂怎么写入大数据到feature中">可以更加具体说一下这个步骤吗，还是不懂怎么写入大数据到feature中</a></li>
+</ul>
+:ET

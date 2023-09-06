@@ -1,0 +1,198 @@
+I"!%<h1 id="断言">断言</h1>
+
+<p>断言是为了告诉开发人员程序中发生了不可恢复的错误。对于可以预料的错误（如未找到相关文件），用户可以予以纠正或重试，断言并不是为此而生的。</p>
+
+<p>断言用于程序内部自检，如声明一些代码中不可能出现的条件。如果触发了某个条件，即意味着程序中存在相应的 bug。</p>
+
+<h2 id="断言语法">断言语法</h2>
+
+<pre><code class="language-python">assert_stmt ::="assert" expression1 ["," expression2]
+</code></pre>
+
+<p>其中，expression1 是需要测试的条件，可选的 expression2 是错误消息，如果断言失败则显示该消息。</p>
+
+<p>”,”表示逗号，expression1 和 expression2 之间用逗号分隔。</p>
+
+<p>在执行时，Python 解释器将每条断言语句大致转换为以下这些语句：</p>
+
+<pre><code class="language-python">if __debug__:
+    if not expression1:
+        raise AssertionError(expression2)
+</code></pre>
+
+<p>代码在检查断言条件之前，还会检查__debug__全局变量。这是一个内置的布尔标记，在一般情况下为真，若进行代码优化则为假。还可以使用 expression2 传递一个可选的错误消息，该消息将与回溯中的AssertionError 一起显示，用来进一步简化调试。</p>
+
+<h2 id="断言注意事项">断言注意事项</h2>
+
+<h3 id="不要使用断言验证数据">不要使用断言验证数据</h3>
+
+<p>在 Python 中使用断言时要注意的一个重点是，若在命令行中使用-O 和-OO 标识，或修改CPython中的 PYTHONOPTIMIZE 环境变量，都会全局禁用断言。</p>
+
+<p>不要使用断言验证数据，因为当全局禁用断言时，验证失效，可能存在严重的安全漏洞。</p>
+
+<h3 id="永不失败的断言">永不失败的断言</h3>
+
+<p>在将一个元组作为 assert 语句中的第一个参数传递时，断言条件总为真，因此永远不会失败。</p>
+
+<pre><code class="language-python">assert(1 == 2, 'This should fail') 
+</code></pre>
+
+<p>这是因为在 Python 中非空元组总为真值。如果将元组传递给 assert 语句，则会导致断言条件始终为真，因此上述 assert 语句毫无用处，永远不会触发异常。</p>
+
+<p>这也是为什么应该总是对单元测试用例先做一个快速的冒烟测试。要确保在编
+写下一个测试之前，当前测试用例的确会失败。</p>
+
+<h3 id="断言总结">断言总结</h3>
+
+<ol>
+  <li>Python 断言语句是一种测试某个条件的调试辅助功能，可作为程序的内部自检</li>
+  <li>断言应该只用于帮助开发人员识别 bug，它不是用于处理运行时错误的机制。</li>
+</ol>
+
+<h1 id="巧妙放置逗号">巧妙放置逗号</h1>
+
+<p>如果需要在 Python 中的列表、字典或集合常量中添加或移除项，记住一个窍门：在所有行后面都添加一个逗号。</p>
+
+<p>如，假设代码中有如下名字组成的列表：</p>
+
+<pre><code class="language-python">names = ['Alice', 'Bob', 'Cindy', 'Doug']
+</code></pre>
+
+<p>在修改这个名字列表时，通过 git diff 查看改动可能有点不方便。大多数源码控制系统都是基于行的，因此无法标出同一行中的多个改动。</p>
+
+<p>一个快速改进是根据编码规范，将列表、字典或集合常量分割成多行，如下所示：</p>
+
+<pre><code class="language-python">names = [
+    'Alice',
+    'Bob',
+    'Cindy'
+    'Doug'
+]
+</code></pre>
+
+<p>在列表末尾添加或移除内容时Jane，需要在’Doug’后面添加逗号，再添加或移除新的名字。否则，Python就会将字符串 Doug 和 Jane 合并成了 DougJane。这称为<strong>字符串字面值</strong>拼接，是文档中有记录的刻意行为，这种行为可能会在程序中引入令人难以琢磨的 bug。</p>
+
+<p>在某些情况下，字符串字面值拼接是一个有用的特性。例如，在跨越多行的长字符串中可以省去反斜杠：</p>
+
+<pre><code class="language-python">my_str = (
+    'This is a very long string that I want to split '
+    'across multiple lines.'
+)
+</code></pre>
+
+<p>但另一方面，这个特性有时又会成为负担。那么如何解决这个问题呢?</p>
+
+<p>在 Python 中，可以在列表、字典和集合常量中的每一项后面都放置一个逗号，包括最后一
+项。因此只要记住在每一行末尾都加上一个逗号，就可以避免逗号放置问题。</p>
+
+<h1 id="上下文管理器和-with-语句">上下文管理器和 with 语句</h1>
+
+<p>with 语句究竟有哪些好处？它有助于简化一些通用资源管理模式，抽象出其中的功能，将
+其分解并重用。</p>
+
+<p>如使用 with 语句打开文件，不需要再手动关闭文件，因为 with 语句会在代码块执行完毕后自动关闭文件。</p>
+
+<pre><code class="language-python">with open('hello.txt','w') as f:
+    f.write('hello world")
+</code></pre>
+
+<p>上面的代码如果不适用 with 语句，就需要手动关闭文件，如下所示：</p>
+
+<pre><code class="language-python">f = open('hello.txt','w')
+try:
+    f.write('hello world')
+finally:
+    f.close()
+</code></pre>
+
+<p>如果只执行上述代码中的核心逻辑，那么这段代码就很简单。但是，如果在调用 f.write()时发生异常，这段代码不能保证文件最后被关闭，因此程序可能会泄露文件描述符。此时 with 语句就派上用场了，它能够简化资源的获取和释放。</p>
+
+<pre><code class="language-python">f = open('hello.txt','w')
+f.write('hello world')
+f.close()
+</code></pre>
+
+<p>threading.Lock 类是 Python 标准库中另一个比较好的示例，它有效地使用了 with 语句。Lock 类的实例可以用作上下文管理器，因此可以使用 with 语句来获取和释放锁。</p>
+
+<pre><code class="language-python">lock = threading.Lock()
+# have problems
+lock.acquire()
+try:
+    print('Critical section 1')
+    print('Critical section 2')
+finally:
+    lock.release()
+
+</code></pre>
+
+<p>改写代码后，使用 with 语句都可以抽象出大部分资源处理逻辑。不再需要手动调用 lock.release()，因为 with 语句会在代码块执行完毕后自动释放锁。with 语句不仅让处理系统资源的代码更易读，而且由于绝对不会忘记清理或释放资源，因此还可以避免 bug 或资源泄漏。</p>
+
+<pre><code class="language-python">lock = threading.Lock()
+# have problems
+lock.acquire()
+
+# use with
+with lock:
+    print('Critical section 1')
+</code></pre>
+
+<h2 id="在自定义对象中支持-with">在自定义对象中支持 with</h2>
+
+<p>只要实现所谓的上下文管理器（context manager），就可以在自定义的类和函数中获得相同的功能。</p>
+
+<p>上下文管理器是什么？这是一个简单的“协议”（或接口），自定义对象需要遵循这个接口来支持 with 语句。总的来说，如果想将一个对象作为上下文管理器，需要做的就是向其中添加__enter__和__exit__方法。Python 将在资源管理周期的适当时间调用这两种方法。</p>
+
+<p>下面是open()上下文管理器的实现，它是一个内置的函数，用于打开文件并返回一个文件对象。</p>
+
+<pre><code class="language-python">
+class OpenFile(object):
+    def __init__(self, file, mode='r'):
+        self.file = file
+        self.mode = mode
+
+    def __enter__(self):
+        self.f = open(self.file, self.mode)
+        return self.f
+    # __exit__方法的参数是异常类型、异常值和追溯信息，type、value和traceback
+    def __exit__(self, type, value, traceback):
+        self.f.close()
+</code></pre>
+
+<p>这里的OpenFile类遵循上下文管理器协议，也支持 with 语句。因此，可以使用 with 语句来打开文件，而不需要手动关闭文件。</p>
+
+<pre><code class="language-python">with OpenFile('hello.txt','w') as f:
+    f.write('hello world')
+</code></pre>
+
+<p>当执行流程进入 with 语句上下文时，Python 会调用__enter__获取资源；离开 with 上下文时，Python 会调用__exit__释放资源。</p>
+
+<p>使用contextlib.contextmanager装饰器，可以简化上下文管理器的实现。contextmanager装饰器会将生成器函数包装成上下文管理器。这样，就可以使用 with 语句来管理资源，而不需要实现__enter__和__exit__方法。</p>
+
+<pre><code class="language-python">from contextlib import contextmanager
+
+@contextmanager
+def OpenFile(file,mode):
+    try:
+        f = open(file,mode)
+        yield f # yield 语句会在上下文管理器中暂停执行，直到离开上下文管理器
+    finally:
+        f.close()
+
+with OpenFile('hello.txt','w') as f:
+    f.write('hello world')
+</code></pre>
+
+<p>这个 managed_file()是生成器，开始先获取资源，之后暂停执行并产生资源以供调用者使用。当调用者离开 with 上下文时，生成器继续执行剩余的清理步骤，并将资源释放回系统。</p>
+
+<p>总结：</p>
+
+<ol>
+  <li>with语句通过在所谓的上下文管理器中封装 try…finally 语句的标准用法来简化异常处理；</li>
+  <li>with 语句一般用来管理系统资源的安全获取和释放。资源首先由 with 语句获取，并在执行离开 with 上下文时自动释放；</li>
+  <li>有效地使用 with 有助于避免资源泄漏的问题，让代码更加易于阅读。</li>
+</ol>
+
+<h1 id="来源">来源</h1>
+
+<p>《深入理解Python特性》P04 - P15</p>
+:ET

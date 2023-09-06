@@ -1,0 +1,144 @@
+I"�<h1 id="字符串转换每个类都需要__repr__">字符串转换（每个类都需要__repr__）</h1>
+
+<p>在 Python 中定义一个自定义类之后，如果尝试在控制台中输出其实例或在解释器会话中查看，并不能得到十分令人满意的结果。默认的“转换成字符串”功能非常原始，缺少细节：</p>
+
+<pre><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+Person_Bob = Person('Bob', 35)
+print(Person_Bob)
+</code></pre>
+
+<p>输出结果：</p>
+
+<pre><code class="language-console">&lt;__main__.Person object at 0x0000015BC9246640&gt;
+</code></pre>
+
+<p>可以看到，print只显示类名和对象实例id的字符串（这是CPython中对象的内存地址）。</p>
+
+<p>如何查看具体的内容？</p>
+
+<ol>
+  <li>直接打印类的属性</li>
+  <li>向类中加入自定义的to_string()方法来绕过这个问题。</li>
+</ol>
+
+<pre><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def to_string(self):
+        return f'Person(name={self.name}, age={self.age})'
+Person_Bob = Person('Bob', 35)
+print(Person_Bob.to_string())
+</code></pre>
+
+<p>输出结果：</p>
+
+<pre><code class="language-console">Person(name=Bob, age=35)
+</code></pre>
+
+<p>但是，这样做有一个问题，如果我们想要打印一个列表中的所有对象，那么就需要一个一个地调用to_string()方法。这样做显然不够优雅。</p>
+
+<p>或者，直接打印类的属性，还是不够优雅：</p>
+
+<pre><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+Person_Bob = Person('Bob', 35)
+print(Person_Bob.name)
+print(Person_Bob.age)
+</code></pre>
+
+<p>可以向类中添加双下划线方__str__和__repr__。这两个方法以具有 Python 特色的方式在不同情况下将对象转换为字符串。</p>
+
+<pre><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def __str__(self):
+        return f'Person(name={self.name}, age={self.age})'
+
+Person_Bob = Person('Bob', 35)
+print(Person_Bob)
+Person_Bob
+
+</code></pre>
+
+<p>输出结果：</p>
+
+<pre><code class="language-console">Person(name=Bob, age=35)
+Out[6]: &lt;__main__.Person at 0x15bc9249250&gt;
+</code></pre>
+
+<p>可以看到，在控制台中查看 Car 对象得到的依然是之前包含对象 id 的结果，但是打印对象就会得到由新添加的__str__方法返回的字符串。</p>
+
+<p>现在，我们可以格式化字符串，而不必担心对象的内部细节：</p>
+
+<pre><code class="language-python">f'{Person_Bob}'
+'{0}'.format(Person_Bob)
+</code></pre>
+
+<h2 id="__repr__和__str__的区别">__repr__和__str__的区别</h2>
+
+<p>__repr__和__str__的区别在于，__str__是面向用户的，而__repr__是面向开发者的。__repr__的目的是为了让开发者能够更容易地理解对象的内容，而__str__的目的是为了让用户能够更容易地理解对象的内容。</p>
+
+<p>我们在类中定义了__str__方法，在解释器会话中查看Person_Bob对象时，返回结果依然是&lt;<strong>main</strong>.Person at 0x15bc9249250&gt;。这是因为解释器会话中的对象是__repr__方法返回的字符串，而不是__str__方法返回的字符串。</p>
+
+<pre><code class="language-python">class Car:
+    def __init__(self,color,mileage):
+        self.color = color
+        self.mileage = mileage
+    def __str__(self):
+        return f'a {self.color} car'
+    def __repr__(self):
+        return f'Car(color={self.color}, mileage={self.mileage})'
+my_car = Car('red', 37281)
+my_car # 在解释器会话中查看对象,返回的是__repr__方法的结果
+# Out[8]: Car(color=red, mileage=37281)
+print(my_car) # 在控制台中查看对象,返回的是__str__方法的结果
+# a red car
+'{0}'.format(my_car) # 使用format函数,返回的是__str__方法的结果
+# a red car
+</code></pre>
+
+<p>从中可以看出，在 Python 解释器会话中查看对象得到的是对象的__repr__结果。</p>
+
+<p>有趣的是，像列表和字典这样的容器总是使用__repr__的结果来表示所包含的对象，哪怕对容器本身调用 str()也是如此。</p>
+
+<p>为了手动选择其中一种字符串转换方法，最好使用内置的str()和 repr()函数。</p>
+
+<p>在 date 对象上调用 str()时，得到的是一些看起来像 ISO 日期格
+式的东西；__repr__侧重的则是得到无歧义的结果，此在对象上调用 repr()会得到相对更复杂的结
+果，其中甚至包括完整的模块和类名称：</p>
+
+<pre><code class="language-python">import datetime
+today = datetime.date.today()
+# Out[22]: '2023-02-18'
+str(today)
+# Out[23]: 'datetime.date(2023, 2, 18)'
+repr(today)
+</code></pre>
+
+<p>复制并粘贴由这个__repr__返回的字符串，可以作为有效的 Python 语句重新创建原 date对象。</p>
+
+<h2 id="为什么每个类都需要__repr__">为什么每个类都需要__repr__</h2>
+
+<p>如果没有定义__repr__方法，那么Python会使用默认的__repr__方法，这个方法返回的是对象的内存地址，这对于调试来说是非常不方便的。因此建议总是为自定义类添加__repr__方法!!!</p>
+
+<pre><code class="language-python">class Car:
+    def __init__(self,color,mileage):
+        self.color = color
+        self.mileage = mileage
+    def __repr__(self):
+        return f'Car({self.color!r}, {self.mileage!r})'
+</code></pre>
+
+<p>这里使用!r 转换标志来确保输出字符串使用的是 repr(self.color)和 repr(self. mileage)，而不是 str(self.color)和 str(self.mileage)。</p>
+
+<h1 id="来源">来源</h1>
+
+<p>《深入理解Python特性》P051 - P058</p>
+:ET

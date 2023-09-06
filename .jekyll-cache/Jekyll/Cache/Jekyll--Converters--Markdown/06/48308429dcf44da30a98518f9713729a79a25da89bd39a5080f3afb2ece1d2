@@ -1,0 +1,122 @@
+I"�<p>介绍了邮件配置的目的，邮件配置的方法，邮件封装以及邮件运行。</p>
+
+<h1 id="邮件配置">邮件配置</h1>
+
+<h2 id="目的">目的</h2>
+
+<p>使用邮件，方便获取自动化测试的结果</p>
+
+<h2 id="配置文件设置以及邮件封装">配置文件设置以及邮件封装</h2>
+
+<h3 id="邮件配置-1">邮件配置</h3>
+
+<p>举个例子：</p>
+
+<p>打开163邮箱或者qq邮箱的设置页面，在设置页面中找到POP3/SMTP/IMAP服务，开启服务（查看服务器地址），获取授权码，填写到配置文件config.yml中</p>
+
+<pre><code class="language-yaml">email:
+ smtpserver: "smtp.itcast.com"
+ username: "wangxu@itcast.com"
+ password: "FDSArewq1"
+ receiver: "wangxu@itcast.com"
+</code></pre>
+
+<p>修改了配置文件后，需要在Conf.py中添加如下代码,来读取email配置有关信息：</p>
+
+<pre><code class="language-python">def get_email_info(self):
+    """
+    获取邮件配置相关信息
+    :return:
+    """
+    return self.config["email"]
+</code></pre>
+
+<h3 id="邮件封装">邮件封装</h3>
+
+<p>在utils文件夹下新建一个EmailUtil.py文件，用来封装邮件发送的方法</p>
+
+<pre><code class="language-python">from email.mime.multipart import MIMEMultipart # MIMEMultipart类表示邮件的主体,可以包含多个邮件体,可以包含文本,附件等
+from email.mime.text import MIMEText # MIMEText类表示邮件的文本内容
+import smtplib
+#初始化
+#smtp地址，用户名，密码，接收邮件者，邮件标题，邮件内容，邮件附件
+class SendEmail:
+    # __init__方法表示初始化方法，当类被实例化时，会自动调用该方法
+    def __init__(self,smtp_addr,username,password,recv,
+                 title,content=None,file=None):
+        self.smtp_addr = smtp_addr # 邮件服务器地址
+        self.username = username
+        self.password = password
+        self.recv = recv
+        self.title = title
+        self.content = content
+        self.file = file
+    #发送邮件方法
+    def send_mail(self):
+        #MIME
+        msg = MIMEMultipart()
+        #初始化邮件信息
+        msg.attach(MIMEText(self.content,_charset="utf-8"))
+        msg["Subject"] = self.title
+        msg["From"] = self.username
+        msg["To"] = self.recv
+        #邮件附件
+        #判断是否附件
+        if self.file:
+        #MIMEText读取文件
+            att = MIMEText(open(self.file).read())
+        #设置内容类型
+            att["Content-Type"] = 'application/octet-stream'
+        #设置附件头
+            att["Content-Disposition"] = 'attachment;filename="%s"'%self.file
+        #将内容附加到邮件主体中
+            msg.attach(att)
+        #登录邮件服务器
+        self.smtp = smtplib.SMTP(self.smtp_addr,port=25)
+        self.smtp.login(self.username,self.password)
+    #发送邮件
+        self.smtp.sendmail(self.username,self.recv,msg.as_string())
+
+if __name__ == "__main__":
+    #初始化类(self,smtp_addr,username,password,recv,
+            #     title,content=None,file=None):
+    from config.Conf import ConfigYaml
+    email_info = ConfigYaml().get_email_info()
+    smtp_addr = email_info["smtpserver"]
+    username = email_info["username"]
+    password = email_info["password"]
+    recv = email_info["receiver"]
+    email = SendEmail(smtp_addr,username,password,recv,"测试")
+    email.send_mail()
+</code></pre>
+
+<h2 id="邮件运行">邮件运行</h2>
+
+<p>这一步主要包括：（1）封装公共方法；(2) 应用测试发送</p>
+
+<p>在common文件夹下面的Base.py文件中，添加如下代码：</p>
+
+<pre><code class="language-python">def send_mail(report_html_path="",content="",title="测试"):
+    """
+    发送邮件
+    :param report_html_path:
+    :param content:
+    :param title:
+    :return:
+    """
+    email_info = ConfigYaml().get_email_info()
+    smtp_addr = email_info["smtpserver"]
+    username = email_info["username"]
+    password = email_info["password"]
+    recv = email_info["receiver"]
+    email = SendEmail(
+        smtp_addr=smtp_addr,
+        username=username,
+        password=password,
+        recv=recv,
+        title=title,
+        content=content,
+        file=report_html_path)
+    email.send_mail()
+</code></pre>
+:ET

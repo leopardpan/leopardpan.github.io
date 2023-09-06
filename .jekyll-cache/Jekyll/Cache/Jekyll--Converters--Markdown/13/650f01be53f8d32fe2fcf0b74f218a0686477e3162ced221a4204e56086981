@@ -1,0 +1,388 @@
+I"�1<p>断言是一种判断程序执行结果是否符合预期的方法，可以帮助我们定位错误原因，是自动化测试的灵魂。本文主要介绍pytest中使用assert进行断言，断言的应用和封装。断言结果的验证，包括状态码、返回信息验证，以及数据库断言结果验证。</p>
+
+<h1 id="结果断言">结果断言</h1>
+
+<h2 id="断言介绍">断言介绍</h2>
+
+<ul>
+  <li>断言是一种判断程序执行结果是否符合预期的方法。断言的好处是当测试用例执行失败时，可以很方便地定位错误原因。</li>
+  <li>断言是自动化最终的目的，一个用例没有断言，就失去了自动化测试的意义了。</li>
+  <li>断言用到的是 assert关键字。预期的结果和实际结果做对比，符合预期就是pass，不符合就fail。</li>
+</ul>
+
+<h2 id="常用断言">常用断言</h2>
+
+<p>pytest里面的断言就是python里assert的断言方法：</p>
+
+<ul>
+  <li>assert expression1, expression2 # 断言表达式1为真，否则抛出异常expression2，expression2可以省略，省略时默认抛出AssertionError异常，expression2可以是字符串，也可以是异常对象。</li>
+  <li>assert not expression1 # 断言表达式1为假，否则抛出AssertionError异常。</li>
+  <li>assert expression1 == expression2 # 断言表达式1和表达式2相等，否则抛出AssertionError异常。</li>
+  <li>assert expression1 != expression2 # 断言表达式1和表达式2不相等，否则抛出AssertionError异常。</li>
+  <li>assert expression1 in expression2 # 断言表达式1是表达式2的子集，否则抛出AssertionError异常。</li>
+  <li>assert expression1 not in expression2 # 断言表达式1不是表达式2的子集，否则抛出AssertionError异常。</li>
+</ul>
+
+<pre><code class="language-python">import pytest
+
+#判断xx为真
+#1、定义方法进行assert
+def test_1():
+    a = True
+    assert a
+
+#判断XX不为真
+def test_2():
+    a= True
+    assert not a
+
+#判断b包含a
+def test_3():
+    a="hello"
+    b="hello world"
+    assert a in b
+#判断a==b
+def test_4():
+    a=b="hello"
+    assert a ==b
+
+#判断a!=b
+def test_5():
+    a="hello"
+    b="hello world"
+    assert a !=b
+
+#2、运行查看结果
+if __name__ == "__main__":
+    pytest.main(["pytest_assert.py"])
+</code></pre>
+
+<p>测试结果如下：</p>
+<pre><code class="language-console">============================= test session starts ==============================
+collecting ... collected 5 items
+
+pytest_assert.py::test_1 PASSED
+pytest_assert.py::test_2 FAILED
+testcase/t_pytest/pytest_assert.py:9 (test_2)
+def test_2():
+        a= True
+&gt;       assert not a
+E       assert not True
+
+pytest_assert.py:12: AssertionError
+
+
+
+
+pytest_assert.py::test_3 PASSED
+pytest_assert.py::test_4 PASSED
+pytest_assert.py::test_5 PASSED
+
+========================= 1 failed, 4 passed in 0.06s ==========================
+
+进程已结束,退出代码1
+
+</code></pre>
+<h2 id="断言应用和封装">断言应用和封装</h2>
+
+<h3 id="断言应用">断言应用</h3>
+<p>首先，在utils目录下新建一个AssertUtil.py文件，用来封装断言方法。</p>
+
+<pre><code class="language-python">from utils.LogUtil import my_log
+import json
+#1、定义封装类
+class AssertUtil:
+#2、初始化数据，日志
+    def __init__(self):
+        self.log = my_log("AssertUtil")
+#3、code相等
+    def assert_code(self,code,expected_code):
+        """
+        验证返回状态码
+        :param code:
+        :param expected_code:
+        :return:
+        """
+        try:
+            assert int(code) == int(expected_code)
+            return True
+        except:
+            self.log.error("code error,code is %s,expected_code is %s"%(code,expected_code))
+
+            raise
+#4、body相等
+    def assert_body(self,body,expected_body):
+        """
+        验证返回结果内容相等
+        :param body:
+        :param expected_body:
+        :return:
+        """
+        try :
+            assert body == expected_body
+            return True
+        except:
+            self.log.error("body error,body is %s,expected_body is %s"%(body,expected_body))
+            raise
+#5、body包含
+    def assert_in_body(self,body,expected_body):
+        """
+        验证返回结果是否包含期望的结果
+        :param body:
+        :param expected_body:
+        :return:
+        """
+        try:
+            body = json.dumps(body)
+            print(body)
+            assert expected_body in body
+            return True
+        except:
+            self.log.error("不包含或者body是错误，body is %s,expected_body is %s"%(body,expected_body))
+            raise
+</code></pre>
+
+<p>写好了Utils目录下的AssertUtil.py文件，接下来我们要开始在test_mall.py中调用该断言方法对返回状态码和结果进行验证。</p>
+
+<pre><code class="language-python">from utils.AssertUtil import AssertUtil
+
+# 测试返回的code1
+#返回状态码
+code = r["code"]
+#assert code == 200
+AssertUtil().assert_code(code,200)
+
+#返回结果内容
+#body = json.dumps(r["body"])
+body = r["body"]
+#assert '"user_id": 1, "username": "python"' in body
+AssertUtil().assert_in_body(body,'"user_id": 1, "username": "python"')
+
+</code></pre>
+
+<h2 id="数据库结果断言">数据库结果断言</h2>
+
+<p>大多数情况下，我们接口自动化测试需要对数据库进行验证，比如说，我们在注册接口中，需要验证数据库中是否有新增的数据，这时候我们就需要对数据库进行查询，然后对查询结果进行断言。比如说，我们需要对订单接口进行测试，需要验证数据库中的订单数据是否正确，这时候我们就需要对数据库进行查询，然后对查询结果进行断言。</p>
+
+<h3 id="pymysql安装以及简单使用">PyMySQL安装以及简单使用</h3>
+
+<p>PyMySQL是Python的一个MySQL数据库驱动，它实现了Python DB API 2.0规范的全部标准，基于纯Python语言编写，所以它不依赖任何其他的库，可以很好的和Twisted，web.py等框架集成。</p>
+
+<p>PyMySQL的安装非常简单，直接使用pip命令即可安装。</p>
+
+<pre><code class="language-python">pip install pymysql
+</code></pre>
+
+<p>或者在requirements.txt文件中添加pymysql依赖，然后使用pip install -r requirements.txt命令安装。</p>
+
+<p>pymsql的使用非常简单，下面是一个简单的例子。</p>
+
+<pre><code class="language-python">import pymysql
+# 链接数据库
+conn = pymysql.connect(host= "database address",user ="user name",password="password",database="database name",charset="utf8")
+# 获取执行sql语句的光标对象
+cursor = conn.cursor() # 结果为元组
+# 获取执行SQL语句，结果作为字典返回
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+# define the execute sql
+sql = "select username,password from tb_user"
+# execute sql
+cursor.exectute(sql)
+# fetchone()获取单条数据
+result = cursor.fetchone()
+# fetchall()获取所有数据
+results = cursor.fetchall()
+# 关闭光标对象
+cursor.close()
+# 关闭数据库连接
+conn.close()
+</code></pre>
+
+<h3 id="工具类封装及使用">工具类封装及使用</h3>
+
+<p>在utils目录下新建一个MysqlUtil.py文件，用于封装数据库操作的方法。</p>
+
+<pre><code class="language-python">from utils.LogUtil import my_log
+import pymysql
+#1、创建封装类
+class Mysql:
+#2、初始化数据，连接数据库，光标对象
+    def __init__(self,host,user,password,database,charset="utf8",port=3306):
+        self.log = my_log()
+        self.conn = pymysql.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database,
+            charset=charset,
+            port=port
+            )
+        self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
+#3、创建查询、执行方法
+    def fetchone(self,sql):
+        """
+        单个查询
+        :param sql:
+        :return:
+        """
+        self.cursor.execute(sql)
+        return self.cursor.fetchone()
+
+    def fetchall(self,sql):
+        """
+        多个查询
+        :param sql:
+        :return:
+        """
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
+
+    def exec(self,sql):
+        """
+        执行
+        :return:
+        """
+        try:
+            if self.conn and self.cursor:
+                self.cursor.execute(sql)
+                self.conn.commit()
+        except Exception as ex:
+            self.conn.rollback()
+            self.log.error("Mysql 执行失败")
+            self.log.error(ex)
+            return False
+        return True
+
+#4、关闭对象
+    def __del__(self):
+        #关闭光标对象
+        if self.cursor is not None:
+            self.cursor.close()
+        #关闭连接对象
+        if self.conn is not None:
+            self.cursor.close()
+
+if __name__ == "__main__":
+    mysql = Mysql("211.103.136.242",
+                  "test",
+                  "test123456","meiduo",
+                  charset="utf8",
+                  port=7090)
+    #res = mysql.fetchall("select username,password from tb_users")
+    # 执行，修改数据库里面的数据
+    res = mysql.exec("update tb_users set first_name='python' where username = 'python'")
+    print(res)
+
+</code></pre>
+
+<h3 id="数据库断言之配置文件">数据库断言之配置文件</h3>
+
+<p>我们上一步把数据库操作封装成了一个工具类，但是在使用的时候，我们需要把数据库的连接信息写死在代码里面，这样的话，如果我们的数据库信息发生了变化，我们就需要修改代码，这样的话，我们的代码就不够灵活，所以我们需要把数据库的连接信息放到配置文件config里面，然后在代码里面读取配置文件，这样的话，我们的代码就可以灵活的修改数据库的连接信息了。</p>
+
+<p>我们之前在config文件夹下面已经有了一个config.yaml文件；但是还是建议大家把数据库的连接信息放到一个单独的文件db_conf.yml里面，这样的话，我们的配置文件就更加清晰了。</p>
+
+<p>步骤如下：</p>
+<ul>
+  <li>在config文件夹下面新建一个db_conf.yml文件；</li>
+  <li>在db_conf.yml文件里面写入数据库的连接信息；</li>
+</ul>
+
+<pre><code class="language-yaml">#编写相关基本信息
+db_1:
+  db_host: "211.103.136.242"
+  db_user: "test"
+  db_password: "test123456"
+  db_name: "meiduo"
+  db_charset: "utf8"
+  db_port: "7090"
+
+db_2:
+  db_host: "111211.103.136.242"
+  db_user: "test"
+  db_password: "test123456"
+  db_name: "meiduo"
+  db_charset: "utf8"
+  db_port: "7090"
+
+db_3:
+  db_host: "333211.103.136.242"
+  db_user: "test"
+  db_password: "test123456"
+  db_name: "meiduo"
+  db_charset: "utf8"
+  db_port: "7090"
+</code></pre>
+<ul>
+  <li>重构config.py,需要添加如下代码：</li>
+</ul>
+
+<pre><code class="language-python">#定义db_conf.yml路径
+_db_config_file =  _config_path + os.sep +"db_conf.yml"
+
+def get_db_config_file():
+    return _db_config_file
+
+class ConfigYaml:
+    def get_db_conf_info(self,db_alias):
+        """
+        根据db_alias获取该名称下的数据库信息
+        :param db_alias:
+        :return:
+        """
+        return self.db_config[db_alias]
+if __name__ == "__main__":
+    conf_read = ConfigYaml()
+    print(conf_read.get_db_conf_info("db_1"))
+    print(conf_read.get_db_conf_info("db_2"))
+    print(conf_read.get_db_conf_info("db_3"))
+
+</code></pre>
+<h3 id="数据库断言之结果验证">数据库断言之结果验证</h3>
+<ul>
+  <li>
+    <p>执行,结果验证</p>
+
+    <p>1、初始化数据库信息，在common文件夹下面创建Base.py，用来init_db</p>
+    <pre><code class="language-python">from config.Conf import ConfigYaml
+from utils.MysqlUtil import Mysql
+
+#1、定义init_db
+def init_db(db_alias):
+    
+  #2、初始数据化信息，通过配置
+  db_info = ConfigYaml().get_db_conf_info(db_alias)
+  host = db_info["db_host"]
+  user = db_info["db_user"]
+  password = db_info["db_password"]
+  db_name = db_info["db_name"]
+  charset = db_info["db_charset"]
+  port = int(db_info["db_port"])
+
+  #3、初始化mysql对象
+  conn = Mysql(host,user,password,db_name,charset,port)
+  print(conn)
+  return conn
+  
+if __name__ =="__main__":
+  init_db("db_1")
+    
+</code></pre>
+
+    <p>2、接口用例返回结果内容进数据库验证，在test_mall.py文件中添加如下代码：</p>
+
+    <pre><code class="language-python">#1、导入init_db
+from common.Base import init_db
+  
+#1、初始化数据库对象
+conn = init_db("db_1")
+#2、查询结果
+res_db = conn.fetchone("select id,username from tb_users where username='python'")
+print("数据库查询结果",res_db)
+#3、验证
+user_id = body["user_id"]
+assert user_id == res_db["id"]
+  
+</code></pre>
+  </li>
+</ul>
+:ET

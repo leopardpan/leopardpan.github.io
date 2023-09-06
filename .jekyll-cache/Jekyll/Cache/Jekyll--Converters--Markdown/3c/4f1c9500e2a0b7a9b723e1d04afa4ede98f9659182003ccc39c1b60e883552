@@ -1,0 +1,100 @@
+I"�<h2 id="1-什么是stable-diffusion">1. 什么是stable diffusion？</h2>
+
+<h2 id="2-环境搭建">2. 环境搭建</h2>
+
+<p><a href="https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe">python3.10.6</a></p>
+
+<p>也可以从python release页面下载:
+<a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
+
+<p>项目地址：
+<a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">stable diffusion</a></p>
+
+<p>拉取到本地：</p>
+
+<pre><code class="language-bash">https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+</code></pre>
+
+<p>可能会遇到的问题：</p>
+
+<p>windows下已经存在了其他的python版本，要先切换默认的python版本：</p>
+
+<pre><code class="language-bash">py --version # 查看当前默认的python版本
+py -0p # 查看当前系统中安装的python版本
+py -3.x -m ensurepip --default-pip # 切换默认的python版本
+</code></pre>
+
+<p>或者找到“系统属性”，点击“环境变量”，在“系统变量”中找到“Path”，在“Path”中应该已经有了两个python路径，删除其中一个python路径或者把其中想要的路径上移到最前面即可。</p>
+
+<p>如果已经用了其他版本的python，要先去stable-diffusion-webui文件夹下面的venv删除所有文件再进行操作。</p>
+
+<h2 id="下载stable-diffusion">下载stable diffusion</h2>
+
+<p>运行webui-user.bat，第一次会下载所需要的whl和依赖包，可能会比较慢，耐心等待。</p>
+
+<p>第一次运行出现的问题：
+gfpgan安装失败</p>
+
+<p><a href="https://blog.csdn.net/weixin_40735291/article/details/129153398">解决方案</a></p>
+
+<ul>
+  <li>无法安装gfpgan的原因是<strong>网络问题，就算已经科学上网，并设置为全局，也无法从github上下载源代码，从而导致install失败。</strong></li>
+  <li>解决方法是直接到github下载 <a href="https://github.com/TencentARC/GFPGAN">GFPGAN</a> 代码到本地，并进行 <strong>本地安装</strong> 。</li>
+  <li>因为stable diffusion会在其根目录创建虚拟python环境venv，因此安装方法与github有所不同。可参考以下方法：
+    <ul>
+      <li>从github将GFPGAN的源文件下载到本地，这一步可以使用git clone也可以直接下载zip文件。下载后，解压（如果用git clone就不需要）到 <code>d:\\stable-diffusion-webui\venv\Scripts</code>目录下（stable-diffusion-webui是你stable diffusion webui的根目录，这个地址只是我电脑中的，请根据自己放的位置调整）。</li>
+      <li>打开cmd，cd到 <code>d:\\stable-diffusion-webui\venv\Scripts\GFPGAN-master</code>下。</li>
+      <li>使用命令 <code>d:\\stable-diffusion-webui\venv\Scripts\python.exe -m pip install basicsr facexlib</code>安装GFPGAN的依赖。</li>
+      <li>再使用 <code>d:\\stable-diffusion-webui\venv\Scripts\python.exe -m pip install -r requirements.txt</code>安装GFPGAN的依赖。</li>
+      <li>使用 <code>d:\\stable-diffusion-webui\venv\Scripts\python.exe setup.py develop</code>安装GFPGAN。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>如果文件路径有空格，要加上双引号。
+这里的python.exe -m表示使用python.exe这个文件来执行模块pip，也就是pip.py这个文件。</p>
+
+<p>安装open_clip失败</p>
+
+<p><a href="https://www.bilibili.com/read/cv22604427/">解决方案</a></p>
+
+<p>还有其他一些小问题，很好解决的。</p>
+
+<p>比如说从github上面拉取Stability-AI
+/stablediffusion出现 <code>Failed to connect to github.com port 443: Timed out</code>的问题，可以换国内的镜像源解决。</p>
+
+<pre><code class="language-shell">git clone https://hub.fgit.gq/Stability-AI/stablediffusion.git "D:/software1/stable diffusion/stable-diffusion-webui/repositories/stable-diffusion-stability-ai" 
+</code></pre>
+
+<h2 id="运行stable-diffusion">运行stable diffusion</h2>
+
+<p>训练模型时报错：</p>
+
+<p><code>torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 128.00 MiB (GPU 0; 4.00 GiB total capacity; 2.20 GiB already allocated; 44.64 MiB free; 2.41 GiB reserved in total by PyTorch) If reserved memory is &gt;&gt; allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF</code></p>
+
+<p>解决方法：</p>
+
+<ol>
+  <li>降低batch_size</li>
+  <li>换显卡</li>
+  <li>repositories\stable-diffusion-stability-ai\scripts\txt2img.py
+    <ol>
+      <li>parser.add_argument的–n_samples的default改为1</li>
+      <li><code>model.to(device)</code>后添加 <code>.half()</code> 没找到这个在哪</li>
+    </ol>
+  </li>
+  <li>1</li>
+</ol>
+
+<h2 id="civitai">Civitai</h2>
+
+<p>自己训练的照片不太满意，可以用Civitai的模型进行训练。</p>
+
+<p>https://civitai.com/models/8109/ulzza</p>
+
+<p>https://civitai.com/models/6424/chill</p>
+
+<h2 id="其他">其他</h2>
+
+<p>txt2img只是stable diffusion最简单的功能，还可以img2img等等。</p>
+:ET
