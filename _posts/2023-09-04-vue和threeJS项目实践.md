@@ -110,5 +110,20 @@ import { OrbitControls} from  "three/examples/jsm/controls/OrbitControls"
 //5 创建轨道控制器
 
 const controls = new OrbitControls(camera,render.domElement);
+```
+
+# 添加动画
+
+
+```js
+const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);
+// 辅助网格
+const gridHelper = new THREE.GridHelper(10, 10); // size,divisions
+scene.add(gridHelper);
+```
+
+
+
 
 
